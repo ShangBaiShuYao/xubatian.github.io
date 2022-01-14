@@ -25,9 +25,8 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/yarn.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mr.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/hmy.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/bigdata.png">
 <meta property="article:published_time" content="2022-01-12T05:56:07.000Z">
-<meta property="article:modified_time" content="2022-01-14T04:33:44.315Z">
+<meta property="article:modified_time" content="2022-01-14T06:19:25.020Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="Hadoop">
 <meta name="twitter:card" content="summary">
@@ -321,7 +320,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">923字</span>
+      <span class="post-count">448字</span>
     </span>
   </span>
 
@@ -330,7 +329,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">3分</span>
+      <span class="post-count">1分</span>
     </span>
   </span>
 </div>
@@ -388,11 +387,6 @@
 
 <p>&emsp;</p>
 <p>此处先简要了解hadoop四个模块的组成. 后面会一一详解.</p>
-<h1 id="大数据技术生态体系"><a href="#大数据技术生态体系" class="headerlink" title="大数据技术生态体系"></a>大数据技术生态体系</h1><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/bigdata.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
-
-
-
-<p>图中涉及的技术名词解释如下：<br>1）Sqoop：Sqoop是一款开源的工具，主要用于在Hadoop、Hive与传统的数据库（MySQL）间进行数据的传递，可以将一个关系型数据库（例如 ：MySQL，Oracle 等）中的数据导进到Hadoop的HDFS中，也可以将HDFS的数据导进到关系型数据库中。<br>2）Flume：Flume是一个高可用的，高可靠的，分布式的海量日志采集、聚合和传输的系统，Flume支持在日志系统中定制各类数据发送方，用于收集数据；<br>3）Kafka：Kafka是一种高吞吐量的分布式发布订阅消息系统；<br>4）Spark：Spark是当前最流行的开源大数据内存计算框架。可以基于Hadoop上存储的大数据进行计算。<br>5）Flink：Flink是当前最流行的开源大数据内存计算框架。用于实时计算的场景较多。<br>6）Oozie：Oozie是一个管理Hadoop作业（job）的工作流程调度管理系统。<br>7）Hbase：HBase是一个分布式的、面向列的开源数据库。HBase不同于一般的关系数据库，它是一个适合于非结构化数据存储的数据库。<br>8）Hive：Hive是基于Hadoop的一个数据仓库工具，可以将结构化的数据文件映射为一张数据库表，并提供简单的SQL查询功能，可以将SQL语句转换为MapReduce任务进行运行。其优点是学习成本低，可以通过类SQL语句快速实现简单的MapReduce统计，不必开发专门的MapReduce应用，十分适合数据仓库的统计分析。<br>9）ZooKeeper：它是一个针对大型分布式系统的可靠协调系统，提供的功能包括：配置维护、名字服务、分布式同步、组服务等。</p>
 
     
 
@@ -581,7 +575,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8E%E5%AE%98%E7%BD%91%E7%9C%8Bhadoop%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">从官网看hadoop组成结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hadoop%E5%90%84%E4%B8%AA%E7%89%88%E6%9C%AC%E7%9A%84%E4%B8%8D%E5%90%8C%E6%A8%A1%E5%9D%97%E5%8F%8A%E8%B4%9F%E8%B4%A3%E7%9A%84%E5%8A%9F%E8%83%BD%E5%8F%98%E5%8C%96"><span class="toc-number">2.</span> <span class="toc-text">Hadoop各个版本的不同模块及负责的功能变化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hadoop%E5%9B%9B%E4%B8%AA%E6%A8%A1%E5%9D%97%E5%85%B7%E4%BD%93%E7%9A%84%E5%8A%9F%E8%83%BD%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E5%91%A2"><span class="toc-number">3.</span> <span class="toc-text">Hadoop四个模块具体的功能如何理解呢?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%91%A0-HDFS%E6%9E%B6%E6%9E%84"><span class="toc-number">3.1.</span> <span class="toc-text">① HDFS架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%91%A1YARN%E6%9E%B6%E6%9E%84"><span class="toc-number">3.2.</span> <span class="toc-text">②YARN架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%91%A2MapReduce%E6%9E%B6%E6%9E%84"><span class="toc-number">3.3.</span> <span class="toc-text">③MapReduce架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%91%A3Common%E6%A8%A1%E5%9D%97"><span class="toc-number">3.4.</span> <span class="toc-text">④Common模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%91%A4HDFS%E3%80%81YARN%E3%80%81MapReduce%E4%B8%89%E8%80%85%E5%85%B3%E7%B3%BB"><span class="toc-number">3.5.</span> <span class="toc-text">⑤HDFS、YARN、MapReduce三者关系</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF%E7%94%9F%E6%80%81%E4%BD%93%E7%B3%BB"><span class="toc-number">4.</span> <span class="toc-text">大数据技术生态体系</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8E%E5%AE%98%E7%BD%91%E7%9C%8Bhadoop%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">从官网看hadoop组成结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hadoop%E5%90%84%E4%B8%AA%E7%89%88%E6%9C%AC%E7%9A%84%E4%B8%8D%E5%90%8C%E6%A8%A1%E5%9D%97%E5%8F%8A%E8%B4%9F%E8%B4%A3%E7%9A%84%E5%8A%9F%E8%83%BD%E5%8F%98%E5%8C%96"><span class="toc-number">2.</span> <span class="toc-text">Hadoop各个版本的不同模块及负责的功能变化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hadoop%E5%9B%9B%E4%B8%AA%E6%A8%A1%E5%9D%97%E5%85%B7%E4%BD%93%E7%9A%84%E5%8A%9F%E8%83%BD%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E5%91%A2"><span class="toc-number">3.</span> <span class="toc-text">Hadoop四个模块具体的功能如何理解呢?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%91%A0-HDFS%E6%9E%B6%E6%9E%84"><span class="toc-number">3.1.</span> <span class="toc-text">① HDFS架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%91%A1YARN%E6%9E%B6%E6%9E%84"><span class="toc-number">3.2.</span> <span class="toc-text">②YARN架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%91%A2MapReduce%E6%9E%B6%E6%9E%84"><span class="toc-number">3.3.</span> <span class="toc-text">③MapReduce架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%91%A3Common%E6%A8%A1%E5%9D%97"><span class="toc-number">3.4.</span> <span class="toc-text">④Common模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%91%A4HDFS%E3%80%81YARN%E3%80%81MapReduce%E4%B8%89%E8%80%85%E5%85%B3%E7%B3%BB"><span class="toc-number">3.5.</span> <span class="toc-text">⑤HDFS、YARN、MapReduce三者关系</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
