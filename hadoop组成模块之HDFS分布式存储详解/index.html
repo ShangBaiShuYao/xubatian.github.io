@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://xubatian.cn">
-  <title>大数据组件之HDFS分布式存储 | 我的梦想是星辰大海</title>
+  <title>hadoop组成模块之HDFS分布式存储详解 | 我的梦想是星辰大海</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta name="description" content="Hadoop的基本组成部分之一HDFS,分布式文件存储系统.">
+  <meta name="description" content="“你和萤火虫有两个共同点，在我的眼里都会发光，同时，都已经很多年没见了。”  –来自网易云音乐《夜、萤火虫和你》">
 <meta property="og:type" content="article">
-<meta property="og:title" content="大数据组件之HDFS分布式存储">
-<meta property="og:url" content="http://xubatian.cn/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%BB%84%E4%BB%B6%E4%B9%8BHDFS%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8/index.html">
+<meta property="og:title" content="hadoop组成模块之HDFS分布式存储详解">
+<meta property="og:url" content="http://xubatian.cn/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BHDFS%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E8%AF%A6%E8%A7%A3/index.html">
 <meta property="og:site_name" content="我的梦想是星辰大海">
-<meta property="og:description" content="Hadoop的基本组成部分之一HDFS,分布式文件存储系统.">
+<meta property="og:description" content="“你和萤火虫有两个共同点，在我的眼里都会发光，同时，都已经很多年没见了。”  –来自网易云音乐《夜、萤火虫和你》">
 <meta property="og:locale">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/images/20.jpg">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/hdfs1.png">
@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/shuju.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/diaoxian.png">
 <meta property="article:published_time" content="2022-01-12T11:06:38.000Z">
-<meta property="article:modified_time" content="2022-01-14T01:04:06.626Z">
+<meta property="article:modified_time" content="2022-01-14T02:53:43.238Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="Hadoop">
 <meta property="article:tag" content="HDFS">
@@ -300,14 +300,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-大数据组件之HDFS分布式存储" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-hadoop组成模块之HDFS分布式存储详解" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      大数据组件之HDFS分布式存储
+      hadoop组成模块之HDFS分布式存储详解
     </h1>
   
 
@@ -319,7 +319,7 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%BB%84%E4%BB%B6%E4%B9%8BHDFS%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8/" class="archive-article-date">
+<a href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BHDFS%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
         <time datetime="2022-01-12T11:06:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-12</time>
 </a>
 
@@ -333,7 +333,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">7.5k字</span>
+      <span class="post-count">8k字</span>
     </span>
   </span>
 
@@ -342,7 +342,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">31分</span>
+      <span class="post-count">33分</span>
     </span>
   </span>
 </div>
@@ -353,7 +353,8 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>Hadoop的基本组成部分之一HDFS,分布式文件存储系统.</p>
+    <p>“你和萤火虫有两个共同点，在我的眼里都会发光，同时，都已经很多年没见了。”</p>
+<p> –来自网易云音乐《夜、萤火虫和你》                            </p>
 <span id="more"></span>
 
 <img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/images/20.jpg" width = "1201.56" height = "675.88" alt="xubatian的博客" align="center" />
@@ -362,31 +363,44 @@
 
 
 
-<h1 id="HDFS概述"><a href="#HDFS概述" class="headerlink" title="HDFS概述"></a>HDFS概述</h1><h2 id="HDFS产出背景及定义"><a href="#HDFS产出背景及定义" class="headerlink" title="HDFS产出背景及定义"></a>HDFS产出背景及定义</h2><h3 id="HDFS产生背景"><a href="#HDFS产生背景" class="headerlink" title="HDFS产生背景"></a>HDFS产生背景</h3><p>随着数据量越来越大,在一个操作系统存不下所有的数据,那么就分配到更多的操作系统管理的磁盘中,但是不方便管理和维护,迫切需要一种系统来管理多台机器上的文件,这就是分布式文件管理系统。HDFS只是分布式文件管理系统中的一种。它主要解决什么问题呢?它主要解决的是,当我的是数据量大到一定程度的时候,我把我的数据分布到多台机器上去存储,但是我可以多多台机器上的数据进行统一的管理.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">前言</span><br><span class="line"></span><br><span class="line">上文了解到了hadoop由四个模块组成: HDFS,MapReduce,Yarn,Common.</span><br><span class="line"></span><br><span class="line">本篇文章具体了解hadoop的HDFS模块.</span><br><span class="line"></span><br><span class="line">什么是HDFS?</span><br><span class="line"></span><br><span class="line">HDFS有什么功能?</span><br><span class="line"></span><br><span class="line">如何掌握HDFS?</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="HDFS概述"><a href="#HDFS概述" class="headerlink" title="HDFS概述"></a>HDFS概述</h1><h2 id="是什么原因使得HDFS产生的呢"><a href="#是什么原因使得HDFS产生的呢" class="headerlink" title="是什么原因使得HDFS产生的呢?"></a>是什么原因使得HDFS产生的呢?</h2><p>我们知道大数据面临的痛点就是:</p>
+<p>①<strong>数据存储问题.</strong> 数据超级大,可达TB级别.所以没有任何合适的工具存储这些数据.mysql等数据也无法有效的存储. </p>
+<p>②**数据在有效的时间整合出结果,即计算问题.**就算能够存储下来,也无法有效的操作这些数据. 即,无法通过类似sql语句查询mysql一样去整合数据得到有效的信息.</p>
+<p>但是我们又说到, hadoop解决了这两个问题. </p>
+<p>首先hadoop解决数据存储问题的模块就是HDFS. 也就是说HDFS就是针对大数据存储问题的一套落地的解决方案. </p>
+<p>那么为什么连mysql这样的数据库都无法解决的问题,hadoop的HDFS能够解决呢?</p>
+<p>答案就是: 分布式文件存储. 可以理解为, 将十台服务器的磁盘整合成一个磁盘,如果每台服务器是10T,那么,整个HDFS就是100T. 如果后期磁盘不够了,我还可以增加服务器的方式继续扩容.</p>
+<h2 id="HDFS产生背景"><a href="#HDFS产生背景" class="headerlink" title="HDFS产生背景"></a>HDFS产生背景</h2><p>随着数据量越来越大,在一个操作系统存不下所有的数据,那么就分配到更多的操作系统管理的磁盘中,但是不方便管理和维护,迫切需要一种系统来管理多台机器上的文件,这就是分布式文件管理系统。HDFS只是分布式文件管理系统中的一种。它主要解决什么问题呢?它主要解决的是,当我的是数据量大到一定程度的时候,我把我的数据分布到多台机器上去存储,但是我可以多多台机器上的数据进行统一的管理.</p>
 <p>&emsp;     </p>
-<h3 id="HDFS定义"><a href="#HDFS定义" class="headerlink" title="HDFS定义"></a>HDFS定义</h3><p>HDFS( Hadoop Distributed File System),它是一个文件系统,用于存储文件,通过目录树来定位文件;</p>
-<p>其次,它是分布式的,由很多服务器联合起来实现其功能,集群中的服务器有各自的角色</p>
+<h2 id="HDFS定义"><a href="#HDFS定义" class="headerlink" title="HDFS定义"></a>HDFS定义</h2><p>HDFS( Hadoop Distributed File System),它是一个文件系统,用于存储文件,通过目录树来定位文件;</p>
+<p>其次,它是分布式的,由很多服务器联合起来实现其功能,集群中的服务器有各自的角色. 因为有很多服务器联合起来是一个HDFS.</p>
+<p>每台服务器上都有HDFS.如何区分谁是主,谁是从呢? 因为有了主从才能更好的管理. 就像董事长管着经理,经理管着员工,这样才能掌控整个大的集团. 毕竟一个角色的人是有限的. 此逻辑在这里也适用.</p>
 <p>&emsp; </p>
-<h3 id="HDFS的使用场景"><a href="#HDFS的使用场景" class="headerlink" title="HDFS的使用场景"></a>HDFS的使用场景</h3><p>适合一次写入,多次读出的场景,且不支持文件的修改,也不支持删除,只支持末尾追加。适合用来做数据分析,并不适合用来做网盘应用.</p>
+<h2 id="HDFS的使用场景"><a href="#HDFS的使用场景" class="headerlink" title="HDFS的使用场景"></a>HDFS的使用场景</h2><p>适合一次写入,多次读出的场景,且不支持文件的修改,也不支持删除,只支持末尾追加。适合用来做数据分析,并不适合用来做网盘应用.</p>
 <p>Namenode所有元数据信息都是维护在内存中的</p>
 <p>&emsp;     </p>
-<h2 id="HDFS优缺点"><a href="#HDFS优缺点" class="headerlink" title="HDFS优缺点"></a>HDFS优缺点</h2><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/hdfs1.png" width = "900" height = "500" alt="xubatian的博客" align="center" />
+<h2 id="HDFS优缺点"><a href="#HDFS优缺点" class="headerlink" title="HDFS优缺点"></a>HDFS优缺点</h2><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/hdfs1.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
 
 
 
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/hdfs2.png" width = "900" height = "500" alt="xubatian的博客" align="center" />
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/hdfs2.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
 
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">要知道,namenode给datanode下达指令,但是NameNode具体给datanode下达什么指令是由我们客户端来操作NameNode来决定的;注意在HDFS当中他的文件单位是以块(Block)为单位的存储的.</span><br></pre></td></tr></table></figure>
 
 <p>&emsp;     </p>
-<h2 id="HDFS组成架构"><a href="#HDFS组成架构" class="headerlink" title="HDFS组成架构"></a>HDFS组成架构</h2><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/hdfs3.png" width = "900" height = "500" alt="xubatian的博客" align="center" />
+<h2 id="HDFS组成架构"><a href="#HDFS组成架构" class="headerlink" title="HDFS组成架构"></a>HDFS组成架构</h2><p>上面说了HDFS是有很多服务器联合起来的. 但是需要工作你得有一个领导人.你得分清楚哪一个是领导. 将来数据来了之后我需要存在哪台机器上得由一个小领导来指挥.</p>
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/hdfs3.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
 
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/hdfs4.png" width = "900" height = "500" alt="xubatian的博客" align="center" />
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/hdfs4.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
 
 
 
 <p>&emsp;     &emsp;     </p>
-<h2 id="HDFS文件块大小"><a href="#HDFS文件块大小" class="headerlink" title="HDFS文件块大小"></a>HDFS文件块大小</h2><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/block1.png" width = "900" height = "500" alt="xubatian的博客" align="center" />
+<h2 id="HDFS文件块大小"><a href="#HDFS文件块大小" class="headerlink" title="HDFS文件块大小"></a>HDFS文件块大小</h2><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/block1.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
 
 
 
@@ -394,7 +408,7 @@
 
 
 
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/block2.png" width = "900" height = "500" alt="xubatian的博客" align="center" />
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/block2.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
 
 <p>&emsp;     </p>
 <h1 id="HDFS的Shell操作"><a href="#HDFS的Shell操作" class="headerlink" title="HDFS的Shell操作"></a>HDFS的Shell操作</h1><h2 id="命令大全"><a href="#命令大全" class="headerlink" title="命令大全"></a>命令大全</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">[shangbaishuyao@hadoop102 hadoop-3.1.3]$ bin/hadoop fs</span><br><span class="line">Usage: hadoop fs [generic options]</span><br><span class="line">	[-appendToFile &lt;localsrc&gt; ... &lt;dst&gt;]</span><br><span class="line">	[-cat [-ignoreCrc] &lt;src&gt; ...]</span><br><span class="line">	[-checksum &lt;src&gt; ...]</span><br><span class="line">	[-chgrp [-R] GROUP PATH...]</span><br><span class="line">	[-chmod [-R] &lt;MODE[,MODE]... | OCTALMODE&gt; PATH...]</span><br><span class="line">	[-chown [-R] [OWNER][:[GROUP]] PATH...]</span><br><span class="line">	[-copyFromLocal [-f] [-p] [-l] [-d] [-t &lt;thread count&gt;] &lt;localsrc&gt; ... &lt;dst&gt;]</span><br><span class="line">	[-copyToLocal [-f] [-p] [-ignoreCrc] [-crc] &lt;src&gt; ... &lt;localdst&gt;]</span><br><span class="line">	[-count [-q] [-h] [-v] [-t [&lt;storage type&gt;]] [-u] [-x] [-e] &lt;path&gt; ...]</span><br><span class="line">	[-cp [-f] [-p | -p[topax]] [-d] &lt;src&gt; ... &lt;dst&gt;]</span><br><span class="line">	[-createSnapshot &lt;snapshotDir&gt; [&lt;snapshotName&gt;]]</span><br><span class="line">	[-deleteSnapshot &lt;snapshotDir&gt; &lt;snapshotName&gt;]</span><br><span class="line">	[-df [-h] [&lt;path&gt; ...]]</span><br><span class="line">	[-du [-s] [-h] [-v] [-x] &lt;path&gt; ...]</span><br><span class="line">	[-expunge]</span><br><span class="line">	[-find &lt;path&gt; ... &lt;expression&gt; ...]</span><br><span class="line">	[-get [-f] [-p] [-ignoreCrc] [-crc] &lt;src&gt; ... &lt;localdst&gt;]</span><br><span class="line">	[-getfacl [-R] &lt;path&gt;]</span><br><span class="line">	[-getfattr [-R] &#123;-n name | -d&#125; [-e en] &lt;path&gt;]</span><br><span class="line">	[-getmerge [-nl] [-skip-empty-file] &lt;src&gt; &lt;localdst&gt;]</span><br><span class="line">	[-head &lt;file&gt;]</span><br><span class="line">	[-help [cmd ...]]</span><br><span class="line">	[-ls [-C] [-d] [-h] [-q] [-R] [-t] [-S] [-r] [-u] [-e] [&lt;path&gt; ...]]</span><br><span class="line">	[-mkdir [-p] &lt;path&gt; ...]</span><br><span class="line">	[-moveFromLocal &lt;localsrc&gt; ... &lt;dst&gt;]</span><br><span class="line">	[-moveToLocal &lt;src&gt; &lt;localdst&gt;]</span><br><span class="line">	[-mv &lt;src&gt; ... &lt;dst&gt;]</span><br><span class="line">	[-put [-f] [-p] [-l] [-d] &lt;localsrc&gt; ... &lt;dst&gt;]</span><br><span class="line">	[-renameSnapshot &lt;snapshotDir&gt; &lt;oldName&gt; &lt;newName&gt;]</span><br><span class="line">	[-rm [-f] [-r|-R] [-skipTrash] [-safely] &lt;src&gt; ...]</span><br><span class="line">	[-rmdir [--ignore-fail-on-non-empty] &lt;dir&gt; ...]</span><br><span class="line">	[-setfacl [-R] [&#123;-b|-k&#125; &#123;-m|-x &lt;acl_spec&gt;&#125; &lt;path&gt;]|[--set &lt;acl_spec&gt; &lt;path&gt;]]</span><br><span class="line">	[-setfattr &#123;-n name [-v value] | -x name&#125; &lt;path&gt;]</span><br><span class="line">	[-setrep [-R] [-w] &lt;rep&gt; &lt;path&gt; ...]</span><br><span class="line">	[-stat [format] &lt;path&gt; ...]</span><br><span class="line">	[-tail [-f] [-s &lt;sleep interval&gt;] &lt;file&gt;]</span><br><span class="line">	[-test -[defsz] &lt;path&gt;]</span><br><span class="line">	[-text [-ignoreCrc] &lt;src&gt; ...]</span><br><span class="line">	[-touch [-a] [-m] [-t TIMESTAMP ] [-c] &lt;path&gt; ...]</span><br><span class="line">	[-touchz &lt;path&gt; ...]</span><br><span class="line">	[-truncate [-w] &lt;length&gt; &lt;path&gt; ...]</span><br><span class="line">	[-usage [cmd ...]]</span><br></pre></td></tr></table></figure>
@@ -737,7 +751,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://xubatian.cn/大数据组件之HDFS分布式存储/" title="大数据组件之HDFS分布式存储" target="_blank">http://xubatian.cn/大数据组件之HDFS分布式存储/</a>
+          <a href="http://xubatian.cn/hadoop组成模块之HDFS分布式存储详解/" title="hadoop组成模块之HDFS分布式存储详解" target="_blank">http://xubatian.cn/hadoop组成模块之HDFS分布式存储详解/</a>
         </li>
         
         <li>
@@ -842,7 +856,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%BB%84%E4%BB%B6%E4%B9%8BHDFS%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BHDFS%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E8%AF%A6%E8%A7%A3/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -867,8 +881,8 @@
     </a>
   
   
-    <a href="/hadoop%E7%9A%84%E7%AE%80%E4%BB%8B/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">hadoop的简介</div>
+    <a href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E5%8F%8A%E5%90%84%E6%A8%A1%E5%9D%97%E7%9A%84%E7%AE%80%E4%BB%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">hadoop组成模块及各模块的简介</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -895,7 +909,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#HDFS%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">HDFS概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HDFS%E4%BA%A7%E5%87%BA%E8%83%8C%E6%99%AF%E5%8F%8A%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">HDFS产出背景及定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HDFS%E4%BA%A7%E7%94%9F%E8%83%8C%E6%99%AF"><span class="toc-number">1.1.1.</span> <span class="toc-text">HDFS产生背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HDFS%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">HDFS定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HDFS%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.1.3.</span> <span class="toc-text">HDFS的使用场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HDFS%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-number">1.2.</span> <span class="toc-text">HDFS优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HDFS%E7%BB%84%E6%88%90%E6%9E%B6%E6%9E%84"><span class="toc-number">1.3.</span> <span class="toc-text">HDFS组成架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HDFS%E6%96%87%E4%BB%B6%E5%9D%97%E5%A4%A7%E5%B0%8F"><span class="toc-number">1.4.</span> <span class="toc-text">HDFS文件块大小</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HDFS%E7%9A%84Shell%E6%93%8D%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">HDFS的Shell操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8"><span class="toc-number">2.1.</span> <span class="toc-text">命令大全</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hadoop%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%AE%9E%E6%93%8D"><span class="toc-number">2.2.</span> <span class="toc-text">Hadoop常用命令实操</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E7%B1%BB%E5%91%BD%E4%BB%A4"><span class="toc-number">2.2.1.</span> <span class="toc-text">启动类命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hadoop-fs-hdfs-dfs-%E5%91%BD%E4%BB%A4"><span class="toc-number">2.2.2.</span> <span class="toc-text">hadoop fs&#x2F;hdfs dfs 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#yarn%E5%91%BD%E4%BB%A4"><span class="toc-number">2.2.3.</span> <span class="toc-text">yarn命令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HDFS%E7%9A%84API%E6%93%8D%E4%BD%9C"><span class="toc-number">3.</span> <span class="toc-text">HDFS的API操作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HDFS%E7%9A%84%E8%AF%BB%E5%86%99%E6%B5%81%E7%A8%8B"><span class="toc-number">4.</span> <span class="toc-text">HDFS的读写流程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HDFS%E5%86%99%E6%95%B0%E6%8D%AE%E6%B5%81%E7%A8%8B-%E5%89%96%E6%9E%90%E6%96%87%E4%BB%B6%E5%86%99%E5%85%A5"><span class="toc-number">4.1.</span> <span class="toc-text">HDFS写数据流程(剖析文件写入)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HDFS%E8%AF%BB%E6%95%B0%E6%8D%AE%E6%B5%81%E7%A8%8B"><span class="toc-number">4.2.</span> <span class="toc-text">HDFS读数据流程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NameNode%E5%92%8CSecondaryNameNode"><span class="toc-number">5.</span> <span class="toc-text">NameNode和SecondaryNameNode</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#NameNode%E5%92%8CSecondaryNameNode%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="toc-number">5.1.</span> <span class="toc-text">NameNode和SecondaryNameNode工作机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fsimage%E5%92%8CEdits%E8%A7%A3%E6%9E%90"><span class="toc-number">5.2.</span> <span class="toc-text">Fsimage和Edits解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Fsimage%E5%92%8CEdits%E6%A6%82%E5%BF%B5"><span class="toc-number">5.2.1.</span> <span class="toc-text">Fsimage和Edits概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#oiv%E6%9F%A5%E7%9C%8BFsimage%E6%96%87%E4%BB%B6"><span class="toc-number">5.2.2.</span> <span class="toc-text">oiv查看Fsimage文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#oev%E6%9F%A5%E7%9C%8BEdits%E6%96%87%E4%BB%B6"><span class="toc-number">5.2.3.</span> <span class="toc-text">oev查看Edits文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CheckPoint-%E6%A3%80%E6%9F%A5%E7%82%B9-%E6%97%B6%E9%97%B4%E8%AE%BE%E7%BD%AE"><span class="toc-number">5.2.4.</span> <span class="toc-text">CheckPoint(检查点)时间设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NameNode%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86"><span class="toc-number">5.2.5.</span> <span class="toc-text">NameNode故障处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hadoop%E9%9B%86%E7%BE%A4%E5%AE%89%E5%85%A8%E6%A8%A1%E5%BC%8F"><span class="toc-number">5.2.6.</span> <span class="toc-text">Hadoop集群安全模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NameNode%E5%A4%9A%E7%9B%AE%E5%BD%95%E9%85%8D%E7%BD%AE"><span class="toc-number">5.2.7.</span> <span class="toc-text">NameNode多目录配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DataNode%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="toc-number">5.3.</span> <span class="toc-text">DataNode工作机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%AE%8C%E6%95%B4%E6%80%A7"><span class="toc-number">5.3.1.</span> <span class="toc-text">数据完整性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%89%E7%BA%BF%E6%97%B6%E9%99%90%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE-10%E5%88%86%E9%92%9F30%E7%A7%92"><span class="toc-number">5.3.2.</span> <span class="toc-text">掉线时限参数设置 10分钟30秒</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E6%8F%90%E5%87%BA%E9%AB%98%E5%8F%AF%E7%94%A8%E8%BF%99%E4%B8%AA%E6%A6%82%E5%BF%B5%E5%91%A2"><span class="toc-number">6.</span> <span class="toc-text">为什么会提出高可用这个概念呢?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NameNode%E5%92%8CsecondNameNode%E5%85%B3%E7%B3%BB"><span class="toc-number">7.</span> <span class="toc-text">NameNode和secondNameNode关系?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HA%E6%A6%82%E8%BF%B0"><span class="toc-number">8.</span> <span class="toc-text">HA概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HDFS-HA%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="toc-number">9.</span> <span class="toc-text">HDFS-HA工作机制</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#HDFS%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">HDFS概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%AF%E4%BB%80%E4%B9%88%E5%8E%9F%E5%9B%A0%E4%BD%BF%E5%BE%97HDFS%E4%BA%A7%E7%94%9F%E7%9A%84%E5%91%A2"><span class="toc-number">1.1.</span> <span class="toc-text">是什么原因使得HDFS产生的呢?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HDFS%E4%BA%A7%E7%94%9F%E8%83%8C%E6%99%AF"><span class="toc-number">1.2.</span> <span class="toc-text">HDFS产生背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HDFS%E5%AE%9A%E4%B9%89"><span class="toc-number">1.3.</span> <span class="toc-text">HDFS定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HDFS%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.4.</span> <span class="toc-text">HDFS的使用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HDFS%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-number">1.5.</span> <span class="toc-text">HDFS优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HDFS%E7%BB%84%E6%88%90%E6%9E%B6%E6%9E%84"><span class="toc-number">1.6.</span> <span class="toc-text">HDFS组成架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HDFS%E6%96%87%E4%BB%B6%E5%9D%97%E5%A4%A7%E5%B0%8F"><span class="toc-number">1.7.</span> <span class="toc-text">HDFS文件块大小</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HDFS%E7%9A%84Shell%E6%93%8D%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">HDFS的Shell操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8"><span class="toc-number">2.1.</span> <span class="toc-text">命令大全</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hadoop%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%AE%9E%E6%93%8D"><span class="toc-number">2.2.</span> <span class="toc-text">Hadoop常用命令实操</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E7%B1%BB%E5%91%BD%E4%BB%A4"><span class="toc-number">2.2.1.</span> <span class="toc-text">启动类命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hadoop-fs-hdfs-dfs-%E5%91%BD%E4%BB%A4"><span class="toc-number">2.2.2.</span> <span class="toc-text">hadoop fs&#x2F;hdfs dfs 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#yarn%E5%91%BD%E4%BB%A4"><span class="toc-number">2.2.3.</span> <span class="toc-text">yarn命令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HDFS%E7%9A%84API%E6%93%8D%E4%BD%9C"><span class="toc-number">3.</span> <span class="toc-text">HDFS的API操作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HDFS%E7%9A%84%E8%AF%BB%E5%86%99%E6%B5%81%E7%A8%8B"><span class="toc-number">4.</span> <span class="toc-text">HDFS的读写流程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HDFS%E5%86%99%E6%95%B0%E6%8D%AE%E6%B5%81%E7%A8%8B-%E5%89%96%E6%9E%90%E6%96%87%E4%BB%B6%E5%86%99%E5%85%A5"><span class="toc-number">4.1.</span> <span class="toc-text">HDFS写数据流程(剖析文件写入)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HDFS%E8%AF%BB%E6%95%B0%E6%8D%AE%E6%B5%81%E7%A8%8B"><span class="toc-number">4.2.</span> <span class="toc-text">HDFS读数据流程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NameNode%E5%92%8CSecondaryNameNode"><span class="toc-number">5.</span> <span class="toc-text">NameNode和SecondaryNameNode</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#NameNode%E5%92%8CSecondaryNameNode%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="toc-number">5.1.</span> <span class="toc-text">NameNode和SecondaryNameNode工作机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fsimage%E5%92%8CEdits%E8%A7%A3%E6%9E%90"><span class="toc-number">5.2.</span> <span class="toc-text">Fsimage和Edits解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Fsimage%E5%92%8CEdits%E6%A6%82%E5%BF%B5"><span class="toc-number">5.2.1.</span> <span class="toc-text">Fsimage和Edits概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#oiv%E6%9F%A5%E7%9C%8BFsimage%E6%96%87%E4%BB%B6"><span class="toc-number">5.2.2.</span> <span class="toc-text">oiv查看Fsimage文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#oev%E6%9F%A5%E7%9C%8BEdits%E6%96%87%E4%BB%B6"><span class="toc-number">5.2.3.</span> <span class="toc-text">oev查看Edits文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CheckPoint-%E6%A3%80%E6%9F%A5%E7%82%B9-%E6%97%B6%E9%97%B4%E8%AE%BE%E7%BD%AE"><span class="toc-number">5.2.4.</span> <span class="toc-text">CheckPoint(检查点)时间设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NameNode%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86"><span class="toc-number">5.2.5.</span> <span class="toc-text">NameNode故障处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hadoop%E9%9B%86%E7%BE%A4%E5%AE%89%E5%85%A8%E6%A8%A1%E5%BC%8F"><span class="toc-number">5.2.6.</span> <span class="toc-text">Hadoop集群安全模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NameNode%E5%A4%9A%E7%9B%AE%E5%BD%95%E9%85%8D%E7%BD%AE"><span class="toc-number">5.2.7.</span> <span class="toc-text">NameNode多目录配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DataNode%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="toc-number">5.3.</span> <span class="toc-text">DataNode工作机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%AE%8C%E6%95%B4%E6%80%A7"><span class="toc-number">5.3.1.</span> <span class="toc-text">数据完整性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%89%E7%BA%BF%E6%97%B6%E9%99%90%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE-10%E5%88%86%E9%92%9F30%E7%A7%92"><span class="toc-number">5.3.2.</span> <span class="toc-text">掉线时限参数设置 10分钟30秒</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E6%8F%90%E5%87%BA%E9%AB%98%E5%8F%AF%E7%94%A8%E8%BF%99%E4%B8%AA%E6%A6%82%E5%BF%B5%E5%91%A2"><span class="toc-number">6.</span> <span class="toc-text">为什么会提出高可用这个概念呢?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NameNode%E5%92%8CsecondNameNode%E5%85%B3%E7%B3%BB"><span class="toc-number">7.</span> <span class="toc-text">NameNode和secondNameNode关系?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HA%E6%A6%82%E8%BF%B0"><span class="toc-number">8.</span> <span class="toc-text">HA概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HDFS-HA%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="toc-number">9.</span> <span class="toc-text">HDFS-HA工作机制</span></a></li></ol>
                     </div>
                 </span>
             </div>
