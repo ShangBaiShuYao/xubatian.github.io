@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/map1.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/map2.png">
 <meta property="article:published_time" content="2022-01-12T13:12:15.000Z">
-<meta property="article:modified_time" content="2022-01-14T07:10:47.910Z">
+<meta property="article:modified_time" content="2022-01-14T07:26:10.749Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="MapReduce">
 <meta name="twitter:card" content="summary">
@@ -380,7 +380,7 @@
 <h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><p>其实也不能叫缺点,以为他本身设计的时候就没有去考虑这些东西,如果考虑这些东西就可能解决不了大量数据的处理了</p>
 <img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/MapReduce3.png" width = "700" height = "390" alt="xubatian的博客" align="center" />
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">静态的就表示,数据已经放好了在这里了,而不是你时不时还往里面添加数据,这是不支持的</span><br><span class="line">就是如下图,什么叫有向图(DAG)计算?就是后面应用程序输入的数据是前面数据输出的数据,而mapReduce不擅长做这个,但是也不是不能做. 如果这么做的话会有大量的磁盘io操作. 就是你前面的MapReduce程序完成后结果放在磁盘中,下一个MapReduce程序读取磁盘的结果来操作. 这个过程会发生大量的磁盘io.所以你这个性能是非常低下的</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">静态的就表示,数据已经放好了在这里了,而不是你时不时还往里面添加数据,这是不支持的</span><br><span class="line">就是如下图,什么叫有向图(DAG)计算?就是后面应用程序输入的数据是前面数据输出的数据,而mapReduce不擅长做这个,但是也不是不能做. 如果这么做的话会有大量的磁盘io操作. 就是你前面的MapReduce程序完成后结果放在磁盘中,下一个MapReduce程序读取磁盘的结果来操作. 这个过程会发生大量的磁盘io.所以你这个性能是非常低下的</span><br></pre></td></tr></table></figure>
 
 
 
@@ -392,11 +392,11 @@
 
 
 
-<h2 id="mapreduce核心思想总结"><a href="#mapreduce核心思想总结" class="headerlink" title="mapreduce核心思想总结"></a>mapreduce核心思想总结</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1）分布式的运算程序往往需要分成至少2个阶段。</span><br><span class="line">2）第一个阶段的MapTask并发实例，完全并行运行，互不相干。</span><br><span class="line">3）第二个阶段的ReduceTask并发实例互不相干，但是他们的数据依赖于上一个阶段的所有MapTask并发实例的输出。</span><br><span class="line">4）MapReduce编程模型只能包含一个Map阶段和一个Reduce阶段，如果用户的业务逻辑非常复杂，那就只能多个MapReduce程序，串行运行。</span><br><span class="line">总结：分析WordCount数据流走向深入理解MapReduce核心思想。</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="mapreduce核心思想总结"><a href="#mapreduce核心思想总结" class="headerlink" title="mapreduce核心思想总结"></a>mapreduce核心思想总结</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1）分布式的运算程序往往需要分成至少2个阶段。</span><br><span class="line">2）第一个阶段的MapTask并发实例，完全并行运行，互不相干。</span><br><span class="line">3）第二个阶段的ReduceTask并发实例互不相干，但是他们的数据依赖于上一个阶段的所有MapTask并发实例的输出。</span><br><span class="line">4）MapReduce编程模型只能包含一个Map阶段和一个Reduce阶段，如果用户的业务逻辑非常复杂，那就只能多个MapReduce程序，串行运行。</span><br><span class="line">总结：分析WordCount数据流走向深入理解MapReduce核心思想。</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="MapReduce进程"><a href="#MapReduce进程" class="headerlink" title="MapReduce进程"></a>MapReduce进程</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">一个完整的MapReduce程序在分布式运行时有三类实例进程：</span><br><span class="line">1）MrAppMaster：负责整个程序的过程调度及状态协调。</span><br><span class="line">2）MapTask:  负责Map阶段的整个数据处理流程。</span><br><span class="line">3）ReduceTask:  负责Reduce阶段的整个数据处理流程。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="MapReduce进程"><a href="#MapReduce进程" class="headerlink" title="MapReduce进程"></a>MapReduce进程</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">一个完整的MapReduce程序在分布式运行时有三类实例进程：</span><br><span class="line">1）MrAppMaster：负责整个程序的过程调度及状态协调。</span><br><span class="line">2）MapTask:  负责Map阶段的整个数据处理流程。</span><br><span class="line">3）ReduceTask:  负责Reduce阶段的整个数据处理流程。</span><br></pre></td></tr></table></figure>
 
 
 
