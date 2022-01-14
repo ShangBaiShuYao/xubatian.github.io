@@ -97,15 +97,15 @@
 			
 				<li><a href="/" >主页</a></li>
 			
-				<li><a href="/categories/%E5%8A%A8%E6%80%81/" >动态</a></li>
+				<li><a href="/" >动态</a></li>
 			
 				<li><a href="/categories/%E7%9B%AE%E5%BD%95/" >目录</a></li>
 			
-				<li><a href="/categories/Java/" >Java</a></li>
+				<li><a href="/" >Java</a></li>
 			
 				<li><a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" >大数据</a></li>
 			
-				<li><a href="/categories/%E7%BA%AA%E5%BF%B5%E5%86%8C/" >纪念册</a></li>
+				<li><a href="/" >纪念册</a></li>
 			
 			</ul>
 		</nav>
@@ -252,15 +252,15 @@
 				
 					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/categories/%E5%8A%A8%E6%80%81/">动态</a></li>
+					<li style="width: 16.666666666666668%"><a href="/">动态</a></li>
 		        
 					<li style="width: 16.666666666666668%"><a href="/categories/%E7%9B%AE%E5%BD%95/">目录</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Java/">Java</a></li>
+					<li style="width: 16.666666666666668%"><a href="/">Java</a></li>
 		        
 					<li style="width: 16.666666666666668%"><a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/categories/%E7%BA%AA%E5%BF%B5%E5%86%8C/">纪念册</a></li>
+					<li style="width: 16.666666666666668%"><a href="/">纪念册</a></li>
 		        
 				</ul>
 			</nav>
@@ -738,6 +738,22 @@
     snow.down();
     $(window).resize(function() {
       $("canvas").css("z-index","500").remove();
+      snow.down();
+    });
+  </script>
+  
+ <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
+		<script>
+			// 对所有链接跳转事件绑定pjax容器container
+			$(document).pjax('a[target!=_blank]', '#container', {fragment:'#container', timeout:8000})
+		</script>
+
+  
+</body>
+
+</html>
+     $("canvas").css("z-index","500").remove();
       snow.down();
     });
   </script>
