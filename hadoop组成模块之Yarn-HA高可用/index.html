@@ -24,7 +24,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_72.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_73.png">
 <meta property="article:published_time" content="2022-01-14T07:54:34.000Z">
-<meta property="article:modified_time" content="2022-01-14T08:44:42.979Z">
+<meta property="article:modified_time" content="2022-01-14T08:49:18.900Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="Hadoop">
 <meta property="article:tag" content="Yarn">
@@ -320,7 +320,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">967字</span>
+      <span class="post-count">966字</span>
     </span>
   </span>
 
@@ -409,20 +409,18 @@
 </ol>
 <p>​        查看所有进程:</p>
 <p>​                                     <img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_72.png" width = "700" height = "400" alt="xubatian的博客" align="center" /></p>
-<h2 id="HDFS-Federation架构设计"><a href="#HDFS-Federation架构设计" class="headerlink" title="HDFS Federation架构设计"></a>HDFS Federation架构设计</h2><ol>
-<li>NameNode架构的局限性（内存瓶颈, 毕竟是一台服务器嘛, 内存在高也就那么多）<br> （1）Namespace（命名空间）的限制</li>
-</ol>
-<pre><code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">由于NameNode在内存中存储所有的元数据（metadata），因此单个NameNode所能存储的对象（文件+块）数目受到NameNode  所在JVM的heap size(堆大小)的限制。50G的heap(堆)能够存储20亿（200million）个对象，这20亿个对象支持4000个DataNode，12PB的存储（假设文件平均大小为40MB）。随着数据的飞速增长，存储的需求也随之增长。单个DataNode从4T增长到36T，集群的尺寸增长到8000个DataNode。存储的需求从12PB增长到大于100PB。</span><br></pre></td></tr></table></figure>
+<h2 id="HDFS-Federation架构设计"><a href="#HDFS-Federation架构设计" class="headerlink" title="HDFS Federation架构设计"></a>HDFS Federation架构设计</h2><p>NameNode架构的局限性（内存瓶颈, 毕竟是一台服务器嘛, 内存在高也就那么多）<br>（1）Namespace（命名空间）的限制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">由于NameNode在内存中存储所有的元数据（metadata），因此单个NameNode所能存储的对象（文件+块）数目受到NameNode  所在JVM的heap size(堆大小)的限制。50G的heap(堆)能够存储20亿（200million）个对象，这20亿个对象支持4000个DataNode，12PB的存储（假设文件平均大小为40MB）。随着数据的飞速增长，存储的需求也随之增长。单个DataNode从4T增长到36T，集群的尺寸增长到8000个DataNode。存储的需求从12PB增长到大于100PB。</span><br></pre></td></tr></table></figure>
 
-（2）隔离问题
-
+<p>（2）隔离问题</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">由于HDFS仅有一个NameNode，无法隔离各个程序，因此HDFS上的一个实验程序就很有可能影响整个HDFS上运行的程序。</span><br></pre></td></tr></table></figure>
 
-（3）性能的瓶颈
-
+<p>（3）性能的瓶颈</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">由于是单个NameNode的HDFS架构，因此整个HDFS文件系统的吞吐量受限于单个NameNode的吞吐量。</span><br></pre></td></tr></table></figure>
-</code></pre>
-<ol start="2">
+
+
+
+<ol>
 <li><p>HDFS Federation架构设计，如图所示<br>能不能有多个NameNode</p>
 <table>
 <thead>
