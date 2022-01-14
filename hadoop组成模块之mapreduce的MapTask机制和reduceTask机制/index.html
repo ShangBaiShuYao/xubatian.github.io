@@ -6,24 +6,29 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://xubatian.cn">
-  <title>动态 | 我的梦想是星辰大海</title>
+  <title>hadoop组成模块之mapreduce的MapTask机制和reduceTask机制 | 我的梦想是星辰大海</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta name="description" content="理想三旬♡ 一旬败给年少轻狂的理想 二旬败给青涩无知的爱情 三旬败给沧桑寂寥的现实        –来自网易云音乐《 理想三旬》">
+  <meta name="description" content="MapReduce程序分为map阶段,和reduce阶段. map阶段有mapTask任务,reduce阶段有reduceTask任务. 那么什么是mapTask? 什么是reduceTask?">
 <meta property="og:type" content="article">
-<meta property="og:title" content="动态">
-<meta property="og:url" content="http://xubatian.cn/%E5%8A%A8%E6%80%81/index.html">
+<meta property="og:title" content="hadoop组成模块之mapreduce的MapTask机制和reduceTask机制">
+<meta property="og:url" content="http://xubatian.cn/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8Bmapreduce%E7%9A%84MapTask%E6%9C%BA%E5%88%B6%E5%92%8CreduceTask%E6%9C%BA%E5%88%B6/index.html">
 <meta property="og:site_name" content="我的梦想是星辰大海">
-<meta property="og:description" content="理想三旬♡ 一旬败给年少轻狂的理想 二旬败给青涩无知的爱情 三旬败给沧桑寂寥的现实        –来自网易云音乐《 理想三旬》">
+<meta property="og:description" content="MapReduce程序分为map阶段,和reduce阶段. map阶段有mapTask任务,reduce阶段有reduceTask任务. 那么什么是mapTask? 什么是reduceTask?">
 <meta property="og:locale">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_74.png">
-<meta property="article:published_time" content="2022-01-14T09:12:58.000Z">
-<meta property="article:modified_time" content="2022-01-14T15:53:18.354Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_76.jpg">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_78.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_91.png">
+<meta property="article:published_time" content="2022-01-14T14:22:08.000Z">
+<meta property="article:modified_time" content="2022-01-14T15:26:25.285Z">
 <meta property="article:author" content="xubatian">
+<meta property="article:tag" content="Hadoop">
+<meta property="article:tag" content="MapReduce">
+<meta property="article:tag" content="MapTask">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_74.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_76.jpg">
   
     <link rel="alternative" href="/atom.xml" title="我的梦想是星辰大海" type="application/atom+xml">
   
@@ -280,14 +285,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-动态" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-hadoop组成模块之mapreduce的MapTask机制和reduceTask机制" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      动态
+      hadoop组成模块之mapreduce的MapTask机制和reduceTask机制
     </h1>
   
 
@@ -299,8 +304,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/%E5%8A%A8%E6%80%81/" class="archive-article-date">
-        <time datetime="2022-01-14T09:12:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-14</time>
+<a href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8Bmapreduce%E7%9A%84MapTask%E6%9C%BA%E5%88%B6%E5%92%8CreduceTask%E6%9C%BA%E5%88%B6/" class="archive-article-date">
+        <time datetime="2022-01-14T14:22:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-14</time>
 </a>
 
   
@@ -313,7 +318,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">48字</span>
+      <span class="post-count">1.3k字</span>
     </span>
   </span>
 
@@ -322,7 +327,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">4分</span>
     </span>
   </span>
 </div>
@@ -333,10 +338,48 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>理想三旬♡ 一旬败给年少轻狂的理想 二旬败给青涩无知的爱情 三旬败给沧桑寂寥的现实        –来自网易云音乐《 理想三旬》                            </p>
+    <p>MapReduce程序分为map阶段,和reduce阶段. map阶段有mapTask任务,reduce阶段有reduceTask任务.</p>
+<p>那么什么是mapTask? 什么是reduceTask?</p>
 <span id="more"></span>
 
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_74.png" width = "1201.56" height = "675.88" alt="xubatian的博客" align="center" />
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_76.jpg" width = "1201.56" height = "675.88" alt="xubatian的博客" align="center" />
+
+
+
+
+
+<h1 id="MapTask工作机制"><a href="#MapTask工作机制" class="headerlink" title="MapTask工作机制"></a>MapTask工作机制</h1><h2 id="MapTask流程图解读"><a href="#MapTask流程图解读" class="headerlink" title="MapTask流程图解读"></a>MapTask流程图解读</h2><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_78.png" width = "900.56" height = "450" alt="xubatian的博客" align="center" />
+
+<p>（1）Read阶段：MapTask通过用户编写的RecordReader，从输入InputSplit中解析出一个个key/value。</p>
+<p>（2）Map阶段：该节点主要是将解析出的key/value交给用户编写map()函数处理，并产生一系列新的key/value。</p>
+<p>（3）Collect收集阶段：在用户编写map()函数中，当数据处理完成后，一般会调用OutputCollector.collect()输出结果。在该函数内部,</p>
+<p>​          它会将生成的key/value分区（调用Partitioner），并写入一个环形内存缓冲区中。</p>
+<p>   (4)  Spill阶段：即“溢写”，当环形缓冲区满后，MapReduce会将数据写到本地磁盘上，生成一个临时文件。需要注意的是，将数据写入   </p>
+<p>​          本地磁盘之前，先要对数据进行一次本地排序，并在必要时对数据进行合并、压缩等操作。</p>
+<h2 id="溢写阶段详情解读"><a href="#溢写阶段详情解读" class="headerlink" title="溢写阶段详情解读"></a>溢写阶段详情解读</h2><p>步骤1：利用快速排序算法对缓存区内的数据进行排序，排序方式是，先按照分区编号Partition进行排序，然后按照key进行排序。这样，   经过排序后，数据以分区为单位聚集在一起，且同一分区内所有数据按照key有序。</p>
+<p>步骤2：按照分区编号由小到大依次将每个分区中的数据写入任务工作目录下的临时文件output/spillN.out（N表示当前溢写次数）中。如果用户设置了Combiner，则写入文件之前，对每个分区中的数据进行一次聚集操作。</p>
+<p>步骤3：将分区数据的元信息写到内存索引数据结构SpillRecord中，其中每个分区的元信息包括在临时文件中的偏移量、压缩前数据大小和压缩后数据大小。如果当前内存索引大小超过1MB，则将内存索引写到文件output/spillN.out.index中。</p>
+<p>Combine阶段：当所有数据处理完成后，MapTask对所有临时文件进行一次合并，以确保最终只会生成一个数据文件。</p>
+<p>在进行文件合并过程中，MapTask以分区为单位进行合并。对于某个分区，它将采用多轮递归合并的方式。每轮合并io.sort.factor（默认10）个文件，并将产生的文件重新加入待合并列表中，对文件排序后，重复以上过程，直到最终得到一个大文件。</p>
+<p>让每个MapTask最终只生成一个数据文件，可避免同时打开大量文件和同时读取大量小文件产生的随机读取带来的开销。</p>
+<h1 id="ReduceTask工作机制"><a href="#ReduceTask工作机制" class="headerlink" title="ReduceTask工作机制"></a>ReduceTask工作机制</h1><ol>
+<li>runTasks(reduceRunnables, reduceService, “reduce”); 准备执行所有的ReduceTaskRunnable</li>
+<li>执行ReduceTaskRunnable 的run方法</li>
+<li>创建ReduceTask对象  ReduceTask reduce = new ReduceTask(systemJobFile.toString(),reduceId, taskId, mapIds.size(), 1);</li>
+<li>执行ReduceTask的run方法  reduce.run(localConf, Job.this);</li>
+<li>runNewReducer(job, umbilical, reporter, rIter, comparator, keyClass, valueClass);</li>
+<li>reducer.run(reducerContext);</li>
+<li>执行到Reducer中的reduce方法。</li>
+</ol>
+<h2 id="ReduceTask流程图解读"><a href="#ReduceTask流程图解读" class="headerlink" title="ReduceTask流程图解读"></a>ReduceTask流程图解读</h2><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_91.png" width = "900.56" height = "450" alt="xubatian的博客" align="center" />
+
+<p>​    （1）Copy阶段：ReduceTask从各个MapTask上远程拷贝一片数据，并针对某一片数据，如果其大小超过一定阈值，则写到磁盘上， 否则直接放到内存中。<br>​    （2）Merge阶段：在远程拷贝数据的同时，ReduceTask启动了两个后台线程对内存和磁盘上的文件进行合并，以防止内存使用过多或磁盘上文件过多。<br>​    （3）Sort阶段：按照MapReduce语义，用户编写reduce()函数输入数据是按key进行聚集的一组数据。为了将key相同的数据聚在一起，Hadoop采用了基于排序的策略。由于各个MapTask已经实现对自己的处理结果进行了局部排序，因此，ReduceTask只需对所有数据进行一次归并排序即可。<br>​    （4）Reduce阶段：reduce()函数将计算结果写到HDFS上。</p>
+<h2 id="设置ReduceTask并行度（个数）"><a href="#设置ReduceTask并行度（个数）" class="headerlink" title="设置ReduceTask并行度（个数）"></a>设置ReduceTask并行度（个数）</h2><p>ReduceTask的并行度同样影响整个Job的执行并发度和执行效率，但与MapTask的并发数由切片数决定不同，ReduceTask数量的决定是可以直接手动设置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 默认值是1，手动设置为4</span><br><span class="line"></span><br><span class="line">job.setNumReduceTasks(4);</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="ReduceTask注意事项"><a href="#ReduceTask注意事项" class="headerlink" title="ReduceTask注意事项"></a>ReduceTask注意事项</h2><p>（1）ReduceTask=0，表示没有Reduce阶段，输出文件个数和Map个数一致。<br>（2）ReduceTask默认值就是1，所以输出文件个数为一个。<br>（3）如果数据分布不均匀，就有可能在Reduce阶段产生数据倾斜<br>（4）ReduceTask数量并不是任意设置，还要考虑业务逻辑需求，有些情况下，需要计算全局汇总结果，就只能有1个ReduceTask。<br>（5）具体多少个ReduceTask，需要根据集群性能而定。<br>（6）如果分区数不是1，但是ReduceTask为1，是否执行分区过程。答案是：不执行分区过程。因为在MapTask的源码中，执行分区的前提是先判断ReduceNum个数是否大于1。不大于1肯定不执行。</p>
 
     
 
@@ -383,7 +426,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://xubatian.cn/动态/" title="动态" target="_blank">http://xubatian.cn/动态/</a>
+          <a href="http://xubatian.cn/hadoop组成模块之mapreduce的MapTask机制和reduceTask机制/" title="hadoop组成模块之mapreduce的MapTask机制和reduceTask机制" target="_blank">http://xubatian.cn/hadoop组成模块之mapreduce的MapTask机制和reduceTask机制/</a>
         </li>
         
         <li>
@@ -400,13 +443,32 @@
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MapReduce</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MapTask</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/动态//" class="article-tag-list-link color3">动态</a>
+        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
         		</li>
       		
 		</ul>
@@ -461,7 +523,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/%E5%8A%A8%E6%80%81/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8Bmapreduce%E7%9A%84MapTask%E6%9C%BA%E5%88%B6%E5%92%8CreduceTask%E6%9C%BA%E5%88%B6/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -476,18 +538,9 @@
 
 <nav id="article-nav">
   
-    <a href="/%E7%BA%AA%E5%BF%B5%E5%86%8C/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          纪念册
-        
-      </div>
-    </a>
   
-  
-    <a href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BYarn-HA%E9%AB%98%E5%8F%AF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">hadoop组成模块之Yarn-HA高可用</div>
+    <a href="/Java/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -514,7 +567,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    此路不通啊,大哥~
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MapTask%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="toc-number">1.</span> <span class="toc-text">MapTask工作机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MapTask%E6%B5%81%E7%A8%8B%E5%9B%BE%E8%A7%A3%E8%AF%BB"><span class="toc-number">1.1.</span> <span class="toc-text">MapTask流程图解读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BA%A2%E5%86%99%E9%98%B6%E6%AE%B5%E8%AF%A6%E6%83%85%E8%A7%A3%E8%AF%BB"><span class="toc-number">1.2.</span> <span class="toc-text">溢写阶段详情解读</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ReduceTask%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="toc-number">2.</span> <span class="toc-text">ReduceTask工作机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ReduceTask%E6%B5%81%E7%A8%8B%E5%9B%BE%E8%A7%A3%E8%AF%BB"><span class="toc-number">2.1.</span> <span class="toc-text">ReduceTask流程图解读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AEReduceTask%E5%B9%B6%E8%A1%8C%E5%BA%A6%EF%BC%88%E4%B8%AA%E6%95%B0%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">设置ReduceTask并行度（个数）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ReduceTask%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">2.3.</span> <span class="toc-text">ReduceTask注意事项</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>

@@ -26,6 +26,18 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/oo3.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/shuffle1.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/shuffle2.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_79.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_80.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_81.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_82.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_83.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_84.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_85.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_86.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_87.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_88.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_89.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_90.png">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_61.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/pp1.png">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_62.png">
@@ -37,7 +49,7 @@
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_68.png">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_69.png">
 <meta property="article:published_time" content="2022-01-12T15:09:02.000Z">
-<meta property="article:modified_time" content="2022-01-14T12:38:42.299Z">
+<meta property="article:modified_time" content="2022-01-14T15:07:11.800Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="Hadoop">
 <meta property="article:tag" content="mapreduce">
@@ -333,7 +345,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">2.4k字</span>
+      <span class="post-count">3.1k字</span>
     </span>
   </span>
 
@@ -342,7 +354,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">8分</span>
+      <span class="post-count">12分</span>
     </span>
   </span>
 </div>
@@ -385,7 +397,7 @@
 
 
 
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/oo3.png" width = "600" height = "400" alt="xubatian的博客" align="center" />
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/oo3.png" width = "900" height = "600" alt="xubatian的博客" align="center" />
 
 <h3 id="shuffle机制的整个过程图"><a href="#shuffle机制的整个过程图" class="headerlink" title="shuffle机制的整个过程图"></a>shuffle机制的整个过程图</h3><p>shuffle过程是在MapTask方法之后，ReduceTask方法之前的数据处理过程称之为Shuffle。</p>
 <p><strong>shuffle机制展示图:</strong></p>
@@ -399,6 +411,55 @@
 <p>Combiner之后进行归并排序. 然后放到对应分区的磁盘上.<br>为了减少磁盘io,即为了减少从map端到reduce端的拉取过程采用压缩.减少磁盘io.  在MapReduce整个过程中,map输入端,map输出端,reduce输出端都可以压缩. 输入端需要注意切片,输入端谁支持切片呢?那种压缩支持切片呢?LZO支持切片.LZO里面需要额外的建立索引. 如果LZO里面没有建立索引,那就不支持切分.<br>reduce默认拉取磁盘数据是5个.但是我们可以增大到10个或者20个.前提条件是机器性能和内存.</p>
 <p>通常map输出端的压缩使用snappy或者LZO</p>
 <h3 id="对于shuffle机制中的缓存区解释图"><a href="#对于shuffle机制中的缓存区解释图" class="headerlink" title="对于shuffle机制中的缓存区解释图"></a><strong>对于shuffle机制中的缓存区解释图</strong></h3><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/shuffle2.png" width = "1301.56" height = "600" alt="xubatian的博客" align="center" />
+
+
+
+<p>以后我们在做一些操作的时候, 能没有reducer的话, 就不写Reducer.<br>因为整个MapReduce任务中, shuffle是最耗费时间的. 因为你Reducer没有shuffle也就没有了. 那么这个程序性能就比较高. </p>
+<h3 id="Shuffle过程源码解读"><a href="#Shuffle过程源码解读" class="headerlink" title="Shuffle过程源码解读"></a>Shuffle过程源码解读</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">1.根据ReduceTask的个数决定获取哪个输出对象。</span><br><span class="line">  new NewDirectOutputCollector(taskContext, job, umbilical, reporter); ==&gt;ReduceTask为0 </span><br><span class="line">  output = new NewOutputCollector(taskContext, job, umbilical, reporter);</span><br><span class="line">  获取collector</span><br><span class="line">  [1]. collector = createSortingCollector(job, reporter); 创建一个输出对象，收集map输出的kv</span><br><span class="line">	① Class&lt;?&gt;[] collectorClasses = job.getClasses(</span><br><span class="line">           JobContext.MAP_OUTPUT_COLLECTOR_CLASS_ATTR, MapOutputBuffer.class); </span><br><span class="line">	   获取到collector的类型</span><br><span class="line">	② MapOutputCollector&lt;KEY, VALUE&gt; collector = ReflectionUtils.newInstance(subclazz, job);</span><br><span class="line">	   获取到collector的对象</span><br><span class="line">	③ collector.init(context); 调用init方法</span><br><span class="line">	   (1). job.getFloat(JobContext.MAP_SORT_SPILL_PERCENT, (float)0.8);</span><br><span class="line">                job.getInt(JobContext.IO_SORT_MB, 100);</span><br><span class="line">		获取缓冲区的大小(100MB) 以及 溢写百分比 (80%). </span><br><span class="line">           (2). sorter = ReflectionUtils.newInstance(job.getClass(&quot;map.sort.class&quot;,</span><br><span class="line">		QuickSort.class, IndexedSorter.class), job);</span><br><span class="line">		获取到排序对象，默认用的是QuickSort</span><br><span class="line">	   (3).comparator = job.getOutputKeyComparator();  获取分组比较器</span><br><span class="line">	       a. WritableComparator.get(getMapOutputKeyClass().asSubclass(WritableComparable.class), this);</span><br><span class="line">	   (4). combiner</span><br><span class="line">	   (5). spillThread.start();  启动溢写线程</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">   拿到collector之后</span><br><span class="line">   [2].  if (partitions &gt; 1) &#123;</span><br><span class="line">		partitioner = (org.apache.hadoop.mapreduce.Partitioner&lt;K,V&gt;)</span><br><span class="line">		ReflectionUtils.newInstance(jobContext.getPartitionerClass(), job);</span><br><span class="line">         &#125; else &#123;</span><br><span class="line">                partitioner = new org.apache.hadoop.mapreduce.Partitioner&lt;K,V&gt;() &#123;</span><br><span class="line">               @Override</span><br><span class="line">                public int getPartition(K key, V value, int numPartitions) &#123;</span><br><span class="line">                    return partitions - 1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;;</span><br><span class="line">         &#125;	</span><br><span class="line">	 获取到分区器, 计算每个KV对应的分区号，溢写的时候将kv写到对应的分区文件中.</span><br></pre></td></tr></table></figure>
+
+<h3 id="Shuffle过程源码解读图示"><a href="#Shuffle过程源码解读图示" class="headerlink" title="Shuffle过程源码解读图示"></a>Shuffle过程源码解读图示</h3><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_79.png" width = "1301.56" height = "600" alt="xubatian的博客" align="center" />
+
+
+
+
+
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_80.png" width = "1301.56" height = "600" alt="xubatian的博客" align="center" />
+
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_81.png" width = "1301.56" height = "600" alt="xubatian的博客" align="center" />
+
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_82.png" width = "1301.56" height = "600" alt="xubatian的博客" align="center" />
+
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_83.png" width = "1301.56" height = "600" alt="xubatian的博客" align="center" />
+
+
+
+<p><strong>进入collector.init(context)里面.</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_84.png" width = "1301.56" height = "600" alt="xubatian的博客" align="center" />
+
+
+
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_85.png" width = "1301.56" height = "600" alt="xubatian的博客" align="center" />
+
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_86.png" width = "1301.56" height = "600" alt="xubatian的博客" align="center" />
+
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_87.png" width = "1301.56" height = "600" alt="xubatian的博客" align="center" />
+
+
+
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_88.png" width = "1301.56" height = "600" alt="xubatian的博客" align="center" />
+
+<p><strong>获取到分区器, 计算每个KV对应的分区号，溢写的时候将kv写到对应的分区文件中.</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_89.png" width = "1301.56" height = "600" alt="xubatian的博客" align="center" />
+
+<p>源码: (上面部分只是准备过程, 这里开始是执行过程)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">2. Mapper方法执行，写出去KV ,collector收集， 达到阈值， 溢写， 最后合并. </span><br><span class="line">   [1]. context.write(k, v);  Mapper中的map方法中写出KV</span><br><span class="line">   [2]. mapContext.write(key, value);</span><br><span class="line">   [3]. output.write(key, value);</span><br><span class="line">   [4]. collector.collect(key, value, partitioner.getPartition(key, value, partitions));</span><br><span class="line">	① startSpill(); 当满足溢写条件后，开始溢写</span><br><span class="line">	   (1). spillReady.signal();  发信号给溢写线程，让溢写线程开始工作,实际就是调用</span><br><span class="line">		sortAndSpill()方法进行排序和溢写. </span><br><span class="line">           (2). 在sortAndSpill()方法中：</span><br><span class="line">		a. final Path filename = mapOutputFile.getSpillFileForWrite(numSpills, size);</span><br><span class="line">		   获取到溢写的文件的位置</span><br><span class="line">		    D:/tmp/hadoopAdministrator/mapred/local/localRunner/Administrator/jobcache/job_local685727973_0001/attempt_local685727973_0001_m_000000_0/output/spill0.out</span><br><span class="line">	        </span><br><span class="line">		b. sorter.sort(MapOutputBuffer.this, mstart, mend, reporter); 溢写之前先排序</span><br><span class="line"></span><br><span class="line">		c. 生成溢写文件 ，并溢写   spill0.out  splill1.out .....</span><br><span class="line">		d. 如果存储index的内存达到阈值，也会溢写到磁盘中。 </span><br><span class="line">		</span><br><span class="line">       </span><br><span class="line">  ② 当map端所有的kv全部都写出后， 会触发最后一次溢写， 之后会进行合并. </span><br><span class="line">	   合并完成以后，最终会保留两个文件</span><br><span class="line">	   file.out  ==&gt;   kv</span><br><span class="line">	   file.out.index  == &gt;kv的index</span><br></pre></td></tr></table></figure>
+
+<p><strong>如下图只是一个mapTask的过程, 假如有多个mapTask, 每一个mapTask最终都会去生成file.out或者file.out.index文件</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_90.png" width = "1301.56" height = "300" alt="xubatian的博客" align="center" />
+
+
+
+
 
 <h3 id="收集器源码"><a href="#收集器源码" class="headerlink" title="收集器源码"></a><strong>收集器源码</strong></h3><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_61.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
 
@@ -776,7 +837,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Shuffle%E6%9C%BA%E5%88%B6"><span class="toc-number">1.</span> <span class="toc-text">Shuffle机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E6%BA%90%E7%A0%81%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8BmapTask%E5%92%8CReduceTask"><span class="toc-number">1.1.</span> <span class="toc-text">通过源码简单了解一下mapTask和ReduceTask:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mapTask"><span class="toc-number">1.1.1.</span> <span class="toc-text">mapTask</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ReduceTask"><span class="toc-number">1.1.2.</span> <span class="toc-text">ReduceTask</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#shuffle%E6%9C%BA%E5%88%B6%E7%9A%84%E6%95%B4%E4%B8%AA%E8%BF%87%E7%A8%8B%E5%9B%BE"><span class="toc-number">1.1.3.</span> <span class="toc-text">shuffle机制的整个过程图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8Eshuffle%E6%9C%BA%E5%88%B6%E7%9A%84%E8%A7%A3%E8%AF%BB"><span class="toc-number">1.1.4.</span> <span class="toc-text">对于shuffle机制的解读</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8Eshuffle%E6%9C%BA%E5%88%B6%E4%B8%AD%E7%9A%84%E7%BC%93%E5%AD%98%E5%8C%BA%E8%A7%A3%E9%87%8A%E5%9B%BE"><span class="toc-number">1.1.5.</span> <span class="toc-text">对于shuffle机制中的缓存区解释图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B6%E9%9B%86%E5%99%A8%E6%BA%90%E7%A0%81"><span class="toc-number">1.1.6.</span> <span class="toc-text">收集器源码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#shuffle%E5%AE%8C%E6%88%90%E5%90%8E-%E4%BB%8EMap%E5%86%99%E5%87%BA%E6%9D%A5%E7%9A%84%E6%95%B0%E6%8D%AE%E8%BF%87%E7%A8%8B%E5%9B%BE"><span class="toc-number">1.1.7.</span> <span class="toc-text">shuffle完成后,从Map写出来的数据过程图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Partition%E5%88%86%E5%8C%BA"><span class="toc-number">1.1.8.</span> <span class="toc-text">Partition分区</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E9%97%AE%E9%A2%98%E5%BC%95%E5%87%BA"><span class="toc-number">1.1.8.1.</span> <span class="toc-text">1、问题引出</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E9%BB%98%E8%AE%A4Partitioner%E5%88%86%E5%8C%BA"><span class="toc-number">1.1.8.2.</span> <span class="toc-text">2、默认Partitioner分区</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89Partitioner%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.1.8.3.</span> <span class="toc-text">3、自定义Partitioner步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E5%88%86%E5%8C%BA%E6%80%BB%E7%BB%93"><span class="toc-number">1.1.8.4.</span> <span class="toc-text">4、分区总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90"><span class="toc-number">1.1.8.5.</span> <span class="toc-text">5、案例分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8Epartition%E5%88%86%E5%8C%BA%E7%9A%84%E6%80%BB%E7%BB%93"><span class="toc-number">1.1.8.6.</span> <span class="toc-text">对于partition分区的总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Partitioner%E5%88%86%E5%8C%BA%E5%99%A8%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB"><span class="toc-number">1.1.8.7.</span> <span class="toc-text">Partitioner分区器源码解读</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Combiner%E5%90%88%E5%B9%B6"><span class="toc-number">1.1.9.</span> <span class="toc-text">Combiner合并</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Shuffle%E6%9C%BA%E5%88%B6"><span class="toc-number">1.</span> <span class="toc-text">Shuffle机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E6%BA%90%E7%A0%81%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8BmapTask%E5%92%8CReduceTask"><span class="toc-number">1.1.</span> <span class="toc-text">通过源码简单了解一下mapTask和ReduceTask:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mapTask"><span class="toc-number">1.1.1.</span> <span class="toc-text">mapTask</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ReduceTask"><span class="toc-number">1.1.2.</span> <span class="toc-text">ReduceTask</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#shuffle%E6%9C%BA%E5%88%B6%E7%9A%84%E6%95%B4%E4%B8%AA%E8%BF%87%E7%A8%8B%E5%9B%BE"><span class="toc-number">1.1.3.</span> <span class="toc-text">shuffle机制的整个过程图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8Eshuffle%E6%9C%BA%E5%88%B6%E7%9A%84%E8%A7%A3%E8%AF%BB"><span class="toc-number">1.1.4.</span> <span class="toc-text">对于shuffle机制的解读</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8Eshuffle%E6%9C%BA%E5%88%B6%E4%B8%AD%E7%9A%84%E7%BC%93%E5%AD%98%E5%8C%BA%E8%A7%A3%E9%87%8A%E5%9B%BE"><span class="toc-number">1.1.5.</span> <span class="toc-text">对于shuffle机制中的缓存区解释图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Shuffle%E8%BF%87%E7%A8%8B%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB"><span class="toc-number">1.1.6.</span> <span class="toc-text">Shuffle过程源码解读</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Shuffle%E8%BF%87%E7%A8%8B%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB%E5%9B%BE%E7%A4%BA"><span class="toc-number">1.1.7.</span> <span class="toc-text">Shuffle过程源码解读图示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B6%E9%9B%86%E5%99%A8%E6%BA%90%E7%A0%81"><span class="toc-number">1.1.8.</span> <span class="toc-text">收集器源码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#shuffle%E5%AE%8C%E6%88%90%E5%90%8E-%E4%BB%8EMap%E5%86%99%E5%87%BA%E6%9D%A5%E7%9A%84%E6%95%B0%E6%8D%AE%E8%BF%87%E7%A8%8B%E5%9B%BE"><span class="toc-number">1.1.9.</span> <span class="toc-text">shuffle完成后,从Map写出来的数据过程图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Partition%E5%88%86%E5%8C%BA"><span class="toc-number">1.1.10.</span> <span class="toc-text">Partition分区</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E9%97%AE%E9%A2%98%E5%BC%95%E5%87%BA"><span class="toc-number">1.1.10.1.</span> <span class="toc-text">1、问题引出</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E9%BB%98%E8%AE%A4Partitioner%E5%88%86%E5%8C%BA"><span class="toc-number">1.1.10.2.</span> <span class="toc-text">2、默认Partitioner分区</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89Partitioner%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.1.10.3.</span> <span class="toc-text">3、自定义Partitioner步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E5%88%86%E5%8C%BA%E6%80%BB%E7%BB%93"><span class="toc-number">1.1.10.4.</span> <span class="toc-text">4、分区总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90"><span class="toc-number">1.1.10.5.</span> <span class="toc-text">5、案例分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8Epartition%E5%88%86%E5%8C%BA%E7%9A%84%E6%80%BB%E7%BB%93"><span class="toc-number">1.1.10.6.</span> <span class="toc-text">对于partition分区的总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Partitioner%E5%88%86%E5%8C%BA%E5%99%A8%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB"><span class="toc-number">1.1.10.7.</span> <span class="toc-text">Partitioner分区器源码解读</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Combiner%E5%90%88%E5%B9%B6"><span class="toc-number">1.1.11.</span> <span class="toc-text">Combiner合并</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -999,6 +1060,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">shuffle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MapTask</a>
               </li>
             
             <div class="clearfix"></div>
