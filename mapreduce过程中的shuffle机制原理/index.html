@@ -14,7 +14,7 @@
   <meta name="description" content="hadoop的shuffle机制原理解说.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="大数据组件之Hadoop的shuffle机制原理">
-<meta property="og:url" content="http://xubatian.cn/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%BB%84%E4%BB%B6%E4%B9%8BHadoop%E7%9A%84shuffle%E6%9C%BA%E5%88%B6%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:url" content="http://xubatian.cn/mapreduce%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84shuffle%E6%9C%BA%E5%88%B6%E5%8E%9F%E7%90%86/index.html">
 <meta property="og:site_name" content="我的梦想是星辰大海">
 <meta property="og:description" content="hadoop的shuffle机制原理解说.">
 <meta property="og:locale">
@@ -26,9 +26,18 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/oo3.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/shuffle1.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/shuffle2.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_61.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/pp1.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_62.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_63.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_64.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_65.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_66.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_67.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_68.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_69.png">
 <meta property="article:published_time" content="2022-01-12T15:09:02.000Z">
-<meta property="article:modified_time" content="2022-01-14T04:27:07.454Z">
+<meta property="article:modified_time" content="2022-01-14T05:34:14.124Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="Hadoop">
 <meta property="article:tag" content="mapreduce">
@@ -291,7 +300,7 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-大数据组件之Hadoop的shuffle机制原理" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-mapreduce过程中的shuffle机制原理" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -310,7 +319,7 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%BB%84%E4%BB%B6%E4%B9%8BHadoop%E7%9A%84shuffle%E6%9C%BA%E5%88%B6%E5%8E%9F%E7%90%86/" class="archive-article-date">
+<a href="/mapreduce%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84shuffle%E6%9C%BA%E5%88%B6%E5%8E%9F%E7%90%86/" class="archive-article-date">
         <time datetime="2022-01-12T15:09:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-12</time>
 </a>
 
@@ -324,7 +333,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">822字</span>
+      <span class="post-count">2.3k字</span>
     </span>
   </span>
 
@@ -333,7 +342,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">2分</span>
+      <span class="post-count">8分</span>
     </span>
   </span>
 </div>
@@ -349,7 +358,10 @@
 
 <img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.1/images/100.png" width = "1201.56" height = "675.88" alt="xubatian的博客" align="center" />
 
-<h1 id="Shuffle机制"><a href="#Shuffle机制" class="headerlink" title="Shuffle机制"></a>Shuffle机制</h1><p>Map方法之后，Reduce方法之前的数据处理过程称之为Shuffle</p>
+<h1 id="Shuffle机制"><a href="#Shuffle机制" class="headerlink" title="Shuffle机制"></a>Shuffle机制</h1><p>什么是shuffle?</p>
+<p>shuffle就是数据落盘的过程.</p>
+<p>hadoop在mapreduce计算过程中,什么阶段会有落盘呢? 在map打散数据之后,reduce聚合数据之前.</p>
+<p>Map方法之后，Reduce方法之前的数据处理过程称之为Shuffle</p>
 <img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/map4.png" width = "600" height = "300" alt="xubatian的博客" align="center" />
 
 
@@ -359,47 +371,104 @@
 
 
 <p>其实我们的MapReduce整个阶段我们细细的分可以分为5个阶段.<br>Map——&gt; sort(排序) ——-&gt; copy ——&gt;sort(排序) ——-&gt; Reducer</p>
-<h2 id="简单读一下源码"><a href="#简单读一下源码" class="headerlink" title="简单读一下源码:"></a>简单读一下源码:</h2><h3 id="mapTask"><a href="#mapTask" class="headerlink" title="mapTask"></a>mapTask</h3><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/map6.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
-
-
-
-
-
-
+<p>首先我们在看shuffle机制之前先了解一下 shuffle过程的前一个过程和后一个过程, 即,mapTask过程和ReduceTask过程.</p>
+<h2 id="通过源码简单了解一下mapTask和ReduceTask"><a href="#通过源码简单了解一下mapTask和ReduceTask" class="headerlink" title="通过源码简单了解一下mapTask和ReduceTask:"></a>通过源码简单了解一下mapTask和ReduceTask:</h2><p>因为你我们的mapreduce程序分为mapTask 和 reduceTask. 在中间的过程就是shuffle过程.所以简单看一下mapTask和reduceTask的源码.</p>
+<h3 id="mapTask"><a href="#mapTask" class="headerlink" title="mapTask"></a>mapTask</h3><p>这是shuffle之前的过程</p>
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/map6.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
 
 <img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/oo1.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
 
-<h3 id="ReduceTask"><a href="#ReduceTask" class="headerlink" title="ReduceTask"></a>ReduceTask</h3><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/oo2.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
+<h3 id="ReduceTask"><a href="#ReduceTask" class="headerlink" title="ReduceTask"></a>ReduceTask</h3><p>这是shuffle之后的过程</p>
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/oo2.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
 
 
 
 
 
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/oo3.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/oo3.png" width = "600" height = "400" alt="xubatian的博客" align="center" />
 
-
-
-<p>Map方法之后，Reduce方法之前的数据处理过程称之为Shuffle。如图所示:</p>
+<h3 id="shuffle机制的整个过程图"><a href="#shuffle机制的整个过程图" class="headerlink" title="shuffle机制的整个过程图"></a>shuffle机制的整个过程图</h3><p>shuffle过程是在MapTask方法之后，ReduceTask方法之前的数据处理过程称之为Shuffle。</p>
+<p><strong>shuffle机制展示图:</strong></p>
 <img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/shuffle1.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
 
 
 
-<p>补充解释:</p>
-<p>Map方法出来之后先进入到getPartition方法,获取是哪一个分区的.<br>然后进入环形缓冲区.(默认100M,企业开发一般调整到200M,这是优化.) 到达80%溢写.溢写对数据排序. 排序手段是快排. 对key的索引按照字典顺序排 .溢写后产生大量的溢写文件.针对溢写文件进行归并排序. 按照分区放到对应磁盘上等待拉取. reduce拉取对应分区数据放入内存.内存不够放入磁盘. 内存中数据或者磁盘中数据都需要进行归并排序. 排完序后分组. 然后进入到reduce方法.    </p>
+<h3 id="对于shuffle机制的解读"><a href="#对于shuffle机制的解读" class="headerlink" title="对于shuffle机制的解读"></a><strong>对于shuffle机制的解读</strong></h3><p>Map方法出来之后先进入到getPartition方法,获取是哪一个分区的.<br>然后进入环形缓冲区.(默认100M,企业开发一般调整到200M,这是优化.) 到达80%溢写.溢写对数据排序. 排序手段是快排. 对key的索引按照字典顺序排 .溢写后产生大量的溢写文件.针对溢写文件进行归并排序. 按照分区放到对应磁盘上等待拉取. reduce拉取对应分区数据放入内存.内存不够放入磁盘. 内存中数据或者磁盘中数据都需要进行归并排序. 排完序后分组. 然后进入到reduce方法.    </p>
 <p>map端的溢写过程产生的溢写文件进行归并,默认是一次归并10个. 但是随着机器性能提高. 这个也可以提高到20 或者30.<br>总体上默认的mapTask的内存是1G. 默认的reduceTask也是1G.<br>通常我们调整做多的是ReduceTask为什么是reduceTask呢?<br>因为他是一个聚合汇总. 因为mapTask默认是128M的数据.<br>而reduceTask是将所有数据都聚合到这里面,数据量相对来说大一些<br>真正开发的时候可以适当调整到4个G左右.<br>yarn单个节点(就是一个服务器)默认内存是8个G,通长也是需要调整的,一般是跟你的集群的节点内存相等,正常是128G.<br>yarn的单个任务(就是处理一件事) 默认内存也是8G. 生产过程这些都是需要调整的. </p>
 <p>优化:<br>环形缓冲区.(默认100M,企业开发一般调整到200M,这是优化.)<br>到达80%溢写.(企业一般调整到90%或者95% 这是优化,调大了减少溢写文件的次数)<br>这样做可以减少溢写次数这就优化了. 对文件进行归并排序前可以进行一次Combiner.前提条件是不影响业务.比如求和,汇总业务不影响. 求平均值就影响.</p>
 <p>Combiner之后进行归并排序. 然后放到对应分区的磁盘上.<br>为了减少磁盘io,即为了减少从map端到reduce端的拉取过程采用压缩.减少磁盘io.  在MapReduce整个过程中,map输入端,map输出端,reduce输出端都可以压缩. 输入端需要注意切片,输入端谁支持切片呢?那种压缩支持切片呢?LZO支持切片.LZO里面需要额外的建立索引. 如果LZO里面没有建立索引,那就不支持切分.<br>reduce默认拉取磁盘数据是5个.但是我们可以增大到10个或者20个.前提条件是机器性能和内存.</p>
 <p>通常map输出端的压缩使用snappy或者LZO</p>
-<h3 id="缓存区解释图"><a href="#缓存区解释图" class="headerlink" title="缓存区解释图"></a>缓存区解释图</h3><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/shuffle2.png" width = "1301.56" height = "600" alt="xubatian的博客" align="center" />
+<h3 id="对于shuffle机制中的缓存区解释图"><a href="#对于shuffle机制中的缓存区解释图" class="headerlink" title="对于shuffle机制中的缓存区解释图"></a><strong>对于shuffle机制中的缓存区解释图</strong></h3><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/shuffle2.png" width = "1301.56" height = "600" alt="xubatian的博客" align="center" />
 
-<h3 id="Map写出来的数据过程图"><a href="#Map写出来的数据过程图" class="headerlink" title="Map写出来的数据过程图"></a>Map写出来的数据过程图</h3><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/pp1.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
+<h3 id="收集器源码"><a href="#收集器源码" class="headerlink" title="收集器源码"></a><strong>收集器源码</strong></h3><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_61.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
 
-
-
-
+<h3 id="shuffle完成后-从Map写出来的数据过程图"><a href="#shuffle完成后-从Map写出来的数据过程图" class="headerlink" title="shuffle完成后,从Map写出来的数据过程图"></a>shuffle完成后,从Map写出来的数据过程图</h3><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/pp1.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
 
 
 
+<h3 id="Partition分区"><a href="#Partition分区" class="headerlink" title="Partition分区"></a>Partition分区</h3><p>什么是partition分区呢? 他的作用使用么?</p>
+<h4 id="1、问题引出"><a href="#1、问题引出" class="headerlink" title="1、问题引出"></a>1、问题引出</h4><p>要求将统计结果照条件输出到不同文件中（分区）比如：将统计结果按照手机归属地不同省份输出到不同文件中（分区）</p>
+<h4 id="2、默认Partitioner分区"><a href="#2、默认Partitioner分区" class="headerlink" title="2、默认Partitioner分区"></a>2、默认Partitioner分区</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HashPartitioner</span>&lt;<span class="title">K</span>, <span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">Partitioner</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;</span>&#123;</span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPartition</span><span class="params">(K key, V value, <span class="keyword">int</span> numReduceTasks)</span></span></span><br><span class="line"><span class="function">					<span class="title">return</span>  <span class="params">(key.hashCode()</span> &amp; Integer.MAX_VALUE) % numReduceTasks </span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>默认分区是根据key的hashCode对ReduceTasks个数取模得到的。用户没法控制哪个key存储到哪个分区。</p>
+<h4 id="3、自定义Partitioner步骤"><a href="#3、自定义Partitioner步骤" class="headerlink" title="3、自定义Partitioner步骤"></a>3、自定义Partitioner步骤</h4><p>（1）自定义类继承Partitioner，重写getPartition()方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomPartitioner</span> <span class="keyword">extends</span> <span class="title">Partitioner</span>&lt;<span class="title">Text</span>, <span class="title">FlowBean</span>&gt; </span>&#123;</span><br><span class="line">				<span class="meta">@Override</span></span><br><span class="line">				<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPartition</span><span class="params">(Text key, FlowBean value, <span class="keyword">int</span> numPartitions)</span></span></span><br><span class="line"><span class="function">				<span class="comment">// 控制分区代码逻辑</span></span></span><br><span class="line"><span class="function">        ... ...</span></span><br><span class="line"><span class="function">				return partition</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2）在Job驱动中，设置自定义Partitioner</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">job.setPartitionerClass(CustomPartitioner.class);</span><br></pre></td></tr></table></figure>
+
+<p>（3）自定义Partition后，要根据自定义Partitioner的逻辑设置相应数量的ReduceTask</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">job.setNumReduceTasks(<span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="4、分区总结"><a href="#4、分区总结" class="headerlink" title="4、分区总结"></a>4、分区总结</h4><p>（1）如果ReduceTask的数量&gt; getPartition的结果数，则会多产生几个空的输出文件part-r-000xx；<br>（2）如果1&lt;ReduceTask的数量&lt;getPartition的结果数，则有一部分分区数据无处安放，会Exception；<br>（3）如果ReduceTask的数量=1，则不管MapTask端输出多少个分区文件,最终结果都交给这一个ReduceTask，最终也就只会产生一个          结果文件part-r-00000；<br>（4）分区号必须从零开始，逐一累加。</p>
+<h4 id="5、案例分析"><a href="#5、案例分析" class="headerlink" title="5、案例分析"></a>5、案例分析</h4><p>例如：假设自定义分区数为5，则</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(1)job.setNumReduceTasks(1); 会正常运行，只不过会产生一个输出文件</span><br><span class="line">(2)job.setNumReduceTasks(2); 会报错</span><br><span class="line">(3）job.setNumReduceTasks(6); 大于5，程序会正常运行，会产生空文件</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="对于partition分区的总结"><a href="#对于partition分区的总结" class="headerlink" title="对于partition分区的总结"></a>对于partition分区的总结</h4><p>块(block): 就是存到hdfs的时候是以什么块为单位.<br>切片就是MapReduce程序在处理你每一块数据的时候生成的逻辑上的切片信息.<br><strong>分区就是你的MapReduce处理完我这个数据后,最终往磁盘上输出结果的时候,我最终要输出几个文件</strong>. 比如说我要输出3个文件,那也就代  表着我有三个分区.  如果我输出一个文件,就代表只有一个分区.  所以分区简单理解为将来MapReduce处理完成以后他要帮我输出几个文件就是几个分区.<br>      比如说我一堆单词, a-q ,q-p各自放在一个文件中. 那么这两个文件就必须有两个分区来完成.  说白了这两个文件就是两个分区.</p>
+<p>如图展示什么是partition分区:</p>
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_62.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
+
+
+
+<p>对于一个wordCount案例来讲, 我希望将统计的结果输出到两个文件中, 但是我没有说什么样的分区给到一分区, 什么样的分区给带二分区. 也就是说没有明确告诉那个k,v按照什么样的条件进入什么样的分区呢? 如图设置两个分区:</p>
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_63.png" width = "900" height = "550" alt="xubatian的博客" align="center" />
+
+
+
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_64.png" width = "800" height = "600" alt="xubatian的博客" align="center" /> 
+
+<p>其实他是根据我们的hash算法来帮你区分的. 他会拿上你每一个key的hashcode值去对我的reduce的个数取模,上面我的reduce是2, 任何数字对reduce取模只有可能是0和1.  所以最后我的分区是00000, 00001 即0号分区和1号分区. 简单理解就是我的使用key的hashcode对reduce个数取模, 如果得到是0就往0号分区放. 得到是1就往1号分区放. 所以他默认情况下用的是hash运算. 这就是默认的分区器Partition. 如下图:</p>
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_65.png" width = "500" height = "200" alt="xubatian的博客" align="center" />
+
+<h4 id="Partitioner分区器源码解读"><a href="#Partitioner分区器源码解读" class="headerlink" title="Partitioner分区器源码解读"></a>Partitioner分区器源码解读</h4><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_66.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
+
+<p>Partitioner: 分区器<br>    默认的分区器:  HashPartitioner ,通过key的hashcode值对ReduceTasks的个数取余确定去往哪个分区.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">如何确定分区的:</span><br><span class="line">      partitions = jobContext.getNumReduceTasks();</span><br><span class="line">      <span class="keyword">if</span> (partitions &gt; <span class="number">1</span>) &#123;</span><br><span class="line">	partitioner = (org.apache.hadoop.mapreduce.Partitioner&lt;K,V&gt;)</span><br><span class="line">	  ReflectionUtils.newInstance(jobContext.getPartitionerClass(), job);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	partitioner = <span class="keyword">new</span> org.apache.hadoop.mapreduce.Partitioner&lt;K,V&gt;() &#123;</span><br><span class="line">	  <span class="meta">@Override</span></span><br><span class="line">	  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPartition</span><span class="params">(K key, V value, <span class="keyword">int</span> numPartitions)</span> </span>&#123;</span><br><span class="line">	    <span class="keyword">return</span> partitions - <span class="number">1</span>;</span><br><span class="line">	  &#125;</span><br><span class="line">	&#125;;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_67.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
+
+
+
+
+
+
+
+<h3 id="Combiner合并"><a href="#Combiner合并" class="headerlink" title="Combiner合并"></a>Combiner合并</h3><p>什么是combiner合并呢? 他和partition分区又有什么联系呢? </p>
+<p>分区? 合并? 你联想到了什么?</p>
+<p>（1）Combiner是MR程序中Mapper和Reducer之外的一种组件。<br>（2）Combiner组件的父类就是Reducer。<br>（3）Combiner和Reducer的区别在于运行的位置<br>                    <strong>Combiner是在每一个MapTask所在的节点运行</strong>;<br>                    <strong>Reducer是接收全局所有Mapper的输出结果</strong>；<br>（4）Combiner的意义就是对每一个MapTask的输出进行局部汇总，以减小网络传输量。<br>（5）Combiner能够应用的前提是不能影响最终的业务逻辑，而且，Combiner的输出key,value应该跟Reducer的输入key,value类型要           对应起来。</p>
+<p>如下所示:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Mapper                                     Reducer</span><br><span class="line"><span class="number">3</span> <span class="number">5</span> <span class="number">7</span> -&gt;(<span class="number">3</span>+<span class="number">5</span>+<span class="number">7</span>)/<span class="number">3</span>=<span class="number">5</span>                 (<span class="number">3</span>+<span class="number">5</span>+<span class="number">7</span>+<span class="number">2</span>+<span class="number">6</span>)/<span class="number">5</span>=<span class="number">23</span>/<span class="number">5</span>       不等于     (<span class="number">5</span>+<span class="number">4</span>)/<span class="number">2</span>=<span class="number">9</span>/<span class="number">2</span></span><br><span class="line"><span class="number">2</span> <span class="number">6</span> -&gt;(<span class="number">2</span>+<span class="number">6</span>)/<span class="number">2</span>=<span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+<p>（  6）自定义Combiner实现步骤</p>
+<p>​            (a) 自定义一个Combiner继承Reducer，重写Reduce方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WordcountCombiner</span> <span class="keyword">extends</span> <span class="title">Reducer</span>&lt;<span class="title">Text</span>, <span class="title">IntWritable</span>, <span class="title">Text</span>,<span class="title">IntWritable</span>&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">reduce</span><span class="params">(Text key, Iterable&lt;IntWritable&gt; values,Context context)</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line"></span><br><span class="line">          <span class="comment">// 1 汇总操作</span></span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(IntWritable v :values)&#123;</span><br><span class="line">          count += v.get();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">          <span class="comment">// 2 写出</span></span><br><span class="line">        context.write(key, <span class="keyword">new</span> IntWritable(count));</span><br><span class="line">      &#125;</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+<p>​              (b)  在Job驱动类中设置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">job.setCombinerClass(WordcountCombiner.class);</span><br></pre></td></tr></table></figure>
+
+<p> 对于运行结果展示:</p>
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_68.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
 
 
 
@@ -409,14 +478,7 @@
 
 
 
-
-
-
-
-
-
-
-
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_69.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
 
 
 
@@ -564,7 +626,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://xubatian.cn/大数据组件之Hadoop的shuffle机制原理/" title="大数据组件之Hadoop的shuffle机制原理" target="_blank">http://xubatian.cn/大数据组件之Hadoop的shuffle机制原理/</a>
+          <a href="http://xubatian.cn/mapreduce过程中的shuffle机制原理/" title="大数据组件之Hadoop的shuffle机制原理" target="_blank">http://xubatian.cn/mapreduce过程中的shuffle机制原理/</a>
         </li>
         
         <li>
@@ -661,7 +723,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%BB%84%E4%BB%B6%E4%B9%8BHadoop%E7%9A%84shuffle%E6%9C%BA%E5%88%B6%E5%8E%9F%E7%90%86/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/mapreduce%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84shuffle%E6%9C%BA%E5%88%B6%E5%8E%9F%E7%90%86/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -714,7 +776,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Shuffle%E6%9C%BA%E5%88%B6"><span class="toc-number">1.</span> <span class="toc-text">Shuffle机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E8%AF%BB%E4%B8%80%E4%B8%8B%E6%BA%90%E7%A0%81"><span class="toc-number">1.1.</span> <span class="toc-text">简单读一下源码:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mapTask"><span class="toc-number">1.1.1.</span> <span class="toc-text">mapTask</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ReduceTask"><span class="toc-number">1.1.2.</span> <span class="toc-text">ReduceTask</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E5%8C%BA%E8%A7%A3%E9%87%8A%E5%9B%BE"><span class="toc-number">1.1.3.</span> <span class="toc-text">缓存区解释图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map%E5%86%99%E5%87%BA%E6%9D%A5%E7%9A%84%E6%95%B0%E6%8D%AE%E8%BF%87%E7%A8%8B%E5%9B%BE"><span class="toc-number">1.1.4.</span> <span class="toc-text">Map写出来的数据过程图</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Shuffle%E6%9C%BA%E5%88%B6"><span class="toc-number">1.</span> <span class="toc-text">Shuffle机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E6%BA%90%E7%A0%81%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8BmapTask%E5%92%8CReduceTask"><span class="toc-number">1.1.</span> <span class="toc-text">通过源码简单了解一下mapTask和ReduceTask:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mapTask"><span class="toc-number">1.1.1.</span> <span class="toc-text">mapTask</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ReduceTask"><span class="toc-number">1.1.2.</span> <span class="toc-text">ReduceTask</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#shuffle%E6%9C%BA%E5%88%B6%E7%9A%84%E6%95%B4%E4%B8%AA%E8%BF%87%E7%A8%8B%E5%9B%BE"><span class="toc-number">1.1.3.</span> <span class="toc-text">shuffle机制的整个过程图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8Eshuffle%E6%9C%BA%E5%88%B6%E7%9A%84%E8%A7%A3%E8%AF%BB"><span class="toc-number">1.1.4.</span> <span class="toc-text">对于shuffle机制的解读</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8Eshuffle%E6%9C%BA%E5%88%B6%E4%B8%AD%E7%9A%84%E7%BC%93%E5%AD%98%E5%8C%BA%E8%A7%A3%E9%87%8A%E5%9B%BE"><span class="toc-number">1.1.5.</span> <span class="toc-text">对于shuffle机制中的缓存区解释图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B6%E9%9B%86%E5%99%A8%E6%BA%90%E7%A0%81"><span class="toc-number">1.1.6.</span> <span class="toc-text">收集器源码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#shuffle%E5%AE%8C%E6%88%90%E5%90%8E-%E4%BB%8EMap%E5%86%99%E5%87%BA%E6%9D%A5%E7%9A%84%E6%95%B0%E6%8D%AE%E8%BF%87%E7%A8%8B%E5%9B%BE"><span class="toc-number">1.1.7.</span> <span class="toc-text">shuffle完成后,从Map写出来的数据过程图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Partition%E5%88%86%E5%8C%BA"><span class="toc-number">1.1.8.</span> <span class="toc-text">Partition分区</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E9%97%AE%E9%A2%98%E5%BC%95%E5%87%BA"><span class="toc-number">1.1.8.1.</span> <span class="toc-text">1、问题引出</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E9%BB%98%E8%AE%A4Partitioner%E5%88%86%E5%8C%BA"><span class="toc-number">1.1.8.2.</span> <span class="toc-text">2、默认Partitioner分区</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89Partitioner%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.1.8.3.</span> <span class="toc-text">3、自定义Partitioner步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E5%88%86%E5%8C%BA%E6%80%BB%E7%BB%93"><span class="toc-number">1.1.8.4.</span> <span class="toc-text">4、分区总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90"><span class="toc-number">1.1.8.5.</span> <span class="toc-text">5、案例分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8Epartition%E5%88%86%E5%8C%BA%E7%9A%84%E6%80%BB%E7%BB%93"><span class="toc-number">1.1.8.6.</span> <span class="toc-text">对于partition分区的总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Partitioner%E5%88%86%E5%8C%BA%E5%99%A8%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB"><span class="toc-number">1.1.8.7.</span> <span class="toc-text">Partitioner分区器源码解读</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Combiner%E5%90%88%E5%B9%B6"><span class="toc-number">1.1.9.</span> <span class="toc-text">Combiner合并</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>

@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/shuju.png">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/diaoxian.png">
 <meta property="article:published_time" content="2022-01-12T11:06:38.000Z">
-<meta property="article:modified_time" content="2022-01-14T04:08:42.229Z">
+<meta property="article:modified_time" content="2022-01-14T04:34:04.481Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="Hadoop">
 <meta property="article:tag" content="HDFS">
@@ -363,10 +363,12 @@
 
 
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">前言</span><br><span class="line"></span><br><span class="line">上文了解到了hadoop由四个模块组成: HDFS,MapReduce,Yarn,Common.</span><br><span class="line"></span><br><span class="line">本篇文章具体了解hadoop的HDFS模块.</span><br><span class="line"></span><br><span class="line">什么是HDFS?</span><br><span class="line"></span><br><span class="line">HDFS有什么功能?</span><br><span class="line"></span><br><span class="line">如何掌握HDFS?</span><br></pre></td></tr></table></figure>
-
-
-
+<p>前言</p>
+<p>上文了解到了hadoop由四个模块组成: HDFS,MapReduce,Yarn,Common.</p>
+<p>本篇文章具体了解hadoop的HDFS模块.</p>
+<p>什么是HDFS?</p>
+<p>HDFS有什么功能?</p>
+<p>如何掌握HDFS?</p>
 <h1 id="HDFS概述"><a href="#HDFS概述" class="headerlink" title="HDFS概述"></a>HDFS概述</h1><h2 id="是什么原因使得HDFS产生的呢"><a href="#是什么原因使得HDFS产生的呢" class="headerlink" title="是什么原因使得HDFS产生的呢?"></a>是什么原因使得HDFS产生的呢?</h2><p>我们知道大数据面临的痛点就是:</p>
 <p>① <strong>数据存储问题.</strong> 数据超级大,可达TB级别.所以没有任何合适的工具存储这些数据.mysql等数据也无法有效的存储. </p>
 <p>② <strong>数据在有效的时间整合出结果,即计算问题</strong>.就算能够存储下来,也无法有效的操作这些数据. 即,无法通过类似sql语句查询mysql一样去整合数据得到有效的信息.</p>

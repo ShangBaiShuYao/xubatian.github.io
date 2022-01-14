@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/map1.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/map2.png">
 <meta property="article:published_time" content="2022-01-12T13:12:15.000Z">
-<meta property="article:modified_time" content="2022-01-14T03:16:57.783Z">
+<meta property="article:modified_time" content="2022-01-14T04:34:27.719Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="MapReduce">
 <meta name="twitter:card" content="summary">
@@ -360,10 +360,13 @@
 
 
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">前言</span><br><span class="line"></span><br><span class="line">我们知道大数据面临的痛点就是:</span><br><span class="line"></span><br><span class="line">①数据存储问题.数据超级大,可达TB级别.所以没有任何合适的工具存储这些数据.mysql等数据也无法有效的存储. </span><br><span class="line"></span><br><span class="line">②数据在有效的时间整合出结果,即计算问题.就算能够存储下来,也无法有效的操作这些数据. 即,无法通过类似sql语句查询mysql一样去整合数据得到有效的信息.</span><br><span class="line"></span><br><span class="line">但是我们又说到, hadoop解决了这两个问题. </span><br><span class="line"></span><br><span class="line">首先hadoop解决数据存储问题的模块就是HDFS. 也就是说HDFS就是针对大数据存储问题的一套落地的解决方案. </span><br><span class="line"></span><br><span class="line">那么数据存储了,我需要分析呀.如何取分析呢?使用什么引擎去分析呢? </span><br><span class="line">答案就是: MapReduce.   一个模块负责存储, 一个模块负责分析.</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
+<p>前言</p>
+<p>我们知道大数据面临的痛点就是:</p>
+<p>①数据存储问题.数据超级大,可达TB级别.所以没有任何合适的工具存储这些数据.mysql等数据也无法有效的存储. </p>
+<p>②数据在有效的时间整合出结果,即计算问题.就算能够存储下来,也无法有效的操作这些数据. 即,无法通过类似sql语句查询mysql一样去整合数据得到有效的信息.</p>
+<p>但是我们又说到, hadoop解决了这两个问题. </p>
+<p>首先hadoop解决数据存储问题的模块就是HDFS. 也就是说HDFS就是针对大数据存储问题的一套落地的解决方案. </p>
+<p>那么数据存储了,我需要分析呀.如何取分析呢?使用什么引擎去分析呢?<br>答案就是: MapReduce.   一个模块负责存储, 一个模块负责分析.</p>
 <h1 id="MapReduce概述"><a href="#MapReduce概述" class="headerlink" title="MapReduce概述"></a>MapReduce概述</h1><h2 id="MapReduce定义"><a href="#MapReduce定义" class="headerlink" title="MapReduce定义"></a>MapReduce定义</h2><p>MapReduce是一个分布式运算架，是用户开发“基于Hadoop的数据分析应用”的核心框架。<br>MapReduce核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序，并发运行在一个Hadoop集群上。</p>
 <p>&emsp;     </p>
 <h2 id="MapReduce优缺点"><a href="#MapReduce优缺点" class="headerlink" title="MapReduce优缺点"></a>MapReduce优缺点</h2><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/MapReduce1.png" width = "700" height = "390" alt="xubatian的博客" align="center" />
@@ -737,7 +740,7 @@
 
 <nav id="article-nav">
   
-    <a href="/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%BB%84%E4%BB%B6%E4%B9%8BHadoop%E7%9A%84shuffle%E6%9C%BA%E5%88%B6%E5%8E%9F%E7%90%86/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/mapreduce%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84shuffle%E6%9C%BA%E5%88%B6%E5%8E%9F%E7%90%86/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
