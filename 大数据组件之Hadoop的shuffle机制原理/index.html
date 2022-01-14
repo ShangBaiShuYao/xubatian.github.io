@@ -18,23 +18,23 @@
 <meta property="og:site_name" content="我的梦想是星辰大海">
 <meta property="og:description" content="hadoop的shuffle机制原理解说.">
 <meta property="og:locale">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/100.png">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/map4.png">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/map6.png">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/oo1.png">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/oo2.png">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/oo3.png">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/shuffle1.png">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/shuffle2.png">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/pp1.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.1/images/100.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/map4.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/map6.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/oo1.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/oo2.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/oo3.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/shuffle1.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/shuffle2.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/pp1.png">
 <meta property="article:published_time" content="2022-01-12T15:09:02.000Z">
-<meta property="article:modified_time" content="2022-01-12T15:30:24.129Z">
+<meta property="article:modified_time" content="2022-01-14T01:15:25.755Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="Hadoop">
 <meta property="article:tag" content="mapreduce">
 <meta property="article:tag" content="shuffle">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/100.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.1/images/100.png">
   
     <link rel="alternative" href="/atom.xml" title="我的梦想是星辰大海" type="application/atom+xml">
   
@@ -347,10 +347,10 @@
     <p>hadoop的shuffle机制原理解说.</p>
 <span id="more"></span>
 
-<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/100.png" width = "1201.56" height = "675.88" alt="xubatian的博客" align="center" />
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.1/images/100.png" width = "1201.56" height = "675.88" alt="xubatian的博客" align="center" />
 
 <h1 id="Shuffle机制"><a href="#Shuffle机制" class="headerlink" title="Shuffle机制"></a>Shuffle机制</h1><p>Map方法之后，Reduce方法之前的数据处理过程称之为Shuffle</p>
-<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/map4.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/map4.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
 
 
 
@@ -359,7 +359,7 @@
 
 
 <p>其实我们的MapReduce整个阶段我们细细的分可以分为5个阶段.<br>Map——&gt; sort(排序) ——-&gt; copy ——&gt;sort(排序) ——-&gt; Reducer</p>
-<h2 id="简单读一下源码"><a href="#简单读一下源码" class="headerlink" title="简单读一下源码:"></a>简单读一下源码:</h2><h3 id="mapTask"><a href="#mapTask" class="headerlink" title="mapTask"></a>mapTask</h3><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/map6.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
+<h2 id="简单读一下源码"><a href="#简单读一下源码" class="headerlink" title="简单读一下源码:"></a>简单读一下源码:</h2><h3 id="mapTask"><a href="#mapTask" class="headerlink" title="mapTask"></a>mapTask</h3><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/map6.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
 
 
 
@@ -367,20 +367,20 @@
 
 
 
-<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/oo1.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/oo1.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
 
-<h3 id="ReduceTask"><a href="#ReduceTask" class="headerlink" title="ReduceTask"></a>ReduceTask</h3><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/oo2.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
-
-
+<h3 id="ReduceTask"><a href="#ReduceTask" class="headerlink" title="ReduceTask"></a>ReduceTask</h3><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/oo2.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
 
 
 
-<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/oo3.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
+
+
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/oo3.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
 
 
 
 <p>Map方法之后，Reduce方法之前的数据处理过程称之为Shuffle。如图所示:</p>
-<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/shuffle1.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/shuffle1.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
 
 
 
@@ -390,9 +390,9 @@
 <p>优化:<br>环形缓冲区.(默认100M,企业开发一般调整到200M,这是优化.)<br>到达80%溢写.(企业一般调整到90%或者95% 这是优化,调大了减少溢写文件的次数)<br>这样做可以减少溢写次数这就优化了. 对文件进行归并排序前可以进行一次Combiner.前提条件是不影响业务.比如求和,汇总业务不影响. 求平均值就影响.</p>
 <p>Combiner之后进行归并排序. 然后放到对应分区的磁盘上.<br>为了减少磁盘io,即为了减少从map端到reduce端的拉取过程采用压缩.减少磁盘io.  在MapReduce整个过程中,map输入端,map输出端,reduce输出端都可以压缩. 输入端需要注意切片,输入端谁支持切片呢?那种压缩支持切片呢?LZO支持切片.LZO里面需要额外的建立索引. 如果LZO里面没有建立索引,那就不支持切分.<br>reduce默认拉取磁盘数据是5个.但是我们可以增大到10个或者20个.前提条件是机器性能和内存.</p>
 <p>通常map输出端的压缩使用snappy或者LZO</p>
-<h3 id="缓存区解释图"><a href="#缓存区解释图" class="headerlink" title="缓存区解释图"></a>缓存区解释图</h3><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/shuffle2.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
+<h3 id="缓存区解释图"><a href="#缓存区解释图" class="headerlink" title="缓存区解释图"></a>缓存区解释图</h3><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/shuffle2.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
 
-<h3 id="Map写出来的数据过程图"><a href="#Map写出来的数据过程图" class="headerlink" title="Map写出来的数据过程图"></a>Map写出来的数据过程图</h3><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/pp1.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
+<h3 id="Map写出来的数据过程图"><a href="#Map写出来的数据过程图" class="headerlink" title="Map写出来的数据过程图"></a>Map写出来的数据过程图</h3><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/pp1.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
 
 
 
