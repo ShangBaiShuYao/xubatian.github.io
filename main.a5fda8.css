@@ -618,13 +618,13 @@ i {
   content: "\E6F9"
 }
 
-.icon-quo-left:before {
+/* .icon-quo-left:before {
   content: "\E7F5"
-}
+} */
 
-.icon-quo-right:before {
+/* .icon-quo-right:before {
   content: "\E7F6"
-}
+} */
 
 .icon-back1:before {
   content: "\E64E"
@@ -1997,8 +1997,8 @@ pre .id {
   white-space: nowrap;
   text-overflow: ellipsis;
   display: block;
-  color: #fffff8;
-  text-shadow: 1px 1px rgba(77, 77, 77, .25)
+  color: #000000;
+  text-shadow: 0px 0px rgb(131 73 73 / 0%)
 }
 
 .tools-col .tools-section .search-ul .search-title .icon {
@@ -2982,7 +2982,7 @@ pre .id {
 }
 
 .tooltip-top .tooltip-inner {
-  background: rgba(36, 193, 246, .9);
+  background: rgba(77 77 77);
   padding: 40px;
   transform: translate3d(0, 100%, 0);
   webkit-transition: -webkit-transform .3s;
