@@ -6,27 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://xubatian.cn">
-  <title>hadoop组成模块之MapReduce详解 | 我的梦想是星辰大海</title>
+  <title>hadoop组成模块之MapReduce框架原理 | 我的梦想是星辰大海</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta name="description" content="亲爱的女孩，如果还能跟你心平气和的聊天的话，我希望能告诉你我那些无视和冷笑都是在伪装，可是已经过去了。淡月梨花，借梦来，桥边廊庑。     –来自网易云音乐《任你》">
+  <meta name="description" content="孤独这两个字拆开来看，有孩童，有瓜果，有小犬，有蚊蝇，足以撑起一个盛夏傍晚间的巷子口，人情味十足。 稚儿擎瓜柳棚下，细犬逐蝶窄巷中，人间繁华多笑语，惟我空余两鬓风。 孩童水果猫狗飞蝇当然热闹，可都和你无关，这就叫孤独。 …">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hadoop组成模块之MapReduce详解">
-<meta property="og:url" content="http://xubatian.cn/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BMapReduce%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:title" content="hadoop组成模块之MapReduce框架原理">
+<meta property="og:url" content="http://xubatian.cn/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BMapReduce%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86/index.html">
 <meta property="og:site_name" content="我的梦想是星辰大海">
-<meta property="og:description" content="亲爱的女孩，如果还能跟你心平气和的聊天的话，我希望能告诉你我那些无视和冷笑都是在伪装，可是已经过去了。淡月梨花，借梦来，桥边廊庑。     –来自网易云音乐《任你》">
+<meta property="og:description" content="孤独这两个字拆开来看，有孩童，有瓜果，有小犬，有蚊蝇，足以撑起一个盛夏傍晚间的巷子口，人情味十足。 稚儿擎瓜柳棚下，细犬逐蝶窄巷中，人间繁华多笑语，惟我空余两鬓风。 孩童水果猫狗飞蝇当然热闹，可都和你无关，这就叫孤独。 …">
 <meta property="og:locale">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/images/14.jpg">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/MapReduce1.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mapreduce2.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/MapReduce3.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mapreduce5.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mapreduce8.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mapreduce9.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mm.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_94.jpg">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mm2.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mm.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mm4.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mm5.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/job1.png">
@@ -38,12 +32,11 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/job8.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/map1.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/map2.png">
-<meta property="article:published_time" content="2022-01-12T13:12:15.000Z">
-<meta property="article:modified_time" content="2022-01-14T07:26:10.749Z">
+<meta property="article:published_time" content="2022-01-14T16:20:06.996Z">
+<meta property="article:modified_time" content="2022-01-14T16:39:06.911Z">
 <meta property="article:author" content="xubatian">
-<meta property="article:tag" content="MapReduce">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/images/14.jpg">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_94.jpg">
   
     <link rel="alternative" href="/atom.xml" title="我的梦想是星辰大海" type="application/atom+xml">
   
@@ -300,14 +293,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hadoop组成模块之MapReduce详解" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-hadoop组成模块之MapReduce框架原理" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      hadoop组成模块之MapReduce详解
+      hadoop组成模块之MapReduce框架原理
     </h1>
   
 
@@ -319,8 +312,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BMapReduce%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-        <time datetime="2022-01-12T13:12:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-12</time>
+<a href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BMapReduce%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86/" class="archive-article-date">
+        <time datetime="2022-01-14T16:20:06.996Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-15</time>
 </a>
 
   
@@ -333,7 +326,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">5.9k字</span>
+      <span class="post-count">4.4k字</span>
     </span>
   </span>
 
@@ -342,7 +335,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">21分</span>
+      <span class="post-count">16分</span>
     </span>
   </span>
 </div>
@@ -353,128 +346,33 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>亲爱的女孩，如果还能跟你心平气和的聊天的话，我希望能告诉你我那些无视和冷笑都是在伪装，可是已经过去了。淡月梨花，借梦来，桥边廊庑。     –来自网易云音乐《任你》</p>
+    <p>孤独这两个字拆开来看，有孩童，有瓜果，有小犬，有蚊蝇，足以撑起一个盛夏傍晚间的巷子口，人情味十足。 稚儿擎瓜柳棚下，细犬逐蝶窄巷中，人间繁华多笑语，惟我空余两鬓风。 孩童水果猫狗飞蝇当然热闹，可都和你无关，这就叫孤独。 …                            </p>
 <span id="more"></span>
 
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/images/14.jpg" width = "1201.56" height = "675.88" alt="xubatian的博客" align="center" />
-
-
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_94.jpg" width = "1201.56" height = "675.88" alt="xubatian的博客" align="center" />
 
 <p>前言</p>
-<p>我们知道大数据面临的痛点就是:</p>
-<p>①数据存储问题.数据超级大,可达TB级别.所以没有任何合适的工具存储这些数据.mysql等数据也无法有效的存储. </p>
-<p>②数据在有效的时间整合出结果,即计算问题.就算能够存储下来,也无法有效的操作这些数据. 即,无法通过类似sql语句查询mysql一样去整合数据得到有效的信息.</p>
-<p>但是我们又说到, hadoop解决了这两个问题. </p>
-<p>首先hadoop解决数据存储问题的模块就是HDFS. 也就是说HDFS就是针对大数据存储问题的一套落地的解决方案. </p>
-<p>那么数据存储了,我需要分析呀.如何取分析呢?使用什么引擎去分析呢?<br>答案就是: MapReduce.   一个模块负责存储, 一个模块负责分析.</p>
-<h1 id="MapReduce概述"><a href="#MapReduce概述" class="headerlink" title="MapReduce概述"></a>MapReduce概述</h1><h2 id="MapReduce定义"><a href="#MapReduce定义" class="headerlink" title="MapReduce定义"></a>MapReduce定义</h2><p>MapReduce是一个分布式运算架，是用户开发“基于Hadoop的数据分析应用”的核心框架。<br>MapReduce核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序，并发运行在一个Hadoop集群上。</p>
-<p>&emsp;     </p>
-<h2 id="MapReduce优缺点"><a href="#MapReduce优缺点" class="headerlink" title="MapReduce优缺点"></a>MapReduce优缺点</h2><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/MapReduce1.png" width = "700" height = "390" alt="xubatian的博客" align="center" />
-
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mapreduce2.png" width = "700" height = "390" alt="xubatian的博客" align="center" />
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">什么叫离线处理?</span><br><span class="line">他对比的就是实时处理,就像mysql等就可以实时的返回结果;</span><br><span class="line">就是我已经有大量的数据了,你通过hadoop里面的hdfs,mapReduce去做运算,最终经过一段时间的运算给我得出结果,这是要耗费一定时间的,这就叫离线处理</span><br></pre></td></tr></table></figure>
+<p>什么是MapReduce? </p>
+<p>MapReduce是hadoop解决大数据计算问题的而落地的一个计算引擎. 他是一个计算框架.</p>
+<p>mapreduce如何做到海量数据的计算的呢?</p>
+<p>mapreduce的流程是什么样子的呢?</p>
+<p>mapreduce的有哪些部分组成的的?</p>
+<p>图示:</p>
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mm2.png" width = "400" height = "200" alt="xubatian的博客" align="center" />
 
 
 
-<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><p>其实也不能叫缺点,以为他本身设计的时候就没有去考虑这些东西,如果考虑这些东西就可能解决不了大量数据的处理了</p>
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/MapReduce3.png" width = "700" height = "390" alt="xubatian的博客" align="center" />
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">静态的就表示,数据已经放好了在这里了,而不是你时不时还往里面添加数据,这是不支持的</span><br><span class="line">就是如下图,什么叫有向图(DAG)计算?就是后面应用程序输入的数据是前面数据输出的数据,而mapReduce不擅长做这个,但是也不是不能做. 如果这么做的话会有大量的磁盘io操作. 就是你前面的MapReduce程序完成后结果放在磁盘中,下一个MapReduce程序读取磁盘的结果来操作. 这个过程会发生大量的磁盘io.所以你这个性能是非常低下的</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="MapReduce核心思想"><a href="#MapReduce核心思想" class="headerlink" title="MapReduce核心思想"></a>MapReduce核心思想</h1><p>之前map  和 reduce 一个负责分,一个负责合,这是一个很笼统的认识</p>
-<p>现在MapReduce核心编程思想，如图所示:</p>
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mapreduce5.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
-
-<h2 id="对上图MapReduce核心思想解释"><a href="#对上图MapReduce核心思想解释" class="headerlink" title="对上图MapReduce核心思想解释"></a>对上图MapReduce核心思想解释</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">第一个文件200m 我们立马想到,我们存到hdfs中后立马存两块(128M一块). 这里有两个文件,所以有三块数据.在map阶段会读取你的每一块内容,每一块内容都会交给maptask来处理.这个maptask就是map阶段最核心的一个对象. 整个maptask的过程中就是你的map阶段.所有的工作都是围绕着maptask来进行工作的.maptask就是一个任务.是map阶段的一个任务.正常情况下你的每一块数据都会交给maptask来进行处理.在我的maptask里面做什么操作呢?我要把你文件中的每一行数据都给他读出来.</span><br><span class="line">1)读数据,并按行处理       (就是我读一行进来)</span><br><span class="line">2)按空格切分行内单词     (具体要不要按照行处理看你每个单词与单词之间是否已空格划分)</span><br><span class="line">3)K键值对(单词,1)        (hadoop,1)(hive,1)(spark,1)</span><br><span class="line">4)将所有的KV键值对中的词,按照单词首字母,分成2个分区溢写到磁盘    (为什么要分成两个分区呢?因为我最终的结果我要的是两个,那我就是将a-z,q-p开头的单词写到不同的文件中)</span><br><span class="line"></span><br><span class="line">最终我的三个maptask中一共六个文件,即分区1(z-p),分区2(q-z)各两个.</span><br><span class="line">把三个maptask里面分区1的给一个reduce中,分区2的给一个reduce中.</span><br><span class="line">所以在这种情况下他就有两个reducetask,为什么有两个呢? 其实就是由你这个分区来决定的.因为你最终有两个文件,所以我就开启两个reduceTask来处理. 这reduceTask到每一个mapTask生成的文件里面去拷贝数据,比如说分区1里面拷贝到处理a-p的ReduceTask, 分区2拷贝到处理q-z的ReduceTask中.</span><br><span class="line"></span><br><span class="line">Mapreduce程序只能包含一个map阶段和一个reduce阶段.你不能有多个.如果说你的一个MapReduce程序处理完成后还没有得到你想要的结果,那你只能再重新再开一个MapReduce程序接着去处理你这个数据.不能再一个MapReduce中写多个map阶段或者多个reduce阶段程序.</span><br><span class="line"></span><br><span class="line">问题:</span><br><span class="line">为什么一个mapTask要处理一块数据?</span><br><span class="line">我的kv对处理完成以后如何写到多个分区里面呢?</span><br><span class="line">我的reduce阶段如何去拷贝我的多个分区的数据?</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="mapreduce核心思想总结"><a href="#mapreduce核心思想总结" class="headerlink" title="mapreduce核心思想总结"></a>mapreduce核心思想总结</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1）分布式的运算程序往往需要分成至少2个阶段。</span><br><span class="line">2）第一个阶段的MapTask并发实例，完全并行运行，互不相干。</span><br><span class="line">3）第二个阶段的ReduceTask并发实例互不相干，但是他们的数据依赖于上一个阶段的所有MapTask并发实例的输出。</span><br><span class="line">4）MapReduce编程模型只能包含一个Map阶段和一个Reduce阶段，如果用户的业务逻辑非常复杂，那就只能多个MapReduce程序，串行运行。</span><br><span class="line">总结：分析WordCount数据流走向深入理解MapReduce核心思想。</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="MapReduce进程"><a href="#MapReduce进程" class="headerlink" title="MapReduce进程"></a>MapReduce进程</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">一个完整的MapReduce程序在分布式运行时有三类实例进程：</span><br><span class="line">1）MrAppMaster：负责整个程序的过程调度及状态协调。</span><br><span class="line">2）MapTask:  负责Map阶段的整个数据处理流程。</span><br><span class="line">3）ReduceTask:  负责Reduce阶段的整个数据处理流程。</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="通过官方WordCount源码查看我们如何取去写MapReduce程序"><a href="#通过官方WordCount源码查看我们如何取去写MapReduce程序" class="headerlink" title="通过官方WordCount源码查看我们如何取去写MapReduce程序"></a>通过官方WordCount源码查看我们如何取去写MapReduce程序</h2><p>采用反编译工具反编译源码，发现WordCount案例有Map类、Reduce类和驱动类。且数据的类型是Hadoop自身封装的序列化类型。</p>
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mapreduce8.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
-
-
-
-
-
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mapreduce9.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h2 id="Hadoop常用数据序列化类型"><a href="#Hadoop常用数据序列化类型" class="headerlink" title="Hadoop常用数据序列化类型"></a>Hadoop常用数据序列化类型</h2><p>在mapreduce中用的数据类型都是hadoop重新提供出来的一套数据类型,他没有直接使用java中提供好的8个基本数据类型,因为他认为java定义好的在序列化和反序列化操作时的数据量比较大,所以他自己搞了一套数据类型和一套序列化,实际上特别好记,就是在原java后面加了writable,除了字符串</p>
-<p>​    </p>
-<p>常用的数据类型对应的Hadoop数据序列化类型</p>
-<table>
-<thead>
-<tr>
-<th>Java类型</th>
-<th>Hadoop Writable类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Boolean</td>
-<td>BooleanWritable</td>
-</tr>
-<tr>
-<td>Byte</td>
-<td>ByteWritable</td>
-</tr>
-<tr>
-<td>Int</td>
-<td>IntWritable</td>
-</tr>
-<tr>
-<td>Float</td>
-<td>FloatWritable</td>
-</tr>
-<tr>
-<td>Long</td>
-<td>LongWritable</td>
-</tr>
-<tr>
-<td>Double</td>
-<td>DoubleWritable</td>
-</tr>
-<tr>
-<td>String</td>
-<td><strong>Text</strong></td>
-</tr>
-<tr>
-<td>Map</td>
-<td>MapWritable</td>
-</tr>
-<tr>
-<td>Array</td>
-<td>ArrayWritable</td>
-</tr>
-</tbody></table>
+<p>如上图所示, 这就是完整的mapreduce 的数据流图.</p>
+<p>首先我们知道了hadoop的hdfs是将海量的数据进行了存储.  而hadoop的mapreduce是将存储的海量数据尽心计算得出我们想要的结果.</p>
+<p>那么他要计算这些数据.  首先他得将数据输入到我们的计算引擎mapreduce当中, 即使用Inputformat将数据导入到mapreduce里面来, 然后通过mapTask将数据打散,即map任务, 再通过reduceTask任务将数据聚合,即reduce任务. 最后通过outputFormat将计算的结果输出到某个文件或者某个数据库中.</p>
+<p>那么由此可知. 整个mapreduce是由. Inputformart输入数据.  MapTask 打散数据. ReduceTask聚合数据. Outputformart输出结果.这几个部分组成的. 所以,要知道mapreduce的框架原理.需要学习组成mapreduce的四个环节.</p>
 <h1 id="MapReduce框架原理"><a href="#MapReduce框架原理" class="headerlink" title="MapReduce框架原理"></a>MapReduce框架原理</h1><h2 id="InputFormat数据输入"><a href="#InputFormat数据输入" class="headerlink" title="InputFormat数据输入"></a>InputFormat数据输入</h2><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mm.png" width = "500" height = "300" alt="xubatian的博客" align="center" />
 
 
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">InputFormat, 这个是整个MapReduce里面非常关键的一个对象.</span><br><span class="line"></span><br><span class="line">什么是InputFormat呢? 就是你输入到这个mapper里面的数据其实就是由InputFormat来负责的. 比如我怎么从文件里面去读这个数据. 这里还涉及到是否要切片这个概念.</span><br><span class="line"></span><br><span class="line">MapReduce数据流是比较简单的.一个是mapper阶段. 一个是reduce阶段. 在mapper阶段前面就有一个InputFormat帮我们去读数据. 在Reducer后面有一个OutPutFormat帮我们去写数据.在mapper与reducer中间就是我们讲的shuffle过程.大部分工作都是在shuffle里面做的</span><br></pre></td></tr></table></figure>
 
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mm2.png" width = "600" height = "400" alt="xubatian的博客" align="center" />
+
 
 <h2 id="切片与MapTask并行度决定机制"><a href="#切片与MapTask并行度决定机制" class="headerlink" title="切片与MapTask并行度决定机制"></a>切片与MapTask并行度决定机制</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> 切片不从物理上切开,比如说,我有一个两百兆的文件.我上传到HDFS以后. 假如说的我一块的大小是128M. 那么这个200M的文件上传到HDFS以后被切成了两块了.</span><br><span class="line">第一块128M,第二块72M. 到此为止只是块的概念. </span><br><span class="line"> 接下来我就要通过map来分析你这个数据了.正常情况下,其实你的一个块的数据要交给mapTask去处理.但是严格意义上并不是这样的.而是一个切片要交给一个mapTask来处理. </span><br><span class="line">那么这个切片是怎么来的呢?</span><br><span class="line"> 切片和块的大小有点关系,但是我们可以自己去设置有多大. 比如假设我设置我的切片大小是64M. 那么对于128M块大小的数据在真正进入到map要处理的时候.会把这个128M的块的数据从逻辑上切成两片.</span><br><span class="line"> 第一片交给一个mapTask去处理.</span><br><span class="line">第二片也交给一个mapTask去处理. </span><br><span class="line">所以说,严格来说不是一个块的数据交给mapTask.而是一个切片的数据交给一个mapTask. 72M的也是切成两片.</span><br><span class="line">这里我们所说的切只是逻辑上的,这个块还是整个的一个块.他是不会从物理上给你切开的. 只是逻辑上的.</span><br><span class="line"> 一个切片,一个mapTask.  注意: 默认情况下切片的大小和块的大小是一样的.</span><br><span class="line">也就意味着不自己设置的情况下.他的一个切片的大小也是128M. 正好我的默认情况下块的大小是一样的.</span><br><span class="line"></span><br><span class="line">那么问题来了, 我是不是一个切片越大,mapTask越多,我并行能力越强,是否我的性能就越高呢?</span><br></pre></td></tr></table></figure>
 
@@ -551,46 +449,6 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">上面的流程是整个MapReduce最全工作流程，但是Shuffle过程只是从第<span class="number">7</span>步开始到第<span class="number">16</span>步结束，具体Shuffle过程详解，如下：</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>）MapTask收集我们的map()方法输出的kv对，放到内存缓冲区中</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>）从内存缓冲区不断溢出本地磁盘文件，可能会溢出多个文件</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>）多个溢出文件会被合并成大的溢出文件</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>）在溢出过程及合并的过程中，都要调用Partitioner进行分区和针对key进行排序</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>）ReduceTask根据自己的分区号，去各个MapTask机器上取相应的结果分区数据</span><br><span class="line"></span><br><span class="line"><span class="number">6</span>）ReduceTask会取到同一个分区的来自不同MapTask的结果文件，ReduceTask会将这些文件再进行合并（归并排序）</span><br><span class="line"></span><br><span class="line"><span class="number">7</span>）合并成大文件后，Shuffle的过程也就结束了，后面进入ReduceTask的逻辑运算过程（从文件中取出一个一个的键值对Group，调用用户自定义的reduce()方法）</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>．注意</span><br><span class="line">Shuffle中的缓冲区大小会影响到MapReduce程序的执行效率，原则上说，缓冲区越大，磁盘io的次数越少，执行速度就越快。</span><br><span class="line">缓冲区的大小可以通过参数调整，参数：io.sort.mb默认100M。</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>．源码解析流程</span><br><span class="line">context.write(k, NullWritable.get());</span><br><span class="line">				output.write(key, value);</span><br><span class="line">								collector.collect(key, value,partitioner.getPartition(key, value, partitions));</span><br><span class="line">									HashPartitioner();</span><br><span class="line">								collect()</span><br><span class="line">									close()</span><br><span class="line">										collect.flush()</span><br><span class="line">											sortAndSpill()</span><br><span class="line">                    		sort()   <span class="function">QuickSort</span></span><br><span class="line"><span class="function">											<span class="title">mergeParts</span><span class="params">()</span></span>;</span><br><span class="line">											file.out;</span><br><span class="line">											file.out.index;</span><br><span class="line">									collector.close();</span><br></pre></td></tr></table></figure>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     
 
     
@@ -636,7 +494,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://xubatian.cn/hadoop组成模块之MapReduce详解/" title="hadoop组成模块之MapReduce详解" target="_blank">http://xubatian.cn/hadoop组成模块之MapReduce详解/</a>
+          <a href="http://xubatian.cn/hadoop组成模块之MapReduce框架原理/" title="hadoop组成模块之MapReduce框架原理" target="_blank">http://xubatian.cn/hadoop组成模块之MapReduce框架原理/</a>
         </li>
         
         <li>
@@ -653,17 +511,6 @@
   <div class="article-info article-info-index">
     
     
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MapReduce</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
     
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
@@ -725,7 +572,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BMapReduce%E8%AF%A6%E8%A7%A3/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BMapReduce%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -740,18 +587,9 @@
 
 <nav id="article-nav">
   
-    <a href="/mapreduce%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84shuffle%E6%9C%BA%E5%88%B6%E5%8E%9F%E7%90%86/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          mapreduce过程中的shuffle机制原理
-        
-      </div>
-    </a>
   
-  
-    <a href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BHDFS%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E8%AF%A6%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">hadoop组成模块之HDFS分布式存储详解</div>
+    <a href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8Bmapreduce%E7%9A%84MapTask%E6%9C%BA%E5%88%B6%E5%92%8CreduceTask%E6%9C%BA%E5%88%B6/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">hadoop组成模块之mapreduce的MapTask机制和reduceTask机制</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -778,7 +616,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MapReduce%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">MapReduce概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MapReduce%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">MapReduce定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MapReduce%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-number">1.2.</span> <span class="toc-text">MapReduce优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E7%82%B9"><span class="toc-number">1.3.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9"><span class="toc-number">1.4.</span> <span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MapReduce%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="toc-number">2.</span> <span class="toc-text">MapReduce核心思想</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E4%B8%8A%E5%9B%BEMapReduce%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%E8%A7%A3%E9%87%8A"><span class="toc-number">2.1.</span> <span class="toc-text">对上图MapReduce核心思想解释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mapreduce%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%E6%80%BB%E7%BB%93"><span class="toc-number">2.2.</span> <span class="toc-text">mapreduce核心思想总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MapReduce%E8%BF%9B%E7%A8%8B"><span class="toc-number">2.3.</span> <span class="toc-text">MapReduce进程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E5%AE%98%E6%96%B9WordCount%E6%BA%90%E7%A0%81%E6%9F%A5%E7%9C%8B%E6%88%91%E4%BB%AC%E5%A6%82%E4%BD%95%E5%8F%96%E5%8E%BB%E5%86%99MapReduce%E7%A8%8B%E5%BA%8F"><span class="toc-number">2.4.</span> <span class="toc-text">通过官方WordCount源码查看我们如何取去写MapReduce程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hadoop%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%8F%E5%88%97%E5%8C%96%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.5.</span> <span class="toc-text">Hadoop常用数据序列化类型</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MapReduce%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">MapReduce框架原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#InputFormat%E6%95%B0%E6%8D%AE%E8%BE%93%E5%85%A5"><span class="toc-number">3.1.</span> <span class="toc-text">InputFormat数据输入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%87%E7%89%87%E4%B8%8EMapTask%E5%B9%B6%E8%A1%8C%E5%BA%A6%E5%86%B3%E5%AE%9A%E6%9C%BA%E5%88%B6"><span class="toc-number">3.2.</span> <span class="toc-text">切片与MapTask并行度决定机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%EF%BC%8E%E9%97%AE%E9%A2%98%E5%BC%95%E5%87%BA"><span class="toc-number">3.2.1.</span> <span class="toc-text">1．问题引出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%EF%BC%8EMapTask%E5%B9%B6%E8%A1%8C%E5%BA%A6%E5%86%B3%E5%AE%9A%E6%9C%BA%E5%88%B6"><span class="toc-number">3.2.2.</span> <span class="toc-text">2．MapTask并行度决定机制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Job%E6%8F%90%E4%BA%A4%E6%B5%81%E7%A8%8B%E6%BA%90%E7%A0%81%E5%92%8C%E5%88%87%E7%89%87%E6%BA%90%E7%A0%81%E8%AF%A6%E8%A7%A3"><span class="toc-number">3.3.</span> <span class="toc-text">Job提交流程源码和切片源码详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#InputFormat-%E6%8A%BD%E8%B1%A1%E7%B1%BB-%E8%B4%9F%E8%B4%A3%E8%AF%BB%E5%8F%96%E6%95%B0%E6%8D%AE%E5%88%B0Map%E9%98%B6%E6%AE%B5%E8%BF%9B%E8%A1%8C%E5%A4%84%E7%90%86"><span class="toc-number">3.3.1.</span> <span class="toc-text">InputFormat(抽象类):  负责读取数据到Map阶段进行处理.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OutputFormat-%E8%B4%9F%E8%B4%A3Reduce%E7%AB%AF%E6%95%B0%E6%8D%AE%E7%9A%84%E8%BE%93%E5%87%BA"><span class="toc-number">3.3.2.</span> <span class="toc-text">OutputFormat:  负责Reduce端数据的输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Partitioner-%E5%88%86%E5%8C%BA%E5%99%A8"><span class="toc-number">3.3.3.</span> <span class="toc-text">Partitioner: 分区器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Job%E6%8F%90%E4%BA%A4%E6%B5%81%E7%A8%8B%E6%BA%90%E7%A0%81%E8%AF%A6%E8%A7%A3"><span class="toc-number">3.4.</span> <span class="toc-text">Job提交流程源码详解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FileInputFormat%E5%88%87%E7%89%87%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90-input-getSplits-job"><span class="toc-number">3.5.</span> <span class="toc-text">FileInputFormat切片源码解析(input.getSplits(job))</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FileInputFormat%E5%88%87%E7%89%87%E6%9C%BA%E5%88%B6"><span class="toc-number">3.6.</span> <span class="toc-text">FileInputFormat切片机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CombineTextInputFormat%E5%88%87%E7%89%87%E6%9C%BA%E5%88%B6"><span class="toc-number">3.7.</span> <span class="toc-text">CombineTextInputFormat切片机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9A"><span class="toc-number">3.7.1.</span> <span class="toc-text">1、应用场景：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%88%87%E7%89%87%E6%9C%80%E5%A4%A7%E5%80%BC%E8%AE%BE%E7%BD%AE"><span class="toc-number">3.7.2.</span> <span class="toc-text">2、虚拟存储切片最大值设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%88%87%E7%89%87%E6%9C%BA%E5%88%B6"><span class="toc-number">3.7.3.</span> <span class="toc-text">3、切片机制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89InputFormat"><span class="toc-number">3.8.</span> <span class="toc-text">自定义InputFormat</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MapReduce%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-number">4.</span> <span class="toc-text">MapReduce工作流程</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MapReduce%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">MapReduce框架原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#InputFormat%E6%95%B0%E6%8D%AE%E8%BE%93%E5%85%A5"><span class="toc-number">1.1.</span> <span class="toc-text">InputFormat数据输入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%87%E7%89%87%E4%B8%8EMapTask%E5%B9%B6%E8%A1%8C%E5%BA%A6%E5%86%B3%E5%AE%9A%E6%9C%BA%E5%88%B6"><span class="toc-number">1.2.</span> <span class="toc-text">切片与MapTask并行度决定机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%EF%BC%8E%E9%97%AE%E9%A2%98%E5%BC%95%E5%87%BA"><span class="toc-number">1.2.1.</span> <span class="toc-text">1．问题引出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%EF%BC%8EMapTask%E5%B9%B6%E8%A1%8C%E5%BA%A6%E5%86%B3%E5%AE%9A%E6%9C%BA%E5%88%B6"><span class="toc-number">1.2.2.</span> <span class="toc-text">2．MapTask并行度决定机制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Job%E6%8F%90%E4%BA%A4%E6%B5%81%E7%A8%8B%E6%BA%90%E7%A0%81%E5%92%8C%E5%88%87%E7%89%87%E6%BA%90%E7%A0%81%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.3.</span> <span class="toc-text">Job提交流程源码和切片源码详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#InputFormat-%E6%8A%BD%E8%B1%A1%E7%B1%BB-%E8%B4%9F%E8%B4%A3%E8%AF%BB%E5%8F%96%E6%95%B0%E6%8D%AE%E5%88%B0Map%E9%98%B6%E6%AE%B5%E8%BF%9B%E8%A1%8C%E5%A4%84%E7%90%86"><span class="toc-number">1.3.1.</span> <span class="toc-text">InputFormat(抽象类):  负责读取数据到Map阶段进行处理.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OutputFormat-%E8%B4%9F%E8%B4%A3Reduce%E7%AB%AF%E6%95%B0%E6%8D%AE%E7%9A%84%E8%BE%93%E5%87%BA"><span class="toc-number">1.3.2.</span> <span class="toc-text">OutputFormat:  负责Reduce端数据的输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Partitioner-%E5%88%86%E5%8C%BA%E5%99%A8"><span class="toc-number">1.3.3.</span> <span class="toc-text">Partitioner: 分区器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Job%E6%8F%90%E4%BA%A4%E6%B5%81%E7%A8%8B%E6%BA%90%E7%A0%81%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.4.</span> <span class="toc-text">Job提交流程源码详解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FileInputFormat%E5%88%87%E7%89%87%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90-input-getSplits-job"><span class="toc-number">1.5.</span> <span class="toc-text">FileInputFormat切片源码解析(input.getSplits(job))</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FileInputFormat%E5%88%87%E7%89%87%E6%9C%BA%E5%88%B6"><span class="toc-number">1.6.</span> <span class="toc-text">FileInputFormat切片机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CombineTextInputFormat%E5%88%87%E7%89%87%E6%9C%BA%E5%88%B6"><span class="toc-number">1.7.</span> <span class="toc-text">CombineTextInputFormat切片机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9A"><span class="toc-number">1.7.1.</span> <span class="toc-text">1、应用场景：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%88%87%E7%89%87%E6%9C%80%E5%A4%A7%E5%80%BC%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.7.2.</span> <span class="toc-text">2、虚拟存储切片最大值设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%88%87%E7%89%87%E6%9C%BA%E5%88%B6"><span class="toc-number">1.7.3.</span> <span class="toc-text">3、切片机制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89InputFormat"><span class="toc-number">1.8.</span> <span class="toc-text">自定义InputFormat</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MapReduce%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">MapReduce工作流程</span></a></li></ol>
                     </div>
                 </span>
             </div>

@@ -283,7 +283,7 @@
             
 
   
-    <article id="post-hadoop组成模块之MapReduce详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-mapreduce过程中的shuffle机制原理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -291,7 +291,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BMapReduce%E8%AF%A6%E8%A7%A3/">hadoop组成模块之MapReduce详解</a>
+	  <a class="article-title" href="/mapreduce%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84shuffle%E6%9C%BA%E5%88%B6%E5%8E%9F%E7%90%86/">mapreduce过程中的shuffle机制原理</a>
 	
     </h1>
   
@@ -299,7 +299,114 @@
 
   
   
-<a href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BMapReduce%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
+<a href="/mapreduce%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84shuffle%E6%9C%BA%E5%88%B6%E5%8E%9F%E7%90%86/" class="archive-article-date">
+        <time datetime="2022-01-12T15:09:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-12</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>那个果断删了你的人 却在另一个地方悄悄地关注着你 你认为毫无瓜葛的人 在无数个夜里忍住了一万次 想和你联系的冲动         –来自网易云音乐《再也不会遇见了》</p>
+    
+    <a class="article-more-a" style="display: none; href="/mapreduce%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84shuffle%E6%9C%BA%E5%88%B6%E5%8E%9F%E7%90%86/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">mapreduce</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">shuffle</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/mapreduce%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84shuffle%E6%9C%BA%E5%88%B6%E5%8E%9F%E7%90%86/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-hadoop组成模块之MapReduce概述" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BMapReduce%E6%A6%82%E8%BF%B0/">hadoop组成模块之MapReduce概述</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BMapReduce%E6%A6%82%E8%BF%B0/" class="archive-article-date">
         <time datetime="2022-01-12T13:12:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-12</time>
 </a>
 
@@ -314,7 +421,7 @@
     
     <p>亲爱的女孩，如果还能跟你心平气和的聊天的话，我希望能告诉你我那些无视和冷笑都是在伪装，可是已经过去了。淡月梨花，借梦来，桥边廊庑。     –来自网易云音乐《任你》</p>
     
-    <a class="article-more-a" style="display: none; href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BMapReduce%E8%AF%A6%E8%A7%A3/#more">more >></a>
+    <a class="article-more-a" style="display: none; href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BMapReduce%E6%A6%82%E8%BF%B0/#more">more >></a>
     
     
 
@@ -352,7 +459,7 @@
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BMapReduce%E8%AF%A6%E8%A7%A3/">展开全文 >></a>
+      <a class="article-more-a" href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BMapReduce%E6%A6%82%E8%BF%B0/">展开全文 >></a>
     </p>
     
 
