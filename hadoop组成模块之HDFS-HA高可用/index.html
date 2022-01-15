@@ -20,7 +20,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.2/aliyun/www.xubatian.cn_28.png">
 <meta property="article:published_time" content="2022-01-14T06:55:00.000Z">
-<meta property="article:modified_time" content="2022-01-14T09:09:25.934Z">
+<meta property="article:modified_time" content="2022-01-15T13:56:22.646Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="Hadoop">
 <meta property="article:tag" content="HDFS">
@@ -316,7 +316,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">3k字</span>
+      <span class="post-count">2.4k字</span>
     </span>
   </span>
 
@@ -325,7 +325,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">12分</span>
+      <span class="post-count">10分</span>
     </span>
   </span>
 </div>
@@ -343,22 +343,12 @@
 
 
 
-
-
-<h1 id="HA概述"><a href="#HA概述" class="headerlink" title="HA概述"></a>HA概述</h1><h2 id="为什么会提出高可用这个概念呢"><a href="#为什么会提出高可用这个概念呢" class="headerlink" title="为什么会提出高可用这个概念呢?"></a><strong>为什么会提出高可用这个概念呢</strong>?</h2><p>比如说我有一个对外提供服务的集群. 我对外提供服务的集群是不能随随便便就停止的. 提出高可用的原因是,在我们的hadoop中,比如像我们hdfs,yarn中,这两个都会存在一个问题. 这个问题就是单点故障问题. 所谓的单点故障就是说, 在我们的hdfs或者yarn中, 只要其中一个节点出现故障,其实你整个hdfs或者yarn就不能正常工作了. hdfs说的是namenode, yarn说的是ResourceManager. 为什么会这样呢? 因为现在对于我的hdfs来说,我有一个namenode ,下面有许多个DataNode. 这就构成整个集群.  其实在整个集群中他都是围绕着namenode来进行工作的.  所以你发现, 当namenode出现问题的时候. 即使你DataNode还好好的,但是我们的DataNode是不能直接对外提供服务的. 因为我整个集群的核心是namenode.  所以说只要namenode节点故障了. 其实对我整个集群来讲,他就故障了.  就不能对外提供服务了.  yarn也是一样 . 我们yarn的NodeManager首先得先和我们的NodeManager进行交互. 如果我们NodeManager挂了. 整个集群就停止了对外服务了. </p>
+<p>前言</p>
+<p>为什么会提出高可用这个概念呢?</p>
+<p>比如说我有一个对外提供服务的集群. 我对外提供服务的集群是不能随随便便就停止的. 提出高可用的原因是,在我们的hadoop中,比如像我们hdfs,yarn中,这两个都会存在一个问题. 这个问题就是单点故障问题. 所谓的单点故障就是说, 在我们的hdfs或者yarn中, 只要其中一个节点出现故障,其实你整个hdfs或者yarn就不能正常工作了. hdfs说的是namenode, yarn说的是ResourceManager. 为什么会这样呢? 因为现在对于我的hdfs来说,我有一个namenode ,下面有许多个DataNode. 这就构成整个集群.  其实在整个集群中他都是围绕着namenode来进行工作的.  所以你发现, 当namenode出现问题的时候. 即使你DataNode还好好的,但是我们的DataNode是不能直接对外提供服务的. 因为我整个集群的核心是namenode.  所以说只要namenode节点故障了. 其实对我整个集群来讲,他就故障了.  就不能对外提供服务了.  yarn也是一样 . 我们yarn的NodeManager首先得先和我们的NodeManager进行交互. 如果我们NodeManager挂了. 整个集群就停止了对外服务了. </p>
 <p>说明单点故障不是hdfs或者yarn上面有, 而是我整个分布式里面都有. 只要你整个分布式,整个集群,如果他都要围绕着某一个节点来干活,它都存在单点故障问题.</p>
 <p>Redis也是有. 他有主从关系.  他是如何解决单点故障呢? 是主挂掉,从上位.</p>
-<h2 id="NameNode和secondNameNode关系"><a href="#NameNode和secondNameNode关系" class="headerlink" title="NameNode和secondNameNode关系?"></a><strong>NameNode和secondNameNode关系?</strong></h2><p> secondNameNode不是NameNode的热备. 因为他不能替换NameNode去干活. secondNameNode只是辅助namenode去工作. 比如说合并编辑日志.  所以说,当我的NameNode挂掉之后, 我的secondNameNode只是保证我的数据不丢失,不能保证我的机器能正常干活.</p>
-<p>那我的高可用如何去解决这个问题呢? 那就是弄两个NameNode.</p>
-<p>但是两个NameNode不能同时进行工作. </p>
-<p>所以我们一个是作为active活跃状态. 一个作为standby时刻准备着.</p>
-<p>我们的active活跃状态的NameNode是正在对外提供服务的. 那就意味这将来客户端的读写请求操作都要经过active活跃状态的NameNode. </p>
-<p>如果说我们一个写请求,正在操作活跃状态的NameNode, 但是突然挂掉了.另一台standby状态的NameNode如何和active状态的保持一致呢? </p>
-<p>即 ,如何实现active状态的NameNode和standby状态的NameNode数据同步问题?</p>
-<p>这个时候光靠两台NameNode,即一台active状态,一台standby状态. 已经不行了. 这时候就有一个叫journalNode来了. 它实际上也是一个进程. 他和NameNode,DataNode,secondNameNode一样的, 也是一个进程. 他就是用来完成一台active状态的NameNode和一台standby状态的NameNode,这来两台数据同步性的中间进程.    将来我客户端操作active(活跃)状态的NameNode时候, 不仅在内存中修改. 还会写自己的编辑日志, 并且要往journalNode中去写一份. 注意.active(活跃)状态的NameNode往journalnode中去写, standby状态的NameNode往journalName里面去读.这就解决数据同步性的问题.</p>
-<p>假如说我这个active状态的NameNode性能超级强悍. 他一直都不会出现问题. 这个时候我们客户端一致对Actvie状态的NameNode做修改的操作. 那么他的编辑日志会越来越大. 当你达到一定程度, 我们是不是得合并编辑日志呢. 我们合并编辑日志是secondNameNode做的. 但是在hadoopHA高可用情况下, 有了standby状态的NameNode时候,就不需要配置secondNameNode了. 因为我们的standby状态的NameNode就可以完成合并编辑日志的功能.而且当active状态的NameNode出现故障的时候, 我们standby状态的NameNode立马能提供服务.</p>
-<p>实际上,NameNode,secondNameNode,等都是对应的一个java类. </p>
-<h2 id="总结什么是HDFS-HA"><a href="#总结什么是HDFS-HA" class="headerlink" title="总结什么是HDFS HA"></a>总结什么是HDFS HA</h2><p>1）所谓HA（High Availablity），即高可用（7*24小时不中断服务）。<br>2）实现高可用最关键的策略是消除单点故障。HA严格来说应该分成各个组件的HA机制：HDFS的HA和YARN的HA。<br>3）Hadoop2.0之前，在HDFS集群中NameNode存在单点故障SPOF(单点故障)（Single Points Of Failure）。<br>4）NameNode主要在以下两个方面影响HDFS集群<br>      NameNode机器发生意外，如宕机，集群将无法使用，直到管理员重启<br>      NameNode机器需要升级，包括软件、硬件升级，此时集群也将无法使用<br>HDFS HA功能通过配置Active/Standby两个NameNodes实现在集群中对NameNode的热备来解决上述问题。如果出现故障，如机器崩溃或机器需要升级维护，<br>这时可通过此种方式将NameNode很快的切换到另外一台机器。</p>
+<h1 id="HA概述"><a href="#HA概述" class="headerlink" title="HA概述"></a>HA概述</h1><h2 id="什么是HDFS-HA"><a href="#什么是HDFS-HA" class="headerlink" title="什么是HDFS HA"></a>什么是HDFS HA</h2><p>1）所谓HA（High Availablity），即高可用（7*24小时不中断服务）。<br>2）实现高可用最关键的策略是消除单点故障。HA严格来说应该分成各个组件的HA机制：HDFS的HA和YARN的HA。<br>3）Hadoop2.0之前，在HDFS集群中NameNode存在单点故障SPOF(单点故障)（Single Points Of Failure）。<br>4）NameNode主要在以下两个方面影响HDFS集群<br>      NameNode机器发生意外，如宕机，集群将无法使用，直到管理员重启<br>      NameNode机器需要升级，包括软件、硬件升级，此时集群也将无法使用<br>HDFS HA功能通过配置Active/Standby两个NameNodes实现在集群中对NameNode的热备来解决上述问题。如果出现故障，如机器崩溃或机器需要升级维护，<br>这时可通过此种方式将NameNode很快的切换到另外一台机器。</p>
 <p>说白了就是搞多台主机, 其中一台挂了能迅速切换到另一台. 不影响整个集群的使用.</p>
 <h2 id="HDFS-HA工作机制"><a href="#HDFS-HA工作机制" class="headerlink" title="HDFS-HA工作机制"></a>HDFS-HA工作机制</h2><p>通过双NameNode消除单点故障.</p>
 <h2 id="HDFS-HA手动故障转移-不好用"><a href="#HDFS-HA手动故障转移-不好用" class="headerlink" title="HDFS-HA手动故障转移(不好用)"></a>HDFS-HA手动故障转移(不好用)</h2><p>如果一台主机挂了,咱们手动让另一台主机代替挂掉的主机工作,从未不影响集群工作.    </p>
@@ -674,7 +664,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#HA%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">HA概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E6%8F%90%E5%87%BA%E9%AB%98%E5%8F%AF%E7%94%A8%E8%BF%99%E4%B8%AA%E6%A6%82%E5%BF%B5%E5%91%A2"><span class="toc-number">1.1.</span> <span class="toc-text">为什么会提出高可用这个概念呢?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NameNode%E5%92%8CsecondNameNode%E5%85%B3%E7%B3%BB"><span class="toc-number">1.2.</span> <span class="toc-text">NameNode和secondNameNode关系?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%BB%80%E4%B9%88%E6%98%AFHDFS-HA"><span class="toc-number">1.3.</span> <span class="toc-text">总结什么是HDFS HA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HDFS-HA%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="toc-number">1.4.</span> <span class="toc-text">HDFS-HA工作机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HDFS-HA%E6%89%8B%E5%8A%A8%E6%95%85%E9%9A%9C%E8%BD%AC%E7%A7%BB-%E4%B8%8D%E5%A5%BD%E7%94%A8"><span class="toc-number">1.5.</span> <span class="toc-text">HDFS-HA手动故障转移(不好用)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEHDFS-HA%E8%87%AA%E5%8A%A8%E6%95%85%E9%9A%9C%E8%BD%AC%E7%A7%BB-%E7%94%A8%E5%88%B0%E4%BA%86zookeeper"><span class="toc-number">1.6.</span> <span class="toc-text">配置HDFS-HA自动故障转移(用到了zookeeper)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ZKFC%E8%B4%9F%E8%B4%A3%E9%82%A3%E4%BA%9B%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.7.</span> <span class="toc-text">ZKFC负责那些工作</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#HA%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">HA概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFHDFS-HA"><span class="toc-number">1.1.</span> <span class="toc-text">什么是HDFS HA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HDFS-HA%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="toc-number">1.2.</span> <span class="toc-text">HDFS-HA工作机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HDFS-HA%E6%89%8B%E5%8A%A8%E6%95%85%E9%9A%9C%E8%BD%AC%E7%A7%BB-%E4%B8%8D%E5%A5%BD%E7%94%A8"><span class="toc-number">1.3.</span> <span class="toc-text">HDFS-HA手动故障转移(不好用)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEHDFS-HA%E8%87%AA%E5%8A%A8%E6%95%85%E9%9A%9C%E8%BD%AC%E7%A7%BB-%E7%94%A8%E5%88%B0%E4%BA%86zookeeper"><span class="toc-number">1.4.</span> <span class="toc-text">配置HDFS-HA自动故障转移(用到了zookeeper)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ZKFC%E8%B4%9F%E8%B4%A3%E9%82%A3%E4%BA%9B%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.5.</span> <span class="toc-text">ZKFC负责那些工作</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -868,10 +858,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Namenode</a>
               </li>
              
@@ -881,6 +867,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">SecondaryNameNode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
               </li>
              
               <li class="article-tag-list-item">

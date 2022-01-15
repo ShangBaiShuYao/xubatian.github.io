@@ -22,9 +22,8 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_70.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_71.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_72.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_73.png">
 <meta property="article:published_time" content="2022-01-14T07:54:34.000Z">
-<meta property="article:modified_time" content="2022-01-14T12:35:00.010Z">
+<meta property="article:modified_time" content="2022-01-15T13:58:41.935Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="Hadoop">
 <meta property="article:tag" content="Yarn">
@@ -320,7 +319,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">966字</span>
+      <span class="post-count">616字</span>
     </span>
   </span>
 
@@ -329,7 +328,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">4分</span>
+      <span class="post-count">3分</span>
     </span>
   </span>
 </div>
@@ -349,6 +348,8 @@
 
 
 
+<p>前言</p>
+<p>和HDFS-HA一样.此处简单了解</p>
 <h1 id="YARN-HA配置"><a href="#YARN-HA配置" class="headerlink" title="YARN-HA配置"></a>YARN-HA配置</h1><h2 id="YARN-HA工作机制"><a href="#YARN-HA工作机制" class="headerlink" title="YARN-HA工作机制"></a>YARN-HA工作机制</h2><h3 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h3><p><a target="_blank" rel="noopener" href="https://hadoop.apache.org/docs/r3.1.3/hadoop-yarn/hadoop-yarn-site/ResourceManagerHA.html">https://hadoop.apache.org/docs/r3.1.3/hadoop-yarn/hadoop-yarn-site/ResourceManagerHA.html</a></p>
 <h3 id="YARN-HA工作机制-1"><a href="#YARN-HA工作机制-1" class="headerlink" title="YARN-HA工作机制"></a>YARN-HA工作机制</h3><p>如图所示:</p>
 <img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_70.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
@@ -409,44 +410,6 @@
 </ol>
 <p>​        查看所有进程:</p>
 <p>​                                     <img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_72.png" width = "700" height = "400" alt="xubatian的博客" align="center" /></p>
-<h2 id="HDFS-Federation架构设计"><a href="#HDFS-Federation架构设计" class="headerlink" title="HDFS Federation架构设计"></a>HDFS Federation架构设计</h2><p>NameNode架构的局限性（内存瓶颈, 毕竟是一台服务器嘛, 内存在高也就那么多）<br>（1）Namespace（命名空间）的限制</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">由于NameNode在内存中存储所有的元数据（metadata），因此单个NameNode所能存储的对象（文件+块）数目受到NameNode  所在JVM的heap size(堆大小)的限制。50G的heap(堆)能够存储20亿（200million）个对象，这20亿个对象支持4000个DataNode，12PB的存储（假设文件平均大小为40MB）。随着数据的飞速增长，存储的需求也随之增长。单个DataNode从4T增长到36T，集群的尺寸增长到8000个DataNode。存储的需求从12PB增长到大于100PB。</span><br></pre></td></tr></table></figure>
-
-<p>（2）隔离问题</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">由于HDFS仅有一个NameNode，无法隔离各个程序，因此HDFS上的一个实验程序就很有可能影响整个HDFS上运行的程序。</span><br></pre></td></tr></table></figure>
-
-<p>（3）性能的瓶颈</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">由于是单个NameNode的HDFS架构，因此整个HDFS文件系统的吞吐量受限于单个NameNode的吞吐量。</span><br></pre></td></tr></table></figure>
-
-
-
-<ol>
-<li><p>HDFS Federation架构设计，如图所示<br>能不能有多个NameNode</p>
-<table>
-<thead>
-<tr>
-<th>NameNode</th>
-<th>NameNode</th>
-<th>NameNode</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>元数据</td>
-<td>元数据</td>
-<td>元数据</td>
-</tr>
-<tr>
-<td>Log</td>
-<td>machine</td>
-<td>电商数据/话单数据</td>
-</tr>
-</tbody></table>
-</li>
-</ol>
-<p>HDFS Federation架构设计图:</p>
-<p>​                <img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_73.png" width = "700" height = "400" alt="xubatian的博客" align="center" /></p>
-<p>​        </p>
-<h2 id="HDFS-Federation应用思考"><a href="#HDFS-Federation应用思考" class="headerlink" title="HDFS Federation应用思考"></a>HDFS Federation应用思考</h2><p>不同应用可以使用不同NameNode进行数据管理<br>        图片业务、爬虫业务、日志审计业务<br>Hadoop生态系统中，不同的框架使用不同的NameNode进行管理NameSpace。（隔离性）</p>
 
     
 
@@ -642,7 +605,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#YARN-HA%E9%85%8D%E7%BD%AE"><span class="toc-number">1.</span> <span class="toc-text">YARN-HA配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#YARN-HA%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="toc-number">1.1.</span> <span class="toc-text">YARN-HA工作机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3"><span class="toc-number">1.1.1.</span> <span class="toc-text">官方文档</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#YARN-HA%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6-1"><span class="toc-number">1.1.2.</span> <span class="toc-text">YARN-HA工作机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEYARN-HA%E9%9B%86%E7%BE%A4"><span class="toc-number">1.1.3.</span> <span class="toc-text">配置YARN-HA集群</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HDFS-Federation%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.2.</span> <span class="toc-text">HDFS Federation架构设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HDFS-Federation%E5%BA%94%E7%94%A8%E6%80%9D%E8%80%83"><span class="toc-number">1.3.</span> <span class="toc-text">HDFS Federation应用思考</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#YARN-HA%E9%85%8D%E7%BD%AE"><span class="toc-number">1.</span> <span class="toc-text">YARN-HA配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#YARN-HA%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="toc-number">1.1.</span> <span class="toc-text">YARN-HA工作机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3"><span class="toc-number">1.1.1.</span> <span class="toc-text">官方文档</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#YARN-HA%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6-1"><span class="toc-number">1.1.2.</span> <span class="toc-text">YARN-HA工作机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEYARN-HA%E9%9B%86%E7%BE%A4"><span class="toc-number">1.1.3.</span> <span class="toc-text">配置YARN-HA集群</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -836,10 +799,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Namenode</a>
               </li>
              
@@ -849,6 +808,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">SecondaryNameNode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
               </li>
              
               <li class="article-tag-list-item">

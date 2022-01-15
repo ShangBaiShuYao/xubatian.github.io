@@ -23,10 +23,11 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/hadoop4.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/hdfs.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/yarn.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_96.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mr.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/hmy.png">
 <meta property="article:published_time" content="2022-01-12T05:56:07.000Z">
-<meta property="article:modified_time" content="2022-01-14T07:10:14.033Z">
+<meta property="article:modified_time" content="2022-01-15T13:42:02.464Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="Hadoop">
 <meta name="twitter:card" content="summary">
@@ -320,7 +321,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">448字</span>
+      <span class="post-count">871字</span>
     </span>
   </span>
 
@@ -329,7 +330,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">3分</span>
     </span>
   </span>
 </div>
@@ -364,10 +365,20 @@
 <h1 id="Hadoop四个模块具体的功能如何理解呢"><a href="#Hadoop四个模块具体的功能如何理解呢" class="headerlink" title="Hadoop四个模块具体的功能如何理解呢?"></a>Hadoop四个模块具体的功能如何理解呢?</h1><h2 id="①-HDFS架构"><a href="#①-HDFS架构" class="headerlink" title="① HDFS架构"></a>① HDFS架构</h2><p>Hadoop Distributed File System，简称HDFS，是一个分布式文件系统</p>
 <img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/hdfs.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
 
+<p>HDFS 直接hadoop存储的模块名称,只是一个笼统的称呼,叫做分布式文件存储系统. 到底是如何存储数据的,什么样的方式存取.这就涉及到具体的HDFS的一些概念了.</p>
+<p>NameNode:只是存文件的相关信息<br>DataNode:负责真正的存储你的文件<br>Secondary NameNode:帮助NameNode的, 此处只是简单了解.</p>
+<p>这些都是HDFS这个分布式文件存储系统里面具体负责那些功能的一些名称.</p>
 <p>&emsp;</p>
 <h2 id="②YARN架构"><a href="#②YARN架构" class="headerlink" title="②YARN架构"></a>②YARN架构</h2><p>Yet Another Resource Negotiator简称YARN ，另一种资源协调者，是Hadoop的资源管理器。</p>
 <img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/yarn.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
 
+
+
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_96.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
+
+<p>上面两个图都是yarn架构,表达的内容一样.</p>
+<p>Yarn由四部分组成: ResourceManager,NodeManager,ApplicationMaster,Container<br>ResourceManager是整个集群的老大,NodeManager集群中每一个节点的老大.<br>Container:假设我在我当前的NodeManager里面我跑了一个任务,这一个任务我们把它称之为一个job,我跑这个任务,我的applicationmaster会根据我这个任务的一些情况,帮我去申请一些资源.比如我申请一个G的cpu,申请了一个G的内存等.我把申请下来的资源我要通过container给他做一个抽象.所以说container它封装了某个节点上的多维度资源.比如说你的内存,你的cpu,你的磁盘等等.封装起来的目的就是不要让别的job来侵占我这个job的资源.就是我申请好了资源封装完成后,这个资源是不允许给别人用的.<br>除此之外,我们还可以通过这个container理解到我这个job运行时的资源消耗是什么情况等等.</p>
+<p>ResourceManager是整个集群的老大<br>NodeManager是集群节点的老大</p>
 <p>&emsp;</p>
 <h2 id="③MapReduce架构"><a href="#③MapReduce架构" class="headerlink" title="③MapReduce架构"></a>③MapReduce架构</h2><p>MapReduce将计算过程分为两个阶段：Map和Reduce</p>
 <p>1）Map阶段并行处理输入数据</p>
@@ -767,10 +778,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Namenode</a>
               </li>
              
@@ -780,6 +787,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">SecondaryNameNode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
               </li>
              
               <li class="article-tag-list-item">
