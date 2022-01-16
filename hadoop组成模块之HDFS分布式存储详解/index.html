@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/diaoxian.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_73.png">
 <meta property="article:published_time" content="2022-01-12T11:06:38.000Z">
-<meta property="article:modified_time" content="2022-01-15T14:09:22.985Z">
+<meta property="article:modified_time" content="2022-01-16T10:46:22.957Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="Hadoop">
 <meta property="article:tag" content="HDFS">
@@ -673,22 +673,22 @@
 <h3 id="NameNode多目录配置"><a href="#NameNode多目录配置" class="headerlink" title="NameNode多目录配置"></a>NameNode多目录配置</h3><ol>
 <li><p>NameNode的本地目录可以配置成多个，且每个目录存放内容相同，增加了可靠性</p>
 </li>
-<li><p>具体配置如下<br> （1）在hdfs-site.xml文件中增加如下内容,引用了hdfs-core.xml的hadoop.tmp.dir配置</p>
+<li><p>   具体配置如下    </p>
 </li>
 </ol>
-<pre><code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;</span><br><span class="line">&lt;value&gt;file:///$&#123;hadoop.tmp.dir&#125;/dfs/name1,file:///$&#123;hadoop.tmp.dir&#125;/dfs/name2&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
+<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">   (<span class="number">1</span>) 在hdfs-site.xml文件中增加如下内容,引用了hdfs-core.xml的hadoop.tmp.dir配置</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;</span><br><span class="line">&lt;value&gt;file:<span class="comment">///$&#123;hadoop.tmp.dir&#125;/dfs/name1,file:///$&#123;hadoop.tmp.dir&#125;/dfs/name2&lt;/value&gt;</span></span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
 
-（2）停止集群，删除data和logs中所有数据。
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[shangbaishuyao@hadoop102 hadoop-2.7.2]$ rm -rf data/ logs/</span><br><span class="line">[shangbaishuyao@hadoop103 hadoop-2.7.2]$ rm -rf data/ logs/</span><br><span class="line">[shangbaishuyao@hadoop104 hadoop-2.7.2]$ rm -rf data/ logs/</span><br></pre></td></tr></table></figure>
 
-（3）格式化集群并启动。
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> (<span class="number">2</span>) 停止集群，删除data和logs中所有数据。</span><br><span class="line">[shangbaishuyao<span class="meta">@hadoop102</span> hadoop-<span class="number">2.7</span><span class="number">.2</span>]$ rm -rf data/ logs/</span><br><span class="line">[shangbaishuyao<span class="meta">@hadoop103</span> hadoop-<span class="number">2.7</span><span class="number">.2</span>]$ rm -rf data/ logs/</span><br><span class="line">[shangbaishuyao<span class="meta">@hadoop104</span> hadoop-<span class="number">2.7</span><span class="number">.2</span>]$ rm -rf data/ logs/</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[shangbaishuyao@hadoop102 hadoop-2.7.2]$ bin/hdfs namenode –format</span><br><span class="line">[shangbaishuyao@hadoop102 hadoop-2.7.2]$ sbin/start-dfs.sh</span><br></pre></td></tr></table></figure>
 
-（4）查看结果
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[shangbaishuyao@hadoop102 dfs]$ ll</span><br><span class="line">总用量 12</span><br><span class="line">drwx------. 3 shangbaishuyao shangbaishuyao 4096 12月 11 08:03 data</span><br><span class="line">drwxrwxr-x. 3 shangbaishuyao shangbaishuyao 4096 12月 11 08:03 name1</span><br><span class="line">drwxrwxr-x. 3 shangbaishuyao shangbaishuyao 4096 12月 11 08:03 name2</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> (<span class="number">3</span>) 格式化集群并启动。</span><br><span class="line">[shangbaishuyao<span class="meta">@hadoop102</span> hadoop-<span class="number">2.7</span><span class="number">.2</span>]$ bin/hdfs namenode –format</span><br><span class="line">[shangbaishuyao<span class="meta">@hadoop102</span> hadoop-<span class="number">2.7</span><span class="number">.2</span>]$ sbin/start-dfs.sh</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> (<span class="number">4</span>) 查看结果</span><br><span class="line">[shangbaishuyao<span class="meta">@hadoop102</span> dfs]$ ll</span><br><span class="line">总用量 <span class="number">12</span></span><br><span class="line">drwx------. <span class="number">3</span> shangbaishuyao shangbaishuyao <span class="number">4096</span> <span class="number">12</span>月 <span class="number">11</span> 08:<span class="number">03</span> data</span><br><span class="line">drwxrwxr-x. <span class="number">3</span> shangbaishuyao shangbaishuyao <span class="number">4096</span> <span class="number">12</span>月 <span class="number">11</span> 08:<span class="number">03</span> name1</span><br><span class="line">drwxrwxr-x. <span class="number">3</span> shangbaishuyao shangbaishuyao <span class="number">4096</span> <span class="number">12</span>月 <span class="number">11</span> 08:<span class="number">03</span> name2</span><br></pre></td></tr></table></figure>
 </code></pre>
 <p>&emsp; </p>
 <h2 id="DataNode工作机制"><a href="#DataNode工作机制" class="headerlink" title="DataNode工作机制"></a>DataNode工作机制</h2><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/datanode.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
@@ -697,9 +697,8 @@
 
 
 
-<p>1）一个数据块在DataNode上以文件形式存储在磁盘上，包括两个文件，一个是数据本身，一个是元数据包括数据块的长度，块数据的校验和，以及时间戳。<br>2）DataNode启动后向NameNode注册，通过后，周期性（1小时）的向NameNode上报所有的块信息。<br>3）心跳是每3秒一次，心跳返回结果带有NameNode给该DataNode的命令如复制块数据到另一台机器，或删除某个数据块。如果超过10分钟30秒没有收到某个DataNode的心跳，则认为该节点不可用。<br>4）集群运行中可以安全加入和退出一些机器。</p>
-<h3 id="数据完整性-如何保存存储的数据是完整的"><a href="#数据完整性-如何保存存储的数据是完整的" class="headerlink" title="数据完整性(如何保存存储的数据是完整的?)"></a>数据完整性(如何保存存储的数据是完整的?)</h3><p>思考：如果电脑磁盘里面存储的数据是控制高铁信号灯的红灯信号（1）和绿灯信号（0），但是存储该数据的磁盘坏了，一直显示是绿灯，是否很危险？同理DataNode节点上的数据损坏了，却没有发现，是否也很危险，那么如何解决呢？<br>如下是DataNode节点保证数据完整性的方法。<br>1）当DataNode读取Block的时候，它会计算CheckSum(校验和)。校验和,就是经过一定的算法的到一个数据的结果,这个结果就是校验和; </p>
-<p> 一个数据在上传前经过算法变成校验盒,然后再把数据放到hdfs上,经过算法变成校验盒,如果前后两个校验盒相同,则说明数据完整,数据没发生破坏对于银行等机构,数据完整性是相当重要的<br>2）如果计算后的CheckSum，与Block创建时值不一样，说明Block已经损坏。<br>3）Client读取其他DataNode上的Block。<br>4）DataNode在其文件创建后周期验证CheckSum，如图所示。</p>
+<p>1）一个数据块在DataNode上以文件形式存储在磁盘上，包括两个文件，一个是数据本身，一个是元数据包括数据块的长度，块数据的       校验和，以及时间戳。<br>2）DataNode启动后向NameNode注册，通过后，周期性（1小时）的向NameNode上报所有的块信息。<br>3）心跳是每3秒一次，心跳返回结果带有NameNode给该DataNode的命令如复制块数据到另一台机器，或删除某个数据块。如果超过10分钟30秒没有收到某个DataNode的心跳，则认为该节点不可用。<br>4）集群运行中可以安全加入和退出一些机器。</p>
+<h3 id="数据完整性-如何保存存储的数据是完整的"><a href="#数据完整性-如何保存存储的数据是完整的" class="headerlink" title="数据完整性(如何保存存储的数据是完整的?)"></a>数据完整性(如何保存存储的数据是完整的?)</h3><p>思考：如果电脑磁盘里面存储的数据是控制高铁信号灯的红灯信号（1）和绿灯信号（0），但是存储该数据的磁盘坏了，一直显示是绿灯，是否很危险？同理DataNode节点上的数据损坏了，却没有发现，是否也很危险，那么如何解决呢？<br>如下是DataNode节点保证数据完整性的方法。<br>1）当DataNode读取Block的时候，它会计算CheckSum(校验和)。校验和,就是经过一定的算法的到一个数据的结果,这个结果就是校验和;   一个数据在上传前经过算法变成校验盒,然后再把数据放到hdfs上,经过算法变成校验盒,如果前后两个校验盒相同,则说明数据完整,数据没发生破坏对于银行等机构,数据完整性是相当重要的<br>2）如果计算后的CheckSum，与Block创建时值不一样，说明Block已经损坏。<br>3）Client读取其他DataNode上的Block。<br>4）DataNode在其文件创建后周期验证CheckSum，如图所示。</p>
 <img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/shuju.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
 
 <p>&emsp; </p>
