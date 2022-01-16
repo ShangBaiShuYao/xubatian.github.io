@@ -6,21 +6,40 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://xubatian.cn">
-  <title>Category: 大数据 | 我的梦想是星辰大海</title>
+  <title>hadoop组成模块之Yarn资源调度器 | 我的梦想是星辰大海</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta name="description" content="知识源于积累,登峰造极源于自律">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我的梦想是星辰大海">
-<meta property="og:url" content="http://xubatian.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/page/2/index.html">
+  <meta name="description" content="我希望我这个人搁在你这儿，就是最最特殊的。 所有的先河都可以为我而开，所有的例都能为我破，是你的“以前从没有”和“以后也不会有”。 我希望我，是你的不冷静、不理智、不克制。 –来自网易有音乐《若把你》">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hadoop组成模块之Yarn资源调度器">
+<meta property="og:url" content="http://xubatian.cn/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BYarn%E8%B5%84%E6%BA%90%E8%B0%83%E5%BA%A6%E5%99%A8/index.html">
 <meta property="og:site_name" content="我的梦想是星辰大海">
-<meta property="og:description" content="知识源于积累,登峰造极源于自律">
+<meta property="og:description" content="我希望我这个人搁在你这儿，就是最最特殊的。 所有的先河都可以为我而开，所有的例都能为我破，是你的“以前从没有”和“以后也不会有”。 我希望我，是你的不冷静、不理智、不克制。 –来自网易有音乐《若把你》">
 <meta property="og:locale">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_119.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_135.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_122.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_123.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_124.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_125.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_126.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_127.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_128.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_129.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_130.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_131.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_132.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_133.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_134.png">
+<meta property="article:published_time" content="2022-01-16T13:22:00.000Z">
+<meta property="article:modified_time" content="2022-01-16T14:12:30.307Z">
 <meta property="article:author" content="xubatian">
-<meta property="article:tag" content="徐霸天,xubatian,上白书妖,shangbaishuyao">
+<meta property="article:tag" content="Hadoop">
+<meta property="article:tag" content="Yarn">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_119.jpg">
   
     <link rel="alternative" href="/atom.xml" title="我的梦想是星辰大海" type="application/atom+xml">
   
@@ -277,41 +296,296 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-hadoop组成模块之Yarn资源调度器" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/mapreduce%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84shuffle%E6%9C%BA%E5%88%B6%E5%8E%9F%E7%90%86/" class="archive-article-date">
-        <time datetime="2022-01-12T15:09:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-12</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/mapreduce%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84shuffle%E6%9C%BA%E5%88%B6%E5%8E%9F%E7%90%86/">mapreduce过程中的shuffle机制原理</a>
-	
+    <h1 class="article-title" itemprop="name">
+      hadoop组成模块之Yarn资源调度器
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BYarn%E8%B5%84%E6%BA%90%E8%B0%83%E5%BA%A6%E5%99%A8/" class="archive-article-date">
+        <time datetime="2022-01-16T13:22:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-16</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">3.8k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">14分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>我希望我这个人搁在你这儿，就是最最特殊的。 所有的先河都可以为我而开，所有的例都能为我破，是你的“以前从没有”和“以后也不会有”。 我希望我，是你的不冷静、不理智、不克制。 –来自网易有音乐《若把你》                                                                                 </p>
+<span id="more"></span>
+
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_119.jpg" width = "1201.56" height = "800" alt="xubatian的博客" align="center" />
+
+<p>前言</p>
+<p> 你可以将yarn就理解为是一个操作系统. 他为你将来在yarn上面运行的n多个job去负责资源的管理.</p>
+<p>Yarn是一个资源调度平台，负责为运算程序提供服务器运算资源，相当于一个分布式的操作系统平台，而MapReduce等运算程序则相当于运行于操作系统之上的应用程序。</p>
+<h1 id="Yarn基本架构"><a href="#Yarn基本架构" class="headerlink" title="Yarn基本架构"></a>Yarn基本架构</h1><p>YARN主要由ResourceManager(负责整个集群资源管理)、NodeManager(负责单个节点的管理)、ApplicationMaster(负责资源的申请,容错,监控等)和Container(整个集群资源的封装,算是一个容器. 将来每个job都会跑在容器中.而container容器封装了job所要的一些资源)等组件构成,如图所示:</p>
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_135.png" width = "1000" height = "600" alt="xubatian的博客" align="center" />
+
+<h1 id="Yarn工作机制"><a href="#Yarn工作机制" class="headerlink" title="Yarn工作机制"></a>Yarn工作机制</h1><p>Yarn运行机制,如图:  mapTask就是一个线程</p>
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_122.png" width = "1201.56" height = "675.88" alt="xubatian的博客" align="center" />
+
+
+
+
+
+<p>工作机制详解:</p>
+<p>​    （1）MR程序提交到客户端所在的节点。</p>
+<p>​    （2）YarnRunner向ResourceManager申请一个Application。</p>
+<p>​    （3）RM将该应用程序的资源路径返回给YarnRunner。</p>
+<p>​    （4）该程序将运行所需资源提交到HDFS上。</p>
+<p>​    （5）程序资源提交完毕后，申请运行mrAppMaster。</p>
+<p>​    （6）RM将用户的请求初始化成一个Task。</p>
+<p>​    （7）其中一个NodeManager领取到Task任务。</p>
+<p>​    （8）该NodeManager创建容器Container，并产生MRAppmaster。</p>
+<p>​    （9）Container从HDFS上拷贝资源到本地。</p>
+<p>​    （10）MRAppmaster向RM 申请运行MapTask资源。</p>
+<p>​    （11）RM将运行MapTask任务分配给另外两个NodeManager，另两个NodeManager分别领取任务并创建容器。</p>
+<p>​    （12）MR向两个接收到任务的NodeManager发送程序启动脚本，这两个NodeManager分别启动MapTask，MapTask对数据分区排序。</p>
+<p>​    （13）MrAppMaster等待所有MapTask运行完毕后，向RM申请容器，运行ReduceTask。</p>
+<p>​    （14）ReduceTask向MapTask获取相应分区的数据。</p>
+<p>​    （15）程序运行完毕后，MR会向RM申请注销自己。</p>
+<h1 id="作业提交全过程"><a href="#作业提交全过程" class="headerlink" title="作业提交全过程"></a>作业提交全过程</h1><h2 id="作业提交过程之YARN"><a href="#作业提交过程之YARN" class="headerlink" title="作业提交过程之YARN"></a>作业提交过程之YARN</h2><p>如图:</p>
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_123.png" width = "1201.56" height = "675.88" alt="xubatian的博客" align="center" />
+
+
+
+<p>作业提交全过程详解<br>（1）作业提交<br>第1步：Client调用job.waitForCompletion方法，向整个集群提交MapReduce作业。<br>第2步：Client向RM申请一个作业id。<br>第3步：RM给Client返回该job资源的提交路径和作业id。<br>第4步：Client提交jar包、切片信息和配置文件到指定的资源提交路径。<br>第5步：Client提交完资源后，向RM申请运行MrAppMaster。<br>（2）作业初始化<br>第6步：当RM收到Client的请求后，将该job添加到容量调度器中。<br>第7步：某一个空闲的NM领取到该Job。<br>第8步：该NM创建Container，并产生MRAppmaster。<br>第9步：下载Client提交的资源到本地。<br>（3）任务分配<br>第10步：MrAppMaster向RM申请运行多个MapTask任务资源。<br>第11步：RM将运行MapTask任务分配给另外两个NodeManager，另两个NodeManager分别领取任务并创建容器。<br>（4）任务运行<br>第12步：MR向两个接收到任务的NodeManager发送程序启动脚本，这两个NodeManager分别启动MapTask，MapTask对数据分区排序。<br>第13步：MrAppMaster等待所有MapTask运行完毕后，向RM申请容器，运行ReduceTask。<br>第14步：ReduceTask向MapTask获取相应分区的数据。<br>第15步：程序运行完毕后，MR会向RM申请注销自己。<br>（5）进度和状态更新<br>YARN中的任务将其进度和状态(包括counter)返回给应用管理器, 客户端每秒(通过mapreduce.client.progressmonitor.pollinterval设置)向应用管理器请求进度更新, 展示给用户。<br>（6）作业完成<br>除了向应用管理器请求作业进度外, 客户端每5秒都会通过调用waitForCompletion()来检查作业是否完成。时间间隔可以通过mapreduce.client.completion.pollinterval来设置。作业完成之后, 应用管理器和Container会清理工作状态。作业的信息会被作业历史服务器存储以备之后用户核查。</p>
+<h2 id="作业提交过程之MapReduce"><a href="#作业提交过程之MapReduce" class="headerlink" title="作业提交过程之MapReduce"></a>作业提交过程之MapReduce</h2><p>如图所示:</p>
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_124.png" width = "1201.56" height = "675.88" alt="xubatian的博客" align="center" />
+
+
+
+<h1 id="资源调度器-FIFO调度器-表示先进先出"><a href="#资源调度器-FIFO调度器-表示先进先出" class="headerlink" title="资源调度器(FIFO调度器 表示先进先出)"></a>资源调度器(FIFO调度器 表示先进先出)</h1><p>目前，Hadoop作业调度器主要有三种：FIFO Scheduler、Capacity Scheduler和Fair Scheduler。Hadoop2.7.2默认的资源调度器是Capacity Scheduler。<br>具体设置详见：yarn-default.xml文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;description&gt;The <span class="class"><span class="keyword">class</span> <span class="title">to</span> <span class="title">use</span> <span class="title">as</span> <span class="title">the</span> <span class="title">resource</span> <span class="title">scheduler</span>.&lt;/<span class="title">description</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">name</span>&gt;<span class="title">yarn</span>.<span class="title">resourcemanager</span>.<span class="title">scheduler</span>.<span class="title">class</span>&lt;/<span class="title">name</span>&gt;</span></span><br><span class="line"><span class="class">&lt;<span class="title">value</span>&gt;<span class="title">org</span>.<span class="title">apache</span>.<span class="title">hadoop</span>.<span class="title">yarn</span>.<span class="title">server</span>.<span class="title">resourcemanager</span>.<span class="title">scheduler</span>.<span class="title">capacity</span>.<span class="title">CapacityScheduler</span>&lt;/<span class="title">value</span>&gt;</span></span><br><span class="line"><span class="class">&lt;/<span class="title">property</span>&gt;</span></span><br><span class="line"><span class="class"></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1．先进先出调度器（FIFO）"><a href="#1．先进先出调度器（FIFO）" class="headerlink" title="1．先进先出调度器（FIFO）"></a>1．先进先出调度器（FIFO）</h2><p> FIFO调度器:</p>
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_125.png" width = "1201.56" height = "675.88" alt="xubatian的博客" align="center" />
+
+
+
+<p>Hadoop最初设计目的是支持大数据批处理作业，如日志挖掘、Web索引等作业，</p>
+<p>为此，Hadoop仅提供了一个非常简单的调度机制：FIFO，即先来先服务，在该调度机制下，所有作业被统一提交到一个队列中，Hadoop按照提交顺序依次运行这些作业。</p>
+<p>但随着Hadoop的普及，单个Hadoop集群的用户量越来越大，不同用户提交的应用程序往往具有不同的服务质量要求，典型的应用有以下几种：</p>
+<p>批处理作业：这种作业往往耗时较长，对时间完成一般没有严格要求，如数据挖掘、机器学习等方面的应用程序。</p>
+<p>交互式作业：这种作业期望能及时返回结果，如SQL查询（Hive）等。</p>
+<p>生产性作业：这种作业要求有一定量的资源保证，如统计值计算、垃圾数据分析等。</p>
+<p>此外，这些应用程序对硬件资源需求量也是不同的，如过滤、统计类作业一般为CPU密集型作业，而数据挖掘、机器学习作业一般为I/O密集型作业。因此，简单的FIFO调度策略不仅不能满足多样化需求，也不能充分利用硬件资源。</p>
+<h2 id="2．容量调度器（Capacity-Scheduler）"><a href="#2．容量调度器（Capacity-Scheduler）" class="headerlink" title="2．容量调度器（Capacity Scheduler）"></a>2．容量调度器（Capacity Scheduler）</h2><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_126.png" width = "1201.56" height = "675.88" alt="xubatian的博客" align="center" />
+
+
+
+<p>Capacity Scheduler Capacity Scheduler 是Yahoo开发的多用户调度器，它以队列为单位划分资源，每个队列可设定一定比例的资源最低保证和使用上限，同时，每个用户也可设定一定的资源使用上限以防止资源滥用。而当一个队列的资源有剩余时，可暂时将剩余资源共享给其他队列。</p>
+<p>​    总之，Capacity Scheduler 主要有以下几个特点：</p>
+<p>①容量保证。管理员可为每个队列设置资源最低保证和资源使用上限，而所有提交到该队列的应用程序共享这些资源。</p>
+<p>②灵活性，如果一个队列中的资源有剩余，可以暂时共享给那些需要资源的队列，而一旦该队列有新的应用程序提交，则其他队列释放的资源会归还给该队列。这种资源灵活分配的方式可明显提高资源利用率。</p>
+<p>③多重租赁。支持多用户共享集群和多应用程序同时运行。为防止单个应用程序、用户或者队列独占集群中的资源，管理员可为之增加多重约束（比如单个应用程序同时运行的任务数等）。</p>
+<p>④安全保证。每个队列有严格的ACL列表规定它的访问用户，每个用户可指定哪些用户允许查看自己应用程序的运行状态或者控制应用程序（比如杀死应用程序）。此外，管理员可指定队列管理员和集群系统管理员。</p>
+<p>⑤动态更新配置文件。管理员可根据需要动态修改各种配置参数，以实现在线集群管理。</p>
+<h2 id="3．公平调度器（Fair-Scheduler）"><a href="#3．公平调度器（Fair-Scheduler）" class="headerlink" title="3．公平调度器（Fair Scheduler）"></a>3．公平调度器（Fair Scheduler）</h2><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_127.png" width = "1201.56" height = "675.88" alt="xubatian的博客" align="center" />
+
+
+
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_128.png" width = "1201.56" height = "675.88" alt="xubatian的博客" align="center" />
+
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_129.png" width = "1201.56" height = "675.88" alt="xubatian的博客" align="center" />
+
+<p>Fair Scheduler Fair Schedulere是Facebook开发的多用户调度器。<br>    <strong>公平调度器的目的是让所有的作业随着时间的推移，都能平均地获取等同的共享资源！</strong>当一个作业在运行时，它会使用整个集群但是如果有其他作业提交上来，系统会将空闲的资源分配给新的作业！每个任务大致上会获取平等数量的资源！和传统的调度策略不同的是<br>它会让小的任务在合理的时间完成，同时不会让需要长时间运行的耗费大量资源的应用挨饿！<br>    同Capacity Scheduler类似，它以队列为单位划分资源，每个队列可设定一定比例的资源最低保证和使用上限，同时，每个用户也可设定一定的资源使用上限以防止资源滥用；当一个队列的资源有剩余时，可暂时将剩余资源共享给其他队列。<br>    当然，Fair Scheduler也存在很多与Capacity Scheduler不同之处，这主要体现在以下几个方面：<br>①资源公平共享。在每个队列中，Fair Scheduler 可选择按照FIFO、Fair或DRF策略为应用程序分配资源。其中，Fair 策略(默认)是一种基于最大最小公平算法实现的资源多路复用方式，默认情况下，每个队列内部采用该方式分配资源。这意味着，如果一个队列中有两个应用程序同时运行，则每个应用程序可得到1/2的资源；如果三个应用程序同时运行，则每个应用程序可得到1/3的资源。<br>②支持资源抢占。当某个队列中有剩余资源时，调度器会将这些资源共享给其他队列，而当该队列中有新的应用程序提交时，调度器要为它回收资源。为了尽可能降低不必要的计算浪费，调度器采用了先等待再强制回收的策略，即如果等待一段时间后尚有未归还的资源，则会进行资源抢占：从那些超额使用资源的队列中杀死一部分任务，进而释放资源。<br>③负载均衡。Fair Scheduler提供了一个基于任务数目的负载均衡机制，该机制尽可能将系统中的任务均匀分配到各个节点上。此外，用户也可以根据自己的需要设计负载均衡机制。<br>④调度策略配置灵活。Fair Scheduler允许管理员为每个队列单独设置调度策略（当前支持FIFO、Fair或DRF三种）。<br>⑤提高小应用程序响应时间。由于采用了最大最小公平算法，小作业可以快速获取资源并运行完成</p>
+<h1 id="容量调度器多队列提交案例"><a href="#容量调度器多队列提交案例" class="headerlink" title="容量调度器多队列提交案例"></a>容量调度器多队列提交案例</h1><h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>​    Yarn默认的容量调度器是一条单队列的调度器，在实际使用中会出现单个任务阻塞整个队列的情况。同时，随着业务的增长，公司需要分业务限制集群使用率。这就需要我们按照业务种类配置多条任务队列。</p>
+<h2 id="配置多队列的容量调度器"><a href="#配置多队列的容量调度器" class="headerlink" title="配置多队列的容量调度器"></a>配置多队列的容量调度器</h2><p>默认Yarn的配置下，容量调度器只有一条Default队列。在capacity-scheduler.xml中可以配置多条队列，并降低default队列资源占比：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">  &lt;name&gt;yarn.scheduler.capacity.root.queues&lt;/name&gt;</span><br><span class="line">  &lt;value&gt;<span class="keyword">default</span>,hive&lt;/value&gt;</span><br><span class="line">  &lt;description&gt;</span><br><span class="line">    <span class="function">The queues at the <span class="keyword">this</span> <span class="title">level</span> <span class="params">(root is the root queue)</span>.</span></span><br><span class="line"><span class="function">  &lt;/description&gt;</span></span><br><span class="line"><span class="function">&lt;/property&gt;</span></span><br><span class="line"><span class="function">&lt;property&gt;</span></span><br><span class="line"><span class="function">  &lt;name&gt;yarn.scheduler.capacity.root.<span class="keyword">default</span>.capacity&lt;/name&gt;</span></span><br><span class="line"><span class="function">  &lt;value&gt;40&lt;/value&gt;</span></span><br><span class="line"><span class="function">&lt;/property&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>同时为新加队列添加必要属性：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--队列目标资源百分比，所有队列相加必须等于<span class="number">100</span>--&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.root.hive.capacity&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;<span class="number">60</span>&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">&lt;!--队列最大资源百分比--&gt;</span><br><span class="line">  &lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.root.hive.maximum-capacity&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;<span class="number">100</span>&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">&lt;!—单用户可用队列资源占比--&gt;</span><br><span class="line">  &lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.root.hive.user-limit-factor&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;<span class="number">1</span>&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">&lt;!--队列状态（RUNNING或STOPPING）--&gt;</span><br><span class="line">  &lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.root.hive.state&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;RUNNING&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">&lt;!—队列允许哪些用户提交--&gt;</span><br><span class="line">  &lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.root.hive.acl_submit_applications&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;*&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">&lt;!—队列允许哪些用户管理--&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.root.hive.acl_administer_queue&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;*&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在配置完成后，重启Yarn，就可以看到两条队列：</p>
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_130.png" width = "1201.56" height = "675.88" alt="xubatian的博客" align="center" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_131.png" width = "1201.56" height = "675.88" alt="xubatian的博客" align="center" />
+
+
+
+
+
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_132.png" width = "1201.56" height = "675.88" alt="xubatian的博客" align="center" />
+
+
+
+
+
+<h2 id="向Hive队列提交任务"><a href="#向Hive队列提交任务" class="headerlink" title="向Hive队列提交任务"></a>向Hive队列提交任务</h2><p>默认的任务提交都是提交到default队列的。如果希望向其他队列提交任务，需要在Driver中声明：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WcDrvier</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException, ClassNotFoundException, InterruptedException </span>&#123;</span><br><span class="line">        Configuration configuration = <span class="keyword">new</span> Configuration();</span><br><span class="line"></span><br><span class="line">        configuration.set(<span class="string">&quot;mapred.job.queue.name&quot;</span>, <span class="string">&quot;hive&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//1. 获取一个Job实例</span></span><br><span class="line">        Job job = Job.getInstance(configuration);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2. 设置类路径</span></span><br><span class="line">        job.setJarByClass(WcDrvier.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3. 设置Mapper和Reducer</span></span><br><span class="line">        job.setMapperClass(WcMapper.class);</span><br><span class="line">        job.setReducerClass(WcReducer.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4. 设置Mapper和Reducer的输出类型</span></span><br><span class="line">        job.setMapOutputKeyClass(Text.class);</span><br><span class="line">        job.setMapOutputValueClass(IntWritable.class);</span><br><span class="line"></span><br><span class="line">        job.setOutputKeyClass(Text.class);</span><br><span class="line">        job.setOutputValueClass(IntWritable.class);</span><br><span class="line"></span><br><span class="line">        job.setCombinerClass(WcReducer.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//5. 设置输入输出文件</span></span><br><span class="line">        FileInputFormat.setInputPaths(job, <span class="keyword">new</span> Path(args[<span class="number">0</span>]));</span><br><span class="line">        FileOutputFormat.setOutputPath(job, <span class="keyword">new</span> Path(args[<span class="number">1</span>]));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//6. 提交Job</span></span><br><span class="line">        <span class="keyword">boolean</span> b = job.waitForCompletion(<span class="keyword">true</span>);</span><br><span class="line">        System.exit(b ? <span class="number">0</span> : <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>默认的任务提交都是提交到default队列的。如果希望向其他队列提交任务，需要在Driver中声明：</p>
+<p>这样，这个任务在集群提交时，就会提交到hive队列：</p>
+<p>图为公平调度器</p>
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_133.png" width = "1201.56" height = "675.88" alt="xubatian的博客" align="center" />
+
+
+
+
+
+<h2 id="任务的推测执行"><a href="#任务的推测执行" class="headerlink" title="任务的推测执行"></a>任务的推测执行</h2><h3 id="1．作业完成时间取决于最慢的任务完成时间"><a href="#1．作业完成时间取决于最慢的任务完成时间" class="headerlink" title="1．作业完成时间取决于最慢的任务完成时间"></a>1．作业完成时间取决于最慢的任务完成时间</h3><p>一个作业由若干个Map任务和Reduce任务构成。因硬件老化、软件Bug等，某些任务可能运行非常慢。</p>
+<p>思考：系统中有99%的Map任务都完成了，只有少数几个Map老是进度很慢，完不成，怎么办？</p>
+<h3 id="2．推测执行机制"><a href="#2．推测执行机制" class="headerlink" title="2．推测执行机制"></a>2．推测执行机制</h3><p>发现拖后腿的任务，比如某个任务运行速度远慢于任务平均速度。为拖后腿任务启动一个备份任务，同时运行。谁先运行完，则采用谁的结果。</p>
+<h3 id="3．执行推测任务的前提条件"><a href="#3．执行推测任务的前提条件" class="headerlink" title="3．执行推测任务的前提条件"></a>3．执行推测任务的前提条件</h3><p>（1）每个Task只能有一个备份任务</p>
+<p>（2）当前Job已完成的Task必须不小于0.05（5%）</p>
+<p>（3）开启推测执行参数设置。mapred-site.xml文件中默认是打开的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">  	&lt;name&gt;mapreduce.map.speculative&lt;/name&gt;</span><br><span class="line">  	&lt;value&gt;<span class="keyword">true</span>&lt;/value&gt;</span><br><span class="line">  	&lt;description&gt;If <span class="keyword">true</span>, then multiple instances of some map tasks may be executed in parallel.&lt;/description&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;property&gt;</span><br><span class="line">  	&lt;name&gt;mapreduce.reduce.speculative&lt;/name&gt;</span><br><span class="line">  	&lt;value&gt;<span class="keyword">true</span>&lt;/value&gt;</span><br><span class="line">  	&lt;description&gt;If <span class="keyword">true</span>, then multiple instances of some reduce tasks may be executed in parallel.&lt;/description&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4．不能启用推测执行机制情况"><a href="#4．不能启用推测执行机制情况" class="headerlink" title="4．不能启用推测执行机制情况"></a>4．不能启用推测执行机制情况</h3><p>  （1）任务间存在严重的负载倾斜；</p>
+<p>  （2）特殊任务，比如任务向数据库中写数据。</p>
+<h3 id="5．算法原理，如图所示"><a href="#5．算法原理，如图所示" class="headerlink" title="5．算法原理，如图所示"></a>5．算法原理，如图所示</h3><p>推测执行算法原理</p>
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_134.png" width = "1201.56" height = "675.88" alt="xubatian的博客" align="center" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/zhifubaoPay.png">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/weixinPay.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          xubatian
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://xubatian.cn/hadoop组成模块之Yarn资源调度器/" title="hadoop组成模块之Yarn资源调度器" target="_blank">http://xubatian.cn/hadoop组成模块之Yarn资源调度器/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外均为原创，采用 CC BY 4.0 CN协议 许可协议。转载请注明出处:https://www.xubatian.cn/
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -321,17 +595,13 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">mapreduce</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">shuffle</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Yarn</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -344,253 +614,141 @@
 	</div>
 
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BYarn%E8%B5%84%E6%BA%90%E8%B0%83%E5%BA%A6%E5%99%A8/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BMapReduce%E6%A6%82%E8%BF%B0/" class="archive-article-date">
-        <time datetime="2022-01-12T13:12:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-12</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/Hadoop%E6%95%B0%E6%8D%AE%E5%8E%8B%E7%BC%A9/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hadoop数据压缩</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BMapReduce%E6%A6%82%E8%BF%B0/">hadoop组成模块之MapReduce概述</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MapReduce</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Yarn%E5%9F%BA%E6%9C%AC%E6%9E%B6%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">Yarn基本架构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Yarn%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="toc-number">2.</span> <span class="toc-text">Yarn工作机制</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A%E6%8F%90%E4%BA%A4%E5%85%A8%E8%BF%87%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">作业提交全过程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A%E6%8F%90%E4%BA%A4%E8%BF%87%E7%A8%8B%E4%B9%8BYARN"><span class="toc-number">3.1.</span> <span class="toc-text">作业提交过程之YARN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A%E6%8F%90%E4%BA%A4%E8%BF%87%E7%A8%8B%E4%B9%8BMapReduce"><span class="toc-number">3.2.</span> <span class="toc-text">作业提交过程之MapReduce</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E8%B0%83%E5%BA%A6%E5%99%A8-FIFO%E8%B0%83%E5%BA%A6%E5%99%A8-%E8%A1%A8%E7%A4%BA%E5%85%88%E8%BF%9B%E5%85%88%E5%87%BA"><span class="toc-number">4.</span> <span class="toc-text">资源调度器(FIFO调度器 表示先进先出)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%EF%BC%8E%E5%85%88%E8%BF%9B%E5%85%88%E5%87%BA%E8%B0%83%E5%BA%A6%E5%99%A8%EF%BC%88FIFO%EF%BC%89"><span class="toc-number">4.1.</span> <span class="toc-text">1．先进先出调度器（FIFO）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%EF%BC%8E%E5%AE%B9%E9%87%8F%E8%B0%83%E5%BA%A6%E5%99%A8%EF%BC%88Capacity-Scheduler%EF%BC%89"><span class="toc-number">4.2.</span> <span class="toc-text">2．容量调度器（Capacity Scheduler）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%EF%BC%8E%E5%85%AC%E5%B9%B3%E8%B0%83%E5%BA%A6%E5%99%A8%EF%BC%88Fair-Scheduler%EF%BC%89"><span class="toc-number">4.3.</span> <span class="toc-text">3．公平调度器（Fair Scheduler）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%B9%E9%87%8F%E8%B0%83%E5%BA%A6%E5%99%A8%E5%A4%9A%E9%98%9F%E5%88%97%E6%8F%90%E4%BA%A4%E6%A1%88%E4%BE%8B"><span class="toc-number">5.</span> <span class="toc-text">容量调度器多队列提交案例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9C%80%E6%B1%82"><span class="toc-number">5.1.</span> <span class="toc-text">需求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%A4%9A%E9%98%9F%E5%88%97%E7%9A%84%E5%AE%B9%E9%87%8F%E8%B0%83%E5%BA%A6%E5%99%A8"><span class="toc-number">5.2.</span> <span class="toc-text">配置多队列的容量调度器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%91Hive%E9%98%9F%E5%88%97%E6%8F%90%E4%BA%A4%E4%BB%BB%E5%8A%A1"><span class="toc-number">5.3.</span> <span class="toc-text">向Hive队列提交任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E7%9A%84%E6%8E%A8%E6%B5%8B%E6%89%A7%E8%A1%8C"><span class="toc-number">5.4.</span> <span class="toc-text">任务的推测执行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%EF%BC%8E%E4%BD%9C%E4%B8%9A%E5%AE%8C%E6%88%90%E6%97%B6%E9%97%B4%E5%8F%96%E5%86%B3%E4%BA%8E%E6%9C%80%E6%85%A2%E7%9A%84%E4%BB%BB%E5%8A%A1%E5%AE%8C%E6%88%90%E6%97%B6%E9%97%B4"><span class="toc-number">5.4.1.</span> <span class="toc-text">1．作业完成时间取决于最慢的任务完成时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%EF%BC%8E%E6%8E%A8%E6%B5%8B%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6"><span class="toc-number">5.4.2.</span> <span class="toc-text">2．推测执行机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%EF%BC%8E%E6%89%A7%E8%A1%8C%E6%8E%A8%E6%B5%8B%E4%BB%BB%E5%8A%A1%E7%9A%84%E5%89%8D%E6%8F%90%E6%9D%A1%E4%BB%B6"><span class="toc-number">5.4.3.</span> <span class="toc-text">3．执行推测任务的前提条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%EF%BC%8E%E4%B8%8D%E8%83%BD%E5%90%AF%E7%94%A8%E6%8E%A8%E6%B5%8B%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6%E6%83%85%E5%86%B5"><span class="toc-number">5.4.4.</span> <span class="toc-text">4．不能启用推测执行机制情况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%EF%BC%8E%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%EF%BC%8C%E5%A6%82%E5%9B%BE%E6%89%80%E7%A4%BA"><span class="toc-number">5.4.5.</span> <span class="toc-text">5．算法原理，如图所示</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BHDFS%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-        <time datetime="2022-01-12T11:06:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-12</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BHDFS%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E8%AF%A6%E8%A7%A3/">hadoop组成模块之HDFS分布式存储详解</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HDFS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Namenode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">DataNode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">SecondaryNameNode</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E5%8F%8A%E5%90%84%E6%A8%A1%E5%9D%97%E7%9A%84%E7%AE%80%E4%BB%8B/" class="archive-article-date">
-        <time datetime="2022-01-12T05:56:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-12</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E5%8F%8A%E5%90%84%E6%A8%A1%E5%9D%97%E7%9A%84%E7%AE%80%E4%BB%8B/">hadoop组成模块及各模块的简介</a>
-	
-    </h1>
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'true' == true ? true : false;
+   var verify = 'ture' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '.comment',
+            notify: notify,
+            verify: verify,
+            app_id: "4C7T8fSNVA6RnfQksa8BmdFc-gzGzoHsz",
+            app_key: "V57hYH4l9NRzmpobtAIN5gzq",
+            placeholder: "开始你的评论吧...",
+            avatar:"mm"
+        });
+    }
+</script>
+    </section>
   
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Linux%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/" class="archive-article-date">
-        <time datetime="2022-01-11T15:43:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-11</time>
-</a>
 
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Linux%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/">Linux命令收集</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">上一页</a><a class="page-number" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">1</a><span class="page-number current">2</span>
-    </nav>
-  
 
 
           </div>
@@ -630,10 +788,10 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
