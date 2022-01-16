@@ -564,6 +564,10 @@
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">hadoop数据清洗</a>
               </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">hadoop压缩</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -737,6 +741,72 @@
    */
   var pluginModelPath = "assets/", // 模型的文件路径，无需更改
     pluginRootPath = "/live2d_models/"; // 插件的路径，无需更改
+  //特定的模型json文件名称
+  var modelPathJson = {
+    "epsilon2_1": "Epsilon2.1",
+    "gf": "Gantzert_Felixander",
+    "haru/01": "haru01",
+    "haru/02": "haru02",
+    "nietzsche": "nietzche"
+  }
+
+  
+    var modelName = "hijiki";
+  
+
+  var modelJsonPath = "";
+  if (modelPathJson[modelName]) {
+    modelJsonPath = pluginRootPath + modelName + "/" + pluginModelPath + modelPathJson[modelName] +
+      ".model.json";
+  } else {
+    modelJsonPath = pluginRootPath + modelName + "/" + pluginModelPath + modelName + ".model.json";
+  }
+  L2Dwidget.init({
+    model: {
+      jsonPath: modelJsonPath
+    },
+    display: {
+       position: "right", 
+       width: 100, 
+       height: 215, 
+       hOffset: 55, 
+       vOffset: -10 
+    },
+    mobile: {
+       show: false, 
+       scale: 0.6 
+    },
+    react: {
+       opacity: 0.8 
+    }
+  })
+
+</script>
+
+  
+  
+  <script type="text/javascript" src="/lib/snow.js"></script>
+  <script type="text/javascript" src="/lib/jquery-2.1.4.min.js"></script>
+  <script>
+    snow.down();
+    $(window).resize(function() {
+      $("canvas").css("z-index","500").remove();
+      snow.down();
+    });
+  </script>
+  
+ <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
+		<script>
+			// 对所有链接跳转事件绑定pjax容器container
+			$(document).pjax('a[target!=_blank]', '#container', {fragment:'#container', timeout:8000})
+		</script>
+
+  
+</body>
+
+</html>
+��的路径，无需更改
   //特定的模型json文件名称
   var modelPathJson = {
     "epsilon2_1": "Epsilon2.1",
