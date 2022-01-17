@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="我的梦想是星辰大海">
 <meta property="og:description" content="“你和萤火虫有两个共同点，在我的眼里都会发光，同时，都已经很多年没见了。”    –来自网易云音乐《夜、萤火虫和你》">
 <meta property="og:locale">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/20.jpg">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_209.jpg">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/hdfs1.png">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/hdfs2.png">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/hdfs3.png">
@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/diaoxian.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_73.png">
 <meta property="article:published_time" content="2022-01-12T11:06:38.000Z">
-<meta property="article:modified_time" content="2022-01-17T12:42:11.169Z">
+<meta property="article:modified_time" content="2022-01-17T16:55:13.838Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="Hadoop">
 <meta property="article:tag" content="HDFS">
@@ -43,7 +43,7 @@
 <meta property="article:tag" content="DataNode">
 <meta property="article:tag" content="SecondaryNameNode">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/20.jpg">
+<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_209.jpg">
   
     <link rel="alternative" href="/atom.xml" title="我的梦想是星辰大海" type="application/atom+xml">
   
@@ -356,7 +356,7 @@
     <p>“你和萤火虫有两个共同点，在我的眼里都会发光，同时，都已经很多年没见了。”    –来自网易云音乐《夜、萤火虫和你》                            </p>
 <span id="more"></span>
 
-<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/20.jpg" width = "1201.56" height = "675.88" alt="xubatian的博客" align="center" />
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_209.jpg" width = "" height = "" alt="xubatian的博客" align="center" />
 
 
 
@@ -384,18 +384,18 @@
 <h2 id="HDFS的使用场景"><a href="#HDFS的使用场景" class="headerlink" title="HDFS的使用场景"></a>HDFS的使用场景</h2><p>适合一次写入,多次读出的场景,且不支持文件的修改,也不支持删除,只支持末尾追加。适合用来做数据分析,并不适合用来做网盘应用.</p>
 <p>Namenode所有元数据信息都是维护在内存中的</p>
 <p>&emsp;     </p>
-<h2 id="HDFS优缺点"><a href="#HDFS优缺点" class="headerlink" title="HDFS优缺点"></a>HDFS优缺点</h2><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/hdfs1.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
+<h2 id="HDFS优缺点"><a href="#HDFS优缺点" class="headerlink" title="HDFS优缺点"></a>HDFS优缺点</h2><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/hdfs1.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 
 
-<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/hdfs2.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/hdfs2.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">要知道,namenode给datanode下达指令,但是NameNode具体给datanode下达什么指令是由我们客户端来操作NameNode来决定的;注意在HDFS当中他的文件单位是以块(Block)为单位的存储的.</span><br></pre></td></tr></table></figure>
 
 <p>&emsp;     </p>
 <h2 id="HDFS组成架构"><a href="#HDFS组成架构" class="headerlink" title="HDFS组成架构"></a>HDFS组成架构</h2><p>上面说了HDFS是有很多服务器联合起来的. 但是需要工作你得有一个领导人.你得分清楚哪一个是领导. 将来数据来了之后我需要存在哪台机器上得由一个小领导来指挥.要知道,namenode给datanode下达指令,但是NameNode具体给datanode下达什么指令是由我们客户端来操作NameNode来决定的;注意在HDFS当中他的文件单位是以块(Block)为单位的</p>
 <p>Namenode具体要给datanode下达什么指令,都是我们客户端来操作的.</p>
-<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/hdfs3.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/hdfs3.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 
 
@@ -411,7 +411,7 @@
 <h2 id="HDFS文件块大小"><a href="#HDFS文件块大小" class="headerlink" title="HDFS文件块大小"></a>HDFS文件块大小</h2><p>注意在HDFS当中他的文件单位是以块(Block)为单位的</p>
 <p>所以 这个这个文件分成几块存到HDFS,一般一块是128M. 如果你的文件是300M,那么他会分成128M+128M+44M. 这三块. </p>
 <p>这三块存到hadoop的HDFS上,可能存在了不同的服务器上.</p>
-<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/block1.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/block1.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 
 
@@ -419,13 +419,13 @@
 
 
 
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/block2.png" width = "600" height = "360" alt="xubatian的博客" align="center" />
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/block2.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 <p>&emsp;     </p>
 <h2 id="HDFS的Shell操作"><a href="#HDFS的Shell操作" class="headerlink" title="HDFS的Shell操作"></a>HDFS的Shell操作</h2><h2 id="Hadoop命令查看"><a href="#Hadoop命令查看" class="headerlink" title="Hadoop命令查看"></a>Hadoop命令查看</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">[shangbaishuyao@hadoop102 hadoop-3.1.3]$ bin/hadoop fs</span><br><span class="line">Usage: hadoop fs [generic options]</span><br><span class="line">	[-appendToFile &lt;localsrc&gt; ... &lt;dst&gt;]</span><br><span class="line">	[-cat [-ignoreCrc] &lt;src&gt; ...]</span><br><span class="line">	[-checksum &lt;src&gt; ...]</span><br><span class="line">	[-chgrp [-R] GROUP PATH...]</span><br><span class="line">	[-chmod [-R] &lt;MODE[,MODE]... | OCTALMODE&gt; PATH...]</span><br><span class="line">	[-chown [-R] [OWNER][:[GROUP]] PATH...]</span><br><span class="line">	[-copyFromLocal [-f] [-p] [-l] [-d] [-t &lt;thread count&gt;] &lt;localsrc&gt; ... &lt;dst&gt;]</span><br><span class="line">	[-copyToLocal [-f] [-p] [-ignoreCrc] [-crc] &lt;src&gt; ... &lt;localdst&gt;]</span><br><span class="line">	[-count [-q] [-h] [-v] [-t [&lt;storage type&gt;]] [-u] [-x] [-e] &lt;path&gt; ...]</span><br><span class="line">	[-cp [-f] [-p | -p[topax]] [-d] &lt;src&gt; ... &lt;dst&gt;]</span><br><span class="line">	[-createSnapshot &lt;snapshotDir&gt; [&lt;snapshotName&gt;]]</span><br><span class="line">	[-deleteSnapshot &lt;snapshotDir&gt; &lt;snapshotName&gt;]</span><br><span class="line">	[-df [-h] [&lt;path&gt; ...]]</span><br><span class="line">	[-du [-s] [-h] [-v] [-x] &lt;path&gt; ...]</span><br><span class="line">	[-expunge]</span><br><span class="line">	[-find &lt;path&gt; ... &lt;expression&gt; ...]</span><br><span class="line">	[-get [-f] [-p] [-ignoreCrc] [-crc] &lt;src&gt; ... &lt;localdst&gt;]</span><br><span class="line">	[-getfacl [-R] &lt;path&gt;]</span><br><span class="line">	[-getfattr [-R] &#123;-n name | -d&#125; [-e en] &lt;path&gt;]</span><br><span class="line">	[-getmerge [-nl] [-skip-empty-file] &lt;src&gt; &lt;localdst&gt;]</span><br><span class="line">	[-head &lt;file&gt;]</span><br><span class="line">	[-help [cmd ...]]</span><br><span class="line">	[-ls [-C] [-d] [-h] [-q] [-R] [-t] [-S] [-r] [-u] [-e] [&lt;path&gt; ...]]</span><br><span class="line">	[-mkdir [-p] &lt;path&gt; ...]</span><br><span class="line">	[-moveFromLocal &lt;localsrc&gt; ... &lt;dst&gt;]</span><br><span class="line">	[-moveToLocal &lt;src&gt; &lt;localdst&gt;]</span><br><span class="line">	[-mv &lt;src&gt; ... &lt;dst&gt;]</span><br><span class="line">	[-put [-f] [-p] [-l] [-d] &lt;localsrc&gt; ... &lt;dst&gt;]</span><br><span class="line">	[-renameSnapshot &lt;snapshotDir&gt; &lt;oldName&gt; &lt;newName&gt;]</span><br><span class="line">	[-rm [-f] [-r|-R] [-skipTrash] [-safely] &lt;src&gt; ...]</span><br><span class="line">	[-rmdir [--ignore-fail-on-non-empty] &lt;dir&gt; ...]</span><br><span class="line">	[-setfacl [-R] [&#123;-b|-k&#125; &#123;-m|-x &lt;acl_spec&gt;&#125; &lt;path&gt;]|[--set &lt;acl_spec&gt; &lt;path&gt;]]</span><br><span class="line">	[-setfattr &#123;-n name [-v value] | -x name&#125; &lt;path&gt;]</span><br><span class="line">	[-setrep [-R] [-w] &lt;rep&gt; &lt;path&gt; ...]</span><br><span class="line">	[-stat [format] &lt;path&gt; ...]</span><br><span class="line">	[-tail [-f] [-s &lt;sleep interval&gt;] &lt;file&gt;]</span><br><span class="line">	[-test -[defsz] &lt;path&gt;]</span><br><span class="line">	[-text [-ignoreCrc] &lt;src&gt; ...]</span><br><span class="line">	[-touch [-a] [-m] [-t TIMESTAMP ] [-c] &lt;path&gt; ...]</span><br><span class="line">	[-touchz &lt;path&gt; ...]</span><br><span class="line">	[-truncate [-w] &lt;length&gt; &lt;path&gt; ...]</span><br><span class="line">	[-usage [cmd ...]]</span><br></pre></td></tr></table></figure>
 
 <p>图示:</p>
-<p>&emsp; <img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/mingling.png" width = "1201.56" height = "900" alt="xubatian的博客" align="center" /></p>
+<p>&emsp; <img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/mingling.png" width = "" height = "" alt="xubatian的博客" align="center" /></p>
 <h2 id="Hadoop常用命令实操"><a href="#Hadoop常用命令实操" class="headerlink" title="Hadoop常用命令实操"></a>Hadoop常用命令实操</h2><h3 id="启动类命令"><a href="#启动类命令" class="headerlink" title="启动类命令"></a>启动类命令</h3><table>
 <thead>
 <tr>
@@ -564,12 +564,12 @@
 
 
 <p>&emsp; </p>
-<h1 id="HDFS的读写流程"><a href="#HDFS的读写流程" class="headerlink" title="HDFS的读写流程"></a>HDFS的读写流程</h1><h2 id="HDFS写数据流程-剖析文件写入"><a href="#HDFS写数据流程-剖析文件写入" class="headerlink" title="HDFS写数据流程(剖析文件写入)"></a>HDFS写数据流程(剖析文件写入)</h2><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/hdfswrite.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
+<h1 id="HDFS的读写流程"><a href="#HDFS的读写流程" class="headerlink" title="HDFS的读写流程"></a>HDFS的读写流程</h1><h2 id="HDFS写数据流程-剖析文件写入"><a href="#HDFS写数据流程-剖析文件写入" class="headerlink" title="HDFS写数据流程(剖析文件写入)"></a>HDFS写数据流程(剖析文件写入)</h2><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/hdfswrite.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 <p>Bytebuffer 缓存</p>
 <p>1）客户端通过Distributed FileSystem(分布式文件系统)模块向NameNode请求上传文件，NameNode检查目标文件是否已存在，父目录是否存在。<br>2）NameNode返回是否可以上传。<br>3）客户端请求第一个 Block(块)上传到哪几个DataNode服务器上。<br>4）NameNode返回3个DataNode节点，分别为dn1、dn2、dn3。<br>5）客户端通过FSDataOutputStream(拿到输出流)模块请求dn1上传数据，dn1收到请求会继续调用dn2，然后dn2调用dn3，将这个通信管道建立完成。(FSDataOutputStream，这个类重载了很多write方法，用于写入很多类型的数据：比如字节数组，long，int，char等等。)<br>6）dn1、dn2、dn3逐级应答客户端。<br>7）客户端开始往dn1上传第一个Block(128M)（先从磁盘读取数据放到一个本地内存缓存），他不可能一次性传128M,他是以Packet(数据包)为单位的形式传,(丢包就是这种形式,有部分数据没收到)，dn1收到一个Packet就会先放进他的缓存里面然后落盘,存到内存的目的是因为他还要传给dn2，dn2传给dn3；dn1每传一个packet会放入一个应答队列等待应答,假如我成功收到了,我放在队列当中的东西会被响应的。<br>8）当一个Block传输完成之后，客户端再次请求NameNode上传第二个Block的服务器。（重复执行3-7步）。</p>
 <p>&emsp; </p>
-<h2 id="HDFS读数据流程"><a href="#HDFS读数据流程" class="headerlink" title="HDFS读数据流程"></a>HDFS读数据流程</h2><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_98.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
+<h2 id="HDFS读数据流程"><a href="#HDFS读数据流程" class="headerlink" title="HDFS读数据流程"></a>HDFS读数据流程</h2><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_98.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 <p>1）客户端通过Distributed FileSystem向NameNode请求下载文件，NameNode通过查询元数据，找到文件块所在的DataNode地址。<br>2）挑选一台DataNode（就近原则，然后随机）服务器，请求读取数据。<br>3）DataNode开始传输数据给客户端（从磁盘里面读取数据输入流，以Packet(数据包)为单位来做校验）。<br>4）客户端以Packet(数据包)为单位接收，先在本地缓存，然后写入目标文件。 </p>
 <p>&emsp; </p>
@@ -578,7 +578,7 @@
 <h2 id="NameNode和SecondaryNameNode工作机制"><a href="#NameNode和SecondaryNameNode工作机制" class="headerlink" title="NameNode和SecondaryNameNode工作机制"></a>NameNode和SecondaryNameNode工作机制</h2><p>思考：NameNode中的元数据是存储在哪里的？<br>首先，我们做个假设，如果存储在NameNode节点的磁盘中，因为经常需要进行随机访问，还有响应客户请求，必然是效率过低。因此，元数据需要存放在内存中。但如果只存在内存中，一旦断电，元数据丢失，整个集群就无法工作了。因此产生在磁盘中备份元数据的FsImage(镜像文件)。<br>这样又会带来新的问题，当在内存中的元数据更新时，如果同时更新FsImage，就会导致效率过低，但如果不更新，就会发生一致性问题，一旦NameNode节点断电，就会产生数据丢失。因此，引入Edits(修改记录)文件(只进行追加操作，效率很高)。每当元数据有更新或者添加元数据时，修改内存中的元数据并追加到Edits中。这样，一旦NameNode节点断电，可以通过FsImage和Edits的合并，合成元数据。<br>但是，如果长时间添加数据到Edits中，会导致该文件数据过大，效率降低，而且一旦断电，恢复元数据需要的时间过长。因此，需要定期进行FsImage和Edits的合并，如果这个操作由NameNode节点完成，又会效率过低。因此，引入一个新的节点SecondaryNamenode，专门用于FsImage和Edits的合并。</p>
 <p>&emsp; </p>
 <p>NameNode和SecondaryNameNode工作机制图示:</p>
-<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/namenode1.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/namenode1.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 
 
@@ -606,7 +606,7 @@
 <p>这个时候光靠两台NameNode,即一台active状态,一台standby状态. 已经不行了. 这时候就有一个叫journalNode来了. 它实际上也是一个进程. 他和NameNode,DataNode,secondNameNode一样的, 也是一个进程. 他就是用来完成一台active状态的NameNode和一台standby状态的NameNode,这来两台数据同步性的中间进程.    将来我客户端操作active(活跃)状态的NameNode时候, 不仅在内存中修改. 还会写自己的编辑日志, 并且要往journalNode中去写一份. 注意.active(活跃)状态的NameNode往journalnode中去写, standby状态的NameNode往journalName里面去读.这就解决数据同步性的问题.</p>
 <p>假如说我这个active状态的NameNode性能超级强悍. 他一直都不会出现问题. 这个时候我们客户端一致对Actvie状态的NameNode做修改的操作. 那么他的编辑日志会越来越大. 当你达到一定程度, 我们是不是得合并编辑日志呢. 我们合并编辑日志是secondNameNode做的. 但是在hadoopHA高可用情况下, 有了standby状态的NameNode时候,就不需要配置secondNameNode了. 因为我们的standby状态的NameNode就可以完成合并编辑日志的功能.而且当active状态的NameNode出现故障的时候, 我们standby状态的NameNode立马能提供服务.</p>
 <p>实际上,NameNode,secondNameNode,等都是对应的一个java类. </p>
-<h2 id="Fsimage和Edits解析"><a href="#Fsimage和Edits解析" class="headerlink" title="Fsimage和Edits解析"></a>Fsimage和Edits解析</h2><h3 id="Fsimage和Edits概念"><a href="#Fsimage和Edits概念" class="headerlink" title="Fsimage和Edits概念"></a>Fsimage和Edits概念</h3><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/edits.png" width = "1201.56" height = "500" alt="xubatian的博客" align="center" />
+<h2 id="Fsimage和Edits解析"><a href="#Fsimage和Edits解析" class="headerlink" title="Fsimage和Edits解析"></a>Fsimage和Edits解析</h2><h3 id="Fsimage和Edits概念"><a href="#Fsimage和Edits概念" class="headerlink" title="Fsimage和Edits概念"></a>Fsimage和Edits概念</h3><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/edits.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 <h3 id="oiv查看Fsimage文件"><a href="#oiv查看Fsimage文件" class="headerlink" title="oiv查看Fsimage文件"></a>oiv查看Fsimage文件</h3><p>（1）查看oiv和oev命令,查看镜像文件用oiv,查看编辑日志用oev</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[shangbaishuyao@hadoop102 current]$ hdfs</span><br><span class="line">oiv            apply the offline fsimage viewer to an fsimage</span><br><span class="line">oev            apply the offline edits viewer to an edits file</span><br><span class="line">[shangbaishuyao@Hadoop102 current]$ hdfs oiv -p xml -i fsimage_0000000000000000125 -o ./fsimage125.xml</span><br><span class="line">[shangbaishuyao@Hadoop102 current]$ cat fsimage125.xml </span><br></pre></td></tr></table></figure>
@@ -665,7 +665,7 @@
 </li>
 </ol>
 <h3 id="Hadoop集群安全模式"><a href="#Hadoop集群安全模式" class="headerlink" title="Hadoop集群安全模式"></a>Hadoop集群安全模式</h3><p>概述:</p>
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/namenodeSafe.png" width = "800" height = "400" alt="xubatian的博客" align="center" />
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/namenodeSafe.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 <p>基本语法:</p>
 <p>集群处于安全模式，不能执行重要操作（写操作）。集群启动完成后，自动退出安全模式。<br>（1）bin/hdfs dfsadmin -safemode get        （功能描述：查看安全模式状态）<br>（2）bin/hdfs dfsadmin -safemode enter      （功能描述：进入安全模式状态）<br>（3）bin/hdfs dfsadmin -safemode leave    （功能描述：离开安全模式状态）<br>（4）bin/hdfs dfsadmin -safemode wait    （功能描述：等待安全模式状态）</p>
@@ -691,7 +691,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> (<span class="number">4</span>) 查看结果</span><br><span class="line">[shangbaishuyao<span class="meta">@hadoop102</span> dfs]$ ll</span><br><span class="line">总用量 <span class="number">12</span></span><br><span class="line">drwx------. <span class="number">3</span> shangbaishuyao shangbaishuyao <span class="number">4096</span> <span class="number">12</span>月 <span class="number">11</span> 08:<span class="number">03</span> data</span><br><span class="line">drwxrwxr-x. <span class="number">3</span> shangbaishuyao shangbaishuyao <span class="number">4096</span> <span class="number">12</span>月 <span class="number">11</span> 08:<span class="number">03</span> name1</span><br><span class="line">drwxrwxr-x. <span class="number">3</span> shangbaishuyao shangbaishuyao <span class="number">4096</span> <span class="number">12</span>月 <span class="number">11</span> 08:<span class="number">03</span> name2</span><br></pre></td></tr></table></figure>
 </code></pre>
 <p>&emsp; </p>
-<h2 id="DataNode工作机制"><a href="#DataNode工作机制" class="headerlink" title="DataNode工作机制"></a>DataNode工作机制</h2><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/datanode.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
+<h2 id="DataNode工作机制"><a href="#DataNode工作机制" class="headerlink" title="DataNode工作机制"></a>DataNode工作机制</h2><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/datanode.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 
 
@@ -699,10 +699,10 @@
 
 <p>1）一个数据块在DataNode上以文件形式存储在磁盘上，包括两个文件，一个是数据本身，一个是元数据包括数据块的长度，块数据的       校验和，以及时间戳。<br>2）DataNode启动后向NameNode注册，通过后，周期性（1小时）的向NameNode上报所有的块信息。<br>3）心跳是每3秒一次，心跳返回结果带有NameNode给该DataNode的命令如复制块数据到另一台机器，或删除某个数据块。如果超过10分钟30秒没有收到某个DataNode的心跳，则认为该节点不可用。<br>4）集群运行中可以安全加入和退出一些机器。</p>
 <h3 id="数据完整性-如何保存存储的数据是完整的"><a href="#数据完整性-如何保存存储的数据是完整的" class="headerlink" title="数据完整性(如何保存存储的数据是完整的?)"></a>数据完整性(如何保存存储的数据是完整的?)</h3><p>思考：如果电脑磁盘里面存储的数据是控制高铁信号灯的红灯信号（1）和绿灯信号（0），但是存储该数据的磁盘坏了，一直显示是绿灯，是否很危险？同理DataNode节点上的数据损坏了，却没有发现，是否也很危险，那么如何解决呢？<br>如下是DataNode节点保证数据完整性的方法。<br>1）当DataNode读取Block的时候，它会计算CheckSum(校验和)。校验和,就是经过一定的算法的到一个数据的结果,这个结果就是校验和;   一个数据在上传前经过算法变成校验盒,然后再把数据放到hdfs上,经过算法变成校验盒,如果前后两个校验盒相同,则说明数据完整,数据没发生破坏对于银行等机构,数据完整性是相当重要的<br>2）如果计算后的CheckSum，与Block创建时值不一样，说明Block已经损坏。<br>3）Client读取其他DataNode上的Block。<br>4）DataNode在其文件创建后周期验证CheckSum，如图所示。</p>
-<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/shuju.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/shuju.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 <p>&emsp; </p>
-<h3 id="掉线时限参数设置-10分钟30秒"><a href="#掉线时限参数设置-10分钟30秒" class="headerlink" title="掉线时限参数设置 10分钟30秒"></a>掉线时限参数设置 10分钟30秒</h3><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/diaoxian.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
+<h3 id="掉线时限参数设置-10分钟30秒"><a href="#掉线时限参数设置-10分钟30秒" class="headerlink" title="掉线时限参数设置 10分钟30秒"></a>掉线时限参数设置 10分钟30秒</h3><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/test/diaoxian.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 <p>需要注意的是hdfs-site.xml 配置文件中的heartbeat.recheck.interval(心跳核查间隔)的单位为毫秒，dfs.heartbeat.interval的单位为秒。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;dfs.namenode.heartbeat.recheck-interval&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;300000&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;dfs.heartbeat.interval&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;3&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
@@ -744,7 +744,7 @@
 </li>
 </ol>
 <p>HDFS Federation架构设计图:</p>
-<p>​                <img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_73.png" width = "700" height = "400" alt="xubatian的博客" align="center" /></p>
+<p>​                <img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_73.png" width = "" height = "" alt="xubatian的博客" align="center" /></p>
 <p>​        </p>
 <h2 id="HDFS-Federation应用思考"><a href="#HDFS-Federation应用思考" class="headerlink" title="HDFS Federation应用思考"></a>HDFS Federation应用思考</h2><p>不同应用可以使用不同NameNode进行数据管理<br>        图片业务、爬虫业务、日志审计业务<br>Hadoop生态系统中，不同的框架使用不同的NameNode进行管理NameSpace。（隔离性）</p>
 

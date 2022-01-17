@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_106.png">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_107.png">
 <meta property="article:published_time" content="2022-01-15T16:50:47.000Z">
-<meta property="article:modified_time" content="2022-01-17T12:40:55.889Z">
+<meta property="article:modified_time" content="2022-01-17T16:48:00.799Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="Hadoop">
 <meta property="article:tag" content="mapJoin">
@@ -348,7 +348,7 @@
 <p>Reduce端的主要工作：</p>
 <p>​        在Reduce端以连接字段作为key的分组已经完成，我们只需要在每一个分组当中将那些来源于不同文件的记录(在Map阶段已经打标<br>志)分开，最后进行合并就ok了。</p>
 <h5 id="Reduce-Join案例实操及代码"><a href="#Reduce-Join案例实操及代码" class="headerlink" title="Reduce Join案例实操及代码"></a>Reduce Join案例实操及代码</h5><p>通过将关联条件作为Map输出的key，将两表满足Join条件的数据并携带数据所来源的文件信息，发往同一个ReduceTask，在Reduce中进行数据的串联，如图所示:</p>
-<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_106.png" width = "700" height = "350" alt="xubatian的博客" align="center" />
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_106.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 
 
@@ -361,7 +361,7 @@
 <h5 id="Map-Join案例实操及代码"><a href="#Map-Join案例实操及代码" class="headerlink" title="Map Join案例实操及代码"></a>Map Join案例实操及代码</h5><p><strong>案例代码</strong>:<a target="_blank" rel="noopener" href="https://github.com/ShangBaiShuYao/bigdata/blob/master/src/main/java/com/shangbaishuyao/hadoop/mapJoin/">https://github.com/ShangBaiShuYao/bigdata/blob/master/src/main/java/com/shangbaishuyao/hadoop/mapJoin/</a></p>
 <p>需求分析</p>
 <p>MapJoin适用于关联表中有小表的情形</p>
-<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_107.png" width = "700" height = "350" alt="xubatian的博客" align="center" />
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_107.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 
 

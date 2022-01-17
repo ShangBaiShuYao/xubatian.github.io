@@ -18,18 +18,18 @@
 <meta property="og:site_name" content="我的梦想是星辰大海">
 <meta property="og:description" content="亲爱的女孩，如果还能跟你心平气和的聊天的话，我希望能告诉你我那些无视和冷笑都是在伪装，可是已经过去了。淡月梨花，借梦来，桥边廊庑。     –来自网易云音乐《任你》">
 <meta property="og:locale">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/images/14.jpg">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_211.jpg">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_92.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_93.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mapreduce5.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mapreduce8.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mapreduce9.png">
 <meta property="article:published_time" content="2022-01-12T13:12:15.000Z">
-<meta property="article:modified_time" content="2022-01-15T14:10:36.800Z">
+<meta property="article:modified_time" content="2022-01-17T16:58:24.587Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="MapReduce">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/images/14.jpg">
+<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_211.jpg">
   
     <link rel="alternative" href="/atom.xml" title="我的梦想是星辰大海" type="application/atom+xml">
   
@@ -342,7 +342,7 @@
     <p>亲爱的女孩，如果还能跟你心平气和的聊天的话，我希望能告诉你我那些无视和冷笑都是在伪装，可是已经过去了。淡月梨花，借梦来，桥边廊庑。     –来自网易云音乐《任你》</p>
 <span id="more"></span>
 
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/images/14.jpg" width = "1201.56" height = "675.88" alt="xubatian的博客" align="center" />
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_211.jpg" width = "" height = "" alt="xubatian的博客" align="center" />
 
 
 
@@ -355,19 +355,19 @@
 <p>那么数据存储了,我需要分析呀.如何取分析呢?使用什么引擎去分析呢?<br>答案就是: MapReduce.   一个模块负责存储, 一个模块负责分析.</p>
 <h1 id="MapReduce概述"><a href="#MapReduce概述" class="headerlink" title="MapReduce概述"></a>MapReduce概述</h1><h2 id="MapReduce定义"><a href="#MapReduce定义" class="headerlink" title="MapReduce定义"></a>MapReduce定义</h2><p>MapReduce是一个分布式运算架，是用户开发“基于Hadoop的数据分析应用”的核心框架。<br>MapReduce核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序，并发运行在一个Hadoop集群上。</p>
 <p>&emsp;     </p>
-<h2 id="MapReduce优缺点"><a href="#MapReduce优缺点" class="headerlink" title="MapReduce优缺点"></a>MapReduce优缺点</h2><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_92.png" width = "700" height = "600" alt="xubatian的博客" align="center" />
+<h2 id="MapReduce优缺点"><a href="#MapReduce优缺点" class="headerlink" title="MapReduce优缺点"></a>MapReduce优缺点</h2><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_92.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">什么叫离线处理?</span><br><span class="line">他对比的就是实时处理,就像mysql等就可以实时的返回结果;</span><br><span class="line">就是我已经有大量的数据了,你通过hadoop里面的hdfs,mapReduce去做运算,最终经过一段时间的运算给我得出结果,这是要耗费一定时间的,这就叫离线处理</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><p>其实也不能叫缺点,以为他本身设计的时候就没有去考虑这些东西,如果考虑这些东西就可能解决不了大量数据的处理了</p>
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_93.png" width = "700" height = "390" alt="xubatian的博客" align="center" />
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_93.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 <p>静态的就表示,数据已经放好了在这里了,而不是你时不时还往里面添加数据,这是不支持的<br>就是如下图,什么叫有向图(DAG)计算?就是后面应用程序输入的数据是前面数据输出的数据,而mapReduce不擅长做这个,但是也不是不能做. 如果这么做的话会有大量的磁盘io操作. 就是你前面的MapReduce程序完成后结果放在磁盘中,下一个MapReduce程序读取磁盘的结果来操作. 这个过程会发生大量的磁盘io.所以你这个性能是非常低下的</p>
 <h1 id="MapReduce核心思想"><a href="#MapReduce核心思想" class="headerlink" title="MapReduce核心思想"></a>MapReduce核心思想</h1><p>之前map  和 reduce 一个负责分,一个负责合,这是一个很笼统的认识</p>
 <p>现在MapReduce核心编程思想，如图所示:</p>
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mapreduce5.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mapreduce5.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 <h2 id="对上图MapReduce核心思想解释"><a href="#对上图MapReduce核心思想解释" class="headerlink" title="对上图MapReduce核心思想解释"></a>对上图MapReduce核心思想解释</h2><p>第一个文件200m 我们立马想到,我们存到hdfs中后立马存两块(128M一块). 这里有两个文件,所以有三块数据.在map阶段会读取你的每一块内容,每一块内容都会交给maptask来处理.这个maptask就是map阶段最核心的一个对象. 整个maptask的过程中就是你的map阶段.所有的工作都是围绕着maptask来进行工作的.maptask就是一个任务.是map阶段的一个任务.正常情况下你的每一块数据都会交给maptask来进行处理.在我的maptask里面做什么操作呢?我要把你文件中的每一行数据都给他读出来.<br>1)读数据,并按行处理       (就是我读一行进来)<br>2)按空格切分行内单词     (具体要不要按照行处理看你每个单词与单词之间是否已空格划分)<br>3)K键值对(单词,1)        (hadoop,1)(hive,1)(spark,1)<br>4)将所有的KV键值对中的词,按照单词首字母,分成2个分区溢写到磁盘    (为什么要分成两个分区呢?因为我最终的结果我要的是两个,那我就是将a-z,q-p开头的单词写到不同的文件中)</p>
 <p>最终我的三个maptask中一共六个文件,即分区1(z-p),分区2(q-z)各两个.<br>把三个maptask里面分区1的给一个reduce中,分区2的给一个reduce中.<br>所以在这种情况下他就有两个reducetask,为什么有两个呢? 其实就是由你这个分区来决定的.因为你最终有两个文件,所以我就开启两个reduceTask来处理. 这reduceTask到每一个mapTask生成的文件里面去拷贝数据,比如说分区1里面拷贝到处理a-p的ReduceTask, 分区2拷贝到处理q-z的ReduceTask中.</p>
@@ -376,13 +376,13 @@
 <h2 id="mapreduce核心思想总结"><a href="#mapreduce核心思想总结" class="headerlink" title="mapreduce核心思想总结"></a>mapreduce核心思想总结</h2><p>1）分布式的运算程序往往需要分成至少2个阶段。<br>2）第一个阶段的MapTask并发实例，完全并行运行，互不相干。<br>3）第二个阶段的ReduceTask并发实例互不相干，但是他们的数据依赖于上一个阶段的所有MapTask并发实例的输出。<br>4）MapReduce编程模型只能包含一个Map阶段和一个Reduce阶段，如果用户的业务逻辑非常复杂，那就只能多个MapReduce程序，串行运行。<br>总结：分析WordCount数据流走向深入理解MapReduce核心思想。</p>
 <h2 id="MapReduce进程"><a href="#MapReduce进程" class="headerlink" title="MapReduce进程"></a>MapReduce进程</h2><p>一个完整的MapReduce程序在分布式运行时有三类实例进程：<br>1）MrAppMaster：负责整个程序的过程调度及状态协调。<br>2）MapTask:  负责Map阶段的整个数据处理流程。<br>3）ReduceTask:  负责Reduce阶段的整个数据处理流程。</p>
 <h2 id="通过官方WordCount源码查看我们如何取去写MapReduce程序"><a href="#通过官方WordCount源码查看我们如何取去写MapReduce程序" class="headerlink" title="通过官方WordCount源码查看我们如何取去写MapReduce程序"></a>通过官方WordCount源码查看我们如何取去写MapReduce程序</h2><p>采用反编译工具反编译源码，发现WordCount案例有Map类、Reduce类和驱动类。且数据的类型是Hadoop自身封装的序列化类型。</p>
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mapreduce8.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mapreduce8.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 
 
 
 
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mapreduce9.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mapreduce9.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 
 

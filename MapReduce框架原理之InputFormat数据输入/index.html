@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/map1.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/map2.png">
 <meta property="article:published_time" content="2022-01-14T16:20:06.996Z">
-<meta property="article:modified_time" content="2022-01-15T16:02:45.546Z">
+<meta property="article:modified_time" content="2022-01-17T17:05:59.508Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="徐霸天,xubatian,上白书妖,shangbaishuyao">
 <meta name="twitter:card" content="summary">
@@ -351,7 +351,7 @@
     <p>孤独这两个字拆开来看，有孩童，有瓜果，有小犬，有蚊蝇，足以撑起一个盛夏傍晚间的巷子口，人情味十足。 稚儿擎瓜柳棚下，细犬逐蝶窄巷中，人间繁华多笑语，惟我空余两鬓风。 孩童水果猫狗飞蝇当然热闹，可都和你无关，这就叫孤独。 …                            </p>
 <span id="more"></span>
 
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_94.jpg" width = "1201.56" height = "675.88" alt="xubatian的博客" align="center" />
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_94.jpg" width = "" height = "" alt="xubatian的博客" align="center" />
 
 <p>前言</p>
 <p>上文 对mapreduce的概述 简单了解什么是MapReduce? </p>
@@ -360,7 +360,7 @@
 <p>mapreduce的流程是什么样子的呢?</p>
 <p>mapreduce的有哪些部分组成的的?</p>
 <p>图示:</p>
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mm2.png" width = "400" height = "200" alt="xubatian的博客" align="center" />
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mm2.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 
 
@@ -371,14 +371,14 @@
 <p>那么这四个环节分别叫什么呢?</p>
 <p><strong>InputFormat数据输入—–&gt;MapTask工作机制,Shuffle工作机制,ReduceTask工作机制—&gt;OutputFormat数据输出.</strong></p>
 <p>着整个过程成为 mapreduce过程. 内容分这几个部分. 当然,这几部分也是很笼统的. 里面设计具体的很多概念.</p>
-<h1 id="MapReduce框架原理之InputFormat数据输入"><a href="#MapReduce框架原理之InputFormat数据输入" class="headerlink" title="MapReduce框架原理之InputFormat数据输入"></a>MapReduce框架原理之InputFormat数据输入</h1><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mm.png" width = "500" height = "300" alt="xubatian的博客" align="center" />
+<h1 id="MapReduce框架原理之InputFormat数据输入"><a href="#MapReduce框架原理之InputFormat数据输入" class="headerlink" title="MapReduce框架原理之InputFormat数据输入"></a>MapReduce框架原理之InputFormat数据输入</h1><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mm.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 
 
 <p>InputFormat, 这个是整个MapReduce里面非常关键的一个对象.</p>
 <p>什么是InputFormat呢? 就是你输入到这个mapper里面的数据其实就是由InputFormat来负责的. 比如我怎么从文件里面去读这个数据. 这里还涉及到是否要切片这个概念.</p>
 <p>MapReduce数据流是比较简单的.一个是mapper阶段. 一个是reduce阶段. 在mapper阶段前面就有一个InputFormat帮我们去读数据. 在Reducer后面有一个OutPutFormat帮我们去写数据.在mapper与reducer中间就是我们讲的shuffle过程.大部分工作都是在shuffle里面做的.</p>
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mm2.png" width = "400" height = "200" alt="xubatian的博客" align="center" />
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mm2.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 <p>那么 InputFormat他又是如何拿数据呢? 这涉及到了切片机制. 那么什么是切片呢?</p>
 <p>我数据是按照块(block)的的方式去存到HDFS上的. 那么既然他是按照块存储的. 假设配置文件设置128M为一块,一个300M文件分成了三个块.可能存到不同的服务器上. 那么我mapreduce也是按照块为单位去拿数据吗? 不是的, 他是将这128M的块, 按照我们配置的配置文件的切片大小去获取数据. 比如 我们设置100M 为一个切片. 那么这个128M的块, 就会有两个切片.即100M 和 28M. mapreduce启动job任务去拿数据他是并行的, 所以一个mapTask只会获取一个切片,所以,他会启动两个mapTask同时去拿这两个切片.</p>
@@ -392,11 +392,11 @@
 <p>MapTask的并行度决定Map阶段的任务处理并发度，进而影响到整个Job的处理速度。<br>思考：1G的数据，启动8个MapTask，可以提高集群的并发处理能力。那么1K的数据，也启动8个MapTask，会提高集群性能吗？MapTask并行任务是否越多越好呢？哪些因素影响了MapTask并行度？</p>
 <p><strong>MapTask并行度决定机制</strong></p>
 <p>数据块：Block是HDFS物理上把数据分成一块一块。<br>数据切片：数据切片只是在逻辑上对输入进行分片，并不会在磁盘上将其切分成片进行存储。(逻辑上对数据块进行划分,让多个mapTask并行处理数据块的不同切片部分)</p>
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mm4.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mm4.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 <p>假如我有300M的数据.假设切片大小我设置为100M. 块大小设置为128M. 那么这个300M的文件将来我存到dataNode上面的时候,如上图. 128M一块 ,128M一块, 44M一块.<br>块大小还是按照128M. 但是我的切片大小是100M. 那么将来我在处理我128M的数据的时候,那我就要从逻辑上将我的128M块 切片分成100M 和 28M.  其中这100M我交给mapTask去处理. 那么我剩下的28M怎么办呢? 他不是在往后面找72M数据合起来. 他有一个切片的概念. 切片他是不考虑数据的整体性. 正常情况下他是以块来作为一个单位来切的.  所以hadoop他默认就是按照128M来切的.这样就不用了跨机器读你的数据了.</p>
 <p>记住: 你有多少个切片,将来你就有多少个mapTask.  每一个切片都分配一个mapTask来进行并行处理.   默认情况下切片大小就是你的块大小.</p>
-<h3 id="通过源码查看切片机制"><a href="#通过源码查看切片机制" class="headerlink" title="通过源码查看切片机制"></a>通过源码查看切片机制</h3><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mm5.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
+<h3 id="通过源码查看切片机制"><a href="#通过源码查看切片机制" class="headerlink" title="通过源码查看切片机制"></a>通过源码查看切片机制</h3><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mm5.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 <h3 id="数据倾斜问题"><a href="#数据倾斜问题" class="headerlink" title="数据倾斜问题"></a>数据倾斜问题</h3><p>我切片,剩余的长度除以切片大小是大于1.1的,那我就接着去切. 如果是小于等于1.1就不切了,就是一块了. 假如我默认切片大小是128M,但是我的数据块是129M,这样我就不切了吗? 这就要看他是否大于默认切片大小(128M)的1.1倍了.  但是为什么不大于1.1我就不切了呢? 比如说我默认切片大小是32M,那么我32*1.1=35.2M   那就是只要我切片大小&lt;=35.3 我就不切了.  比如说我有一个35.2M的数据,如果说没有这个切片大小&lt;= 默认切片大小的1.1倍就不切的这个公式的话. 而是完全按照32M来切.那我就切出来一个32和一个3.2M的数据.这就是两个切片了. 两个切片将来就需要交给两个mapTask去处理. 那么负责处理32M切片的mapTask是负责3.2M切片的mapTask的数据的10倍. 这就导致一个mapTask负责数据量比较大,另一个负责数据量比较小.这就出现了数据倾斜的问题.</p>
 <h3 id="Job提交流程源码和切片源码详解"><a href="#Job提交流程源码和切片源码详解" class="headerlink" title="Job提交流程源码和切片源码详解"></a>Job提交流程源码和切片源码详解</h3><p>所谓的Job提交流程就是当我们这个job提交之后,它后续做了哪些事情?</p>
@@ -406,7 +406,7 @@
 <p>&emsp;     </p>
 <h3 id="Job提交流程源码详解"><a href="#Job提交流程源码详解" class="headerlink" title="Job提交流程源码详解"></a>Job提交流程源码详解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">waitForCompletion()</span><br><span class="line"></span><br><span class="line">submit();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1建立连接</span></span><br><span class="line">	connect();		</span><br><span class="line">		<span class="comment">// 1）创建提交Job的代理</span></span><br><span class="line">		<span class="keyword">new</span> Cluster(getConfiguration());</span><br><span class="line">			<span class="comment">// （1）判断是本地yarn还是远程</span></span><br><span class="line">			initialize(jobTrackAddr, conf); </span><br><span class="line"></span><br><span class="line"><span class="comment">// 2 提交job</span></span><br><span class="line">submitter.submitJobInternal(Job.<span class="keyword">this</span>, cluster)</span><br><span class="line">	<span class="comment">// 1）创建给集群提交数据的Stag路径</span></span><br><span class="line">	Path jobStagingArea = JobSubmissionFiles.getStagingDir(cluster, conf);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 2）获取jobid ，并创建Job路径</span></span><br><span class="line">	JobID jobId = submitClient.getNewJobID();</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 3）拷贝jar包到集群</span></span><br><span class="line"></span><br><span class="line">copyAndConfigureFiles(job, submitJobDir);	</span><br><span class="line">	rUploader.uploadFiles(job, jobSubmitDir);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4）计算切片，生成切片规划文件</span></span><br><span class="line">writeSplits(job, submitJobDir);</span><br><span class="line">		maps = writeNewSplits(job, jobSubmitDir);</span><br><span class="line">		input.getSplits(job);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 5）向Stag路径写XML配置文件</span></span><br><span class="line">writeConf(conf, submitJobFile);</span><br><span class="line">	conf.writeXml(out);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 6）提交Job,返回提交状态</span></span><br><span class="line">status = submitClient.submitJob(jobId, submitJobDir.toString(), job.getCredentials());</span><br></pre></td></tr></table></figure>
 
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/job1.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/job1.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 
 
@@ -421,11 +421,11 @@
 <p>针对不容类型,不同场景,我们做一些实现类,自己写代码.</p>
 <p>这里有最常见的,写好的实现类.</p>
 <p>FileInputFormat 常 见 的 接 口 实 现 类 包 括:<br>TextInputFormat、KeyValueTextInputFormat、NLineInputFormat、CombineTextInputFormat和自定义InputFormat等。</p>
-<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_100.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_100.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
-<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_101.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_101.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_102.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_102.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 
 
@@ -439,17 +439,17 @@
 <p>比如说我有5个文件, 第一个是1M,第二个是2M,3M,4M,5M. 因为他们都小于我们的块大小128M.  所以说按照单个文件来去切的话, 每个文件都是一个切片, 最终生成5个切片. 且我的每一个切片都是对应一个mapTask, 但是这么小的切片对应我的mapTask不是杀鸡用牛刀吗?它都不值得我去启动一次mapTask.因为你数据量太小了.所以对于小文件来说我就不能使用TextInputFormat了, 我必须对你做一个处理.</p>
 <p>比如接下来说的CombineTextInputFormat.</p>
 <p>他是用的场景就是小文件过多的情况下.他的思想是什么呢?<br>首先我们使用CombineTextInputFormat的时候得先设置虚拟存储切片的最大值. 具体设置多大按照实际情况来定. 假如说我把虚拟存储最大值设置为4M    ,那么他会根据这个4M进行判断,我这个文件到底要不要去切. 然后最终我怎么去帮你生成切片.所以CombineTextInputFormat也是可以避免数据倾斜问题.</p>
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/job6.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/job6.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 
 
 <p>如上图所示:</p>
 <p>我们设置虚拟存储的文件大小(setMaxInputSplitSize)为4M. 比如说我们有几个文件(如上图) 这些小文件.  因为我们设置虚拟存储大小是4M.  在虚拟存储过程中有一个算法,就是如果你的文件的大小小于你虚拟存储的最大值(即4M). 那么对于你这个文件来说就将你划分成一块.这一块是虚拟的.不是真正划分的. 但是如果你实际文件大小是大于你设置的文件最大值的(4M) , 但是他又小于两倍的最大值. 即大于4M 小于8M.  在这种情况下我就将你这个文件一分为2. 如上面的两块的2.55M .最后生成最终存储的文件即虚拟文件. 接下来他就按照这个规划帮你进行切片. 生成切片的过程中他会判断你虚拟存储的文件大小是否大于我们设置的值(4M). 如果大于则单独形成一个切片.  如果你虚拟存储的大小不大于4M. 那么他就会和你下一个虚拟存储文件进行合并, 共同形成一个切片.  如上图的1.7M+2.55M 形成一个切片.  最终形成3个切片. 三个切片不会差太多.这就规避了数据倾斜问题.</p>
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/job7.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/job7.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 
 
-<p><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/job8.png" width = "1201.56" height = "600" alt="xubatian的博客" align="center" />“ </p>
+<p><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/job8.png" width = "" height = "" alt="xubatian的博客" align="center" />“ </p>
 <p>1、应用场景：</p>
 <p>CombineTextInputFormat用于小文件过多的场景，它可以将多个小文件从逻辑上规划到一个切片中，这样，多个小文件就可以交给一个MapTask处理。</p>
 <p>2、虚拟存储切片最大值设置</p>
@@ -461,8 +461,8 @@
 <p>比如说我有n多个小文件,我想将他存到HDFS中,之前的一种方式是使用har文件.<br>但是现在我想把我的n多个小文件最终存到一个文件里面.就是死将这n多个小文件里面的内容拿出来存到一个文件里面,存成一个稍微大一点的文件. 但是我不能简单存成一个txt文件. 因为这样的话就会乱了.就揉到一起了.  我还是希望你存到这大文件里面以后他们之间还是有一个很明确的划分的. 所以这一次我会用到一个SequenceFlie.  SequenceFile就是一个序列文件. 这个文件的格式比较特殊. 虽然是一个文件, 但是它里面也是以k,v 的形式来存的. k 可以是原来文件的路径.v是文件的内容 (D:/one.txt  , 文件内容  ) . 虽然说我将多个文件存到一个文件当中, 但是这个文件里面他也是有明确的划分的.  将来我们去读的时候也是可以通过 k, v 的形式去读出来. 而且这种格式存起来特别的紧凑.  比如原先我n个小文件存起来是5M, 但是通过 SequenceFile这种方式存的话可能就 3M. 因为他是二进制的存储方式.  sequenceFile这种文件的格式hadoop是支持的 , 但是我们得自己操作, 将小文件里面的内容读出来,以 k ,v 的形式给他写进去.这个过程需要我们自己做.所以我在读我们每一个小文件的时候希望一次性将文件里面的内容都读出来然后向sequenceFile中去放. 比如说k 就是我们小文件的路径加名字. v就是我文件的内容. 我一次性将这个k,v 写到sequenceFile中.  但是我们上面的InputFormat没有一次性读整个文件的. 都是一行一行读的. 所以这就需要我们自定义了.</p>
 <p>具体案例: 略.</p>
 <h1 id="MapReduce工作流程"><a href="#MapReduce工作流程" class="headerlink" title="MapReduce工作流程"></a>MapReduce工作流程</h1><p>1.MapReduce工作流程:</p>
-<p><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/map1.png" width = "700" height = "400" alt="xubatian的博客" align="center" />“ </p>
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/map2.png" width = "700" height = "400" alt="xubatian的博客" align="center" />
+<p><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/map1.png" width = "" height = "" alt="xubatian的博客" align="center" />“ </p>
+<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/map2.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 <p>2.流程详解:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">上面的流程是整个MapReduce最全工作流程，但是Shuffle过程只是从第<span class="number">7</span>步开始到第<span class="number">16</span>步结束，具体Shuffle过程详解，如下：</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>）MapTask收集我们的map()方法输出的kv对，放到内存缓冲区中</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>）从内存缓冲区不断溢出本地磁盘文件，可能会溢出多个文件</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>）多个溢出文件会被合并成大的溢出文件</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>）在溢出过程及合并的过程中，都要调用Partitioner进行分区和针对key进行排序</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>）ReduceTask根据自己的分区号，去各个MapTask机器上取相应的结果分区数据</span><br><span class="line"></span><br><span class="line"><span class="number">6</span>）ReduceTask会取到同一个分区的来自不同MapTask的结果文件，ReduceTask会将这些文件再进行合并（归并排序）</span><br><span class="line"></span><br><span class="line"><span class="number">7</span>）合并成大文件后，Shuffle的过程也就结束了，后面进入ReduceTask的逻辑运算过程（从文件中取出一个一个的键值对Group，调用用户自定义的reduce()方法）</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>．注意</span><br><span class="line">Shuffle中的缓冲区大小会影响到MapReduce程序的执行效率，原则上说，缓冲区越大，磁盘io的次数越少，执行速度就越快。</span><br><span class="line">缓冲区的大小可以通过参数调整，参数：io.sort.mb默认100M。</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>．源码解析流程</span><br><span class="line">context.write(k, NullWritable.get());</span><br><span class="line">	output.write(key, value);</span><br><span class="line">		collector.collect(key, value,partitioner.getPartition(key, value, partitions));</span><br><span class="line">			HashPartitioner();</span><br><span class="line">				collect()</span><br><span class="line">				close()</span><br><span class="line">				collect.flush()</span><br><span class="line">          			sortAndSpill()</span><br><span class="line">         				sort()  </span><br><span class="line">          			<span class="function">QuickSort</span></span><br><span class="line"><span class="function">				<span class="title">mergeParts</span><span class="params">()</span></span>;</span><br><span class="line">          			file.out;</span><br><span class="line">				file.out.index;	</span><br><span class="line">				collector.close();</span><br></pre></td></tr></table></figure>
