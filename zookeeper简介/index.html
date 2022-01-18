@@ -20,7 +20,6 @@
 <meta property="og:locale">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_215.jpg">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_216.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_217.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_220.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_219.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_221.png">
@@ -42,7 +41,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_237.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_238.png">
 <meta property="article:published_time" content="2022-01-18T06:51:38.000Z">
-<meta property="article:modified_time" content="2022-01-18T08:11:43.992Z">
+<meta property="article:modified_time" content="2022-01-18T08:36:40.851Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="zookeeper">
 <meta name="twitter:card" content="summary">
@@ -370,8 +369,6 @@
 
 
 
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_217.png" width = "" height = "" alt="xubatian的博客" align="center" />
-
 <h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><p>Zookeeper集群上每台存的数据都是一模一样的</p>
 <img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_220.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
@@ -479,7 +476,10 @@
 <h1 id="Zookeeper内部原理"><a href="#Zookeeper内部原理" class="headerlink" title="Zookeeper内部原理"></a>Zookeeper内部原理</h1><h2 id="选举机制"><a href="#选举机制" class="headerlink" title="选举机制"></a>选举机制</h2><p>1）半数机制：集群中半数以上机器存活，集群可用。所以Zookeeper适合安装奇数台服务器。<br>2）Zookeeper虽然在配置文件中并没有指定Master和Slave。但是，Zookeeper工作时，是有一个节点为Leader，其他则为Follower，Leader是通过内部的选举机制临时产生的。<br>3）以一个简单的例子来说明整个选举的过程。<br>假设有五台服务器组成的Zookeeper集群，它们的id从1-5，同时它们都是最新启动的，也就是没有历史数据，在存放数据量这一点上，都是一样的。假设这些服务器依序启动，来看看会发生什么，如图所示。</p>
 <img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_230.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
-<p>（1）服务器1启动，此时只有它一台服务器启动了，它发出去的报文没有任何响应，所以它的选举状态一直是LOOKING状态。<br>（2）服务器2启动，它与最开始启动的服务器1进行通信，互相交换自己的选举结果，由于两者都没有历史数据，所以id值较大的服务器2胜出，但是由于没有达到超过半数以上的服务器都同意选举它(这个例子中的半数以上是3)，所以服务器1、2还是继续保持LOOKING状态。<br>（3）服务器3启动，根据前面的理论分析，服务器3成为服务器1、2、3中的老大，而与上面不同的是，此时有三台服务器选举了它，所以它成为了这次选举的Leader。<br>（4）服务器4启动，根据前面的分析，理论上服务器4应该是服务器1、2、3、4中最大的，但是由于前面已经有半数以上的服务器选举了服务器3，所以它只能接收当小弟的命了。<br>（5）服务器5启动，同4一样当小弟。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">（1）服务器1启动，此时只有它一台服务器启动了，它发出去的报文没有任何响应，所以它的选举状态一直是LOOKING状态。</span><br><span class="line">（2）服务器2启动，它与最开始启动的服务器1进行通信，互相交换自己的选举结果，由于两者都没有历史数据，所以id值较大的服务器2胜出，但是由于没有达到超过半数以上的服务器都同意选举它(这个例子中的半数以上是3)，所以服务器1、2还是继续保持LOOKING状态。</span><br><span class="line">（3）服务器3启动，根据前面的理论分析，服务器3成为服务器1、2、3中的老大，而与上面不同的是，此时有三台服务器选举了它，所以它成为了这次选举的Leader。</span><br><span class="line">（4）服务器4启动，根据前面的分析，理论上服务器4应该是服务器1、2、3、4中最大的，但是由于前面已经有半数以上的服务器选举了服务器3，所以它只能接收当小弟的命了。</span><br><span class="line">（5）服务器5启动，同4一样当小弟。</span><br></pre></td></tr></table></figure>
+
+
+
 <p>xubatian补充解析:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">假如需要启动5台zookeeper, 第一台启动投票给自己, 第二台也是, 第三台也是. 到了第三台就已经是半数以上了. 如果你的myId大,则你就是Leader. 这个时里面没有数据,我们启动的情况. 但是假如里面有数据了, 但是我的Leader,即myid=3的挂掉了.那有如何重新选举呢? 原本5台zookeeper数据都是一样的. 但是最后leader,即myid=3的机器在挂掉的瞬间将数据给了myid=1的. 那这个时候其他的还没来得及给. 这个时候我们也是需要考虑谁的数据最全.即, 谁的数据最全, 谁就是大哥,即leader.</span><br><span class="line">    总结: zookeeper的选举机制, 最重要的就是myid和谁的数据量最全.</span><br></pre></td></tr></table></figure>
 
@@ -493,15 +493,15 @@
 
 
 
-<p>1）czxid-创建节点的事务zxid<br>每次修改ZooKeeper状态都会收到一个zxid形式的时间戳，也就是ZooKeeper事务ID。<br>事务ID是ZooKeeper中所有修改总的次序。每个修改都有唯一的zxid，如果zxid1小于zxid2，那么zxid1在zxid2之前发生。<br>2）ctime - znode被创建的毫秒数(从1970年开始)<br>3）mzxid - znode最后更新的事务zxid<br>4）mtime - znode最后修改的毫秒数(从1970年开始)<br>5）pZxid-znode最后更新的子节点zxid<br>6）cversion - znode子节点变化号，znode子节点修改次数<br>7）dataversion - znode数据变化号<br>8）aclVersion - znode访问控制列表的变化号<br>9）ephemeralOwner- 如果是临时节点，这个是znode拥有者的session id。如果不是临时节点则是0。<br>10）dataLength- znode的数据长度<br>11）numChildren - znode子节点数量</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">1）czxid-创建节点的事务zxid</span><br><span class="line">每次修改ZooKeeper状态都会收到一个zxid形式的时间戳，也就是ZooKeeper事务ID。</span><br><span class="line">事务ID是ZooKeeper中所有修改总的次序。每个修改都有唯一的zxid，如果zxid1小于zxid2，那么zxid1在zxid2之前发生。</span><br><span class="line">2）ctime - znode被创建的毫秒数(从1970年开始)</span><br><span class="line">3）mzxid - znode最后更新的事务zxid</span><br><span class="line">4）mtime - znode最后修改的毫秒数(从1970年开始)</span><br><span class="line">5）pZxid-znode最后更新的子节点zxid</span><br><span class="line">6）cversion - znode子节点变化号，znode子节点修改次数</span><br><span class="line">7）dataversion - znode数据变化号</span><br><span class="line">8）aclVersion - znode访问控制列表的变化号</span><br><span class="line">9）ephemeralOwner- 如果是临时节点，这个是znode拥有者的session id。如果不是临时节点则是0。</span><br><span class="line">10）dataLength- znode的数据长度</span><br><span class="line">11）numChildren - znode子节点数量</span><br></pre></td></tr></table></figure>
+
+
+
+
+
 <h2 id="监听器原理"><a href="#监听器原理" class="headerlink" title="监听器原理"></a>监听器原理</h2><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_233.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
-<h2 id="写数据流程"><a href="#写数据流程" class="headerlink" title="写数据流程"></a>写数据流程</h2><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_234.png" width = "" height = "" alt="xubatian的博客" align="center" />
-
-
-
-
-
+<h2 id="写数据流程"><a href="#写数据流程" class="headerlink" title="写数据流程"></a>写数据流程</h2><p><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_234.png" alt="blog: www.xubatian.cn"></p>
 <h1 id="Zookeeper实战"><a href="#Zookeeper实战" class="headerlink" title="Zookeeper实战"></a>Zookeeper实战</h1><h2 id="分布式安装部署"><a href="#分布式安装部署" class="headerlink" title="分布式安装部署"></a>分布式安装部署</h2><p>1．集群规划<br>在hadoop102、hadoop103和hadoop104三个节点上部署Zookeeper。<br>2．解压安装<br>（1）解压Zookeeper安装包到/opt/module/目录下</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[shangbaishuyao@hadoop102 software]$ tar -zxvf zookeeper-3.4.10.tar.gz -C /opt/module/</span><br></pre></td></tr></table></figure>
 
