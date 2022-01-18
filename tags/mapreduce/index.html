@@ -98,9 +98,9 @@
 			
 				<li><a href="/" >主页</a></li>
 			
-				<li><a href="/categories/%E5%8A%A8%E6%80%81/" >动态</a></li>
-			
 				<li><a href="/categories/%E7%9B%AE%E5%BD%95/" >目录</a></li>
+			
+				<li><a href="/categories/%E5%8A%A8%E6%80%81/" >动态</a></li>
 			
 				<li><a href="/categories/Java/" >Java</a></li>
 			
@@ -253,9 +253,9 @@
 				
 					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/categories/%E5%8A%A8%E6%80%81/">动态</a></li>
-		        
 					<li style="width: 16.666666666666668%"><a href="/categories/%E7%9B%AE%E5%BD%95/">目录</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/categories/%E5%8A%A8%E6%80%81/">动态</a></li>
 		        
 					<li style="width: 16.666666666666668%"><a href="/categories/Java/">Java</a></li>
 		        
@@ -289,6 +289,68 @@
           <a href="/archives/2022" class="archive-year">2022</a>
         </div>
         <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	
+<a href="/MapReduce%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86%E4%B9%8BInputFormat%E6%95%B0%E6%8D%AE%E8%BE%93%E5%85%A5/" class="archive-article-date">
+        <time datetime="2022-01-14T16:20:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-15</time>
+</a>
+
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+	
+	  <a class="archive-article-title" href="/MapReduce%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86%E4%B9%8BInputFormat%E6%95%B0%E6%8D%AE%E8%BE%93%E5%85%A5/">MapReduce框架原理之InputFormat数据输入</a>
+	
+    </h1>
+  
+
+
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">mapreduce</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">InputFormat</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+          
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+        </div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+    
     
     <article class="archive-article archive-type-post">
   <div class="archive-article-inner">
@@ -486,10 +548,6 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">xubatian博客导航栏</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -571,6 +629,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Hadoop企业级优化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">InputFormat</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">技术文章索引</a>
               </li>
             
             <div class="clearfix"></div>
@@ -745,72 +811,6 @@
    */
   var pluginModelPath = "assets/", // 模型的文件路径，无需更改
     pluginRootPath = "/live2d_models/"; // 插件的路径，无需更改
-  //特定的模型json文件名称
-  var modelPathJson = {
-    "epsilon2_1": "Epsilon2.1",
-    "gf": "Gantzert_Felixander",
-    "haru/01": "haru01",
-    "haru/02": "haru02",
-    "nietzsche": "nietzche"
-  }
-
-  
-    var modelName = "hijiki";
-  
-
-  var modelJsonPath = "";
-  if (modelPathJson[modelName]) {
-    modelJsonPath = pluginRootPath + modelName + "/" + pluginModelPath + modelPathJson[modelName] +
-      ".model.json";
-  } else {
-    modelJsonPath = pluginRootPath + modelName + "/" + pluginModelPath + modelName + ".model.json";
-  }
-  L2Dwidget.init({
-    model: {
-      jsonPath: modelJsonPath
-    },
-    display: {
-       position: "right", 
-       width: 100, 
-       height: 215, 
-       hOffset: 55, 
-       vOffset: -10 
-    },
-    mobile: {
-       show: false, 
-       scale: 0.6 
-    },
-    react: {
-       opacity: 0.8 
-    }
-  })
-
-</script>
-
-  
-  
-  <script type="text/javascript" src="/lib/snow.js"></script>
-  <script type="text/javascript" src="/lib/jquery-2.1.4.min.js"></script>
-  <script>
-    snow.down();
-    $(window).resize(function() {
-      $("canvas").css("z-index","500").remove();
-      snow.down();
-    });
-  </script>
-  
- <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-		<script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
-		<script>
-			// 对所有链接跳转事件绑定pjax容器container
-			$(document).pjax('a[target!=_blank]', '#container', {fragment:'#container', timeout:8000})
-		</script>
-
-  
-</body>
-
-</html>
-��的路径，无需更改
   //特定的模型json文件名称
   var modelPathJson = {
     "epsilon2_1": "Epsilon2.1",
