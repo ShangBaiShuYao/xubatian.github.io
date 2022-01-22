@@ -11,41 +11,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta name="description" content="我们经常在说命运，但我觉得，命是自己的，运却和整个国家相关联。历史的洪流滚起，即便微如沙粒，也能奔腾入海，也能汇成史诗。 ——人民日报                    ​">
+  <meta name="description" content="我们经常在说命运，但我觉得，命是自己的，运却和整个国家相关联。历史的洪流滚起，即便微如沙粒，也能奔腾入海，也能汇成史诗。 ——人民日报">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Zookeeper简介">
 <meta property="og:url" content="http://xubatian.cn/zookeeper%E7%AE%80%E4%BB%8B/index.html">
 <meta property="og:site_name" content="我的梦想是星辰大海">
-<meta property="og:description" content="我们经常在说命运，但我觉得，命是自己的，运却和整个国家相关联。历史的洪流滚起，即便微如沙粒，也能奔腾入海，也能汇成史诗。 ——人民日报                    ​">
+<meta property="og:description" content="我们经常在说命运，但我觉得，命是自己的，运却和整个国家相关联。历史的洪流滚起，即便微如沙粒，也能奔腾入海，也能汇成史诗。 ——人民日报">
 <meta property="og:locale">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_215.jpg">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_216.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_220.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_219.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_221.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_222.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_223.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_224.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_225.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_226.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_227.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_228.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_229.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_230.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_231.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_232.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_233.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_234.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_235.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_236.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_237.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_238.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_215.jpg">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_216.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_220.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_219.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_221.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_222.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_223.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_224.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_225.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_226.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_227.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_228.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_229.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_230.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_231.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_232.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_233.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_234.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_235.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_236.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_237.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_238.png">
 <meta property="article:published_time" content="2022-01-18T06:51:38.000Z">
-<meta property="article:modified_time" content="2022-01-19T08:47:40.324Z">
+<meta property="article:modified_time" content="2022-01-22T14:05:55.179Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="zookeeper">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_215.jpg">
+<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_215.jpg">
   
     <link rel="alternative" href="/atom.xml" title="我的梦想是星辰大海" type="application/atom+xml">
   
@@ -355,45 +355,44 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>我们经常在说命运，但我觉得，命是自己的，运却和整个国家相关联。历史的洪流滚起，即便微如沙粒，也能奔腾入海，也能汇成史诗。 ——人民日报                   </p>
-<p>​                                              </p>
+    <p>我们经常在说命运，但我觉得，命是自己的，运却和整个国家相关联。历史的洪流滚起，即便微如沙粒，也能奔腾入海，也能汇成史诗。 ——人民日报                                              </p>
 <span id="more"></span>
 
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_215.jpg" width = "" height = "" alt="xubatian的博客" align="center" />
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_215.jpg" width = "" height = "" alt="xubatian的博客" align="center" />
 
 
 
 <h1 id="Zookeeper入门"><a href="#Zookeeper入门" class="headerlink" title="Zookeeper入门"></a>Zookeeper入门</h1><h2 id="zookeeper概述"><a href="#zookeeper概述" class="headerlink" title="zookeeper概述"></a>zookeeper概述</h2><p>Zookeeper是一个开源的分布式的，为分布式应用提供协调服务的Apache项目。多作为集群提供服务的中间件.<br>    分布式系统: 分布式系统指由很多台计算机组成的一个整体！这个整体一致对外,并且处理同一请求，系统对内透明，对外不透明！内部的每台计算机，都可以相互通信，例如使用RPC 或者是WebService！客户端向一个分布式系统发送的一次请求到接受到响应，有可能会经历多台计算机!<br>    Zookeeper从设计模式角度来理解，是一个基于观察者模式设计的分布式服务管理框架，它负责存储和管理大家都关心的数据，然后接受观察者的注册，一旦这些数据的状态发生了变化，Zookeeper就负责通知已经在Zookeeper上注册的那些观察者做出相应的反应.</p>
 <p>Zookeeper = 文件系统 + 通知机制</p>
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_216.png" width = "" height = "" alt="xubatian的博客" align="center" />
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_216.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 
 
 <h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><p>Zookeeper集群上每台存的数据都是一模一样的</p>
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_220.png" width = "" height = "" alt="xubatian的博客" align="center" />
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_220.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
-<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_219.png" width = "" height = "" alt="xubatian的博客" align="center" />
+<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_219.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 <h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>提供的服务包括：统一命名服务、统一配置管理、统一集群管理、服务器节点动态上下线、软负载均衡等。</p>
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_221.png" width = "" height = "" alt="xubatian的博客" align="center" />
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_221.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 <p>域名通过DNS域名解析器解析成ip地址,所以在互联网行业,光有域名是没啥用的</p>
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_222.png" width = "" height = "" alt="xubatian的博客" align="center" />
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_222.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_223.png" width = "" height = "" alt="xubatian的博客" align="center" />
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_223.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_224.png" width = "" height = "" alt="xubatian的博客" align="center" />
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_224.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 
 
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_225.png" width = "" height = "" alt="xubatian的博客" align="center" />
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_225.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 <h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><h3 id="官网首页"><a href="#官网首页" class="headerlink" title="官网首页"></a>官网首页</h3><p><a target="_blank" rel="noopener" href="https://zookeeper.apache.org/">https://zookeeper.apache.org/</a></p>
-<h3 id="下载截图"><a href="#下载截图" class="headerlink" title="下载截图"></a>下载截图</h3><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_226.png" width = "" height = "" alt="xubatian的博客" align="center" />
+<h3 id="下载截图"><a href="#下载截图" class="headerlink" title="下载截图"></a>下载截图</h3><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_226.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 
 
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_227.png" width = "" height = "" alt="xubatian的博客" align="center" />
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_227.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 <h1 id="Zookeeper安装"><a href="#Zookeeper安装" class="headerlink" title="Zookeeper安装"></a>Zookeeper安装</h1><h2 id="本地模式安装部署"><a href="#本地模式安装部署" class="headerlink" title="本地模式安装部署"></a>本地模式安装部署</h2><p>1．安装前准备<br>（1）安装Jdk<br>（2）拷贝Zookeeper安装包到Linux系统下<br>（3）解压到指定目录</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[shangbaishuyao@hadoop102 software]$ tar -zxvf zookeeper-3.4.10.tar.gz -C /opt/module/</span><br></pre></td></tr></table></figure>
@@ -458,11 +457,11 @@
 </tr>
 </tbody></table>
 <p>注: 使用之前，需要先安装nc，可以使用yum方式进行安装.</p>
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_228.png" width = "" height = "" alt="xubatian的博客" align="center" />
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_228.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 
 
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_229.png" width = "" height = "" alt="xubatian的博客" align="center" />
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_229.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 
 
@@ -474,7 +473,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1．tickTime =2000：通信心跳数，Zookeeper服务器与客户端心跳时间，单位毫秒</span><br><span class="line">Zookeeper使用的基本时间，服务器之间或客户端与服务器之间维持心跳的时间间隔，也就是每个tickTime时间就会发送一个心跳，时间单位为毫秒。</span><br><span class="line">它用于心跳机制，并且设置最小的session超时时间为两倍心跳时间。(session的最小超时时间是2*tickTime)</span><br><span class="line">2．initLimit =10：LF初始通信时限</span><br><span class="line">集群中的Follower跟随者服务器与Leader领导者服务器之间初始连接时能容忍的最多心跳数（tickTime的数量），用它来限定集群中的Zookeeper服务器连接到Leader的时限。</span><br><span class="line">3．syncLimit =5：LF同步通信时限</span><br><span class="line">集群中Leader与Follower之间的最大响应时间单位，假如响应超过syncLimit * tickTime，Leader认为Follwer死掉，从服务器列表中删除Follwer。</span><br><span class="line">4．dataDir：数据文件目录+数据持久化路径</span><br><span class="line">主要用于保存Zookeeper中的数据。</span><br><span class="line">5．clientPort =2181：客户端连接端口</span><br><span class="line">监听客户端连接的端口。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h1 id="Zookeeper内部原理"><a href="#Zookeeper内部原理" class="headerlink" title="Zookeeper内部原理"></a>Zookeeper内部原理</h1><h2 id="选举机制"><a href="#选举机制" class="headerlink" title="选举机制"></a>选举机制</h2><p>1）半数机制：集群中半数以上机器存活，集群可用。所以Zookeeper适合安装奇数台服务器。<br>2）Zookeeper虽然在配置文件中并没有指定Master和Slave。但是，Zookeeper工作时，是有一个节点为Leader，其他则为Follower，Leader是通过内部的选举机制临时产生的。<br>3）以一个简单的例子来说明整个选举的过程。<br>假设有五台服务器组成的Zookeeper集群，它们的id从1-5，同时它们都是最新启动的，也就是没有历史数据，在存放数据量这一点上，都是一样的。假设这些服务器依序启动，来看看会发生什么，如图所示。</p>
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_230.png" width = "" height = "" alt="xubatian的博客" align="center" />
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_230.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">（1）服务器1启动，此时只有它一台服务器启动了，它发出去的报文没有任何响应，所以它的选举状态一直是LOOKING状态。</span><br><span class="line">（2）服务器2启动，它与最开始启动的服务器1进行通信，互相交换自己的选举结果，由于两者都没有历史数据，所以id值较大的服务器2胜出，但是由于没有达到超过半数以上的服务器都同意选举它(这个例子中的半数以上是3)，所以服务器1、2还是继续保持LOOKING状态。</span><br><span class="line">（3）服务器3启动，根据前面的理论分析，服务器3成为服务器1、2、3中的老大，而与上面不同的是，此时有三台服务器选举了它，所以它成为了这次选举的Leader。</span><br><span class="line">（4）服务器4启动，根据前面的分析，理论上服务器4应该是服务器1、2、3、4中最大的，但是由于前面已经有半数以上的服务器选举了服务器3，所以它只能接收当小弟的命了。</span><br><span class="line">（5）服务器5启动，同4一样当小弟。</span><br></pre></td></tr></table></figure>
 
@@ -483,13 +482,13 @@
 <p>xubatian补充解析:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">假如需要启动5台zookeeper, 第一台启动投票给自己, 第二台也是, 第三台也是. 到了第三台就已经是半数以上了. 如果你的myId大,则你就是Leader. 这个时里面没有数据,我们启动的情况. 但是假如里面有数据了, 但是我的Leader,即myid=3的挂掉了.那有如何重新选举呢? 原本5台zookeeper数据都是一样的. 但是最后leader,即myid=3的机器在挂掉的瞬间将数据给了myid=1的. 那这个时候其他的还没来得及给. 这个时候我们也是需要考虑谁的数据最全.即, 谁的数据最全, 谁就是大哥,即leader.</span><br><span class="line">    总结: zookeeper的选举机制, 最重要的就是myid和谁的数据量最全.</span><br></pre></td></tr></table></figure>
 
-<h2 id="节点类型"><a href="#节点类型" class="headerlink" title="节点类型"></a>节点类型</h2><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_231.png" width = "" height = "" alt="xubatian的博客" align="center" />
+<h2 id="节点类型"><a href="#节点类型" class="headerlink" title="节点类型"></a>节点类型</h2><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_231.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 
 
 
 
-<h2 id="Stat结构体"><a href="#Stat结构体" class="headerlink" title="Stat结构体"></a>Stat结构体</h2><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_232.png" width = "" height = "" alt="xubatian的博客" align="center" />
+<h2 id="Stat结构体"><a href="#Stat结构体" class="headerlink" title="Stat结构体"></a>Stat结构体</h2><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_232.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 
 
@@ -499,9 +498,9 @@
 
 
 
-<h2 id="监听器原理"><a href="#监听器原理" class="headerlink" title="监听器原理"></a>监听器原理</h2><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_233.png" width = "" height = "" alt="xubatian的博客" align="center" />
+<h2 id="监听器原理"><a href="#监听器原理" class="headerlink" title="监听器原理"></a>监听器原理</h2><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_233.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
-<h2 id="写数据流程"><a href="#写数据流程" class="headerlink" title="写数据流程"></a>写数据流程</h2><p><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_234.png" alt="blog: www.xubatian.cn"></p>
+<h2 id="写数据流程"><a href="#写数据流程" class="headerlink" title="写数据流程"></a>写数据流程</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_234.png" alt="blog: www.xubatian.cn"></p>
 <h1 id="Zookeeper实战"><a href="#Zookeeper实战" class="headerlink" title="Zookeeper实战"></a>Zookeeper实战</h1><h2 id="分布式安装部署"><a href="#分布式安装部署" class="headerlink" title="分布式安装部署"></a>分布式安装部署</h2><p>1．集群规划<br>在hadoop102、hadoop103和hadoop104三个节点上部署Zookeeper。<br>2．解压安装<br>（1）解压Zookeeper安装包到/opt/module/目录下</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[shangbaishuyao@hadoop102 software]$ tar -zxvf zookeeper-3.4.10.tar.gz -C /opt/module/</span><br></pre></td></tr></table></figure>
 
@@ -563,8 +562,8 @@
 <td>查看当前节点数据并能看到更新次数等数据</td>
 </tr>
 <tr>
-<td>create 创建节点<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_235.png" alt="img"></td>
-<td>普通创建-s  含有序列-e  临时（重启或者超时消失） 上白书妖补充:<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_236.png" alt="img"> 你在创建节点的时候要指定一下这个节点要存写什么数据,不然不给你创建节点,如下图:<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_237.png" alt="img"></td>
+<td>create 创建节点<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_235.png" alt="img"></td>
+<td>普通创建-s  含有序列-e  临时（重启或者超时消失） 上白书妖补充:<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_236.png" alt="img"> 你在创建节点的时候要指定一下这个节点要存写什么数据,不然不给你创建节点,如下图:<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_237.png" alt="img"></td>
 </tr>
 <tr>
 <td>get path [watch]</td>
@@ -677,7 +676,7 @@
 <h2 id="修改znode数据-获得znode数据-删除znode节点"><a href="#修改znode数据-获得znode数据-删除znode节点" class="headerlink" title="修改znode数据,获得znode数据,删除znode节点"></a>修改znode数据,获得znode数据,删除znode节点</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    获取Znode数据</span></span><br><span class="line"><span class="comment">    修改znode数据</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testznodeData</span><span class="params">()</span> <span class="keyword">throws</span> KeeperException, InterruptedException</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">byte</span>[] getdatas = zkClient.getData(<span class="string">&quot;/shangbaishuyao&quot;</span>,<span class="keyword">false</span> , <span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">    Stat setdatas = zkClient.setData(<span class="string">&quot;/shangbaishuyao&quot;</span>,<span class="string">&quot;xww&quot;</span>.getBytes(),<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    System.out.println(<span class="string">&quot;得到shangbaishuyao节点的数据&quot;</span>+<span class="keyword">new</span> String(getdatas));</span><br><span class="line">    System.out.println(<span class="string">&quot;修改shangbaishuyao节点的数据&quot;</span> + setdatas);</span><br><span class="line"></span><br><span class="line">zkClient.delete(<span class="string">&quot;/shangbaishuyao&quot;</span>,<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="监听服务器节点动态上下线案例"><a href="#监听服务器节点动态上下线案例" class="headerlink" title="监听服务器节点动态上下线案例"></a>监听服务器节点动态上下线案例</h2><p>1．需求<br>某分布式系统中，主节点可以有多台，可以动态上下线，任意一台客户端都能实时感知到主节点服务器的上下线。<br>2．需求分析，如图所示</p>
-<p><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_238.png" alt="blog: www.xubatian.cn"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_238.png" alt="blog: www.xubatian.cn"></p>
 <h2 id="案例代码-1"><a href="#案例代码-1" class="headerlink" title="案例代码"></a>案例代码</h2><p><a target="_blank" rel="noopener" href="https://github.com/ShangBaiShuYao/bigdata/blob/master/src/main/java/com/shangbaishuyao/zookeeper/zookeeperCase/">https://github.com/ShangBaiShuYao/bigdata/blob/master/src/main/java/com/shangbaishuyao/zookeeper/zookeeperCase/</a></p>
 
     

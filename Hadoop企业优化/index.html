@@ -18,19 +18,19 @@
 <meta property="og:site_name" content="我的梦想是星辰大海">
 <meta property="og:description" content="跳出原有的格局，用积极的心态，去学习新的思维方式，许多困难都能迎刃而解。——人民日报">
 <meta property="og:locale">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_137.jpg">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_137.jpg">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_140.png">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_141.png">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_143.png">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_144.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_145.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_145.png">
 <meta property="article:published_time" content="2022-01-16T16:08:45.000Z">
-<meta property="article:modified_time" content="2022-01-19T08:06:42.126Z">
+<meta property="article:modified_time" content="2022-01-22T14:05:55.422Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="Hadoop">
 <meta property="article:tag" content="Hadoop企业级优化">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_137.jpg">
+<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_137.jpg">
   
     <link rel="alternative" href="/atom.xml" title="我的梦想是星辰大海" type="application/atom+xml">
   
@@ -343,7 +343,7 @@
     <p>跳出原有的格局，用积极的心态，去学习新的思维方式，许多困难都能迎刃而解。——人民日报                              </p>
 <span id="more"></span>
 
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_137.jpg" width = "" height = "" alt="xubatian的博客" align="center" />
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_137.jpg" width = "" height = "" alt="xubatian的博客" align="center" />
 
 
 
@@ -518,7 +518,7 @@
 <h3 id="案例代码-1"><a href="#案例代码-1" class="headerlink" title="案例代码"></a>案例代码</h3><p><a target="_blank" rel="noopener" href="https://github.com/ShangBaiShuYao/bigdata/blob/master/src/main/java/com/shangbaishuyao/hadoop/FindBlogFriends/">https://github.com/ShangBaiShuYao/bigdata/blob/master/src/main/java/com/shangbaishuyao/hadoop/FindBlogFriends/</a></p>
 <h1 id="常见错误及解决方案"><a href="#常见错误及解决方案" class="headerlink" title="常见错误及解决方案"></a>常见错误及解决方案</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>）导包容易出错。尤其Text和CombineTextInputFormat。</span><br><span class="line"><span class="number">2</span>）Mapper中第一个输入的参数必须是LongWritable或者NullWritable，不可以是IntWritable.  报的错误是类型转换异常。</span><br><span class="line"><span class="number">3</span>）java.lang.Exception: java.io.IOException: Illegal partition <span class="keyword">for</span> <span class="number">13926435656</span> (<span class="number">4</span>)，说明Partition和ReduceTask个数没对上，调整ReduceTask个数。</span><br><span class="line"><span class="number">4</span>）如果分区数不是<span class="number">1</span>，但是reducetask为<span class="number">1</span>，是否执行分区过程。答案是：不执行分区过程。因为在MapTask的源码中，执行分区的前提是先判断ReduceNum个数是否大于<span class="number">1</span>。不大于<span class="number">1</span>肯定不执行。</span><br><span class="line"><span class="number">5</span>）在Windows环境编译的jar包导入到Linux环境中运行，</span><br><span class="line">hadoop jar wc.jar com.atguigu.mapreduce.wordcount.WordCountDriver /user/atguigu/ /user/atguigu/output</span><br><span class="line">报如下错误：</span><br><span class="line">Exception in thread <span class="string">&quot;main&quot;</span> java.lang.UnsupportedClassVersionError: com/atguigu/mapreduce/wordcount/WordCountDriver : Unsupported major.minor version <span class="number">52.0</span></span><br><span class="line">原因是Windows环境用的jdk1<span class="number">.7</span>，Linux环境用的jdk1<span class="number">.8</span>。</span><br><span class="line">解决方案：统一jdk版本。</span><br><span class="line"><span class="number">6</span>）缓存pd.txt小文件案例中，报找不到pd.txt文件</span><br><span class="line">原因：大部分为路径书写错误。还有就是要检查pd.txt.txt的问题。还有个别电脑写相对路径找不到pd.txt，可以修改为绝对路径。</span><br><span class="line"><span class="number">7</span>）报类型转换异常。</span><br><span class="line">通常都是在驱动函数中设置Map输出和最终输出时编写错误。</span><br><span class="line">Map输出的key如果没有排序，也会报类型转换异常。</span><br><span class="line"><span class="number">8</span>）集群中运行wc.jar时出现了无法获得输入文件。</span><br><span class="line">原因：WordCount案例的输入文件不能放用HDFS集群的根目录。</span><br><span class="line"><span class="number">9</span>）出现了如下相关异常</span><br><span class="line">Exception in thread <span class="string">&quot;main&quot;</span> java.lang.UnsatisfiedLinkError: org.apache.hadoop.io.nativeio.NativeIO$Windows.access0(Ljava/lang/String;I)Z</span><br><span class="line">	at org.apache.hadoop.io.nativeio.NativeIO$Windows.access0(Native Method)</span><br><span class="line">	at org.apache.hadoop.io.nativeio.NativeIO$Windows.access(NativeIO.java:<span class="number">609</span>)</span><br><span class="line">	at org.apache.hadoop.fs.FileUtil.canRead(FileUtil.java:<span class="number">977</span>)</span><br><span class="line">java.io.IOException: Could not locate executable <span class="keyword">null</span>\bin\winutils.exe in the Hadoop binaries.</span><br><span class="line">	at org.apache.hadoop.util.Shell.getQualifiedBinPath(Shell.java:<span class="number">356</span>)</span><br><span class="line">	at org.apache.hadoop.util.Shell.getWinUtilsPath(Shell.java:<span class="number">371</span>)</span><br><span class="line">	at org.apache.hadoop.util.Shell.&lt;clinit&gt;(Shell.java:<span class="number">364</span>)</span><br><span class="line">解决方案：拷贝hadoop.dll文件到Windows目录C:\Windows\System32。个别同学电脑还需要修改Hadoop源码。</span><br><span class="line">方案二：创建如下包名，并将NativeIO.java拷贝到该包名下</span><br></pre></td></tr></table></figure>
 
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_145.png" width = "" height = "" alt="xubatian的博客" align="center" />
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_145.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 
 

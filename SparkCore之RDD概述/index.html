@@ -18,20 +18,20 @@
 <meta property="og:site_name" content="我的梦想是星辰大海">
 <meta property="og:description" content="仰观天宇，时间更加深邃；俯身耕耘，未来无限可能                  ——人民日报">
 <meta property="og:locale">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_331.jpg">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_332.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_333.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_334.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_336.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_337.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_338.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_339.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_331.jpg">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_332.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_333.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_334.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_336.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_337.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_338.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_339.png">
 <meta property="article:published_time" content="2022-01-19T06:22:21.000Z">
-<meta property="article:modified_time" content="2022-01-19T06:42:25.746Z">
+<meta property="article:modified_time" content="2022-01-22T14:05:55.338Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="spark">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_331.jpg">
+<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_331.jpg">
   
     <link rel="alternative" href="/atom.xml" title="我的梦想是星辰大海" type="application/atom+xml">
   
@@ -344,15 +344,15 @@
     <p>仰观天宇，时间更加深邃；俯身耕耘，未来无限可能                  ——人民日报    </p>
 <span id="more"></span>
 
-<p><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_331.jpg" alt="blog: www.xubatian.cn"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_331.jpg" alt="blog: www.xubatian.cn"></p>
 <p>我们Spark中的stage是按照shuffle来切的.</p>
 <h1 id="RDD概述"><a href="#RDD概述" class="headerlink" title="RDD概述"></a>RDD概述</h1><h2 id="什么是RDD"><a href="#什么是RDD" class="headerlink" title="什么是RDD"></a>什么是RDD</h2><p>RDD（Resilient Distributed Dataset）叫做弹性分布式数据集，是Spark中最基本的数据抽象。代码中是一个抽象类，它代表一个弹性的(分区)、不可变(元素)、可分区、里面的元素可并行计算的集合。</p>
 <p>RDD是抽象类</p>
-<h2 id="RDD的属性"><a href="#RDD的属性" class="headerlink" title="RDD的属性"></a>RDD的属性</h2><p><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_332.png" alt="blog: www.xubatian.cn"></p>
+<h2 id="RDD的属性"><a href="#RDD的属性" class="headerlink" title="RDD的属性"></a>RDD的属性</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_332.png" alt="blog: www.xubatian.cn"></p>
 <p>（1）一组分区（Partition）,切片和分区是一样的，即数据集的基本组成单位；<br>（2）一个计算每个分区的函数；<br>（3）RDD之间的依赖关系；<br>（4）一个Partitioner，即RDD的分片函数；<br>（5）一个列表，存储存取每个Partition的优先位置（preferred location）。</p>
 <h2 id="RDD特点"><a href="#RDD特点" class="headerlink" title="RDD特点"></a>RDD特点</h2><p>RDD表示只读(不可变性)的分区的数据集，对RDD进行改动，只能通过RDD的转换操作，由一个RDD得到一个新的RDD，新的RDD包含了从其他RDD衍生所必需的信息。RDDs之间存在依赖，RDD的执行是按照血缘关系延时计算的。如果血缘关系较长，可以通过持久化RDD来切断血缘关系。</p>
 <h2 id="弹性"><a href="#弹性" class="headerlink" title="弹性"></a>弹性</h2><p>存储的弹性：内存与磁盘的自动切换；<br>容错的弹性：数据丢失可以自动恢复；<br>计算的弹性：计算出错重试机制；<br>分片的弹性：可根据需要重新分片。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_333.png" alt="blog: www.xubatian.cn"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_333.png" alt="blog: www.xubatian.cn"></p>
 <h2 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h2><p>RDD逻辑上是分区的，每个分区的数据是抽象存在的，计算的时候会通过一个compute(计算)函数得到每个分区的数据。如果RDD是通过已有的文件系统构建，则compute(计算)函数是读取指定文件系统中的数据，如果RDD是通过其他RDD转换而来，则compute(计算)函数是执行转换逻辑将其他RDD的数据进行转换</p>
 <h2 id="只读"><a href="#只读" class="headerlink" title="只读"></a>只读</h2><p>RDD是只读的（元素不可变），要想改变RDD中的数据，只能在现有的RDD基础上创建新的RDD。<br>由一个RDD转换到另一个RDD，可以通过丰富的操作算子实现，不再像MapReduce那样只能写map和reduce了。</p>
 <p>RDD的操作算子包括两类，<br>一类叫做Transformations(转换)，它是用来将RDD进行转化，构建RDD的血缘关系；<br>另一类叫做Actions(行动)，它是用来触发RDD的计算，得到RDD的相关计算结果或者将RDD保存的文件系统中。下图是RDD所支持的操作算子列表。</p>
@@ -361,18 +361,18 @@
 <p>这里的一对一,一对多指的是分区</p>
 <p>注意: 依赖和shuffle有关系</p>
 <p>原图:</p>
-<p><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_334.png" alt="blog: www.xubatian.cn"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_334.png" alt="blog: www.xubatian.cn"></p>
 <p>博主解读:</p>
-<p><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_336.png" alt="blog: www.xubatian.cn"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_336.png" alt="blog: www.xubatian.cn"></p>
 <p>父RDD中的全部数据被某一个子RDD的某个分区全部拥有我们叫窄依赖</p>
-<p><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_337.png" alt="blog: www.xubatian.cn"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_337.png" alt="blog: www.xubatian.cn"></p>
 <h2 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h2><p>如果在应用程序中多次使用同一个RDD，可以将该RDD缓存起来，该RDD只有在第一次计算的时候会根据血缘关系得到分区的数据，在后续其他地方用到该RDD的时候，会直接从缓存处取而不用再根据血缘关系计算，这样就加速后期的重用。如下图所示，RDD-1经过一系列的转换后得到RDD-n并保存到hdfs，RDD-1在这一过程中会有个中间结果，如果将其缓存到内存，那么在随后的RDD-1转换到RDD-m这一过程中，就不会计算其之前的RDD-0了。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_338.png" alt="blog: www.xubatian.cn"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_338.png" alt="blog: www.xubatian.cn"></p>
 <h2 id="CheckPoint"><a href="#CheckPoint" class="headerlink" title="CheckPoint"></a>CheckPoint</h2><p>切断血缘关系后可以从CheckPoint中拿数据</p>
 <p>虽然RDD的血缘关系天然地可以实现容错，当RDD的某个分区数据失败或丢失，可以通过血缘关系重建。但是对于长时间迭代型应用来说，随着迭代的进行，RDDs之间的血缘关系会越来越长，一旦在后续迭代过程中出错，则需要通过非常长的血缘关系去重建，势必影响性能。为此，RDD支持checkpoint将数据保存到持久化的存储中，这样就可以切断之前的血缘关系，因为checkpoint后的RDD不需要知道它的父RDDs了，它可以从checkpoint处拿到数据。</p>
 <p>checkPoint将数据持久化了之后他就会切断血缘关系, 因为他认为你持久化到文件当中后这个数据就不会丢了,这个依赖关系就不需要了,就切断了. 因为你是文件嘛, 而且默认一般存在hdfs中,hdfs又默认有三个副本. 所以他觉得你数据不会丢了. 既然不会丢了,依赖关系就不要了, 因为依赖关系就是防止你数据丢了重新计算做数据恢复的.</p>
 <p>但是你缓存到内存当中,你不能将依赖切断, 因为内存当中数据可能会掉的.他可能还要用这个依赖关系重新做计算的.</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_339.png" alt="blog: www.xubatian.cn"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_339.png" alt="blog: www.xubatian.cn"></p>
 
     
 

@@ -19,13 +19,13 @@
 <meta property="og:description" content="感动源于真实，而真实不是坐而论道就能做到的，不是闭门造车就能实现的，不是靠天马行空的幻想就能再现的。——人民日报">
 <meta property="og:locale">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_211.jpg">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_92.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_93.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_92.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_93.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mapreduce5.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mapreduce8.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@v1.0/hadoop/mapreduce9.png">
 <meta property="article:published_time" content="2022-01-12T13:12:15.000Z">
-<meta property="article:modified_time" content="2022-01-19T08:04:06.905Z">
+<meta property="article:modified_time" content="2022-01-22T14:05:55.280Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="MapReduce">
 <meta name="twitter:card" content="summary">
@@ -355,14 +355,14 @@
 <p>那么数据存储了,我需要分析呀.如何取分析呢?使用什么引擎去分析呢?<br>答案就是: MapReduce.   一个模块负责存储, 一个模块负责分析.</p>
 <h1 id="MapReduce概述"><a href="#MapReduce概述" class="headerlink" title="MapReduce概述"></a>MapReduce概述</h1><h2 id="MapReduce定义"><a href="#MapReduce定义" class="headerlink" title="MapReduce定义"></a>MapReduce定义</h2><p>MapReduce是一个分布式运算架，是用户开发“基于Hadoop的数据分析应用”的核心框架。<br>MapReduce核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序，并发运行在一个Hadoop集群上。</p>
 <p>&emsp;     </p>
-<h2 id="MapReduce优缺点"><a href="#MapReduce优缺点" class="headerlink" title="MapReduce优缺点"></a>MapReduce优缺点</h2><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_92.png" width = "" height = "" alt="xubatian的博客" align="center" />
+<h2 id="MapReduce优缺点"><a href="#MapReduce优缺点" class="headerlink" title="MapReduce优缺点"></a>MapReduce优缺点</h2><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_92.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">什么叫离线处理?</span><br><span class="line">他对比的就是实时处理,就像mysql等就可以实时的返回结果;</span><br><span class="line">就是我已经有大量的数据了,你通过hadoop里面的hdfs,mapReduce去做运算,最终经过一段时间的运算给我得出结果,这是要耗费一定时间的,这就叫离线处理</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><p>其实也不能叫缺点,以为他本身设计的时候就没有去考虑这些东西,如果考虑这些东西就可能解决不了大量数据的处理了</p>
-<img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_93.png" width = "" height = "" alt="xubatian的博客" align="center" />
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_93.png" width = "" height = "" alt="xubatian的博客" align="center" />
 
 <p>静态的就表示,数据已经放好了在这里了,而不是你时不时还往里面添加数据,这是不支持的<br>就是如下图,什么叫有向图(DAG)计算?就是后面应用程序输入的数据是前面数据输出的数据,而mapReduce不擅长做这个,但是也不是不能做. 如果这么做的话会有大量的磁盘io操作. 就是你前面的MapReduce程序完成后结果放在磁盘中,下一个MapReduce程序读取磁盘的结果来操作. 这个过程会发生大量的磁盘io.所以你这个性能是非常低下的</p>
 <h1 id="MapReduce核心思想"><a href="#MapReduce核心思想" class="headerlink" title="MapReduce核心思想"></a>MapReduce核心思想</h1><p>之前map  和 reduce 一个负责分,一个负责合,这是一个很笼统的认识</p>
