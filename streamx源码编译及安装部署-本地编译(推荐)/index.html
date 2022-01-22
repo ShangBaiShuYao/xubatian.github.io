@@ -34,8 +34,10 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/20220122200810.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/20220122201341.png">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/20220122205512.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/20220122201928.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/20220122202012.png">
 <meta property="article:published_time" content="2022-01-22T12:21:54.000Z">
-<meta property="article:modified_time" content="2022-01-22T12:59:31.248Z">
+<meta property="article:modified_time" content="2022-01-22T13:11:35.648Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="streamx">
 <meta property="article:tag" content="streamx源码编译及安装部署">
@@ -330,7 +332,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">488字</span>
+      <span class="post-count">591字</span>
     </span>
   </span>
 
@@ -339,7 +341,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">2分</span>
     </span>
   </span>
 </div>
@@ -388,8 +390,10 @@
 <p>后缀是macOS的是我在本地进行编译的. 后缀是Linux的是我在服务器端编译的.</p>
 <p>二者的区别就是 macOS端的我修改了hadoop版本为3.1.3 ,Flink版本为1.14.3</p>
 <p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/20220122205512.png" alt="blog: www.xubatian.cn"></p>
-<h2 id="streamx部署"><a href="#streamx部署" class="headerlink" title="streamx部署"></a>streamx部署</h2><p>请看我的另一篇文章: streamx源码编译及安装部署-服务器端编译</p>
-<p>地址: </p>
+<h2 id="streamx部署"><a href="#streamx部署" class="headerlink" title="streamx部署"></a>streamx部署</h2><p>请看我的另一篇文章: <a target="_blank" rel="noopener" href="https://www.xubatian.cn/streamx%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%8F%8A%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E7%BC%96%E8%AF%91/">streamx源码编译及安装部署-服务器端编译</a></p>
+<h2 id="启动streamx"><a href="#启动streamx" class="headerlink" title="启动streamx"></a>启动streamx</h2><p><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/20220122201928.png" alt="blog: www.xubatian.cn"></p>
+<h2 id="访问Web页面"><a href="#访问Web页面" class="headerlink" title="访问Web页面"></a>访问Web页面</h2><p><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/20220122202012.png" alt="blog: www.xubatian.cn"></p>
+<h2 id="编译好的streamx存放地址"><a href="#编译好的streamx存放地址" class="headerlink" title="编译好的streamx存放地址"></a>编译好的streamx存放地址</h2><p>streamx1.12.0 源码默认配置 直接编译 编译后的压缩包为: streamx-console-service-1.2.0-Linux-bin.tar.gz<br>streamx1.12.0 源码,修改hadoop版本为3.1.3, flink版本为1.14.3 编译后的压缩包为: streamx-console-service-1.2.0-macOS-bin.tar.gz<br>两个压缩包都方式这里,链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1M4R0K3rOzNZOdilnJiduFw">https://pan.baidu.com/s/1M4R0K3rOzNZOdilnJiduFw</a> 提取码: 2olc</p>
 
     
 
@@ -572,7 +576,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E7%9A%84%E5%89%8D%E6%8F%90%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">源码编译的前提条件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#streamx%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91"><span class="toc-number">2.</span> <span class="toc-text">streamx源码编译</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E5%AE%98%E7%BD%91%E4%B8%8B%E8%BD%BDstreamx%E7%A8%B3%E5%AE%9A%E7%89%88%E6%9C%AC"><span class="toc-number">2.1.</span> <span class="toc-text">从官网下载streamx稳定版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9streamx%E7%9A%84%E7%9B%B8%E5%85%B3%E7%89%88%E6%9C%AC"><span class="toc-number">2.2.</span> <span class="toc-text">修改streamx的相关版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91streamx%E6%BA%90%E7%A0%81"><span class="toc-number">2.3.</span> <span class="toc-text">编译streamx源码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%A5%E9%94%99%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F"><span class="toc-number">2.4.</span> <span class="toc-text">报错及解决方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%B8%8B%E6%98%AF%E7%A4%BA%E4%BE%8B"><span class="toc-number">2.4.1.</span> <span class="toc-text">如下是示例:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%9C%AC%E5%9C%B0maven%E4%BB%93%E5%BA%93-%E5%88%A0%E9%99%A4%E5%85%A8%E9%83%A8%E6%AE%8B%E4%BD%99%E6%96%87%E4%BB%B6"><span class="toc-number">2.4.2.</span> <span class="toc-text">查看本地maven仓库,删除全部残余文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E7%89%88%E6%9C%AC%E4%B8%80%E6%A0%B7%E7%9A%84jar%E5%8C%85"><span class="toc-number">2.4.3.</span> <span class="toc-text">下载版本一样的jar包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E6%96%B0%E7%BC%96%E8%AF%91"><span class="toc-number">2.4.4.</span> <span class="toc-text">重新编译</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8D%E5%A4%8D%E7%BB%8F%E8%BF%87N%E6%AC%A1%E4%B8%8A%E8%BF%B0%E8%A1%8C%E4%B8%BA%E5%90%8E-%E6%81%AD%E5%96%9C%E4%BD%A0-%E6%88%90%E5%8A%9F%E4%BA%86"><span class="toc-number">2.5.</span> <span class="toc-text">反复经过N次上述行为后,恭喜你,成功了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E6%AD%A4%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84%E5%8E%8B%E7%BC%A9%E5%8C%85%E6%8B%B7%E8%B4%9D%E8%87%B3%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E8%A7%A3%E5%8E%8B"><span class="toc-number">2.6.</span> <span class="toc-text">在此目录下的压缩包拷贝至服务器上解压</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#streamx%E9%83%A8%E7%BD%B2"><span class="toc-number">2.7.</span> <span class="toc-text">streamx部署</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E7%9A%84%E5%89%8D%E6%8F%90%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">源码编译的前提条件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#streamx%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91"><span class="toc-number">2.</span> <span class="toc-text">streamx源码编译</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E5%AE%98%E7%BD%91%E4%B8%8B%E8%BD%BDstreamx%E7%A8%B3%E5%AE%9A%E7%89%88%E6%9C%AC"><span class="toc-number">2.1.</span> <span class="toc-text">从官网下载streamx稳定版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9streamx%E7%9A%84%E7%9B%B8%E5%85%B3%E7%89%88%E6%9C%AC"><span class="toc-number">2.2.</span> <span class="toc-text">修改streamx的相关版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91streamx%E6%BA%90%E7%A0%81"><span class="toc-number">2.3.</span> <span class="toc-text">编译streamx源码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%A5%E9%94%99%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F"><span class="toc-number">2.4.</span> <span class="toc-text">报错及解决方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%B8%8B%E6%98%AF%E7%A4%BA%E4%BE%8B"><span class="toc-number">2.4.1.</span> <span class="toc-text">如下是示例:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%9C%AC%E5%9C%B0maven%E4%BB%93%E5%BA%93-%E5%88%A0%E9%99%A4%E5%85%A8%E9%83%A8%E6%AE%8B%E4%BD%99%E6%96%87%E4%BB%B6"><span class="toc-number">2.4.2.</span> <span class="toc-text">查看本地maven仓库,删除全部残余文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E7%89%88%E6%9C%AC%E4%B8%80%E6%A0%B7%E7%9A%84jar%E5%8C%85"><span class="toc-number">2.4.3.</span> <span class="toc-text">下载版本一样的jar包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E6%96%B0%E7%BC%96%E8%AF%91"><span class="toc-number">2.4.4.</span> <span class="toc-text">重新编译</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8D%E5%A4%8D%E7%BB%8F%E8%BF%87N%E6%AC%A1%E4%B8%8A%E8%BF%B0%E8%A1%8C%E4%B8%BA%E5%90%8E-%E6%81%AD%E5%96%9C%E4%BD%A0-%E6%88%90%E5%8A%9F%E4%BA%86"><span class="toc-number">2.5.</span> <span class="toc-text">反复经过N次上述行为后,恭喜你,成功了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E6%AD%A4%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84%E5%8E%8B%E7%BC%A9%E5%8C%85%E6%8B%B7%E8%B4%9D%E8%87%B3%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E8%A7%A3%E5%8E%8B"><span class="toc-number">2.6.</span> <span class="toc-text">在此目录下的压缩包拷贝至服务器上解压</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#streamx%E9%83%A8%E7%BD%B2"><span class="toc-number">2.7.</span> <span class="toc-text">streamx部署</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8streamx"><span class="toc-number">2.8.</span> <span class="toc-text">启动streamx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E9%97%AEWeb%E9%A1%B5%E9%9D%A2"><span class="toc-number">2.9.</span> <span class="toc-text">访问Web页面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E5%A5%BD%E7%9A%84streamx%E5%AD%98%E6%94%BE%E5%9C%B0%E5%9D%80"><span class="toc-number">2.10.</span> <span class="toc-text">编译好的streamx存放地址</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
