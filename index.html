@@ -11,10 +11,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    
-    <!-- <meta name="keywords" content="徐霸天,xubatian,上白书妖,shangbaishuyao">
-    <meta name="description" content="知识源于积累,登峰造极源于自律"> -->
-  
   <meta name="description" content="知识源于积累,登峰造极源于自律">
 <meta property="og:type" content="website">
 <meta property="og:title" content="我的梦想是星辰大海">
@@ -284,7 +280,7 @@
             
 
   
-    <article id="post-streamx源码编译及安装部署" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-streamx源码编译及安装部署-本地编译(推荐)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -292,7 +288,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/streamx%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%8F%8A%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/">streamx源码编译及安装部署</a>
+	  <a class="article-title" href="/streamx%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%8F%8A%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2-%E6%9C%AC%E5%9C%B0%E7%BC%96%E8%AF%91(%E6%8E%A8%E8%8D%90)/">streamx源码编译及安装部署-本地编译(推荐)</a>
 	
     </h1>
   
@@ -300,7 +296,145 @@
 
   
   
-<a href="/streamx%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%8F%8A%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/" class="archive-article-date">
+<a href="/streamx%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%8F%8A%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2-%E6%9C%AC%E5%9C%B0%E7%BC%96%E8%AF%91(%E6%8E%A8%E8%8D%90)/" class="archive-article-date">
+        <time datetime="2022-01-22T12:21:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-22</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>锚定既定奋斗目标，意气风发走向未来。——人民日报</p>
+<!---more-->
+
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_394.jpg" alt="blog: www.xubatian.cn"></p>
+<p>在服务器端进行了streamx编译的那文章也说了,我没有flink,hadoop 的配置,所以我重新进行了streamx的源码编译,版本依旧是streamx-1.2.0 稳定版本</p>
+<p><strong>现在编译的是Flink版本为1.14.3 , hadoop版本为3.1.3.</strong></p>
+<h1 id="源码编译的前提条件"><a href="#源码编译的前提条件" class="headerlink" title="源码编译的前提条件"></a>源码编译的前提条件</h1><p>我使用的是maven 3.8.3版本. node js , jdk1.8.3 ,npm. </p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/20220122203333.png" alt="blog: www.xubatian.cn"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/20220122203432.png" alt="blog: www.xubatian.cn"></p>
+<h1 id="streamx源码编译"><a href="#streamx源码编译" class="headerlink" title="streamx源码编译"></a>streamx源码编译</h1><h2 id="从官网下载streamx稳定版本"><a href="#从官网下载streamx稳定版本" class="headerlink" title="从官网下载streamx稳定版本"></a>从官网下载streamx稳定版本</h2><p>官网地址: <a target="_blank" rel="noopener" href="https://www.streamxhub.com/#">https://www.streamxhub.com/#</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_391.png" alt="blog: www.xubatian.cn"></p>
+<p>github地址: <a target="_blank" rel="noopener" href="https://github.com/streamxhub/streamx">https://github.com/streamxhub/streamx</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/www.xubatian.cn_390.png" alt="blog: www.xubatian.cn"></p>
+<h2 id="修改streamx的相关版本"><a href="#修改streamx的相关版本" class="headerlink" title="修改streamx的相关版本"></a>修改streamx的相关版本</h2><p>修改为公司hadoop,flink,spark等相符合的大数据组件版本. </p>
+<p><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/20220122201007.png" alt="blog: www.xubatian.cn"></p>
+<h2 id="编译streamx源码"><a href="#编译streamx源码" class="headerlink" title="编译streamx源码"></a>编译streamx源码</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/20220122203910.png" alt="blog: www.xubatian.cn"></p>
+<h2 id="报错及解决方式"><a href="#报错及解决方式" class="headerlink" title="报错及解决方式"></a>报错及解决方式</h2><p>常常报错的问题就是 jar包下载不下来. 或者maven镜像无法来取jar包. </p>
+<p>解决方式:</p>
+<p>① 看看是那个jar包下载不下来. </p>
+<p>② 复制该jar名称,去maven中央仓库直接下载版本相同的jar</p>
+<p>maven中央仓库地址: <a target="_blank" rel="noopener" href="https://mvnrepository.com/">https://mvnrepository.com/</a> </p>
+<p>注: 也可以直接放到谷歌浏览器上直接搜索.</p>
+<p>③ 删除之前编译残留的文件,将下载好的jar包拷贝到本地maven仓库(注意:一定要放到指定的文件夹下)</p>
+<p>④ 然后重新编译</p>
+<h3 id="如下是示例"><a href="#如下是示例" class="headerlink" title="如下是示例:"></a>如下是示例:</h3><p><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/20220122194838.png" alt="blog: www.xubatian.cn"></p>
+<h3 id="查看本地maven仓库-删除全部残余文件"><a href="#查看本地maven仓库-删除全部残余文件" class="headerlink" title="查看本地maven仓库,删除全部残余文件"></a>查看本地maven仓库,删除全部残余文件</h3><p><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/20220122195038.png" alt="blog: www.xubatian.cn"></p>
+<h3 id="下载版本一样的jar包"><a href="#下载版本一样的jar包" class="headerlink" title="下载版本一样的jar包"></a>下载版本一样的jar包</h3><p><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/20220122195126.png" alt="blog: www.xubatian.cn"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/20220122195208.png" alt="blog: www.xubatian.cn"></p>
+<p>将下载好的jar拷贝至本地maven仓库</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/20220122195342.png" alt="blog: www.xubatian.cn"></p>
+<h3 id="重新编译"><a href="#重新编译" class="headerlink" title="重新编译"></a>重新编译</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/20220122203910.png" alt="blog: www.xubatian.cn"></p>
+<h2 id="反复经过N次上述行为后-恭喜你-成功了"><a href="#反复经过N次上述行为后-恭喜你-成功了" class="headerlink" title="反复经过N次上述行为后,恭喜你,成功了"></a>反复经过N次上述行为后,恭喜你,成功了</h2><p><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/20220122200810.png" alt="blog: www.xubatian.cn"></p>
+<h2 id="在此目录下的压缩包拷贝至服务器上解压"><a href="#在此目录下的压缩包拷贝至服务器上解压" class="headerlink" title="在此目录下的压缩包拷贝至服务器上解压"></a>在此目录下的压缩包拷贝至服务器上解压</h2><p><img src="https://cdn.jsdelivr.net/gh/ShangBaiShuYao/CDN@master/aliyun/20220122201341.png" alt="blog: www.xubatian.cn"></p>
+<p>后缀是macOS的是我在本地进行编译的. 后缀是Linux的是我在服务器端编译的.</p>
+<p>二者的区别就是 macOS端的我修改了hadoop版本为3.1.3 ,Flink版本为1.14.3</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/20220122205512.png" alt="blog: www.xubatian.cn"></p>
+<h2 id="streamx部署"><a href="#streamx部署" class="headerlink" title="streamx部署"></a>streamx部署</h2><p>请看我的另一篇文章: streamx源码编译及安装部署-服务器端编译</p>
+<p>地址: </p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">streamx</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">streamx源码编译及安装部署</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/streamx%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%8F%8A%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2-%E6%9C%AC%E5%9C%B0%E7%BC%96%E8%AF%91(%E6%8E%A8%E8%8D%90)/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-streamx源码编译及安装部署-服务器端编译" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/streamx%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%8F%8A%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E7%BC%96%E8%AF%91/">streamx源码编译及安装部署-服务器端编译</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/streamx%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%8F%8A%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E7%BC%96%E8%AF%91/" class="archive-article-date">
         <time datetime="2022-01-22T06:38:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-22</time>
 </a>
 
@@ -315,7 +449,7 @@
     
     <p>遇到问题，改变苛求别人的惯性，重新塑造思考问题的方式。换个角度看世界，换个方向看问题，就会豁然开朗。——人民日报</p>
     
-    <a class="article-more-a" style="display: none; href="/streamx%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%8F%8A%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/#more">more >></a>
+    <a class="article-more-a" style="display: none; href="/streamx%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%8F%8A%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E7%BC%96%E8%AF%91/#more">more >></a>
     
     
 
@@ -357,7 +491,7 @@
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/streamx%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%8F%8A%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/">展开全文 >></a>
+      <a class="article-more-a" href="/streamx%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%8F%8A%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E7%BC%96%E8%AF%91/">展开全文 >></a>
     </p>
     
 
@@ -1182,109 +1316,9 @@
 
 
   
-    <article id="post-zookeeper简介" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/zookeeper%E7%AE%80%E4%BB%8B/">Zookeeper简介</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/zookeeper%E7%AE%80%E4%BB%8B/" class="archive-article-date">
-        <time datetime="2022-01-18T06:51:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>我们经常在说命运，但我觉得，命是自己的，运却和整个国家相关联。历史的洪流滚起，即便微如沙粒，也能奔腾入海，也能汇成史诗。 ——人民日报                   </p>
-<p>​                                              </p>
-    
-    <a class="article-more-a" style="display: none; href="/zookeeper%E7%AE%80%E4%BB%8B/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">zookeeper</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/zookeeper%E7%AE%80%E4%BB%8B/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
     </nav>
   
 
@@ -1326,7 +1360,7 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
+		isHome: false,
 		isPost: false,
 		isArchive: false,
 		isTag: false,
