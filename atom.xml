@@ -259,7 +259,7 @@
     <link href="http://xubatian.cn/%E5%8A%A8%E6%80%81/"/>
     <id>http://xubatian.cn/%E5%8A%A8%E6%80%81/</id>
     <published>2022-01-18T05:08:58.000Z</published>
-    <updated>2022-01-22T14:05:55.444Z</updated>
+    <updated>2022-01-22T14:42:10.527Z</updated>
     
     <content type="html"><![CDATA[<p>2022年01月18日 博客框架基本搭建完成,后续完善则是在写文章的基础上进行定向更改. 首先立个flag. 争取在01月21日凌晨 将大数据笔记整理好. 不能耽误后续的目标达成, 时间紧任务重.生死看淡,不服就干.  加油!   —— 来自技术不好,却在努力挣扎的菜鸟</p><span id="more"></span>                                                                                                                <p>热爱生活,爱阳光</p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_212.png" width = "" height = "" alt="xubatian的博客" align="center" />]]></content>
     
@@ -268,7 +268,7 @@
     
     
     
-    <category term="动态" scheme="http://xubatian.cn/categories/%E5%8A%A8%E6%80%81/"/>
+    <category term="-dynamic" scheme="http://xubatian.cn/categories/dynamic/"/>
     
     
     <category term="动态" scheme="http://xubatian.cn/tags/%E5%8A%A8%E6%80%81/"/>
