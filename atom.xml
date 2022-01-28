@@ -6,7 +6,7 @@
   <link href="http://xubatian.cn/atom.xml" rel="self"/>
   
   <link href="http://xubatian.cn/"/>
-  <updated>2022-01-23T03:05:51.541Z</updated>
+  <updated>2022-01-28T06:31:22.587Z</updated>
   <id>http://xubatian.cn/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>到底是什么是我心态不稳?</title>
+    <link href="http://xubatian.cn/%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88%E6%98%AF%E6%88%91%E5%BF%83%E6%80%81%E4%B8%8D%E7%A8%B3/"/>
+    <id>http://xubatian.cn/%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88%E6%98%AF%E6%88%91%E5%BF%83%E6%80%81%E4%B8%8D%E7%A8%B3/</id>
+    <published>2022-01-28T05:47:56.000Z</published>
+    <updated>2022-01-28T06:31:22.587Z</updated>
+    
+    <content type="html"><![CDATA[<p>编译spark源码的三天时间,我到底经历了什么?</p><span id="more"></span><p>原本我是打算使用本地进行编译的…结果撑了一天,不行了.一大波bug正在赶来….</p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128135223.png" alt="博客: www.xubatian.cn"></p><p>这种bug,我解决了不下二十个. 最关键的是,这种报错都是些jar包下载不下来….</p><div align="center">    <img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128135425.png" alt="博客: www.xubatian.cn"></img></div><p>想想还是算了吧,换服务器编译吧… 在准备了一堆maven,scala等一堆环境变量之后,终于走上了编译之路.</p><p>打死我都没想,这条路黑暗了我两天美好的人生….</p><p>再哭一下…..</p><div align="center">    <img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128135700.png" alt="博客: www.xubatian.cn"></img></div><p>———————————————- 以下是我最常遇到的bug  , 经常光顾我 ,也是老熟人了  —————————————————————</p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128135009.png" alt="博客: www.xubatian.cn"></p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128135024.png" alt="博客: www.xubatian.cn"></p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128140050.png" alt="博客: www.xubatian.cn"></p><p>阳光总在风雨后…</p><p>历经三天的折磨,终于编译出了合适我hadoop版本的spark…..</p><p>此处咧嘴大笑….</p><div align="center">    <img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128141051.png" alt="博客: www.xubatian.cn"></img></div><p>炫耀版的展示一下….嘻嘻…</p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/www.xubatian.cn_400.png" alt="博客: www.xubatian.cn"></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;编译spark源码的三天时间,我到底经历了什么?&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="动态" scheme="http://xubatian.cn/categories/%E5%8A%A8%E6%80%81/"/>
+    
+    
+    <category term="动态" scheme="http://xubatian.cn/tags/%E5%8A%A8%E6%80%81/"/>
+    
+  </entry>
   
   <entry>
     <title>streamx源码编译及安装部署-本地编译(推荐)</title>
@@ -435,31 +456,6 @@
     <category term="mapreduce" scheme="http://xubatian.cn/tags/mapreduce/"/>
     
     <category term="InputFormat" scheme="http://xubatian.cn/tags/InputFormat/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hadoop组成模块之mapreduce的MapTask机制和reduceTask机制</title>
-    <link href="http://xubatian.cn/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8Bmapreduce%E7%9A%84MapTask%E6%9C%BA%E5%88%B6%E5%92%8CreduceTask%E6%9C%BA%E5%88%B6/"/>
-    <id>http://xubatian.cn/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8Bmapreduce%E7%9A%84MapTask%E6%9C%BA%E5%88%B6%E5%92%8CreduceTask%E6%9C%BA%E5%88%B6/</id>
-    <published>2022-01-14T14:22:08.000Z</published>
-    <updated>2022-01-23T02:58:21.728Z</updated>
-    
-    <content type="html"><![CDATA[<p>与大雁齐飞，目之所及皆是广袤天空；与苍蝇为伍，所到之处皆是污秽狼藉。——人民日报</p><span id="more"></span><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_210.jpg" width = "" height = "" alt="xubatian的博客" align="center" /><p>前言</p><p>mapreduce过程概括为: InputFormat—-&gt; mapper,shuffle,reducer—&gt;OutputFormat</p><p>上文说了一下InputFormat概念,做的事情,他的一些实现类.</p><p>这里记录一下.Mapper和Reducer的工作机制. shuffle里面会有记录.此处简单记录.</p><h1 id="MapTask工作机制"><a href="#MapTask工作机制" class="headerlink" title="MapTask工作机制"></a>MapTask工作机制</h1><h2 id="MapTask流程图解读"><a href="#MapTask流程图解读" class="headerlink" title="MapTask流程图解读"></a>MapTask流程图解读</h2><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_78.png" width = "" height = "" alt="xubatian的博客" align="center" /><p>（1）Read阶段：MapTask通过用户编写的RecordReader，从输入InputSplit中解析出一个个key/value。</p><p>（2）Map阶段：该节点主要是将解析出的key/value交给用户编写map()函数处理，并产生一系列新的key/value。</p><p>（3）Collect收集阶段：在用户编写map()函数中，当数据处理完成后，一般会调用OutputCollector.collect()输出结果。在该函数内部,</p><p>​          它会将生成的key/value分区（调用Partitioner），并写入一个环形内存缓冲区中。</p><p>   (4)  Spill阶段：即“溢写”，当环形缓冲区满后，MapReduce会将数据写到本地磁盘上，生成一个临时文件。需要注意的是，将数据写入   </p><p>​          本地磁盘之前，先要对数据进行一次本地排序，并在必要时对数据进行合并、压缩等操作。</p><h2 id="溢写阶段详情解读"><a href="#溢写阶段详情解读" class="headerlink" title="溢写阶段详情解读"></a>溢写阶段详情解读</h2><p>步骤1：利用快速排序算法对缓存区内的数据进行排序，排序方式是，先按照分区编号Partition进行排序，然后按照key进行排序。这样，   经过排序后，数据以分区为单位聚集在一起，且同一分区内所有数据按照key有序。</p><p>步骤2：按照分区编号由小到大依次将每个分区中的数据写入任务工作目录下的临时文件output/spillN.out（N表示当前溢写次数）中。如果用户设置了Combiner，则写入文件之前，对每个分区中的数据进行一次聚集操作。</p><p>步骤3：将分区数据的元信息写到内存索引数据结构SpillRecord中，其中每个分区的元信息包括在临时文件中的偏移量、压缩前数据大小和压缩后数据大小。如果当前内存索引大小超过1MB，则将内存索引写到文件output/spillN.out.index中。</p><p>Combine阶段：当所有数据处理完成后，MapTask对所有临时文件进行一次合并，以确保最终只会生成一个数据文件。</p><p>在进行文件合并过程中，MapTask以分区为单位进行合并。对于某个分区，它将采用多轮递归合并的方式。每轮合并io.sort.factor（默认10）个文件，并将产生的文件重新加入待合并列表中，对文件排序后，重复以上过程，直到最终得到一个大文件。</p><p>让每个MapTask最终只生成一个数据文件，可避免同时打开大量文件和同时读取大量小文件产生的随机读取带来的开销。</p><h1 id="ReduceTask工作机制"><a href="#ReduceTask工作机制" class="headerlink" title="ReduceTask工作机制"></a>ReduceTask工作机制</h1><ol><li>runTasks(reduceRunnables, reduceService, “reduce”); 准备执行所有的ReduceTaskRunnable</li><li>执行ReduceTaskRunnable 的run方法</li><li>创建ReduceTask对象  ReduceTask reduce = new ReduceTask(systemJobFile.toString(),reduceId, taskId, mapIds.size(), 1);</li><li>执行ReduceTask的run方法  reduce.run(localConf, Job.this);</li><li>runNewReducer(job, umbilical, reporter, rIter, comparator, keyClass, valueClass);</li><li>reducer.run(reducerContext);</li><li>执行到Reducer中的reduce方法。</li></ol><h2 id="ReduceTask流程图解读"><a href="#ReduceTask流程图解读" class="headerlink" title="ReduceTask流程图解读"></a>ReduceTask流程图解读</h2><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_91.png" width = "" height = "" alt="xubatian的博客" align="center" /><p>​    （1）Copy阶段：ReduceTask从各个MapTask上远程拷贝一片数据，并针对某一片数据，如果其大小超过一定阈值，则写到磁盘上， 否则直接放到内存中。<br>​    （2）Merge阶段：在远程拷贝数据的同时，ReduceTask启动了两个后台线程对内存和磁盘上的文件进行合并，以防止内存使用过多或磁盘上文件过多。<br>​    （3）Sort阶段：按照MapReduce语义，用户编写reduce()函数输入数据是按key进行聚集的一组数据。为了将key相同的数据聚在一起，Hadoop采用了基于排序的策略。由于各个MapTask已经实现对自己的处理结果进行了局部排序，因此，ReduceTask只需对所有数据进行一次归并排序即可。<br>​    （4）Reduce阶段：reduce()函数将计算结果写到HDFS上。</p><h2 id="设置ReduceTask并行度（个数）"><a href="#设置ReduceTask并行度（个数）" class="headerlink" title="设置ReduceTask并行度（个数）"></a>设置ReduceTask并行度（个数）</h2><p>ReduceTask的并行度同样影响整个Job的执行并发度和执行效率，但与MapTask的并发数由切片数决定不同，ReduceTask数量的决定是可以直接手动设置：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 默认值是1，手动设置为4</span><br><span class="line"></span><br><span class="line">job.setNumReduceTasks(4);</span><br></pre></td></tr></table></figure><h2 id="ReduceTask注意事项"><a href="#ReduceTask注意事项" class="headerlink" title="ReduceTask注意事项"></a>ReduceTask注意事项</h2><p>（1）ReduceTask=0，表示没有Reduce阶段，输出文件个数和Map个数一致。<br>（2）ReduceTask默认值就是1，所以输出文件个数为一个。<br>（3）如果数据分布不均匀，就有可能在Reduce阶段产生数据倾斜<br>（4）ReduceTask数量并不是任意设置，还要考虑业务逻辑需求，有些情况下，需要计算全局汇总结果，就只能有1个ReduceTask。<br>（5）具体多少个ReduceTask，需要根据集群性能而定。<br>（6）如果分区数不是1，但是ReduceTask为1，是否执行分区过程。答案是：不执行分区过程。因为在MapTask的源码中，执行分区的前提是先判断ReduceNum个数是否大于1。不大于1肯定不执行。</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;与大雁齐飞，目之所及皆是广袤天空；与苍蝇为伍，所到之处皆是污秽狼藉。——人民日报&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="大数据" scheme="http://xubatian.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
-    
-    
-    <category term="Hadoop" scheme="http://xubatian.cn/tags/Hadoop/"/>
-    
-    <category term="MapReduce" scheme="http://xubatian.cn/tags/MapReduce/"/>
-    
-    <category term="MapTask" scheme="http://xubatian.cn/tags/MapTask/"/>
     
   </entry>
   

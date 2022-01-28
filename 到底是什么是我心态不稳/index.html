@@ -6,42 +6,32 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://xubatian.cn">
-  <title>streamx源码编译及安装部署-本地编译(推荐) | 我的梦想是星辰大海</title>
+  <title>到底是什么是我心态不稳? | 我的梦想是星辰大海</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta name="description" content="锚定既定奋斗目标，意气风发走向未来。——人民日报">
+  <meta name="description" content="编译spark源码的三天时间,我到底经历了什么?">
 <meta property="og:type" content="article">
-<meta property="og:title" content="streamx源码编译及安装部署-本地编译(推荐)">
-<meta property="og:url" content="http://xubatian.cn/streamx%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%8F%8A%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2-%E6%9C%AC%E5%9C%B0%E7%BC%96%E8%AF%91(%E6%8E%A8%E8%8D%90)/index.html">
+<meta property="og:title" content="到底是什么是我心态不稳?">
+<meta property="og:url" content="http://xubatian.cn/%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88%E6%98%AF%E6%88%91%E5%BF%83%E6%80%81%E4%B8%8D%E7%A8%B3/index.html">
 <meta property="og:site_name" content="我的梦想是星辰大海">
-<meta property="og:description" content="锚定既定奋斗目标，意气风发走向未来。——人民日报">
+<meta property="og:description" content="编译spark源码的三天时间,我到底经历了什么?">
 <meta property="og:locale">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_394.jpg">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/20220122203333.png">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/20220122203432.png">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_391.png">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_390.png">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/20220122201007.png">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/20220122203910.png">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/20220122194838.png">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/20220122195038.png">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/20220122195126.png">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/20220122195208.png">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/20220122195342.png">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/20220122203910.png">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/20220122200810.png">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/20220122201341.png">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/20220122205512.png">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/20220122201928.png">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/20220122202012.png">
-<meta property="article:published_time" content="2022-01-22T12:21:54.000Z">
-<meta property="article:modified_time" content="2022-01-23T03:05:51.541Z">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128135223.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128135425.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128135700.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128135009.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128135024.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128140050.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128141051.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/www.xubatian.cn_400.png">
+<meta property="article:published_time" content="2022-01-28T05:47:56.000Z">
+<meta property="article:modified_time" content="2022-01-28T06:31:22.587Z">
 <meta property="article:author" content="xubatian">
-<meta property="article:tag" content="streamx">
+<meta property="article:tag" content="动态">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_394.jpg">
+<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128135223.png">
   
   
     <link rel="icon" href="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/favicon.ico">
@@ -297,14 +287,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-streamx源码编译及安装部署-本地编译(推荐)" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-到底是什么是我心态不稳" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      streamx源码编译及安装部署-本地编译(推荐)
+      到底是什么是我心态不稳?
     </h1>
   
 
@@ -316,8 +306,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/streamx%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%8F%8A%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2-%E6%9C%AC%E5%9C%B0%E7%BC%96%E8%AF%91(%E6%8E%A8%E8%8D%90)/" class="archive-article-date">
-        <time datetime="2022-01-22T12:21:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-22</time>
+<a href="/%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88%E6%98%AF%E6%88%91%E5%BF%83%E6%80%81%E4%B8%8D%E7%A8%B3/" class="archive-article-date">
+        <time datetime="2022-01-28T05:47:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-28</time>
 </a>
 
   
@@ -330,7 +320,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">591字</span>
+      <span class="post-count">209字</span>
     </span>
   </span>
 
@@ -339,7 +329,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">2分</span>
+      <span class="post-count">1分</span>
     </span>
   </span>
 </div>
@@ -350,48 +340,44 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>锚定既定奋斗目标，意气风发走向未来。——人民日报</p>
+    <p>编译spark源码的三天时间,我到底经历了什么?</p>
 <span id="more"></span>
 
+<p>原本我是打算使用本地进行编译的…结果撑了一天,不行了.一大波bug正在赶来….</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128135223.png" alt="博客: www.xubatian.cn"></p>
+<p>这种bug,我解决了不下二十个. 最关键的是,这种报错都是些jar包下载不下来….</p>
+<div align="center">
+    <img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128135425.png" alt="博客: www.xubatian.cn"></img>
+</div>
 
 
-<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_394.jpg" alt="blog: www.xubatian.cn"></p>
-<p>在服务器端进行了streamx编译的那文章也说了,我没有flink,hadoop 的配置,所以我重新进行了streamx的源码编译,版本依旧是streamx-1.2.0 稳定版本</p>
-<p><strong>现在编译的是Flink版本为1.14.3 , hadoop版本为3.1.3.</strong></p>
-<h1 id="源码编译的前提条件"><a href="#源码编译的前提条件" class="headerlink" title="源码编译的前提条件"></a>源码编译的前提条件</h1><p>我使用的是maven 3.8.3版本. node js , jdk1.8.3 ,npm. </p>
-<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/20220122203333.png" alt="blog: www.xubatian.cn"></p>
-<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/20220122203432.png" alt="blog: www.xubatian.cn"></p>
-<h1 id="streamx源码编译"><a href="#streamx源码编译" class="headerlink" title="streamx源码编译"></a>streamx源码编译</h1><h2 id="从官网下载streamx稳定版本"><a href="#从官网下载streamx稳定版本" class="headerlink" title="从官网下载streamx稳定版本"></a>从官网下载streamx稳定版本</h2><p>官网地址: <a target="_blank" rel="noopener" href="https://www.streamxhub.com/#">https://www.streamxhub.com/#</a></p>
-<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_391.png" alt="blog: www.xubatian.cn"></p>
-<p>github地址: <a target="_blank" rel="noopener" href="https://github.com/streamxhub/streamx">https://github.com/streamxhub/streamx</a></p>
-<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_390.png" alt="blog: www.xubatian.cn"></p>
-<h2 id="修改streamx的相关版本"><a href="#修改streamx的相关版本" class="headerlink" title="修改streamx的相关版本"></a>修改streamx的相关版本</h2><p>修改为公司hadoop,flink,spark等相符合的大数据组件版本. </p>
-<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/20220122201007.png" alt="blog: www.xubatian.cn"></p>
-<h2 id="编译streamx源码"><a href="#编译streamx源码" class="headerlink" title="编译streamx源码"></a>编译streamx源码</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/20220122203910.png" alt="blog: www.xubatian.cn"></p>
-<h2 id="报错及解决方式"><a href="#报错及解决方式" class="headerlink" title="报错及解决方式"></a>报错及解决方式</h2><p>常常报错的问题就是 jar包下载不下来. 或者maven镜像无法来取jar包. </p>
-<p>解决方式:</p>
-<p>① 看看是那个jar包下载不下来. </p>
-<p>② 复制该jar名称,去maven中央仓库直接下载版本相同的jar</p>
-<p>maven中央仓库地址: <a target="_blank" rel="noopener" href="https://mvnrepository.com/">https://mvnrepository.com/</a> </p>
-<p>注: 也可以直接放到谷歌浏览器上直接搜索.</p>
-<p>③ 删除之前编译残留的文件,将下载好的jar包拷贝到本地maven仓库(注意:一定要放到指定的文件夹下)</p>
-<p>④ 然后重新编译</p>
-<h3 id="如下是示例"><a href="#如下是示例" class="headerlink" title="如下是示例:"></a>如下是示例:</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/20220122194838.png" alt="blog: www.xubatian.cn"></p>
-<h3 id="查看本地maven仓库-删除全部残余文件"><a href="#查看本地maven仓库-删除全部残余文件" class="headerlink" title="查看本地maven仓库,删除全部残余文件"></a>查看本地maven仓库,删除全部残余文件</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/20220122195038.png" alt="blog: www.xubatian.cn"></p>
-<h3 id="下载版本一样的jar包"><a href="#下载版本一样的jar包" class="headerlink" title="下载版本一样的jar包"></a>下载版本一样的jar包</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/20220122195126.png" alt="blog: www.xubatian.cn"></p>
-<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/20220122195208.png" alt="blog: www.xubatian.cn"></p>
-<p>将下载好的jar拷贝至本地maven仓库</p>
-<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/20220122195342.png" alt="blog: www.xubatian.cn"></p>
-<h3 id="重新编译"><a href="#重新编译" class="headerlink" title="重新编译"></a>重新编译</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/20220122203910.png" alt="blog: www.xubatian.cn"></p>
-<h2 id="反复经过N次上述行为后-恭喜你-成功了"><a href="#反复经过N次上述行为后-恭喜你-成功了" class="headerlink" title="反复经过N次上述行为后,恭喜你,成功了"></a>反复经过N次上述行为后,恭喜你,成功了</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/20220122200810.png" alt="blog: www.xubatian.cn"></p>
-<h2 id="在此目录下的压缩包拷贝至服务器上解压"><a href="#在此目录下的压缩包拷贝至服务器上解压" class="headerlink" title="在此目录下的压缩包拷贝至服务器上解压"></a>在此目录下的压缩包拷贝至服务器上解压</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/20220122201341.png" alt="blog: www.xubatian.cn"></p>
-<p>后缀是macOS的是我在本地进行编译的. 后缀是Linux的是我在服务器端编译的.</p>
-<p>二者的区别就是 macOS端的我修改了hadoop版本为3.1.3 ,Flink版本为1.14.3</p>
-<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/20220122205512.png" alt="blog: www.xubatian.cn"></p>
-<h2 id="streamx部署"><a href="#streamx部署" class="headerlink" title="streamx部署"></a>streamx部署</h2><p>请看我的另一篇文章: <a target="_blank" rel="noopener" href="https://www.xubatian.cn/streamx%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%8F%8A%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E7%BC%96%E8%AF%91/">streamx源码编译及安装部署-服务器端编译</a></p>
-<h2 id="启动streamx"><a href="#启动streamx" class="headerlink" title="启动streamx"></a>启动streamx</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/20220122201928.png" alt="blog: www.xubatian.cn"></p>
-<h2 id="访问Web页面"><a href="#访问Web页面" class="headerlink" title="访问Web页面"></a>访问Web页面</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/20220122202012.png" alt="blog: www.xubatian.cn"></p>
-<h2 id="编译好的streamx存放地址"><a href="#编译好的streamx存放地址" class="headerlink" title="编译好的streamx存放地址"></a>编译好的streamx存放地址</h2><p>streamx1.12.0 源码默认配置 直接编译 编译后的压缩包为: streamx-console-service-1.2.0-Linux-bin.tar.gz<br>streamx1.12.0 源码,修改hadoop版本为3.1.3, flink版本为1.14.3 编译后的压缩包为: streamx-console-service-1.2.0-macOS-bin.tar.gz<br>两个压缩包都方式这里,链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1M4R0K3rOzNZOdilnJiduFw">https://pan.baidu.com/s/1M4R0K3rOzNZOdilnJiduFw</a> 提取码: 2olc</p>
+
+<p>想想还是算了吧,换服务器编译吧… 在准备了一堆maven,scala等一堆环境变量之后,终于走上了编译之路.</p>
+<p>打死我都没想,这条路黑暗了我两天美好的人生….</p>
+<p>再哭一下…..</p>
+<div align="center">
+    <img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128135700.png" alt="博客: www.xubatian.cn"></img>
+</div>
+
+
+
+<p>———————————————- 以下是我最常遇到的bug  , 经常光顾我 ,也是老熟人了  —————————————————————</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128135009.png" alt="博客: www.xubatian.cn"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128135024.png" alt="博客: www.xubatian.cn"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128140050.png" alt="博客: www.xubatian.cn"></p>
+<p>阳光总在风雨后…</p>
+<p>历经三天的折磨,终于编译出了合适我hadoop版本的spark…..</p>
+<p>此处咧嘴大笑….</p>
+<div align="center">
+    <img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128141051.png" alt="博客: www.xubatian.cn"></img>
+</div>
+
+
+
+
+
+<p>炫耀版的展示一下….嘻嘻…</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/www.xubatian.cn_400.png" alt="博客: www.xubatian.cn"></p>
 
     
 
@@ -437,7 +423,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://xubatian.cn/streamx源码编译及安装部署-本地编译(推荐)/" title="streamx源码编译及安装部署-本地编译(推荐)" target="_blank">http://xubatian.cn/streamx源码编译及安装部署-本地编译(推荐)/</a>
+          <a href="http://xubatian.cn/到底是什么是我心态不稳/" title="到底是什么是我心态不稳?" target="_blank">http://xubatian.cn/到底是什么是我心态不稳/</a>
         </li>
         
         <li>
@@ -459,7 +445,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">streamx</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">动态</a>
         		</li>
       		
 		</ul>
@@ -471,7 +457,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
+        			<a href="/categories/动态//" class="article-tag-list-link color3">动态</a>
         		</li>
       		
 		</ul>
@@ -526,7 +512,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/streamx%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%8F%8A%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2-%E6%9C%AC%E5%9C%B0%E7%BC%96%E8%AF%91(%E6%8E%A8%E8%8D%90)/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88%E6%98%AF%E6%88%91%E5%BF%83%E6%80%81%E4%B8%8D%E7%A8%B3/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -541,18 +527,9 @@
 
 <nav id="article-nav">
   
-    <a href="/%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88%E6%98%AF%E6%88%91%E5%BF%83%E6%80%81%E4%B8%8D%E7%A8%B3/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          到底是什么是我心态不稳?
-        
-      </div>
-    </a>
   
-  
-    <a href="/streamx%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%8F%8A%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E7%BC%96%E8%AF%91/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">streamx源码编译及安装部署-服务器端编译</div>
+    <a href="/streamx%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%8F%8A%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2-%E6%9C%AC%E5%9C%B0%E7%BC%96%E8%AF%91(%E6%8E%A8%E8%8D%90)/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">streamx源码编译及安装部署-本地编译(推荐)</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -579,7 +556,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E7%9A%84%E5%89%8D%E6%8F%90%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">源码编译的前提条件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#streamx%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91"><span class="toc-number">2.</span> <span class="toc-text">streamx源码编译</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E5%AE%98%E7%BD%91%E4%B8%8B%E8%BD%BDstreamx%E7%A8%B3%E5%AE%9A%E7%89%88%E6%9C%AC"><span class="toc-number">2.1.</span> <span class="toc-text">从官网下载streamx稳定版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9streamx%E7%9A%84%E7%9B%B8%E5%85%B3%E7%89%88%E6%9C%AC"><span class="toc-number">2.2.</span> <span class="toc-text">修改streamx的相关版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91streamx%E6%BA%90%E7%A0%81"><span class="toc-number">2.3.</span> <span class="toc-text">编译streamx源码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%A5%E9%94%99%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F"><span class="toc-number">2.4.</span> <span class="toc-text">报错及解决方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%B8%8B%E6%98%AF%E7%A4%BA%E4%BE%8B"><span class="toc-number">2.4.1.</span> <span class="toc-text">如下是示例:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%9C%AC%E5%9C%B0maven%E4%BB%93%E5%BA%93-%E5%88%A0%E9%99%A4%E5%85%A8%E9%83%A8%E6%AE%8B%E4%BD%99%E6%96%87%E4%BB%B6"><span class="toc-number">2.4.2.</span> <span class="toc-text">查看本地maven仓库,删除全部残余文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E7%89%88%E6%9C%AC%E4%B8%80%E6%A0%B7%E7%9A%84jar%E5%8C%85"><span class="toc-number">2.4.3.</span> <span class="toc-text">下载版本一样的jar包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E6%96%B0%E7%BC%96%E8%AF%91"><span class="toc-number">2.4.4.</span> <span class="toc-text">重新编译</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8D%E5%A4%8D%E7%BB%8F%E8%BF%87N%E6%AC%A1%E4%B8%8A%E8%BF%B0%E8%A1%8C%E4%B8%BA%E5%90%8E-%E6%81%AD%E5%96%9C%E4%BD%A0-%E6%88%90%E5%8A%9F%E4%BA%86"><span class="toc-number">2.5.</span> <span class="toc-text">反复经过N次上述行为后,恭喜你,成功了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E6%AD%A4%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84%E5%8E%8B%E7%BC%A9%E5%8C%85%E6%8B%B7%E8%B4%9D%E8%87%B3%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E8%A7%A3%E5%8E%8B"><span class="toc-number">2.6.</span> <span class="toc-text">在此目录下的压缩包拷贝至服务器上解压</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#streamx%E9%83%A8%E7%BD%B2"><span class="toc-number">2.7.</span> <span class="toc-text">streamx部署</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8streamx"><span class="toc-number">2.8.</span> <span class="toc-text">启动streamx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E9%97%AEWeb%E9%A1%B5%E9%9D%A2"><span class="toc-number">2.9.</span> <span class="toc-text">访问Web页面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E5%A5%BD%E7%9A%84streamx%E5%AD%98%E6%94%BE%E5%9C%B0%E5%9D%80"><span class="toc-number">2.10.</span> <span class="toc-text">编译好的streamx存放地址</span></a></li></ol></li></ol>
+                    此路不通啊,大哥~
                     </div>
                 </span>
             </div>
