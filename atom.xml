@@ -6,7 +6,7 @@
   <link href="http://xubatian.cn/atom.xml" rel="self"/>
   
   <link href="http://xubatian.cn/"/>
-  <updated>2022-01-28T06:38:21.611Z</updated>
+  <updated>2022-01-28T06:45:35.688Z</updated>
   <id>http://xubatian.cn/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://xubatian.cn/%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88%E6%98%AF%E6%88%91%E5%BF%83%E6%80%81%E4%B8%8D%E7%A8%B3/"/>
     <id>http://xubatian.cn/%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88%E6%98%AF%E6%88%91%E5%BF%83%E6%80%81%E4%B8%8D%E7%A8%B3/</id>
     <published>2022-01-28T05:47:56.000Z</published>
-    <updated>2022-01-28T06:38:21.611Z</updated>
+    <updated>2022-01-28T06:45:35.688Z</updated>
     
-    <content type="html"><![CDATA[<p>编译spark源码的三天时间,我到底经历了什么?</p><span id="more"></span><p>原本我是打算使用本地进行编译的…结果撑了一天,不行了.一大波bug正在赶来….</p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128135223.png" alt="博客: www.xubatian.cn"></p><p>这种bug,我解决了不下二十个. 最关键的是,这种报错都是些jar包下载不下来….</p><div align="center">    <img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128135425.png" alt="博客: www.xubatian.cn"></img></div><p>想想还是算了吧,换服务器编译吧… 在准备了一堆maven,scala等一堆环境变量之后,终于走上了编译之路.</p><p>打死我都没想,这条路黑暗了我两天美好的人生….</p><p>再哭一下…..</p><div align="center">    <img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128135700.png" alt="博客: www.xubatian.cn"></img></div><p>——————————————————— 以下是我最常遇到的bug  , 经常光顾我 ,也是老熟人了  ——————————————————-</p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128135009.png" alt="博客: www.xubatian.cn"></p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128135024.png" alt="博客: www.xubatian.cn"></p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128140050.png" alt="博客: www.xubatian.cn"></p><p>阳光总在风雨后…</p><p>历经三天的折磨,终于编译出了合适我hadoop版本的spark…..</p><p>此处咧嘴大笑….</p><div align="center">    <img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128141051.png" alt="博客: www.xubatian.cn"></img></div><p>炫耀版的展示一下….嘻嘻…</p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/www.xubatian.cn_400.png" alt="博客: www.xubatian.cn"></p>]]></content>
+    <content type="html"><![CDATA[<p>编译spark源码的三天时间,我到底经历了什么?</p><span id="more"></span><p>原本我是打算使用本地进行编译的…结果撑了一天,不行了.一大波bug正在赶来….</p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128135223.png" alt="博客: www.xubatian.cn"></p><p>这种bug,我解决了不下二十个. 最关键的是,这种报错都是些jar包下载不下来….</p><div align="center">    <img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128135425.png" alt="博客: www.xubatian.cn"></img></div><p>想想还是算了吧,换服务器编译吧… 在准备了一堆maven,scala等一堆环境变量之后,终于走上了编译之路.</p><p>打死我都没想,这条路黑暗了我两天美好的人生….</p><p>再哭一下…..</p><div align="center">    <img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128135700.png" alt="博客: www.xubatian.cn"></img></div><p>——————————————————— 以下是我最常遇到的bug  , 经常光顾我 ,也是老熟人了  ——————————————————-</p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128135009.png" alt="博客: www.xubatian.cn"></p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128135024.png" alt="博客: www.xubatian.cn"></p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128140050.png" alt="博客: www.xubatian.cn"></p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128144435.png" alt="博客: www.xubatian.cn"></p><p>阳光总在风雨后…</p><p>历经三天的折磨,终于编译出了合适我hadoop版本的spark…..</p><p>此处咧嘴大笑….</p><div align="center">    <img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220128141051.png" alt="博客: www.xubatian.cn"></img></div><p>炫耀版的展示一下….嘻嘻…</p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/www.xubatian.cn_400.png" alt="博客: www.xubatian.cn"></p>]]></content>
     
     
     <summary type="html">&lt;p&gt;编译spark源码的三天时间,我到底经历了什么?&lt;/p&gt;</summary>
