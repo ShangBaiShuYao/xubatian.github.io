@@ -6,21 +6,32 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://xubatian.cn">
-  <title>我的梦想是星辰大海</title>
+  <title>Flink流处理案例 | 我的梦想是星辰大海</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta name="description" content="知识源于积累,登峰造极源于自律">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我的梦想是星辰大海">
-<meta property="og:url" content="http://xubatian.cn/page/2/index.html">
+  <meta name="description" content="简单Flink流处理案例 ①自定义flatmap操作 ② new 匿名内部类接口 操作 ③简单的算子运用: FlatMap压平, Map转换,Tuple2二元组. 12在Java中,二元组Tuple就是2,即Tuple2;三元组就是3,即Tuple3元组索引从0开始">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flink流处理案例">
+<meta property="og:url" content="http://xubatian.cn/Flink%E6%B5%81%E5%A4%84%E7%90%86%E6%A1%88%E4%BE%8B/index.html">
 <meta property="og:site_name" content="我的梦想是星辰大海">
-<meta property="og:description" content="知识源于积累,登峰造极源于自律">
+<meta property="og:description" content="简单Flink流处理案例 ①自定义flatmap操作 ② new 匿名内部类接口 操作 ③简单的算子运用: FlatMap压平, Map转换,Tuple2二元组. 12在Java中,二元组Tuple就是2,即Tuple2;三元组就是3,即Tuple3元组索引从0开始">
 <meta property="og:locale">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220131173631.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220207125512.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220131173834.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220131174208.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220131180631.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220207130501.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220207131308.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220207135330.png">
+<meta property="article:published_time" content="2022-01-31T09:02:26.000Z">
+<meta property="article:modified_time" content="2022-02-07T06:01:54.853Z">
 <meta property="article:author" content="xubatian">
-<meta property="article:tag" content="徐霸天,xubatian,上白书妖,shangbaishuyao">
+<meta property="article:tag" content="Flink">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220131173631.png">
   
   
     <link rel="icon" href="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/favicon.ico">
@@ -282,47 +293,132 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-
-  
-    <article id="post-hive简介(一)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Flink流处理案例" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/hive%E7%AE%80%E4%BB%8B(%E4%B8%80)/">hive简介(一)</a>
-	
+    <h1 class="article-title" itemprop="name">
+      Flink流处理案例
     </h1>
   
 
 
   
   
-<a href="/hive%E7%AE%80%E4%BB%8B(%E4%B8%80)/" class="archive-article-date">
-        <time datetime="2022-01-18T08:44:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/Flink%E6%B5%81%E5%A4%84%E7%90%86%E6%A1%88%E4%BE%8B/" class="archive-article-date">
+        <time datetime="2022-01-31T09:02:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-31</time>
 </a>
 
   
   
     
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">106字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">1分</span>
+    </span>
+  </span>
+</div>
+
 
   
   </header>
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>涓涓不塞，是为江河；源源不断，是为奋斗；生生不息，是为中国。——人民日报                </p>
-<p>​                                              </p>
-    
-    <a class="article-more-a" style="display: none; href="/hive%E7%AE%80%E4%BB%8B(%E4%B8%80)/#more">more >></a>
-    
-    
+    <p>简单Flink流处理案例</p>
+<p>①自定义flatmap操作</p>
+<p>② new 匿名内部类接口 操作</p>
+<p>③简单的算子运用: FlatMap压平, Map转换,Tuple2二元组.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在Java中,二元组Tuple就是<span class="number">2</span>,即Tuple2;三元组就是<span class="number">3</span>,即Tuple3</span><br><span class="line">元组索引从<span class="number">0</span>开始</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h2 id="源代码地址"><a href="#源代码地址" class="headerlink" title="源代码地址"></a>源代码地址</h2><p><a target="_blank" rel="noopener" href="https://github.com/ShangBaiShuYao/flink-learning-from-zhisheng/tree/main/flink-1.12.0-Demo">https://github.com/ShangBaiShuYao/flink-learning-from-zhisheng/tree/main/flink-1.12.0-Demo</a></p>
+<h2 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220131173631.png" alt="博客:www.xubatian.cn"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220207125512.png" alt="博客:www.xubatian.cn"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220131173834.png" alt="博客:www.xubatian.cn"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220131174208.png" alt="博客:www.xubatian.cn"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220131180631.png" alt="博客:www.xubatian.cn"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220207130501.png" alt="博客:www.xubatian.cn"></p>
+<h2 id="补充另一种写法-new-匿名内部类接口"><a href="#补充另一种写法-new-匿名内部类接口" class="headerlink" title="补充另一种写法: new 匿名内部类接口"></a>补充另一种写法: new 匿名内部类接口</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220207131308.png" alt="博客:www.xubatian.cn"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220207135330.png" alt="博客:www.xubatian.cn"></p>
 
     
 
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/zhifubaoPay.png">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/weixinPay.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          xubatian
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://xubatian.cn/Flink流处理案例/" title="Flink流处理案例" target="_blank">http://xubatian.cn/Flink流处理案例/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外均为原创，采用 CC BY 4.0 CN协议 许可协议。转载请注明出处:https://www.xubatian.cn/
+        </li>
+        
+      </ul>
+    </div>
     
 
   </div>
@@ -334,7 +430,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
         		</li>
       		
 		</ul>
@@ -354,16 +450,76 @@
 
 
     
-    <p class="article-more-link">
-      <a class="article-more-a" href="/hive%E7%AE%80%E4%BB%8B(%E4%B8%80)/">展开全文 >></a>
-    </p>
+
     
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/Flink%E6%B5%81%E5%A4%84%E7%90%86%E6%A1%88%E4%BE%8B/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
 
     
     <div class="clearfix"></div>
   </div>
   </div>
 </article>
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/%E8%AF%B4%E4%B9%A6%E4%BA%BA/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">《说书人》朱广权+尼格买提版</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -378,957 +534,55 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-zookeeper简介" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/zookeeper%E7%AE%80%E4%BB%8B/">Zookeeper简介</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/zookeeper%E7%AE%80%E4%BB%8B/" class="archive-article-date">
-        <time datetime="2022-01-18T06:51:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>我们经常在说命运，但我觉得，命是自己的，运却和整个国家相关联。历史的洪流滚起，即便微如沙粒，也能奔腾入海，也能汇成史诗。 ——人民日报                                              </p>
-    
-    <a class="article-more-a" style="display: none; href="/zookeeper%E7%AE%80%E4%BB%8B/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">zookeeper</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/zookeeper%E7%AE%80%E4%BB%8B/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BA%90%E4%BB%A3%E7%A0%81%E5%9C%B0%E5%9D%80"><span class="toc-number">1.</span> <span class="toc-text">源代码地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90"><span class="toc-number">2.</span> <span class="toc-text">代码分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%E5%8F%A6%E4%B8%80%E7%A7%8D%E5%86%99%E6%B3%95-new-%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB%E6%8E%A5%E5%8F%A3"><span class="toc-number">3.</span> <span class="toc-text">补充另一种写法: new 匿名内部类接口</span></a></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
 
-  
-    <article id="post-Hadoop生产调优手册" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/Hadoop%E7%94%9F%E4%BA%A7%E8%B0%83%E4%BC%98%E6%89%8B%E5%86%8C/">Hadoop生产调优手册</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/Hadoop%E7%94%9F%E4%BA%A7%E8%B0%83%E4%BC%98%E6%89%8B%E5%86%8C/" class="archive-article-date">
-        <time datetime="2022-01-17T13:57:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-17</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>无论何时，无论遇到何事，都要保持年轻的心态。放下过往陈旧的观念，打破固有的认知经验，去探索新鲜的事物，把更多时间放在修炼自我上。——人民日报                            </p>
-    
-    <a class="article-more-a" style="display: none; href="/Hadoop%E7%94%9F%E4%BA%A7%E8%B0%83%E4%BC%98%E6%89%8B%E5%86%8C/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop企业级优化</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/Hadoop%E7%94%9F%E4%BA%A7%E8%B0%83%E4%BC%98%E6%89%8B%E5%86%8C/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Hadoop企业优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/Hadoop%E4%BC%81%E4%B8%9A%E4%BC%98%E5%8C%96/">Hadoop企业优化</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/Hadoop%E4%BC%81%E4%B8%9A%E4%BC%98%E5%8C%96/" class="archive-article-date">
-        <time datetime="2022-01-16T16:08:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-17</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>跳出原有的格局，用积极的心态，去学习新的思维方式，许多困难都能迎刃而解。——人民日报                              </p>
-    
-    <a class="article-more-a" style="display: none; href="/Hadoop%E4%BC%81%E4%B8%9A%E4%BC%98%E5%8C%96/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop企业级优化</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/Hadoop%E4%BC%81%E4%B8%9A%E4%BC%98%E5%8C%96/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hadoop组成模块之Yarn资源调度器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BYarn%E8%B5%84%E6%BA%90%E8%B0%83%E5%BA%A6%E5%99%A8/">hadoop组成模块之Yarn资源调度器</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BYarn%E8%B5%84%E6%BA%90%E8%B0%83%E5%BA%A6%E5%99%A8/" class="archive-article-date">
-        <time datetime="2022-01-16T13:22:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-16</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>经历时间沉淀，才能看清历史的坐标；站在高山之巅，更能领略河流的奔腾。——人民日报                                                               </p>
-    
-    <a class="article-more-a" style="display: none; href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BYarn%E8%B5%84%E6%BA%90%E8%B0%83%E5%BA%A6%E5%99%A8/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Yarn</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BYarn%E8%B5%84%E6%BA%90%E8%B0%83%E5%BA%A6%E5%99%A8/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Hadoop数据压缩" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/Hadoop%E6%95%B0%E6%8D%AE%E5%8E%8B%E7%BC%A9/">Hadoop数据压缩</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/Hadoop%E6%95%B0%E6%8D%AE%E5%8E%8B%E7%BC%A9/" class="archive-article-date">
-        <time datetime="2022-01-16T12:38:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-16</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>不要小瞧心态的改变，那会让你重获新生。——人民日报                                            </p>
-    
-    <a class="article-more-a" style="display: none; href="/Hadoop%E6%95%B0%E6%8D%AE%E5%8E%8B%E7%BC%A9/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">hadoop压缩</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/Hadoop%E6%95%B0%E6%8D%AE%E5%8E%8B%E7%BC%A9/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
 
 
 
 
   
-    <article id="post-hadoop的计数器应用和数据清洗" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'true' == true ? true : false;
+   var verify = 'ture' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '.comment',
+            notify: notify,
+            verify: verify,
+            app_id: "4C7T8fSNVA6RnfQksa8BmdFc-gzGzoHsz",
+            app_key: "V57hYH4l9NRzmpobtAIN5gzq",
+            placeholder: "开始你的评论吧...",
+            avatar:"mm"
+        });
+    }
+</script>
+    </section>
   
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/hadoop%E7%9A%84%E8%AE%A1%E6%95%B0%E5%99%A8%E5%BA%94%E7%94%A8%E5%92%8C%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/">hadoop的计数器应用和数据清洗</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/hadoop%E7%9A%84%E8%AE%A1%E6%95%B0%E5%99%A8%E5%BA%94%E7%94%A8%E5%92%8C%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/" class="archive-article-date">
-        <time datetime="2022-01-16T10:58:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-16</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>真正的勇敢，不是只知道进，不知道退；而是在应进的时候，不退缩；该退的时候，不怕人嘲笑，敢于退让。——人民日报                                            </p>
-    
-    <a class="article-more-a" style="display: none; href="/hadoop%E7%9A%84%E8%AE%A1%E6%95%B0%E5%99%A8%E5%BA%94%E7%94%A8%E5%92%8C%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop计数器应用</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">hadoop数据清洗</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/hadoop%E7%9A%84%E8%AE%A1%E6%95%B0%E5%99%A8%E5%BA%94%E7%94%A8%E5%92%8C%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hadoop模块组成之Join多种应用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/hadoop%E6%A8%A1%E5%9D%97%E7%BB%84%E6%88%90%E4%B9%8BJoin%E5%A4%9A%E7%A7%8D%E5%BA%94%E7%94%A8/">hadoop模块组成之Join多种应用</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/hadoop%E6%A8%A1%E5%9D%97%E7%BB%84%E6%88%90%E4%B9%8BJoin%E5%A4%9A%E7%A7%8D%E5%BA%94%E7%94%A8/" class="archive-article-date">
-        <time datetime="2022-01-15T16:50:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-16</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p> 在你坚持不住的时候，记得告诉自己：想一千次，不如去做一次。华丽地跌倒，胜过无谓地徘徊。任何时候你不放弃，一切都还有可能。只要你满怀希望，就会所向披靡。——人民日报                  </p>
-    
-    <a class="article-more-a" style="display: none; href="/hadoop%E6%A8%A1%E5%9D%97%E7%BB%84%E6%88%90%E4%B9%8BJoin%E5%A4%9A%E7%A7%8D%E5%BA%94%E7%94%A8/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">mapJoin</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">ReduceJoin</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/hadoop%E6%A8%A1%E5%9D%97%E7%BB%84%E6%88%90%E4%B9%8BJoin%E5%A4%9A%E7%A7%8D%E5%BA%94%E7%94%A8/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-MapReduce框架原理之InputFormat数据输入" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/MapReduce%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86%E4%B9%8BInputFormat%E6%95%B0%E6%8D%AE%E8%BE%93%E5%85%A5/">MapReduce框架原理之InputFormat数据输入</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/MapReduce%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86%E4%B9%8BInputFormat%E6%95%B0%E6%8D%AE%E8%BE%93%E5%85%A5/" class="archive-article-date">
-        <time datetime="2022-01-14T16:20:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-15</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>骑假马练不出真演技。流量转瞬即逝，常量才能长青。 ——人民日报                             </p>
-    
-    <a class="article-more-a" style="display: none; href="/MapReduce%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86%E4%B9%8BInputFormat%E6%95%B0%E6%8D%AE%E8%BE%93%E5%85%A5/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">mapreduce</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">InputFormat</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/MapReduce%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86%E4%B9%8BInputFormat%E6%95%B0%E6%8D%AE%E8%BE%93%E5%85%A5/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
 
-  
-    <article id="post-hadoop组成模块之mapreduce的MapTask机制和reduceTask机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8Bmapreduce%E7%9A%84MapTask%E6%9C%BA%E5%88%B6%E5%92%8CreduceTask%E6%9C%BA%E5%88%B6/">hadoop组成模块之mapreduce的MapTask机制和reduceTask机制</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8Bmapreduce%E7%9A%84MapTask%E6%9C%BA%E5%88%B6%E5%92%8CreduceTask%E6%9C%BA%E5%88%B6/" class="archive-article-date">
-        <time datetime="2022-01-14T14:22:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-14</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>与大雁齐飞，目之所及皆是广袤天空；与苍蝇为伍，所到之处皆是污秽狼藉。——人民日报</p>
-    
-    <a class="article-more-a" style="display: none; href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8Bmapreduce%E7%9A%84MapTask%E6%9C%BA%E5%88%B6%E5%92%8CreduceTask%E6%9C%BA%E5%88%B6/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MapReduce</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MapTask</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8Bmapreduce%E7%9A%84MapTask%E6%9C%BA%E5%88%B6%E5%92%8CreduceTask%E6%9C%BA%E5%88%B6/">展开全文 >></a>
-    </p>
-    
 
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
 
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
-    </nav>
-  
 
 
 
@@ -1369,7 +623,7 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

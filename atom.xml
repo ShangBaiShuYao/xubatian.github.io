@@ -6,7 +6,7 @@
   <link href="http://xubatian.cn/atom.xml" rel="self"/>
   
   <link href="http://xubatian.cn/"/>
-  <updated>2022-01-28T17:06:18.982Z</updated>
+  <updated>2022-02-07T06:01:54.853Z</updated>
   <id>http://xubatian.cn/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Flink流处理案例</title>
+    <link href="http://xubatian.cn/Flink%E6%B5%81%E5%A4%84%E7%90%86%E6%A1%88%E4%BE%8B/"/>
+    <id>http://xubatian.cn/Flink%E6%B5%81%E5%A4%84%E7%90%86%E6%A1%88%E4%BE%8B/</id>
+    <published>2022-01-31T09:02:26.000Z</published>
+    <updated>2022-02-07T06:01:54.853Z</updated>
+    
+    <content type="html"><![CDATA[<p>简单Flink流处理案例</p><p>①自定义flatmap操作</p><p>② new 匿名内部类接口 操作</p><p>③简单的算子运用: FlatMap压平, Map转换,Tuple2二元组.</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在Java中,二元组Tuple就是<span class="number">2</span>,即Tuple2;三元组就是<span class="number">3</span>,即Tuple3</span><br><span class="line">元组索引从<span class="number">0</span>开始</span><br></pre></td></tr></table></figure><span id="more"></span><h2 id="源代码地址"><a href="#源代码地址" class="headerlink" title="源代码地址"></a>源代码地址</h2><p><a href="https://github.com/ShangBaiShuYao/flink-learning-from-zhisheng/tree/main/flink-1.12.0-Demo">https://github.com/ShangBaiShuYao/flink-learning-from-zhisheng/tree/main/flink-1.12.0-Demo</a></p><h2 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220131173631.png" alt="博客:www.xubatian.cn"></p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220207125512.png" alt="博客:www.xubatian.cn"></p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220131173834.png" alt="博客:www.xubatian.cn"></p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220131174208.png" alt="博客:www.xubatian.cn"></p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220131180631.png" alt="博客:www.xubatian.cn"></p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220207130501.png" alt="博客:www.xubatian.cn"></p><h2 id="补充另一种写法-new-匿名内部类接口"><a href="#补充另一种写法-new-匿名内部类接口" class="headerlink" title="补充另一种写法: new 匿名内部类接口"></a>补充另一种写法: new 匿名内部类接口</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220207131308.png" alt="博客:www.xubatian.cn"></p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220207135330.png" alt="博客:www.xubatian.cn"></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;简单Flink流处理案例&lt;/p&gt;
+&lt;p&gt;①自定义flatmap操作&lt;/p&gt;
+&lt;p&gt;② new 匿名内部类接口 操作&lt;/p&gt;
+&lt;p&gt;③简单的算子运用: FlatMap压平, Map转换,Tuple2二元组.&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;在Java中,二元组Tuple就是&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;,即Tuple2;三元组就是&lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;,即Tuple3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;元组索引从&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;开始&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+    
+    
+    
+    <category term="大数据" scheme="http://xubatian.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+    
+    <category term="Flink" scheme="http://xubatian.cn/tags/Flink/"/>
+    
+  </entry>
   
   <entry>
     <title>《说书人》朱广权+尼格买提版</title>
@@ -427,31 +452,6 @@
     <category term="hadoop计数器应用" scheme="http://xubatian.cn/tags/hadoop%E8%AE%A1%E6%95%B0%E5%99%A8%E5%BA%94%E7%94%A8/"/>
     
     <category term="hadoop数据清洗" scheme="http://xubatian.cn/tags/hadoop%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hadoop模块组成之Join多种应用</title>
-    <link href="http://xubatian.cn/hadoop%E6%A8%A1%E5%9D%97%E7%BB%84%E6%88%90%E4%B9%8BJoin%E5%A4%9A%E7%A7%8D%E5%BA%94%E7%94%A8/"/>
-    <id>http://xubatian.cn/hadoop%E6%A8%A1%E5%9D%97%E7%BB%84%E6%88%90%E4%B9%8BJoin%E5%A4%9A%E7%A7%8D%E5%BA%94%E7%94%A8/</id>
-    <published>2022-01-15T16:50:47.000Z</published>
-    <updated>2022-01-23T02:58:21.708Z</updated>
-    
-    <content type="html"><![CDATA[<p> 在你坚持不住的时候，记得告诉自己：想一千次，不如去做一次。华丽地跌倒，胜过无谓地徘徊。任何时候你不放弃，一切都还有可能。只要你满怀希望，就会所向披靡。——人民日报                  </p><span id="more"></span><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.baidu.cn_108.jpg" width = "" height = "" alt="xubatian的博客" align="center" /><h3 id="Join多种应用"><a href="#Join多种应用" class="headerlink" title="Join多种应用"></a>Join多种应用</h3><h4 id="Reduce-Join"><a href="#Reduce-Join" class="headerlink" title="Reduce Join"></a>Reduce Join</h4><h5 id="Reduce-Join工作原理"><a href="#Reduce-Join工作原理" class="headerlink" title="Reduce Join工作原理"></a>Reduce Join工作原理</h5><p>Map端的主要工作：</p><p>​        为来自不同表或文件的key/value对，打标签以区别不同来源的记录。然后用连接字段作为key,其余部分和新加的标志作为value，最后进行输出。</p><p>Reduce端的主要工作：</p><p>​        在Reduce端以连接字段作为key的分组已经完成，我们只需要在每一个分组当中将那些来源于不同文件的记录(在Map阶段已经打标<br>志)分开，最后进行合并就ok了。</p><h5 id="Reduce-Join案例实操及代码"><a href="#Reduce-Join案例实操及代码" class="headerlink" title="Reduce Join案例实操及代码"></a>Reduce Join案例实操及代码</h5><p>通过将关联条件作为Map输出的key，将两表满足Join条件的数据并携带数据所来源的文件信息，发往同一个ReduceTask，在Reduce中进行数据的串联，如图所示:</p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_106.png" width = "" height = "" alt="xubatian的博客" align="center" /><p><strong>案例代码</strong>: <a href="https://github.com/ShangBaiShuYao/bigdata/blob/master/src/main/java/com/shangbaishuyao/hadoop/reduceJoin/">https://github.com/ShangBaiShuYao/bigdata/blob/master/src/main/java/com/shangbaishuyao/hadoop/reduceJoin/</a></p><h5 id="Reduce-Join的缺陷及解决方案"><a href="#Reduce-Join的缺陷及解决方案" class="headerlink" title="Reduce Join的缺陷及解决方案"></a>Reduce Join的缺陷及解决方案</h5><p>缺点：这种方式中，合并的操作是在Reduce阶段完成，Reduce端的处理压力太大，Map节点的运算负载则很低，资源利用率不高，且在Reduce阶段极易产生数据倾斜。</p><p> 解决方案: Map端实现数据合并</p><h4 id="Map-Join"><a href="#Map-Join" class="headerlink" title="Map Join"></a>Map Join</h4><h5 id="mapJoin概念"><a href="#mapJoin概念" class="headerlink" title="mapJoin概念"></a>mapJoin概念</h5><p>1．使用场景<br>Map Join适用于一张表十分小、一张表很大的场景。<br>2．优点<br>思考：在Reduce端处理过多的表，非常容易产生数据倾斜。怎么办？<br>在Map端缓存多张表，提前处理业务逻辑，这样增加Map端业务，减少Reduce端数据的压力，尽可能的减少数据倾斜。<br>3．具体办法：采用DistributedCache<br>    （1）在Mapper的setup阶段，将文件读取到缓存集合中。<br>    （2）在驱动函数中加载缓存。<br>// 缓存普通文件到Task运行节点。<br>job.addCacheFile(new URI(“file://e:/cache/pd.txt”));</p><h5 id="Map-Join案例实操及代码"><a href="#Map-Join案例实操及代码" class="headerlink" title="Map Join案例实操及代码"></a>Map Join案例实操及代码</h5><p><strong>案例代码</strong>:<a href="https://github.com/ShangBaiShuYao/bigdata/blob/master/src/main/java/com/shangbaishuyao/hadoop/mapJoin/">https://github.com/ShangBaiShuYao/bigdata/blob/master/src/main/java/com/shangbaishuyao/hadoop/mapJoin/</a></p><p>需求分析</p><p>MapJoin适用于关联表中有小表的情形</p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.xubatian.cn_107.png" width = "" height = "" alt="xubatian的博客" align="center" />]]></content>
-    
-    
-    <summary type="html">&lt;p&gt; 在你坚持不住的时候，记得告诉自己：想一千次，不如去做一次。华丽地跌倒，胜过无谓地徘徊。任何时候你不放弃，一切都还有可能。只要你满怀希望，就会所向披靡。——人民日报                  &lt;/p&gt;</summary>
-    
-    
-    
-    <category term="大数据" scheme="http://xubatian.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
-    
-    
-    <category term="Hadoop" scheme="http://xubatian.cn/tags/Hadoop/"/>
-    
-    <category term="mapJoin" scheme="http://xubatian.cn/tags/mapJoin/"/>
-    
-    <category term="ReduceJoin" scheme="http://xubatian.cn/tags/ReduceJoin/"/>
     
   </entry>
   
