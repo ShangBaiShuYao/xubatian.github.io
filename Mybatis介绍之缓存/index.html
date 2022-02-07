@@ -6,24 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://xubatian.cn">
-  <title>我的梦想是星辰大海</title>
+  <title>Mybatis介绍之缓存 | 我的梦想是星辰大海</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    
-    <!-- <meta name="keywords" content="徐霸天,xubatian,上白书妖,shangbaishuyao">
-    <meta name="description" content="知识源于积累,登峰造极源于自律"> -->
-  
-  <meta name="description" content="知识源于积累,登峰造极源于自律">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我的梦想是星辰大海">
-<meta property="og:url" content="http://xubatian.cn/page/2/index.html">
+  <meta name="description" content="Mybatis中有一级缓存和二级缓存，默认情况下一级缓存是开启的，而且是不能关闭的。一级缓存是指SqlSession级别的缓存，当在同一个SqlSession中进行相同的SQL语句查询时，第二次以后的查询不会从数据库查询，而是直接从缓存中获取，一级缓存最多缓存1024条SQL。二级缓存是指可以跨SqlSession的缓存。  ​    Mybatis中进行SQL查询是通过org.apache.ib">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mybatis介绍之缓存">
+<meta property="og:url" content="http://xubatian.cn/Mybatis%E4%BB%8B%E7%BB%8D%E4%B9%8B%E7%BC%93%E5%AD%98/index.html">
 <meta property="og:site_name" content="我的梦想是星辰大海">
-<meta property="og:description" content="知识源于积累,登峰造极源于自律">
+<meta property="og:description" content="Mybatis中有一级缓存和二级缓存，默认情况下一级缓存是开启的，而且是不能关闭的。一级缓存是指SqlSession级别的缓存，当在同一个SqlSession中进行相同的SQL语句查询时，第二次以后的查询不会从数据库查询，而是直接从缓存中获取，一级缓存最多缓存1024条SQL。二级缓存是指可以跨SqlSession的缓存。  ​    Mybatis中进行SQL查询是通过org.apache.ib">
 <meta property="og:locale">
+<meta property="article:published_time" content="2022-02-07T14:25:10.000Z">
+<meta property="article:modified_time" content="2022-02-07T14:36:22.018Z">
 <meta property="article:author" content="xubatian">
-<meta property="article:tag" content="徐霸天,xubatian,上白书妖,shangbaishuyao">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Mybatis">
 <meta name="twitter:card" content="summary">
   
   
@@ -286,145 +285,171 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-
-  
-    <article id="post-Flink简介" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Mybatis介绍之缓存" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/Flink%E7%AE%80%E4%BB%8B/">Flink简介</a>
-	
+    <h1 class="article-title" itemprop="name">
+      Mybatis介绍之缓存
     </h1>
   
 
 
   
   
-<a href="/Flink%E7%AE%80%E4%BB%8B/" class="archive-article-date">
-        <time datetime="2022-01-19T07:57:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-19</time>
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/Mybatis%E4%BB%8B%E7%BB%8D%E4%B9%8B%E7%BC%93%E5%AD%98/" class="archive-article-date">
+        <time datetime="2022-02-07T14:25:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-07</time>
 </a>
 
   
   
     
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">4.2k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">16分</span>
+    </span>
+  </span>
+</div>
+
 
   
   </header>
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>一旦时机到来，我们要能迅速地发现时机、把握时机，不犹豫，不踌躇，乘风而起，破万里浪。——人民日报</p>
-    
-    <a class="article-more-a" style="display: none; href="/Flink%E7%AE%80%E4%BB%8B/#more">more >></a>
-    
-    
+    <p>Mybatis中有一级缓存和二级缓存，默认情况下一级缓存是开启的，而且是不能关闭的。一级缓存是指SqlSession级别的缓存，当在同一个SqlSession中进行相同的SQL语句查询时，第二次以后的查询不会从数据库查询，而是直接从缓存中获取，一级缓存最多缓存1024条SQL。二级缓存是指可以跨SqlSession的缓存。 </p>
+<p>​    Mybatis中进行SQL查询是通过org.apache.ibatis.executor.Executor接口进行的，总体来讲，它一共有两类实现，一类是BaseExecutor，一类是CachingExecutor。前者是非启用二级缓存时使用的，而后者是采用的装饰器模式，在启用了二级缓存时使用，当二级缓存没有命中时，底层还是通过BaseExecutor来实现的。</p>
+ <span id="more"></span>
+
+<h1 id="Mybatis介绍之缓存"><a href="#Mybatis介绍之缓存" class="headerlink" title="Mybatis介绍之缓存"></a>Mybatis介绍之缓存</h1><h2 id="一级缓存"><a href="#一级缓存" class="headerlink" title="一级缓存"></a>一级缓存</h2><p> 一级缓存是默认启用的，在BaseExecutor的query()方法中实现，底层默认使用的是PerpetualCache实现，PerpetualCache采用HashMap存储数据。一级缓存会在进行增、删、改操作时进行清除。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;E&gt; <span class="function">List&lt;E&gt; <span class="title">query</span><span class="params">(MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler, CacheKey key, BoundSql boundSql)</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">    ErrorContext.instance().resource(ms.getResource()).activity(<span class="string">&quot;executing a query&quot;</span>).object(ms.getId());</span><br><span class="line">    <span class="keyword">if</span> (closed) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> ExecutorException(<span class="string">&quot;Executor was closed.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (queryStack == <span class="number">0</span> &amp;&amp; ms.isFlushCacheRequired()) &#123;</span><br><span class="line">      clearLocalCache();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    List&lt;E&gt; list;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      queryStack++;</span><br><span class="line">      list = resultHandler == <span class="keyword">null</span> ? (List&lt;E&gt;) localCache.getObject(key) : <span class="keyword">null</span>;</span><br><span class="line">      <span class="keyword">if</span> (list != <span class="keyword">null</span>) &#123;</span><br><span class="line">        handleLocallyCachedOutputParameters(ms, key, parameter, boundSql);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        list = queryFromDatabase(ms, parameter, rowBounds, resultHandler, key, boundSql);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">      queryStack--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (queryStack == <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">for</span> (DeferredLoad deferredLoad : deferredLoads) &#123;</span><br><span class="line">        deferredLoad.load();</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// issue #601</span></span><br><span class="line">      deferredLoads.clear();</span><br><span class="line">      <span class="keyword">if</span> (configuration.getLocalCacheScope() == LocalCacheScope.STATEMENT) &#123;</span><br><span class="line">        <span class="comment">// issue #482</span></span><br><span class="line">        clearLocalCache();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> list;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>一级缓存的范围有SESSION和STATEMENT两种，默认是SESSION，如果我们不需要使用一级缓存，那么我们可以把一级缓存的范围指定为STATEMENT，这样每次执行完一个Mapper语句后都会将一级缓存清除。如果只是需要对某一条select语句禁用一级缓存，则可以在对应的select元素上加上flushCache=”true”。如果需要更改一级缓存的范围，请在Mybatis的配置文件中，在<settings>下通过localCacheScope指定。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;setting name=&quot;localCacheScope&quot; value=&quot;SESSION&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>为了验证一级缓存，我们进行如下测试，在testCache1中，我们通过同一个SqlSession查询了两次一样的SQL，第二次不会发送SQL。在testCache2中，我们也是查询了两次一样的SQL，但是它们是不同的SqlSession，结果会发送两次SQL请求。需要注意的是当Mybatis整合Spring后，直接通过Spring注入Mapper的形式，如果不是在同一个事务中每个Mapper的每次查询操作都对应一个全新的SqlSession实例，这个时候就不会有一级缓存的命中，如有需要可以启用二级缓存。而在同一个事务中时共用的就是同一个SqlSession。这块有兴趣的朋友可以去查看MapperFactoryBean的源码，其父类SqlSessionDaoSupport在设置SqlSessionFactory或设置SqlSessionTemplate时的逻辑。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * 默认是有一级缓存的，一级缓存只针对于使用同一个SqlSession的情况。&lt;br/&gt;</span></span><br><span class="line"><span class="comment">  * 注意：当使用Spring整合后的Mybatis，不在同一个事务中的Mapper接口对应的操作也是没有一级缓存的，因为它们是对应不同的SqlSession。在本示例中如需要下面的第二个语句可使用一级缓存，需要testCache()方法在一个事务中，使用<span class="doctag">@Transactional</span>标注。</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"> <span class="meta">@Test</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testCache</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    PersonMapper mapper = session.getMapper(PersonMapper.class);</span><br><span class="line">    mapper.findById(<span class="number">5L</span>);</span><br><span class="line">    mapper.findById(<span class="number">5L</span>);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="meta">@Test</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testCache2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    SqlSession session1 = <span class="keyword">this</span>.sessionFactory.openSession();</span><br><span class="line">    SqlSession session2 = <span class="keyword">this</span>.sessionFactory.openSession();</span><br><span class="line">    session1.getMapper(PersonMapper.class).findById(<span class="number">5L</span>);</span><br><span class="line">    session2.getMapper(PersonMapper.class).findById(<span class="number">5L</span>);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="二级缓存"><a href="#二级缓存" class="headerlink" title="二级缓存"></a>二级缓存</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>二级缓存是默认启用的，如想取消，则可以通过Mybatis配置文件中的<settings>元素下的子元素<setting>来指定cacheEnabled为false。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;settings&gt;</span><br><span class="line">    &lt;setting name=<span class="string">&quot;cacheEnabled&quot;</span> value=<span class="string">&quot;false&quot;</span> /&gt;</span><br><span class="line"> &lt;/settings&gt;</span><br></pre></td></tr></table></figure>
+
+<p>cacheEnabled默认是启用的，只有在该值为true的时候，底层使用的Executor才是支持二级缓存的CachingExecutor。具体可参考Mybatis的核心配置类org.apache.ibatis.session.Configuration的newExecutor方法实现。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Executor <span class="title">newExecutor</span><span class="params">(Transaction transaction, ExecutorType executorType)</span> </span>&#123;</span><br><span class="line">   executorType = executorType == <span class="keyword">null</span> ? defaultExecutorType : executorType;</span><br><span class="line">   executorType = executorType == <span class="keyword">null</span> ? ExecutorType.SIMPLE : executorType;</span><br><span class="line">   Executor executor;</span><br><span class="line">   <span class="keyword">if</span> (ExecutorType.BATCH == executorType) &#123;</span><br><span class="line">     executor = <span class="keyword">new</span> BatchExecutor(<span class="keyword">this</span>, transaction);</span><br><span class="line">   &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ExecutorType.REUSE == executorType) &#123;</span><br><span class="line">     executor = <span class="keyword">new</span> ReuseExecutor(<span class="keyword">this</span>, transaction);</span><br><span class="line">   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">     executor = <span class="keyword">new</span> SimpleExecutor(<span class="keyword">this</span>, transaction);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">if</span> (cacheEnabled) &#123;</span><br><span class="line">     executor = <span class="keyword">new</span> CachingExecutor(executor);</span><br><span class="line">   &#125;</span><br><span class="line">   executor = (Executor) interceptorChain.pluginAll(executor);</span><br><span class="line">   <span class="keyword">return</span> executor;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>要使用二级缓存除了上面一个配置外，我们还需要在我们对应的Mapper.xml文件中定义需要使用的cache，具体可以参考CachingExecutor的以下实现，其中使用的cache就是我们在对应的Mapper.xml中定义的cache。还有一个条件就是需要当前的查询语句是配置了使用cache的，即下面源码的useCache()是返回true的，默认情况下所有select语句的useCache都是true，如果我们在启用了二级缓存后，有某个查询语句是我们不想缓存的，则可以通过指定其useCache为false来达到对应的效果。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">  public &lt;E&gt; List&lt;E&gt; query(MappedStatement ms, Object parameterObject, RowBounds rowBounds, ResultHandler resultHandler, CacheKey key, BoundSql boundSql)</span><br><span class="line">      throws SQLException &#123;</span><br><span class="line">    Cache cache = ms.getCache();</span><br><span class="line">    if (cache != null) &#123;</span><br><span class="line">      flushCacheIfRequired(ms);</span><br><span class="line">      if (ms.isUseCache() &amp;&amp; resultHandler == null) &#123;</span><br><span class="line">        ensureNoOutParams(ms, parameterObject, boundSql);</span><br><span class="line">        @SuppressWarnings(&quot;unchecked&quot;)</span><br><span class="line">        List&lt;E&gt; list = (List&lt;E&gt;) tcm.getObject(cache, key);</span><br><span class="line">        if (list == null) &#123;</span><br><span class="line">          list = delegate.&lt;E&gt; query(ms, parameterObject, rowBounds, resultHandler, key, boundSql);</span><br><span class="line">          tcm.putObject(cache, key, list); // issue #578 and #116</span><br><span class="line">        &#125;</span><br><span class="line">        return list;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return delegate.&lt;E&gt; query(ms, parameterObject, rowBounds, resultHandler, key, boundSql);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="cache定义"><a href="#cache定义" class="headerlink" title="cache定义"></a>cache定义</h3><p> 刚刚说了我们要想使用二级缓存，是需要在对应的Mapper.xml文件中定义其中的查询语句需要使用哪个cache来缓存数据的。这有两种方式可以定义，一种是通过cache元素定义，一种是通过cache-ref元素来定义。但是需要注意的是对于同一个Mapper来讲，它只能使用一个Cache，当同时使用了<cache>和<cache-ref>时使用<cache>定义的优先级更高。Mapper使用的Cache是与我们的Mapper对应的namespace绑定的，一个namespace最多只会有一个Cache与其绑定。</p>
+<h3 id="cache元素定义"><a href="#cache元素定义" class="headerlink" title="cache元素定义"></a>cache元素定义</h3><p> 使用cache元素来定义使用的Cache时，最简单的做法是直接在对应的Mapper.xml文件中指定一个空的<cache/>元素，这个时候Mybatis会按照默认配置创建一个Cache对象，准备的说是PerpetualCache对象，更准确的说是LruCache对象（底层用了装饰器模式）。具体可以参考XMLMapperBuilder中的cacheElement()方法中解析cache元素的逻辑。空cache元素定义会生成一个采用最近最少使用算法最多只能存储1024个元素的缓存，而且是可读写的缓存，即该缓存是全局共享的，任何一个线程在拿到缓存结果后对数据的修改都将影响其它线程获取的缓存结果，因为它们是共享的，同一个对象。</p>
+<p>​     cache元素可指定如下属性，每种属性的指定都是针对都是针对底层Cache的一种装饰，采用的是装饰器的模式。</p>
+<p>Ø <strong>blocking</strong>：默认为false，当指定为true时将采用BlockingCache进行封装，blocking，阻塞的意思，使用BlockingCache会在查询缓存时锁住对应的Key，如果缓存命中了则会释放对应的锁，否则会在查询数据库以后再释放锁，这样可以阻止并发情况下多个线程同时查询数据，详情可参考BlockingCache的源码。</p>
+<p>Ø <strong>eviction</strong>：eviction，驱逐的意思。也就是元素驱逐算法，默认是LRU，对应的就是LruCache，其默认只保存1024个Key，超出时按照最近最少使用算法进行驱逐，详情请参考LruCache的源码。如果想使用自己的算法，则可以将该值指定为自己的驱逐算法实现类，只需要自己的类实现Mybatis的Cache接口即可。除了LRU以外，系统还提供了FIFO（先进先出，对应FifoCache）、SOFT（采用软引用存储Value，便于垃圾回收，对应SoftCache）和WEAK（采用弱引用存储Value，便于垃圾回收，对应WeakCache）这三种策略。</p>
+<p>Ø <strong>flushInterval</strong>：清空缓存的时间间隔，单位是毫秒，默认是不会清空的。当指定了该值时会再用ScheduleCache包装一次，其会在每次对缓存进行操作时判断距离最近一次清空缓存的时间是否超过了flushInterval指定的时间，如果超出了，则清空当前的缓存，详情可参考ScheduleCache的实现。</p>
+<p>Ø <strong>readOnly</strong>：是否只读，默认为false。当指定为false时，底层会用SerializedCache包装一次，其会在写缓存的时候将缓存对象进行序列化，然后在读缓存的时候进行反序列化，这样每次读到的都将是一个新的对象，即使你更改了读取到的结果，也不会影响原来缓存的对象，即非只读，你每次拿到这个缓存结果都可以进行修改，而不会影响原来的缓存结果；当指定为true时那就是每次获取的都是同一个引用，对其修改会影响后续的缓存数据获取，这种情况下是不建议对获取到的缓存结果进行更改，意为只读。这是Mybatis二级缓存读写和只读的定义，可能与我们通常情况下的只读和读写意义有点不同。每次都进行序列化和反序列化无疑会影响性能，但是这样的缓存结果更安全，不会被随意更改，具体可根据实际情况进行选择。详情可参考SerializedCache的源码。</p>
+<p>Ø <strong>size</strong>：用来指定缓存中最多保存的Key的数量。其是针对LruCache而言的，LruCache默认只存储最多1024个Key，可通过该属性来改变默认值，当然，如果你通过eviction指定了自己的驱逐算法，同时自己的实现里面也有setSize方法，那么也可以通过cache的size属性给自定义的驱逐算法里面的size赋值。</p>
+<p>Ø <strong>type</strong>：type属性用来指定当前底层缓存实现类，默认是PerpetualCache，如果我们想使用自定义的Cache，则可以通过该属性来指定，对应的值是我们自定义的Cache的全路径名称。</p>
+<h3 id="cache-ref元素定义"><a href="#cache-ref元素定义" class="headerlink" title="cache-ref元素定义"></a>cache-ref元素定义</h3><p>cache-ref元素可以用来指定其它Mapper.xml中定义的Cache，有的时候可能我们多个不同的Mapper需要共享同一个缓存的，是希望在MapperA中缓存的内容在MapperB中可以直接命中的，这个时候我们就可以考虑使用cache-ref，这种场景只需要保证它们的缓存的Key是一致的即可命中，二级缓存的Key是通过Executor接口的createCacheKey()方法生成的，其实现基本都是BaseExecutor，源码如下。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> CacheKey <span class="title">createCacheKey</span><span class="params">(MappedStatement ms, Object parameterObject, RowBounds rowBounds, BoundSql boundSql)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">if</span> (closed) &#123;</span><br><span class="line">     <span class="keyword">throw</span> <span class="keyword">new</span> ExecutorException(<span class="string">&quot;Executor was closed.&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">   CacheKey cacheKey = <span class="keyword">new</span> CacheKey();</span><br><span class="line">   cacheKey.update(ms.getId());</span><br><span class="line">   cacheKey.update(Integer.valueOf(rowBounds.getOffset()));</span><br><span class="line">   cacheKey.update(Integer.valueOf(rowBounds.getLimit()));</span><br><span class="line">   cacheKey.update(boundSql.getSql());</span><br><span class="line"></span><br><span class="line">   List&lt;ParameterMapping&gt; parameterMappings = boundSql.getParameterMappings();</span><br><span class="line"></span><br><span class="line">   TypeHandlerRegistry typeHandlerRegistry = ms.getConfiguration().getTypeHandlerRegistry();</span><br><span class="line">   <span class="comment">// mimic DefaultParameterHandler logic</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; parameterMappings.size(); i++) &#123;</span><br><span class="line">     ParameterMapping parameterMapping = parameterMappings.get(i);</span><br><span class="line">     <span class="keyword">if</span> (parameterMapping.getMode() != ParameterMode.OUT) &#123;</span><br><span class="line">       Object value;</span><br><span class="line">       String propertyName = parameterMapping.getProperty();</span><br><span class="line">       <span class="keyword">if</span> (boundSql.hasAdditionalParameter(propertyName)) &#123;</span><br><span class="line">         value = boundSql.getAdditionalParameter(propertyName);</span><br><span class="line">       &#125; <span class="keyword">else</span> <span class="keyword">if</span> (parameterObject == <span class="keyword">null</span>) &#123;</span><br><span class="line">         value = <span class="keyword">null</span>;</span><br><span class="line">       &#125; <span class="keyword">else</span> <span class="keyword">if</span>(typeHandlerRegistry.hasTypeHandler(parameterObject.getClass())) &#123;</span><br><span class="line">         value = parameterObject;</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">         MetaObject metaObject = configuration.newMetaObject(parameterObject);</span><br><span class="line">         value = metaObject.getValue(propertyName);</span><br><span class="line">       &#125;</span><br><span class="line">       cacheKey.update(value);</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">if</span> (configuration.getEnvironment() != <span class="keyword">null</span>) &#123;</span><br><span class="line">     <span class="comment">// issue #176</span></span><br><span class="line">     cacheKey.update(configuration.getEnvironment().getId());</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> cacheKey;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>打个比方我想在PersonMapper.xml中的查询都使用在UserMapper.xml中定义的Cache，则可以通过cache-ref元素的namespace属性指定需要引用的Cache所在的namespace，即UserMapper.xml中的定义的namespace，假设在UserMapper.xml中定义的namespace是com.elim.learn.mybatis.dao.UserMapper，则在PersonMapper.xml的cache-ref应该定义如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;cache-ref namespace=&quot;com.elim.learn.mybatis.dao.UserMapper&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="自定义cache"><a href="#自定义cache" class="headerlink" title="自定义cache"></a>自定义cache</h3><p> 前面提到Mybatis的Cache默认会使用PerpetualCache存储数据，如果我们不想按照它的逻辑实现，或者我们想使用其它缓存框架来实现，比如使用Ehcache、Redis等，这个时候我们就可以使用自己的Cache实现，Mybatis是给我们留有对应的接口，允许我们进行自定义的。要想实现自定义的Cache我们必须定义一个自己的类来实现Mybatis提供的Cache接口，实现对应的接口方法。注意，自定义的Cache必须包含一个接收一个String参数的构造方法，这个参数就是Cache的ID，详情请参考Mybatis初始化Cache的过程，对应XMLMapperBuilder的cacheElement()方法。以下是一个简单的MyCache的实现。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">publicclass MyCache implements Cache &#123;</span><br><span class="line">   <span class="keyword">private</span> String id;</span><br><span class="line">   <span class="keyword">private</span> String name;<span class="comment">//Name，故意加这么一个属性，以方便演示给自定义Cache的属性设值</span></span><br><span class="line">   <span class="keyword">private</span> Map&lt;Object, Object&gt; cache = <span class="keyword">new</span> HashMap&lt;Object, Object&gt;();</span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 构造方法。自定义的Cache实现一定要有一个id参数</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> id</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">MyCache</span><span class="params">(String id)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.id = id;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.id;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">putObject</span><span class="params">(Object key, Object value)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.cache.put(key, value);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Object <span class="title">getObject</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.cache.get(key);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Object <span class="title">removeObject</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.cache.remove(key);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.cache.clear();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getSize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.cache.size();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> ReadWriteLock <span class="title">getReadWriteLock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span> the name</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> name;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> name the name to set</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.name = name;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 定义了自己的Cache实现类后我们就可以在需要使用它的Mapper.xml文件中通过<cache>标签的type属性来指定我们需要使用的Cache。如果我们的自定义Cache是需要指定参数的，则可以通过<cache>标签的子标签<property>来指定对应的参数，Mybatis在解析的时候会调用指定属性对应的set方法。针对于上面的自定义Cache，我们的配置如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;cache type=&quot;com.elim.learn.mybatis.cache.MyCache&quot;&gt;</span><br><span class="line">      &lt;property name=&quot;name&quot; value=&quot;调用setName()方法需要传递的参数值&quot;/&gt;</span><br><span class="line">   &lt;/cache&gt;</span><br></pre></td></tr></table></figure>
+
+<p>圆角矩形：注意：如果我们使用了自定义的Cache，那么cache标签的其它属性，如size、eviction等都不会对自定义的Cache起作用，也就是说不会自动对自定义的Cache进行包装，如果需要使用自定义的Cache，同时又希望使用Mybatis自带的那些Cache包装类，则可以在自定义的Cache中自己进行包装。</p>
+<h3 id="缓存的清除"><a href="#缓存的清除" class="headerlink" title="缓存的清除"></a>缓存的清除</h3><p>二级缓存默认是会在执行update、insert和delete语句时进行清空的，具体可以参考CachingExecutor的update()实现。如果我们不希望在执行某一条更新语句时清空对应的二级缓存，那么我们可以在对应的语句上指定flushCache属性等于false。如果只是某一条select语句不希望使用二级缓存和一级缓存，则也可以在对应的select元素上加上flushCache=”true”。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;insert id=&quot;delete&quot; parameterType=&quot;java.lang.Long&quot;flushCache=&quot;false&quot;&gt;</span><br><span class="line">    delete t_person where id=#&#123;id&#125;</span><br><span class="line"> &lt;/insert&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="自己操作Cache"><a href="#自己操作Cache" class="headerlink" title="自己操作Cache"></a>自己操作Cache</h3><p>Mybatis中创建的二级缓存都会交给Configuration进行管理，Configuration类是Mybatis的核心类，里面包含了各种Mybatis资源的管理，其可以很方便的通过SqlSession、SqlSessionFactory获取，如有需要我们可以直接通过它来操作我们的Cache。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  @Test</span><br><span class="line">   public void testGetCache() &#123;</span><br><span class="line">      Configuration configuration = this.session.getConfiguration();</span><br><span class="line">//    this.sessionFactory.getConfiguration();</span><br><span class="line">      Collection&lt;Cache&gt; caches = configuration.getCaches();</span><br><span class="line">      System.out.println(caches);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>针对二级缓存进行了以下测试，获取两个不同的SqlSession执行两条相同的SQL，在未指定Cache时Mybatis将查询两次数据库，在指定了Cache时Mybatis只查询了一次数据库，第二次是从缓存中拿的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">  public void testCache2() &#123;</span><br><span class="line">     SqlSession session1 = this.sessionFactory.openSession();</span><br><span class="line">     SqlSession session2 = this.sessionFactory.openSession();</span><br><span class="line">     session1.getMapper(PersonMapper.class).findById(5L);</span><br><span class="line">     session1.commit();</span><br><span class="line">     session2.getMapper(PersonMapper.class).findById(5L);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p> 注意在上面的代码中，我在session1执行完对应的SQL后调用了session1的commit()方法，即提交了它的事务，这样我们在第二次查询的时候才会缓存命中，才不会查询数据库，否则就会连着查询两次数据库。这是因为在CachingExecutor中Mybatis在查询的过程中又在原来Cache的基础上包装了TransactionalCache，这个Cache只会在事务提交后才真正的写入缓存，所以在上面的示例中，如果session1执行完SQL后没有马上commit就紧接着用session2执行SQL，虽然session1查询时没有缓存命中，但是此时写入缓存操作还没有进行，session2再查询的时候也就不会缓存命中了。</p>
+<p><strong>参考文档</strong></p>
+<p><a target="_blank" rel="noopener" href="http://www.mybatis.org/mybatis-3/zh/sqlmap-xml.html#cache">http://www.mybatis.org/mybatis-3/zh/sqlmap-xml.html#cache</a></p>
 
     
 
     
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/Flink%E7%AE%80%E4%BB%8B/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/zhifubaoPay.png">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/weixinPay.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
         </div>
-        
-        
+      </a>
     </div>
-</aside>
-
-
-
-
-  
-    <article id="post-SparkCore之RDD编程的编程模型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/SparkCore%E4%B9%8BRDD%E7%BC%96%E7%A8%8B%E7%9A%84%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B/">SparkCore之RDD编程的编程模型</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/SparkCore%E4%B9%8BRDD%E7%BC%96%E7%A8%8B%E7%9A%84%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B/" class="archive-article-date">
-        <time datetime="2022-01-19T06:50:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-19</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>闲适因为忙碌才获得意义。如果摸鱼成为常态，放松就失去了意义；如果划水占据人生，幸福就会失去方向。               ——人民日报    </p>
-    
-    <a class="article-more-a" style="display: none; href="/SparkCore%E4%B9%8BRDD%E7%BC%96%E7%A8%8B%E7%9A%84%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B/#more">more >></a>
-    
     
 
     
-
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          xubatian
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://xubatian.cn/Mybatis介绍之缓存/" title="Mybatis介绍之缓存" target="_blank">http://xubatian.cn/Mybatis介绍之缓存/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外均为原创，采用 CC BY 4.0 CN协议 许可协议。转载请注明出处:https://www.xubatian.cn/
+        </li>
+        
+      </ul>
+    </div>
     
 
   </div>
@@ -436,806 +461,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/SparkCore%E4%B9%8BRDD%E7%BC%96%E7%A8%8B%E7%9A%84%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-SparkCore之RDD概述" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/SparkCore%E4%B9%8BRDD%E6%A6%82%E8%BF%B0/">SparkCore之RDD概述</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/SparkCore%E4%B9%8BRDD%E6%A6%82%E8%BF%B0/" class="archive-article-date">
-        <time datetime="2022-01-19T06:22:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-19</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>仰观天宇，时间更加深邃；俯身耕耘，未来无限可能                  ——人民日报    </p>
-    
-    <a class="article-more-a" style="display: none; href="/SparkCore%E4%B9%8BRDD%E6%A6%82%E8%BF%B0/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/SparkCore%E4%B9%8BRDD%E6%A6%82%E8%BF%B0/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-spark基础解析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/spark%E5%9F%BA%E7%A1%80%E8%A7%A3%E6%9E%90/">spark基础解析</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/spark%E5%9F%BA%E7%A1%80%E8%A7%A3%E6%9E%90/" class="archive-article-date">
-        <time datetime="2022-01-19T03:09:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-19</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p> 征途漫漫，惟有奋斗；梦想成真，惟有实干。                     ——人民日报</p>
-    
-    <a class="article-more-a" style="display: none; href="/spark%E5%9F%BA%E7%A1%80%E8%A7%A3%E6%9E%90/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/spark%E5%9F%BA%E7%A1%80%E8%A7%A3%E6%9E%90/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hive常用函数收录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/hive%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E6%94%B6%E5%BD%95/">hive常用函数收录</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/hive%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E6%94%B6%E5%BD%95/" class="archive-article-date">
-        <time datetime="2022-01-18T14:43:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>山再高，往上攀，总能登顶；路再长，走下去，定能到达。       ——人民日报                  </p>
-<p>​                                              </p>
-    
-    <a class="article-more-a" style="display: none; href="/hive%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E6%94%B6%E5%BD%95/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/hive%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E6%94%B6%E5%BD%95/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hive简介(二)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/hive%E7%AE%80%E4%BB%8B(%E4%BA%8C)/">hive简介(二)</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/hive%E7%AE%80%E4%BB%8B(%E4%BA%8C)/" class="archive-article-date">
-        <time datetime="2022-01-18T10:35:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>白衣执甲，逆行而上，以勇气和辛劳诠释了医者仁心，用担当和奉献换来了山河无恙。新时代中国女性可亲、可敬、可爱，她们在热血奋斗中怒放生命，在应对挑战中成就不凡。          ——人民日报                    </p>
-<p>​                                              </p>
-    
-    <a class="article-more-a" style="display: none; href="/hive%E7%AE%80%E4%BB%8B(%E4%BA%8C)/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/hive%E7%AE%80%E4%BB%8B(%E4%BA%8C)/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hive简介(一)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/hive%E7%AE%80%E4%BB%8B(%E4%B8%80)/">hive简介(一)</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/hive%E7%AE%80%E4%BB%8B(%E4%B8%80)/" class="archive-article-date">
-        <time datetime="2022-01-18T08:44:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>涓涓不塞，是为江河；源源不断，是为奋斗；生生不息，是为中国。——人民日报                </p>
-<p>​                                              </p>
-    
-    <a class="article-more-a" style="display: none; href="/hive%E7%AE%80%E4%BB%8B(%E4%B8%80)/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/hive%E7%AE%80%E4%BB%8B(%E4%B8%80)/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-zookeeper简介" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/zookeeper%E7%AE%80%E4%BB%8B/">Zookeeper简介</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/zookeeper%E7%AE%80%E4%BB%8B/" class="archive-article-date">
-        <time datetime="2022-01-18T06:51:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>我们经常在说命运，但我觉得，命是自己的，运却和整个国家相关联。历史的洪流滚起，即便微如沙粒，也能奔腾入海，也能汇成史诗。 ——人民日报                                              </p>
-    
-    <a class="article-more-a" style="display: none; href="/zookeeper%E7%AE%80%E4%BB%8B/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">zookeeper</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/zookeeper%E7%AE%80%E4%BB%8B/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-动态" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/%E5%8A%A8%E6%80%81/">小目标</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/%E5%8A%A8%E6%80%81/" class="archive-article-date">
-        <time datetime="2022-01-18T05:08:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>2022年01月18日 博客框架基本搭建完成,后续完善则是在写文章的基础上进行定向更改. 首先立个flag. 争取在01月21日凌晨 将大数据笔记整理好. 不能耽误后续的目标达成, 时间紧任务重.生死看淡,不服就干.  加油!   —— 来自技术不好,却在努力挣扎的菜鸟</p>
-    
-    <a class="article-more-a" style="display: none; href="/%E5%8A%A8%E6%80%81/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">动态</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/动态//" class="article-tag-list-link color3">动态</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/%E5%8A%A8%E6%80%81/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Hadoop生产调优手册" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/Hadoop%E7%94%9F%E4%BA%A7%E8%B0%83%E4%BC%98%E6%89%8B%E5%86%8C/">Hadoop生产调优手册</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/Hadoop%E7%94%9F%E4%BA%A7%E8%B0%83%E4%BC%98%E6%89%8B%E5%86%8C/" class="archive-article-date">
-        <time datetime="2022-01-17T13:57:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-17</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>无论何时，无论遇到何事，都要保持年轻的心态。放下过往陈旧的观念，打破固有的认知经验，去探索新鲜的事物，把更多时间放在修炼自我上。——人民日报                            </p>
-    
-    <a class="article-more-a" style="display: none; href="/Hadoop%E7%94%9F%E4%BA%A7%E8%B0%83%E4%BC%98%E6%89%8B%E5%86%8C/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop企业级优化</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Mybatis</a>
         		</li>
       		
 		</ul>
@@ -1247,7 +477,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
+        			<a href="/categories/Java//" class="article-tag-list-link color5">Java</a>
         		</li>
       		
 		</ul>
@@ -1255,16 +485,76 @@
 
 
     
-    <p class="article-more-link">
-      <a class="article-more-a" href="/Hadoop%E7%94%9F%E4%BA%A7%E8%B0%83%E4%BC%98%E6%89%8B%E5%86%8C/">展开全文 >></a>
-    </p>
+
     
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/Mybatis%E4%BB%8B%E7%BB%8D%E4%B9%8B%E7%BC%93%E5%AD%98/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
 
     
     <div class="clearfix"></div>
   </div>
   </div>
 </article>
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/%E6%8E%A8%E8%8D%90%E4%B8%80%E6%AC%BEMybatis%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">推荐一款Mybatis分页插件</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -1279,18 +569,55 @@
         </div>
         
         
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Mybatis%E4%BB%8B%E7%BB%8D%E4%B9%8B%E7%BC%93%E5%AD%98"><span class="toc-number">1.</span> <span class="toc-text">Mybatis介绍之缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E7%BA%A7%E7%BC%93%E5%AD%98"><span class="toc-number">1.1.</span> <span class="toc-text">一级缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E7%BA%A7%E7%BC%93%E5%AD%98"><span class="toc-number">1.2.</span> <span class="toc-text">二级缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.2.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cache%E5%AE%9A%E4%B9%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">cache定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cache%E5%85%83%E7%B4%A0%E5%AE%9A%E4%B9%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">cache元素定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cache-ref%E5%85%83%E7%B4%A0%E5%AE%9A%E4%B9%89"><span class="toc-number">1.2.4.</span> <span class="toc-text">cache-ref元素定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89cache"><span class="toc-number">1.2.5.</span> <span class="toc-text">自定义cache</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E7%9A%84%E6%B8%85%E9%99%A4"><span class="toc-number">1.2.6.</span> <span class="toc-text">缓存的清除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%B7%B1%E6%93%8D%E4%BD%9CCache"><span class="toc-number">1.2.7.</span> <span class="toc-text">自己操作Cache</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-number">1.2.8.</span> <span class="toc-text">测试</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
     </div>
 </aside>
 
 
 
 
+
+
+
+
   
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'true' == true ? true : false;
+   var verify = 'ture' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '.comment',
+            notify: notify,
+            verify: verify,
+            app_id: "4C7T8fSNVA6RnfQksa8BmdFc-gzGzoHsz",
+            app_key: "V57hYH4l9NRzmpobtAIN5gzq",
+            placeholder: "开始你的评论吧...",
+            avatar:"mm"
+        });
+    }
+</script>
+    </section>
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
-    </nav>
-  
+
+
+
+
 
 
 
@@ -1330,8 +657,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
