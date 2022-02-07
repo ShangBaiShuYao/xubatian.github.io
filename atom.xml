@@ -6,7 +6,7 @@
   <link href="http://xubatian.cn/atom.xml" rel="self"/>
   
   <link href="http://xubatian.cn/"/>
-  <updated>2022-02-07T06:01:54.853Z</updated>
+  <updated>2022-02-07T06:44:30.803Z</updated>
   <id>http://xubatian.cn/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Flink使用idea将匿名内部类替换为lambda表达会擦除泛型</title>
+    <link href="http://xubatian.cn/Flink%E4%BD%BF%E7%94%A8idea%E5%B0%86%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB%E6%9B%BF%E6%8D%A2%E4%B8%BAlambda%E8%A1%A8%E8%BE%BE%E4%BC%9A%E6%93%A6%E9%99%A4%E6%B3%9B%E5%9E%8B/"/>
+    <id>http://xubatian.cn/Flink%E4%BD%BF%E7%94%A8idea%E5%B0%86%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB%E6%9B%BF%E6%8D%A2%E4%B8%BAlambda%E8%A1%A8%E8%BE%BE%E4%BC%9A%E6%93%A6%E9%99%A4%E6%B3%9B%E5%9E%8B/</id>
+    <published>2022-02-07T06:12:57.000Z</published>
+    <updated>2022-02-07T06:44:30.803Z</updated>
+    
+    <content type="html"><![CDATA[<p>Flink代码使用IDEA将new匿名内部类替换为lambda表达式运行会报错,因为替换后会擦除泛型</p><p>测试Flink1.12.0没有出现返回值类型报错问题. 不知道是否是Flink高版本结局了此问题还是idea高版本解决了此问题.</p><span id="more"></span><h2 id="报错类型示例"><a href="#报错类型示例" class="headerlink" title="报错类型示例"></a>报错类型示例</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220207141902.png" alt="博客:www.xubatian.cn"></p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220207141937.png" alt="博客:www.xubatian.cn"></p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220207142024.png" alt="博客:www.xubatian.cn"></p><h2 id="返回值类型报错"><a href="#返回值类型报错" class="headerlink" title="返回值类型报错"></a>返回值类型报错</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220207142213.png" alt="博客:www.xubatian.cn"></p><h2 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式:"></a>解决方式:</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220207142525.png" alt="博客:www.xubatian.cn"></p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220207144407.png" alt="博客:www.xubatian.cn"></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;Flink代码使用IDEA将new匿名内部类替换为lambda表达式运行会报错,因为替换后会擦除泛型&lt;/p&gt;
+&lt;p&gt;测试Flink1.12.0没有出现返回值类型报错问题. 不知道是否是Flink高版本结局了此问题还是idea高版本解决了此问题.&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="大数据" scheme="http://xubatian.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+    
+    <category term="Flink" scheme="http://xubatian.cn/tags/Flink/"/>
+    
+  </entry>
   
   <entry>
     <title>Flink流处理案例</title>
@@ -427,31 +449,6 @@
     <category term="Hadoop" scheme="http://xubatian.cn/tags/Hadoop/"/>
     
     <category term="hadoop压缩" scheme="http://xubatian.cn/tags/hadoop%E5%8E%8B%E7%BC%A9/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hadoop的计数器应用和数据清洗</title>
-    <link href="http://xubatian.cn/hadoop%E7%9A%84%E8%AE%A1%E6%95%B0%E5%99%A8%E5%BA%94%E7%94%A8%E5%92%8C%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/"/>
-    <id>http://xubatian.cn/hadoop%E7%9A%84%E8%AE%A1%E6%95%B0%E5%99%A8%E5%BA%94%E7%94%A8%E5%92%8C%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/</id>
-    <published>2022-01-16T10:58:45.000Z</published>
-    <updated>2022-01-23T02:58:21.660Z</updated>
-    
-    <content type="html"><![CDATA[<p>真正的勇敢，不是只知道进，不知道退；而是在应进的时候，不退缩；该退的时候，不怕人嘲笑，敢于退让。——人民日报                                            </p><span id="more"></span><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/www.baidu.cn_109.jpg" width = "" height = "" alt="xubatian的博客" align="center" /><h1 id="计数器应用"><a href="#计数器应用" class="headerlink" title="计数器应用"></a>计数器应用</h1><p>Hadoop为每个作业维护若干内置计数器，以描述多项指标。例如，某些计数器记录已处理的字节数和记录数，使用户可监控已处理的输入数据量和已产生的输出数据量。<br>1.计数器API<br>（1）采用枚举的方式统计计数<br>            enum MyCounter{MALFORORMED,NORMAL}<br>            //对枚举定义的自定义计数器加1<br>            context.getCounter(MyCounter.MALFORORMED).increment(1);<br>（2）采用计数器组、计数器名称的方式统计<br>            context.getCounter(“counterGroup”, “counter”).increment(1);<br>            组名和计数器名称随便起，但最好有意义。<br>（3）计数结果在程序运行后的控制台上查看。</p><ol start="2"><li>计数器案例实操<br>详见数据清洗案例。 案例代码: <a href="https://github.com/ShangBaiShuYao/bigdata/blob/master/src/main/java/com/shangbaishuyao/hadoop/mapJoin/MapJoinMapper.java">https://github.com/ShangBaiShuYao/bigdata/blob/master/src/main/java/com/shangbaishuyao/hadoop/mapJoin/MapJoinMapper.java</a></li></ol><p><strong>计数器, 看看这个方法被调用了多少次</strong></p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_108.png" width = "" height = "" alt="xubatian的博客" align="center" /><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_109.png" width = "" height = "" alt="xubatian的博客" align="center" /><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_110.png" width = "" height = "" alt="xubatian的博客" align="center" /><h1 id="数据清洗（ETL）"><a href="#数据清洗（ETL）" class="headerlink" title="数据清洗（ETL）"></a>数据清洗（ETL）</h1><p>概念</p><p>在运行核心业务MapReduce程序之前，往往要先对数据进行清洗，清理掉不符合用户要求的数据。清理的过程往往只需要运行Mapper程序，不需要运行Reduce程序。</p><h2 id="数据清洗案例实操-简单解析版"><a href="#数据清洗案例实操-简单解析版" class="headerlink" title="数据清洗案例实操-简单解析版"></a>数据清洗案例实操-简单解析版</h2><p>需求<br>去除日志中字段个数小于等于11的日志</p><p>需求分析<br>    需要在Map阶段对输入的数据根据规则进行过滤清洗。</p><p>案例代码</p><p><a href="https://github.com/ShangBaiShuYao/bigdata/blob/master/src/main/java/com/shangbaishuyao/hadoop/ETL/">https://github.com/ShangBaiShuYao/bigdata/blob/master/src/main/java/com/shangbaishuyao/hadoop/ETL/</a></p><h2 id="数据清洗案例实操-复杂解析版"><a href="#数据清洗案例实操-复杂解析版" class="headerlink" title="数据清洗案例实操-复杂解析版"></a>数据清洗案例实操-复杂解析版</h2><p>需求<br>对Web访问日志中的各字段识别切分，去除日志中不合法的记录。根据清洗规则，输出过滤后的数据。</p><p>需求分析<br>    需要在Map阶段对输入的数据根据规则进行过滤清洗。</p><p>案例代码</p><p><a href="https://github.com/ShangBaiShuYao/bigdata/blob/master/src/main/java/com/shangbaishuyao/hadoop/ETL2/">https://github.com/ShangBaiShuYao/bigdata/blob/master/src/main/java/com/shangbaishuyao/hadoop/ETL2/</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;真正的勇敢，不是只知道进，不知道退；而是在应进的时候，不退缩；该退的时候，不怕人嘲笑，敢于退让。——人民日报                                            &lt;/p&gt;</summary>
-    
-    
-    
-    <category term="大数据" scheme="http://xubatian.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
-    
-    
-    <category term="Hadoop" scheme="http://xubatian.cn/tags/Hadoop/"/>
-    
-    <category term="hadoop计数器应用" scheme="http://xubatian.cn/tags/hadoop%E8%AE%A1%E6%95%B0%E5%99%A8%E5%BA%94%E7%94%A8/"/>
-    
-    <category term="hadoop数据清洗" scheme="http://xubatian.cn/tags/hadoop%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/"/>
     
   </entry>
   
