@@ -6,7 +6,7 @@
   <link href="http://xubatian.cn/atom.xml" rel="self"/>
   
   <link href="http://xubatian.cn/"/>
-  <updated>2022-02-07T06:44:30.803Z</updated>
+  <updated>2022-02-07T09:16:00.327Z</updated>
   <id>http://xubatian.cn/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://xubatian.cn/Flink%E4%BD%BF%E7%94%A8idea%E5%B0%86%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB%E6%9B%BF%E6%8D%A2%E4%B8%BAlambda%E8%A1%A8%E8%BE%BE%E4%BC%9A%E6%93%A6%E9%99%A4%E6%B3%9B%E5%9E%8B/"/>
     <id>http://xubatian.cn/Flink%E4%BD%BF%E7%94%A8idea%E5%B0%86%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB%E6%9B%BF%E6%8D%A2%E4%B8%BAlambda%E8%A1%A8%E8%BE%BE%E4%BC%9A%E6%93%A6%E9%99%A4%E6%B3%9B%E5%9E%8B/</id>
     <published>2022-02-07T06:12:57.000Z</published>
-    <updated>2022-02-07T06:44:30.803Z</updated>
+    <updated>2022-02-07T09:16:00.327Z</updated>
     
-    <content type="html"><![CDATA[<p>Flink代码使用IDEA将new匿名内部类替换为lambda表达式运行会报错,因为替换后会擦除泛型</p><p>测试Flink1.12.0没有出现返回值类型报错问题. 不知道是否是Flink高版本结局了此问题还是idea高版本解决了此问题.</p><span id="more"></span><h2 id="报错类型示例"><a href="#报错类型示例" class="headerlink" title="报错类型示例"></a>报错类型示例</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220207141902.png" alt="博客:www.xubatian.cn"></p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220207141937.png" alt="博客:www.xubatian.cn"></p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220207142024.png" alt="博客:www.xubatian.cn"></p><h2 id="返回值类型报错"><a href="#返回值类型报错" class="headerlink" title="返回值类型报错"></a>返回值类型报错</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220207142213.png" alt="博客:www.xubatian.cn"></p><h2 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式:"></a>解决方式:</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220207142525.png" alt="博客:www.xubatian.cn"></p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220207144407.png" alt="博客:www.xubatian.cn"></p>]]></content>
+    <content type="html"><![CDATA[<p>Flink代码使用IDEA将new匿名内部类替换为lambda表达式运行会报错,因为替换后会擦除泛型</p><p>测试Flink1.12.0没有出现返回值类型报错问题. 不知道是否是Flink高版本结局了此问题还是idea高版本解决了此问题.</p><span id="more"></span><h2 id="源码地址-™"><a href="#源码地址-™" class="headerlink" title="源码地址:™"></a>源码地址:™</h2><p><a href="https://github.com/ShangBaiShuYao/flink-learning-from-zhisheng/blob/main/flink-1.12.0-Demo/src/main/java/com/shangbaishuyao/demo/FlinkDemo01/Flink_WordCount_Bounded.java">https://github.com/ShangBaiShuYao/flink-learning-from-zhisheng/blob/main/flink-1.12.0-Demo/src/main/java/com/shangbaishuyao/demo/FlinkDemo01/Flink_WordCount_Bounded.java</a></p><h2 id="报错类型示例"><a href="#报错类型示例" class="headerlink" title="报错类型示例"></a>报错类型示例</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220207141902.png" alt="博客:www.xubatian.cn"></p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220207141937.png" alt="博客:www.xubatian.cn"></p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220207142024.png" alt="博客:www.xubatian.cn"></p><h2 id="返回值类型报错"><a href="#返回值类型报错" class="headerlink" title="返回值类型报错"></a>返回值类型报错</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220207142213.png" alt="博客:www.xubatian.cn"></p><h2 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式:"></a>解决方式:</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220207142525.png" alt="博客:www.xubatian.cn"></p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220207144407.png" alt="博客:www.xubatian.cn"></p>]]></content>
     
     
     <summary type="html">&lt;p&gt;Flink代码使用IDEA将new匿名内部类替换为lambda表达式运行会报错,因为替换后会擦除泛型&lt;/p&gt;
