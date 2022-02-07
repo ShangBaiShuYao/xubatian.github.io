@@ -6,22 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://xubatian.cn">
-  <title>博客文章目录清单 | 我的梦想是星辰大海</title>
+  <title>推荐一款Mybatis分页插件 | 我的梦想是星辰大海</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta name="description" content="知识源于积累,登峰造极源于自律. 整理自己发在博客上的大数据笔记，方便查找。索引持续更新中…   注意: 黑猫的旁边是文章的目录哦~~">
+  <meta name="description" content="介绍Mybatis的插件，以及如何通过Mybatis的插件功能实现一个自定义的分页插件。前段时间遇到了一款开源的Mybatis分页插件，叫PageHelper，github地址是https:&#x2F;&#x2F;github.com&#x2F;pagehelper&#x2F;Mybatis-PageHelper，其原理是通过&#96;ThreadLocal&#96;来存放分页信息，从而可以做到在Service层实现无侵入性的Mybatis分页。笔者感">
 <meta property="og:type" content="article">
-<meta property="og:title" content="博客文章目录清单">
-<meta property="og:url" content="http://xubatian.cn/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%AC%94%E8%AE%B0%E7%B4%A2%E5%BC%95/index.html">
+<meta property="og:title" content="推荐一款Mybatis分页插件">
+<meta property="og:url" content="http://xubatian.cn/%E6%8E%A8%E8%8D%90%E4%B8%80%E6%AC%BEMybatis%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6/index.html">
 <meta property="og:site_name" content="我的梦想是星辰大海">
-<meta property="og:description" content="知识源于积累,登峰造极源于自律. 整理自己发在博客上的大数据笔记，方便查找。索引持续更新中…   注意: 黑猫的旁边是文章的目录哦~~">
+<meta property="og:description" content="介绍Mybatis的插件，以及如何通过Mybatis的插件功能实现一个自定义的分页插件。前段时间遇到了一款开源的Mybatis分页插件，叫PageHelper，github地址是https:&#x2F;&#x2F;github.com&#x2F;pagehelper&#x2F;Mybatis-PageHelper，其原理是通过&#96;ThreadLocal&#96;来存放分页信息，从而可以做到在Service层实现无侵入性的Mybatis分页。笔者感">
 <meta property="og:locale">
-<meta property="article:published_time" content="2022-01-08T21:36:28.000Z">
-<meta property="article:modified_time" content="2022-01-09T11:33:22.000Z">
+<meta property="article:published_time" content="2022-02-07T13:52:43.000Z">
+<meta property="article:modified_time" content="2022-02-07T13:56:20.769Z">
 <meta property="article:author" content="xubatian">
-<meta property="article:tag" content="博客目录索引">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Mybatis">
 <meta name="twitter:card" content="summary">
   
   
@@ -284,14 +285,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-大数据笔记索引" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-推荐一款Mybatis分页插件" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      博客文章目录清单
+      推荐一款Mybatis分页插件
     </h1>
   
 
@@ -303,8 +304,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%AC%94%E8%AE%B0%E7%B4%A2%E5%BC%95/" class="archive-article-date">
-        <time datetime="2022-01-08T21:36:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-09</time>
+<a href="/%E6%8E%A8%E8%8D%90%E4%B8%80%E6%AC%BEMybatis%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6/" class="archive-article-date">
+        <time datetime="2022-02-07T13:52:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-07</time>
 </a>
 
   
@@ -317,7 +318,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">291字</span>
+      <span class="post-count">923字</span>
     </span>
   </span>
 
@@ -326,7 +327,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">3分</span>
     </span>
   </span>
 </div>
@@ -337,37 +338,20 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p><strong>知识源于积累,登峰造极源于自律. 整理自己发在博客上的大数据笔记，方便查找。索引持续更新中…</strong>  </p>
-<p>注意: 黑猫的旁边是文章的目录哦~~</p>
+    <p>介绍Mybatis的插件，以及如何通过Mybatis的插件功能实现一个自定义的分页插件。前段时间遇到了一款开源的Mybatis分页插件，叫<code>PageHelper</code>，github地址是<a target="_blank" rel="noopener" href="https://github.com/pagehelper/Mybatis-PageHelper%EF%BC%8C%E5%85%B6%E5%8E%9F%E7%90%86%E6%98%AF%E9%80%9A%E8%BF%87%60ThreadLocal%60%E6%9D%A5%E5%AD%98%E6%94%BE%E5%88%86%E9%A1%B5%E4%BF%A1%E6%81%AF%EF%BC%8C%E4%BB%8E%E8%80%8C%E5%8F%AF%E4%BB%A5%E5%81%9A%E5%88%B0%E5%9C%A8Service%E5%B1%82%E5%AE%9E%E7%8E%B0%E6%97%A0%E4%BE%B5%E5%85%A5%E6%80%A7%E7%9A%84Mybatis%E5%88%86%E9%A1%B5%E3%80%82%E7%AC%94%E8%80%85%E6%84%9F%E8%A7%89%E8%BF%98%E4%B8%8D%E9%94%99%EF%BC%8C%E6%89%80%E4%BB%A5%E7%89%B9%E6%84%8F%E5%8F%91%E5%8D%9A%E6%96%87%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%EF%BC%8C%E5%B9%B6%E6%8E%A8%E8%8D%90%E7%BB%99%E5%A4%A7%E5%AE%B6%E3%80%82">https://github.com/pagehelper/Mybatis-PageHelper，其原理是通过`ThreadLocal`来存放分页信息，从而可以做到在Service层实现无侵入性的Mybatis分页。笔者感觉还不错，所以特意发博文记录一下，并推荐给大家。</a></p>
 <span id="more"></span>
 
-<h1 id="大数据开发-基础笔记"><a href="#大数据开发-基础笔记" class="headerlink" title="大数据开发(基础笔记)"></a>大数据开发(基础笔记)</h1><h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p><a target="_blank" rel="noopener" href="https://www.xubatian.cn/Linux%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/">Linux命令收集</a></p>
-<h3 id="Hadoop"><a href="#Hadoop" class="headerlink" title="Hadoop"></a>Hadoop</h3><p><a target="_blank" rel="noopener" href="https://www.xubatian.cn/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%98%AF%E4%BB%80%E4%B9%88/">什么是大数据</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.xubatian.cn/%E4%BB%8EHadoop%E6%A1%86%E6%9E%B6%E8%AE%A8%E8%AE%BA%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%94%9F%E6%80%81/">从Hadoop框架讨论大数据生态</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.xubatian.cn/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E5%8F%8A%E5%90%84%E6%A8%A1%E5%9D%97%E7%9A%84%E7%AE%80%E4%BB%8B/">hadoop组成模块及各模块的简介</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.xubatian.cn/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BHDFS%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E8%AF%A6%E8%A7%A3/">hadoop组成模块之HDFS分布式存储详解</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.xubatian.cn/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BHDFS-HA%E9%AB%98%E5%8F%AF%E7%94%A8/">hadoop组成模块之HDFS-HA高可用</a></p>
-<p><a target="_blank" rel="noopener" href="http://localhost:4005/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BMapReduce%E6%A6%82%E8%BF%B0/">hadoop组成模块之MapReduce概述</a></p>
-<p><a target="_blank" rel="noopener" href="http://localhost:4005/MapReduce%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86%E4%B9%8BInputFormat%E6%95%B0%E6%8D%AE%E8%BE%93%E5%85%A5/">MapReduce框架原理之InputFormat数据输入</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.xubatian.cn/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8Bmapreduce%E7%9A%84MapTask%E6%9C%BA%E5%88%B6%E5%92%8CreduceTask%E6%9C%BA%E5%88%B6/">hadoop组成模块之mapreduce的MapTask机制和reduceTask机制</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.xubatian.cn/mapreduce%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84shuffle%E6%9C%BA%E5%88%B6%E5%8E%9F%E7%90%86/">mapreduce过程中的shuffle机制原理</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.xubatian.cn/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BYarn%E8%B5%84%E6%BA%90%E8%B0%83%E5%BA%A6%E5%99%A8/">hadoop组成模块之Yarn资源调度器</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.xubatian.cn/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BYarn-HA%E9%AB%98%E5%8F%AF%E7%94%A8/">hadoop组成模块之Yarn-HA高可用</a></p>
-<p><a target="_blank" rel="noopener" href="http://localhost:4005/hadoop%E6%A8%A1%E5%9D%97%E7%BB%84%E6%88%90%E4%B9%8BJoin%E5%A4%9A%E7%A7%8D%E5%BA%94%E7%94%A8/">hadoop模块组成之Join多种应用</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.xubatian.cn/hadoop%E7%9A%84%E8%AE%A1%E6%95%B0%E5%99%A8%E5%BA%94%E7%94%A8%E5%92%8C%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/">hadoop的计数器应用和数据清洗</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.xubatian.cn/Hadoop%E6%95%B0%E6%8D%AE%E5%8E%8B%E7%BC%A9/">Hadoop数据压缩</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.xubatian.cn/Hadoop%E4%BC%81%E4%B8%9A%E4%BC%98%E5%8C%96/">Hadoop企业优化</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.xubatian.cn/Hadoop%E7%94%9F%E4%BA%A7%E8%B0%83%E4%BC%98%E6%89%8B%E5%86%8C/">Hadoop生产调优手册</a></p>
-<h3 id="Zookeeper"><a href="#Zookeeper" class="headerlink" title="Zookeeper"></a>Zookeeper</h3><p><a target="_blank" rel="noopener" href="https://www.xubatian.cn//zookeeper%E7%AE%80%E4%BB%8B/">Zookeeper简介</a></p>
-<h3 id="Hive"><a href="#Hive" class="headerlink" title="Hive"></a>Hive</h3><p><a target="_blank" rel="noopener" href="https://www.xubatian.cn/hive%E7%AE%80%E4%BB%8B(%E4%B8%80)/">hive简介(一)</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.xubatian.cn/hive%E7%AE%80%E4%BB%8B(%E4%BA%8C)/">hive简介(二)</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.xubatian.cn/hive%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E6%94%B6%E5%BD%95/">hive常用函数收录</a></p>
-<h3 id="Spark"><a href="#Spark" class="headerlink" title="Spark"></a>Spark</h3><p><a target="_blank" rel="noopener" href="https://www.xubatian.cn/spark%E5%9F%BA%E7%A1%80%E8%A7%A3%E6%9E%90/">spark基础解析</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.xubatian.cn/SparkCore%E4%B9%8BRDD%E6%A6%82%E8%BF%B0/">SparkCore之RDD概述</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.xubatian.cn/SparkCore%E4%B9%8BRDD%E7%BC%96%E7%A8%8B%E7%9A%84%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B/">SparkCore之RDD编程的编程模型</a></p>
-<h3 id="Streamx"><a href="#Streamx" class="headerlink" title="Streamx"></a>Streamx</h3><p><a target="_blank" rel="noopener" href="https://www.xubatian.cn/streamx%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%8F%8A%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E7%BC%96%E8%AF%91/">streamx源码编译及安装部署-服务器端编译</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.xubatian.cn/streamx%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%8F%8A%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2-%E6%9C%AC%E5%9C%B0%E7%BC%96%E8%AF%91(%E6%8E%A8%E8%8D%90)/">streamx源码编译及安装部署-本地编译(推荐)</a></p>
-<h3 id="Flink"><a href="#Flink" class="headerlink" title="Flink"></a>Flink</h3><p><a target="_blank" rel="noopener" href="https://www.xubatian.cn/Flink%E7%AE%80%E4%BB%8B/">Flink简介</a></p>
+<h1 id="简单示例"><a href="#简单示例" class="headerlink" title="简单示例"></a>简单示例</h1><p>以下是使用<code>PageHelper</code>进行分页的一个简单的示例，更多详细的内容，请大家参数上面提供的<a target="_blank" rel="noopener" href="https://github.com/pagehelper/Mybatis-PageHelper">github地址</a>。</p>
+<h2 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h2><p>笔者使用的是Maven，添加依赖如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;com.github.pagehelper&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;pagehelper&lt;/artifactId&gt;</span><br><span class="line">	&lt;version&gt;4.1.6&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="注册Mybatis-Plugin"><a href="#注册Mybatis-Plugin" class="headerlink" title="注册Mybatis Plugin"></a>注册Mybatis Plugin</h2><p>跟其它Mybatis Plugin一样，我们需要在Mybatis的配置文件中注册需要使用的Plugin，<code>PageHelper</code>中对应的Plugin实现类就是<code>com.github.pagehelper.PageHelper</code>自身。顺便说一句，Mybatis的Plugin我们说是Plugin，实际上对应的却是<code>org.apache.ibatis.plugin.Interceptor</code>接口，因为<code>Interceptor</code>的核心是其中的<code>plugin(Object target)</code>方法，而对于<code>plugin(Object target)</code>方法的实现，我们在需要对对应的对象进行拦截时会通过<code>org.apache.ibatis.plugin.Plugin</code>的静态方法<code>wrap(Object target, Interceptor interceptor)</code>返回一个代理对象，而方法入参就是当前的<code>Interceptor</code>实现类。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;plugins&gt;  </span><br><span class="line">   &lt;plugin interceptor=&quot;com.github.pagehelper.PageHelper&quot;/&gt;  </span><br><span class="line">&lt;/plugins&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用PageHelper"><a href="#使用PageHelper" class="headerlink" title="使用PageHelper"></a>使用PageHelper</h2><p><code>PageHelper</code>拦截的是<code>org.apache.ibatis.executor.Executor</code>的<code>query</code>方法，其传参的核心原理是通过<code>ThreadLocal</code>进行的。当我们需要对某个查询进行分页查询时，我们可以在调用Mapper进行查询前调用一次<code>PageHelper.startPage(..)</code>，这样<code>PageHelper</code>会把分页信息存入一个<code>ThreadLocal</code>变量中。在拦截到<code>Executor</code>的<code>query</code>方法执行时会从对应的<code>ThreadLocal</code>中获取分页信息，获取到了，则进行分页处理，处理完了后又会把<code>ThreadLocal</code>中的分页信息清理掉，以便不影响下一次的查询操作。所以当我们使用了<code>PageHelper.startPage(..)</code>后，每次将对最近一次的查询进行分页查询，如果下一次查询还需要进行分页查询，需要重新进行一次<code>PageHelper.startPage(..)</code>。这样就做到了在引入了分页后可以对原来的查询代码没有任何的侵入性。此外，在进行分页查询时，我们的返回结果一般是一个<code>java.util.List</code>，<code>PageHelper</code>分页查询后的结果会变成<code>com.github.pagehelper.Page</code>类型，其继承了<code>java.util.ArrayList</code>，所以不会对我们的方法声明造成影响。<code>com.github.pagehelper.Page</code>中包含有返回结果的分页信息，包括总记录数，总的分页数等信息，所以一般我们需要把返回结果强转为<code>com.github.pagehelper.Page</code>类型。以下是一个简单的使用<code>PageHelper</code>进行分页查询的示例代码。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">public class PageHelperTest &#123;</span><br><span class="line">	</span><br><span class="line">	private static SqlSessionFactory sqlSessionFactory;</span><br><span class="line">	private SqlSession session;</span><br><span class="line">	</span><br><span class="line">	@BeforeClass</span><br><span class="line">	public static void beforeClass() throws IOException &#123;</span><br><span class="line">		InputStream is = Resources.getResourceAsStream(&quot;mybatis-config-single.xml&quot;);</span><br><span class="line">		sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	@Before</span><br><span class="line">	public void before() &#123;</span><br><span class="line">		this.session = sqlSessionFactory.openSession();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	@After</span><br><span class="line">	public void after() &#123;</span><br><span class="line">		this.session.close();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Test</span><br><span class="line">	public void test() &#123;</span><br><span class="line">		int pageNum = 2;//页码，从1开始</span><br><span class="line">		int pageSize = 10;//每页记录数</span><br><span class="line">		PageHelper.startPage(pageNum, pageSize);//指定开始分页</span><br><span class="line">		UserMapper userMapper = this.session.getMapper(UserMapper.class);</span><br><span class="line">		List&lt;User&gt; all = userMapper.findAll();</span><br><span class="line">		Page&lt;User&gt; page = (Page&lt;User&gt;) all;</span><br><span class="line">		System.out.println(page.getPages());</span><br><span class="line">		System.out.println(page);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上是通过<code>PageHelper.startPage(..)</code>传递分页信息的示例，其实<code>PageHelper</code>还支持Mapper参数传递分页信息等其它用法。关于<code>PageHelper</code>的更多用法和配置信息等请参考该项目的GitHub<a target="_blank" rel="noopener" href="https://github.com/pagehelper/Mybatis-PageHelper">官方文档</a>。</p>
 
     
 
@@ -413,7 +397,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://xubatian.cn/大数据笔记索引/" title="博客文章目录清单" target="_blank">http://xubatian.cn/大数据笔记索引/</a>
+          <a href="http://xubatian.cn/推荐一款Mybatis分页插件/" title="推荐一款Mybatis分页插件" target="_blank">http://xubatian.cn/推荐一款Mybatis分页插件/</a>
         </li>
         
         <li>
@@ -435,7 +419,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">博客目录索引</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Mybatis</a>
         		</li>
       		
 		</ul>
@@ -447,7 +435,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/目录//" class="article-tag-list-link color3">目录</a>
+        			<a href="/categories/Java//" class="article-tag-list-link color5">Java</a>
         		</li>
       		
 		</ul>
@@ -502,7 +490,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%AC%94%E8%AE%B0%E7%B4%A2%E5%BC%95/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/%E6%8E%A8%E8%8D%90%E4%B8%80%E6%AC%BEMybatis%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -517,18 +505,9 @@
 
 <nav id="article-nav">
   
-    <a href="/Linux%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Linux命令收集
-        
-      </div>
-    </a>
   
-  
-    <a href="/%E4%B8%80%E6%9C%88-%E4%BD%A0%E5%A5%BD/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">一月,你好!</div>
+    <a href="/mybatis%E7%AE%80%E4%BB%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">mybatis简介</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -555,7 +534,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%BC%80%E5%8F%91-%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">大数据开发(基础笔记)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux"><span class="toc-number">1.0.1.</span> <span class="toc-text">Linux</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hadoop"><span class="toc-number">1.0.2.</span> <span class="toc-text">Hadoop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Zookeeper"><span class="toc-number">1.0.3.</span> <span class="toc-text">Zookeeper</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hive"><span class="toc-number">1.0.4.</span> <span class="toc-text">Hive</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spark"><span class="toc-number">1.0.5.</span> <span class="toc-text">Spark</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Streamx"><span class="toc-number">1.0.6.</span> <span class="toc-text">Streamx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Flink"><span class="toc-number">1.0.7.</span> <span class="toc-text">Flink</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.</span> <span class="toc-text">简单示例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E4%BE%9D%E8%B5%96"><span class="toc-number">1.1.</span> <span class="toc-text">添加依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E5%86%8CMybatis-Plugin"><span class="toc-number">1.2.</span> <span class="toc-text">注册Mybatis Plugin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8PageHelper"><span class="toc-number">1.3.</span> <span class="toc-text">使用PageHelper</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
