@@ -11,16 +11,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta name="description" content="Flink流式读取文本数据计算过程演示 Flink是懒加载的,第一遍会检测整体代码. 并行度设置为1,就是单线程执行,所以Flink是一行一行读取文本数据的, 读一行计算一行.  sum算子是有状态的. 所以他的历史数据是保存在sum算子里面.sum算子做聚合计算的,他是一个有状态的算子. 批处理最终是输出一次,而流处理来一条计算一条.所以他保留了状态.方便后面来一条和前面对比进行计算.">
+  <meta name="description" content="Flink流式读取文本数据计算过程演示. 文本数据总有一刻能读的完,所以他是有界的. 无界流读的是kafka的数据. Flink是懒加载的,第一遍会检测整体代码. 并行度设置为1,就是单线程执行,所以Flink是一行一行读取文本数据的, 读一行计算一行.  sum算子是有状态的. 所以他的历史数据是保存在sum算子里面.sum算子做聚合计算的,他是一个有状态的算子. 批处理最终是输出一次,而流处理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Flink有界流式读取文本数据计算过程演示">
 <meta property="og:url" content="http://xubatian.cn/Flink%E6%B5%81%E5%BC%8F%E8%AF%BB%E5%8F%96%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B%E6%BC%94%E7%A4%BA/index.html">
 <meta property="og:site_name" content="我的梦想是星辰大海">
-<meta property="og:description" content="Flink流式读取文本数据计算过程演示 Flink是懒加载的,第一遍会检测整体代码. 并行度设置为1,就是单线程执行,所以Flink是一行一行读取文本数据的, 读一行计算一行.  sum算子是有状态的. 所以他的历史数据是保存在sum算子里面.sum算子做聚合计算的,他是一个有状态的算子. 批处理最终是输出一次,而流处理来一条计算一条.所以他保留了状态.方便后面来一条和前面对比进行计算.">
+<meta property="og:description" content="Flink流式读取文本数据计算过程演示. 文本数据总有一刻能读的完,所以他是有界的. 无界流读的是kafka的数据. Flink是懒加载的,第一遍会检测整体代码. 并行度设置为1,就是单线程执行,所以Flink是一行一行读取文本数据的, 读一行计算一行.  sum算子是有状态的. 所以他的历史数据是保存在sum算子里面.sum算子做聚合计算的,他是一个有状态的算子. 批处理最终是输出一次,而流处理">
 <meta property="og:locale">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210091224.png">
 <meta property="article:published_time" content="2022-02-07T16:22:27.000Z">
-<meta property="article:modified_time" content="2022-02-10T01:22:54.758Z">
+<meta property="article:modified_time" content="2022-02-10T02:17:20.844Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="Flink">
 <meta name="twitter:card" content="summary">
@@ -319,7 +319,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">188字</span>
+      <span class="post-count">217字</span>
     </span>
   </span>
 
@@ -339,7 +339,7 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>Flink流式读取文本数据计算过程演示</p>
+    <p>Flink流式读取文本数据计算过程演示. 文本数据总有一刻能读的完,所以他是有界的. 无界流读的是kafka的数据.</p>
 <p>Flink是懒加载的,第一遍会检测整体代码.</p>
 <p>并行度设置为1,就是单线程执行,所以Flink是一行一行读取文本数据的, 读一行计算一行. </p>
 <p>sum算子是有状态的. 所以他的历史数据是保存在sum算子里面.sum算子做聚合计算的,他是一个有状态的算子.</p>
@@ -501,6 +501,15 @@
 
 
 <nav id="article-nav">
+  
+    <a href="/Flink%E8%AF%BB%E5%8F%96%E6%97%A0%E7%95%8C%E6%B5%81%E6%95%B0%E6%8D%AE%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B%E6%BC%94%E7%A4%BA/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Flink读取无界流数据计算过程演示
+        
+      </div>
+    </a>
   
   
     <a href="/Mybatis%E4%BB%8B%E7%BB%8D%E4%B9%8B%E7%BC%93%E5%AD%98/" id="article-nav-older" class="article-nav-link-wrap">
