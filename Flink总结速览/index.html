@@ -6,21 +6,40 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://xubatian.cn">
-  <title>Tag: kafka面试题 | 我的梦想是星辰大海</title>
+  <title>Flink总结速览 | 我的梦想是星辰大海</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta name="description" content="知识源于积累,登峰造极源于自律">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我的梦想是星辰大海">
-<meta property="og:url" content="http://xubatian.cn/tags/kafka%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
+  <meta name="description" content="Flink 核心特点批流一体所有的数据都天然带有时间的概念，必然发生在某一个时间点。把事件按照时间顺序排列起来，就形成了一个事件流，也叫作数据流。「无界数据」是持续产生的数据，所以必须持续地处理无界数据流。「有界数据」，就是在一个确定的时间范围内的数据流，有开始有结束，一旦确定了就不会再改变。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flink总结速览">
+<meta property="og:url" content="http://xubatian.cn/Flink%E6%80%BB%E7%BB%93%E9%80%9F%E8%A7%88/index.html">
 <meta property="og:site_name" content="我的梦想是星辰大海">
-<meta property="og:description" content="知识源于积累,登峰造极源于自律">
+<meta property="og:description" content="Flink 核心特点批流一体所有的数据都天然带有时间的概念，必然发生在某一个时间点。把事件按照时间顺序排列起来，就形成了一个事件流，也叫作数据流。「无界数据」是持续产生的数据，所以必须持续地处理无界数据流。「有界数据」，就是在一个确定的时间范围内的数据流，有开始有结束，一旦确定了就不会再改变。">
 <meta property="og:locale">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141319.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141359.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141427.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141448.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141557.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141620.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141640.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141709.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141759.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141819.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141844.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141900.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141918.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141948.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210142018.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210142040.png">
+<meta property="article:published_time" content="2022-02-10T06:11:48.000Z">
+<meta property="article:modified_time" content="2022-02-10T06:40:53.045Z">
 <meta property="article:author" content="xubatian">
-<meta property="article:tag" content="徐霸天,xubatian,上白书妖,shangbaishuyao">
+<meta property="article:tag" content="Flink">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141319.png">
   
   
     <link rel="icon" href="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/favicon.ico">
@@ -282,61 +301,470 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Flink总结速览" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/kafka%E9%9D%A2%E8%AF%95%E5%B8%B8%E9%81%87%E9%97%AE%E9%A2%98/" class="archive-article-date">
-        <time datetime="2022-02-10T03:16:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-10</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/kafka%E9%9D%A2%E8%AF%95%E5%B8%B8%E9%81%87%E9%97%AE%E9%A2%98/">kafka面试常遇问题</a>
-	
+    <h1 class="article-title" itemprop="name">
+      Flink总结速览
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/Flink%E6%80%BB%E7%BB%93%E9%80%9F%E8%A7%88/" class="archive-article-date">
+        <time datetime="2022-02-10T06:11:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-10</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">3.7k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">13分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="Flink-核心特点"><a href="#Flink-核心特点" class="headerlink" title="Flink 核心特点"></a>Flink 核心特点</h3><h4 id="批流一体"><a href="#批流一体" class="headerlink" title="批流一体"></a>批流一体</h4><p>所有的数据都天然带有时间的概念，必然发生在某一个时间点。把事件按照时间顺序排列起来，就形成了一个事件流，也叫作数据流。<strong>「无界数据」</strong>是持续产生的数据，所以必须持续地处理无界数据流。<strong>「有界数据」</strong>，就是在一个确定的时间范围内的数据流，有开始有结束，一旦确定了就不会再改变。</p>
+<span id="more"></span>
+
+<h4 id="可靠的容错能力"><a href="#可靠的容错能力" class="headerlink" title="可靠的容错能力"></a>可靠的容错能力</h4><ul>
+<li><p>集群级容错</p>
+</li>
+<li><ul>
+<li>集群管理器集成（Hadoop YARN、Mesos或Kubernetes）</li>
+<li>高可用性设置（HA模式基于ApacheZooKeeper）</li>
+</ul>
+</li>
+<li><p>应用级容错（ Checkpoint）</p>
+</li>
+<li><ul>
+<li>一致性（其本身支持Exactly-Once 语义）</li>
+<li>轻量级（检查点的执行异步和增量检查点）</li>
+</ul>
+</li>
+<li><p>高吞吐、低延迟</p>
+</li>
+</ul>
+<h4 id="运行时架构"><a href="#运行时架构" class="headerlink" title="运行时架构"></a>运行时架构</h4><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141319.png"></p>
+<ul>
+<li><p>Flink 客户端</p>
+</li>
+<li><ul>
+<li>提交Flink作业到Flink集群</li>
+<li>Stream Graph 和 Job Graph构建</li>
+</ul>
+</li>
+<li><p>JobManager</p>
+</li>
+<li><ul>
+<li>资源申请</li>
+<li>任务调度</li>
+<li>应用容错</li>
+</ul>
+</li>
+<li><p>TaskManager</p>
+</li>
+<li><ul>
+<li>接收JobManager 分发的子任务，管理子任务</li>
+<li>任务处理（消费数据、处理数据）</li>
+</ul>
+</li>
+</ul>
+<h2 id="Flink-应用"><a href="#Flink-应用" class="headerlink" title="Flink 应用"></a>Flink 应用</h2><h4 id="数据流"><a href="#数据流" class="headerlink" title="数据流"></a>数据流</h4><h5 id="DataStream-体系"><a href="#DataStream-体系" class="headerlink" title="DataStream 体系"></a>DataStream 体系</h5><ol>
+<li><p>DataStream(每个DataStream都有一个Transformation对象)</p>
+</li>
+<li><p>DataStreamSource（DataStream的起点）</p>
+</li>
+<li><p>DataStreamSink（DataStream的输出）</p>
+</li>
+<li><p>KeyedStream（表示根据指定的Key记性分组的数据流）</p>
+</li>
+<li><p>WindowdeStream &amp; AllWindowedStream（根据key分组且基于WindowAssigner切分窗口的数据流）</p>
+</li>
+<li><p>JoinedStreams &amp; CoGroupedStreams</p>
+</li>
+<li><ol>
+<li>JoinedStreams底层使用CoGroupedStreams来实现</li>
+<li>CoGrouped侧重的是Group，对数据进行分组，是对同一个key上的两组集合进行操作</li>
+<li>Join侧重的是数据对，对同一个key的每一对元素进行操作</li>
+</ol>
+</li>
+<li><p>ConnectedStreams（表示两个数据流的组合）</p>
+</li>
+<li><p>BroadcastStream &amp; BroadcastConnectedStream（DataStream的广播行为）</p>
+</li>
+<li><p>IterativeStream（包含IterativeStream的Dataflow是一个有向有环图）</p>
+</li>
+<li><p>AsyncDataStream（在DataStream上使用异步函数的能力）</p>
+</li>
+</ol>
+<h5 id="处理数据API"><a href="#处理数据API" class="headerlink" title="处理数据API"></a>处理数据API</h5><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141359.png"></p>
+<h2 id="核心抽象"><a href="#核心抽象" class="headerlink" title="核心抽象"></a>核心抽象</h2><h3 id="环境对象"><a href="#环境对象" class="headerlink" title="环境对象"></a>环境对象</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141427.png"></p>
+<h3 id="数据流元素"><a href="#数据流元素" class="headerlink" title="数据流元素"></a>数据流元素</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141448.png"></p>
+<ol>
+<li><p>StreamRecord（数据流中的一条记录｜事件）</p>
+</li>
+<li><ol>
+<li>数据的值本身</li>
+<li>时间戳（可选）</li>
+</ol>
+</li>
+<li><p>LatencyMarker（用来近似评估延迟）</p>
+</li>
+<li><ol>
+<li>周期性的在数据源算子中创造出来的时间戳</li>
+<li>算子编号</li>
+<li>数据源所在的Task编号</li>
+</ol>
+</li>
+<li><p>Watemark（是一个时间戳，用来告诉算子所有时间早于等于Watermark的事件或记录都已经到达，不会再有比Watermark更早的记录，算子可以根据Watermark触发窗口的计算、清理资源等）</p>
+</li>
+<li><p>StreamStatus（用来通知Task是否会继续接收到上游的记录或者Watermark）</p>
+</li>
+<li><ol>
+<li>空闲状态（IDLE）。</li>
+<li>活动状态（ACTIVE）。</li>
+</ol>
+</li>
+</ol>
+<h3 id="Flink-异步IO"><a href="#Flink-异步IO" class="headerlink" title="Flink 异步IO"></a>Flink 异步IO</h3><h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141557.png"></p>
+<p>顺序输出模式（先收到的数据元素先输出，后续数据元素的异步函数调用无论是否先完成，都需要等待）</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141620.png"></p>
+<p>无序输出模式（先处理完的数据元素先输出，不保证消息顺序）</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141640.png"></p>
+<h3 id="数据分区"><a href="#数据分区" class="headerlink" title="数据分区"></a>数据分区</h3><ul>
+<li>ForwardPartitioner（用于在同一个OperatorChain中上下游算子之间的数据转发，实际上数据是直接传递给下游的）</li>
+<li>ShufflePartitioner（随机将元素进行分区，可以确保下游的Task能够均匀地获得数据）</li>
+<li>ReblancePartitioner（以Round-robin的方式为每个元素分配分区，确保下游的Task可以均匀地获得数据，避免数据倾斜）</li>
+<li>RescalingPartitioner（用Round-robin选择下游的一个Task进行数据分区，如上游有2个Source，下游有6个Map，那么每个Source会分配3个固定的下游Map，不会向未分配给自己的分区写入数据）</li>
+<li>BroadcastPartitioner（将该记录广播给所有分区）</li>
+<li>KeyGroupStreamPartitioner（KeyedStream根据KeyGroup索引编号进行分区，该分区器不是提供给用户来用的）</li>
+</ul>
+<h2 id="窗口"><a href="#窗口" class="headerlink" title="窗口"></a>窗口</h2><h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141709.png"></p>
+<ul>
+<li><p>WindowAssigner（用来决定某个元素被分配到哪个/哪些窗口中去）</p>
+</li>
+<li><p>WindowTrigger（决定一个窗口何时能够呗计算或清除，每一个窗口都拥有一个属于自己的Trigger）</p>
+</li>
+<li><p>WindowEvictor（窗口数据的过滤器，可在Window Function 执行前或后，从Window中过滤元素）</p>
+</li>
+<li><ul>
+<li>CountEvictor：计数过滤器。在Window中保留指定数量的元素，并从窗口头部开始丢弃其余元素</li>
+<li>DeltaEvictor：阈值过滤器。丢弃超过阈值的数据记录</li>
+<li>TimeEvictor：时间过滤器。保留最新一段时间内的元素</li>
+</ul>
+</li>
+</ul>
+<h3 id="Watermark-（水印）"><a href="#Watermark-（水印）" class="headerlink" title="Watermark （水印）"></a>Watermark （水印）</h3><h4 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h4><p>用于处理乱序事件，而正确地处理乱序事件，通常用Watermark机制结合窗口来实现</p>
+<h4 id="DataStream-Watermark-生成"><a href="#DataStream-Watermark-生成" class="headerlink" title="DataStream Watermark 生成"></a>DataStream Watermark 生成</h4><ol>
+<li><p>Source Function 中生成Watermark</p>
+</li>
+<li><p>DataStream API 中生成Watermark</p>
+</li>
+<li><ol>
+<li>AssingerWithPeriodicWatermarks （周期性的生成Watermark策略，不会针对每个事件都生成）</li>
+<li>AssingerWithPunctuatedWatermarks （对每个事件都尝试进行Watermark的生成，如果生成的结果是null 或Watermark小于之前的，则不会发往下游）</li>
+</ol>
+</li>
+</ol>
+<h2 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h2><h3 id="自主内存管理"><a href="#自主内存管理" class="headerlink" title="自主内存管理"></a>自主内存管理</h3><h4 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h4><ol>
+<li><p>JVM内存管理的不足</p>
+</li>
+<li><ol>
+<li>有效数据密度低</li>
+<li>垃圾回收（大数据场景下需要消耗大量的内存，更容易触发Full GC ）</li>
+<li>OOM 问题影响稳定性</li>
+<li>缓存未命中问题（Java对象在堆上存储时并不是连续的）</li>
+</ol>
+</li>
+<li><p>自主内存管理</p>
+</li>
+<li><ol>
+<li>堆上内存的使用、监控、调试简单，堆外内存出现问题后的诊断则较为复杂</li>
+<li>Flink有时需要分配短生命周期的MemorySegment，在堆外内存上分配比在堆上内存开销更高。</li>
+<li>在Flink的测试中，部分操作在堆外内存上会比堆上内存慢</li>
+<li>大内存（上百GB）JVM的启动需要很长时间，Full GC可以达到分钟级。使用堆外内存，可以将大量的数据保存在堆外，极大地减小堆内存，避免GC和内存溢出的问题。</li>
+<li>高效的IO操作。堆外内存在写磁盘或网络传输时是zero-copy，而堆上内存则至少需要1次内存复制。</li>
+<li>堆外内存是进程间共享的。也就是说，即使JVM进程崩溃也不会丢失数据。这可以用来做故障恢复（Flink暂时没有利用这项功能，不过未来很可能会去做）</li>
+<li>堆外内存的优势</li>
+<li>堆外内存的不足</li>
+</ol>
+</li>
+</ol>
+<h3 id="内存模型"><a href="#内存模型" class="headerlink" title="内存模型"></a>内存模型</h3><h4 id="内存模型图"><a href="#内存模型图" class="headerlink" title="内存模型图"></a>内存模型图</h4><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141759.png"></p>
+<h4 id="MemorySegment（内存段）"><a href="#MemorySegment（内存段）" class="headerlink" title="MemorySegment（内存段）"></a>MemorySegment（内存段）</h4><p>一个MemorySegment对应着一个32KB大小的内存块。这块内存既可以是堆上内存（Java的byte数组），也可以是堆外内存（基于Netty的DirectByteBuffer）</p>
+<h5 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h5><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141819.png"></p>
+<h5 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h5><ul>
+<li><p>BYTE_ARRAY_BASE_OFFSET（二进制字节数组的起始索引）</p>
+</li>
+<li><p>LITTLE_ENDIAN（判断是否为Little Endian模式的字节存储顺序，若不是，就是Big Endian模式）</p>
+</li>
+<li><ul>
+<li>Big Endian：低地址存放最高有效字节（MSB）</li>
+<li>Little Endian：低地址存放最低有效字节（LSB）X86机器</li>
+</ul>
+</li>
+<li><p>HeapMemory（如果MemeorySegment使用堆上内存，则表示一个堆上的字节数组（byte［］），如果MemorySegment使用堆外内存，则为null）</p>
+</li>
+<li><p>address（字节数组对应的相对地址）</p>
+</li>
+<li><p>addressLimit（标识地址结束位置）</p>
+</li>
+<li><p>size（内存段的字节数）</p>
+</li>
+</ul>
+<h5 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h5><ul>
+<li>HybirdMemorySegment：用来分配堆上和堆外内存和堆上内存，Flink 在实际使用中只使用了改方式。原因是当有多个实现时，JIT无法直接在编译时自动识别优化</li>
+<li>HeapMemorySegment：用来分配堆上内存，实际没有实现</li>
+</ul>
+<h4 id="MemroyManager（内存管理器）"><a href="#MemroyManager（内存管理器）" class="headerlink" title="MemroyManager（内存管理器）"></a>MemroyManager（内存管理器）</h4><p>实际申请的是堆外内存，通过RocksDB的Block Cache和WriterBufferManager参数来限制，RocksDB使用的内存量</p>
+<h2 id="State（状态）"><a href="#State（状态）" class="headerlink" title="State（状态）"></a>State（状态）</h2><p>状态管理需要考虑的因素：</p>
+<ol>
+<li>状态数据的存储和访问</li>
+<li>状态数据的备份和恢复</li>
+<li>状态数据的划分和动态扩容</li>
+<li>状态数据的清理</li>
+</ol>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141844.png"></p>
+<h3 id="状态存储"><a href="#状态存储" class="headerlink" title="状态存储"></a>状态存储</h3><ul>
+<li>MemoryStateBackend：纯内存，适用于验证、测试，不推荐生产环境</li>
+<li>FsStateBackend：内存+文件，适用于长周期大规模的数据</li>
+<li>RocksDBStateBackend：RocksDB，适用于长周期大规模的数据</li>
+</ul>
+<h3 id="重分布"><a href="#重分布" class="headerlink" title="重分布"></a>重分布</h3><ul>
+<li>ListState：并行度在改变的时候，会将并发上的每个List都取出，然后把这些List合并到一个新的List,根据元素的个数均匀分配给新的Task</li>
+<li>UnionListState:把划分的方式交给用户去做，当改变并发的时候，会将原来的List拼接起来，然后不做划分，直接交给用户</li>
+<li>BroadcastState:变并发的时候，把这些数据分发到新的Task即可</li>
+<li>KeyState：Key-Group数量取决于最大并行度（MaxParallism）</li>
+</ul>
+<h2 id="作业提交"><a href="#作业提交" class="headerlink" title="作业提交"></a>作业提交</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141900.png"></p>
+<h2 id="资源管理"><a href="#资源管理" class="headerlink" title="资源管理"></a>资源管理</h2><h3 id="关系图"><a href="#关系图" class="headerlink" title="关系图"></a>关系图</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141918.png"></p>
+<h3 id="Slot选择策略"><a href="#Slot选择策略" class="headerlink" title="Slot选择策略"></a>Slot选择策略</h3><ul>
+<li><p>LocationPreferenceSlotSelectionStrategy（位置优先的选择策略）</p>
+</li>
+<li><ul>
+<li>DefaultLocationPreferenceSlotSelectionStrategy（默认策略），该策略不考虑资源的均衡分配，会从满足条件的可用Slot集合选择第1个</li>
+<li>EvenlySpreadOutLocationPreferenceSlotSelectionStrategy（均衡策略），该策略考虑资源的均衡分配，会从满足条件的可用Slot集合中选择剩余资源最多的Slot，尽量让各个TaskManager均衡地承担计算压力</li>
+</ul>
+</li>
+<li><p>PreviousAllocationSlotSelectionStrategy（已分配Slot优先的选择策略），如果当前没有空闲的已分配Slot，则仍然会使用位置优先的策略来分配和申请Slot</p>
+</li>
+</ul>
+<h2 id="调度"><a href="#调度" class="headerlink" title="调度"></a>调度</h2><ul>
+<li><p>SchedulerNG （调度器）</p>
+</li>
+<li><ul>
+<li>作用</li>
+<li>实现</li>
+</ul>
+</li>
+<li><ol>
+<li>DefaultScheduler（使用ScchedulerStrategy来实现）</li>
+<li>LegacyScheduler（实际使用了原来的ExecutionGraph的调度逻辑）</li>
+</ol>
+</li>
+<li><ol>
+<li>作业的生命周期管理（开始调度、挂起、取消）</li>
+<li>作业执行资源的申请、分配、释放</li>
+<li>作业状态的管理（发布过程中的状态变化、作业异常时的FailOver</li>
+<li>作业的信息提供，对外提供作业的详细信息</li>
+</ol>
+</li>
+<li><p>SchedulingStrategy（调度策略）</p>
+</li>
+<li><ul>
+<li>实现</li>
+</ul>
+</li>
+<li><ol>
+<li>EagerSchelingStrategy（该调度策略用来执行流计算作业的调度）</li>
+<li>LazyFromSourceSchedulingStrategy（该调度策略用来执行批处理作业的调度）</li>
+</ol>
+</li>
+<li><ol>
+<li>startScheduling：调度入口，触发调度器的调度行为</li>
+<li>restartTasks：重启执行失败的Task，一般是Task执行异常导致的</li>
+<li>onExecutionStateChange：当Execution的状态发生改变时</li>
+<li>onPartitionConsumable：当IntermediateResultParitititon中的数据可以消费时</li>
+</ol>
+</li>
+<li><p>ScheduleMode（调度模式）</p>
+</li>
+<li><ol>
+<li>Eager调度（该模式适用于流计算。一次性申请需要所有的资源，如果资源不足，则作业启动失败。）</li>
+<li>Lazy_From_Sources分阶段调度（适用于批处理。从Source Task开始分阶段调度，申请资源的时候，一次性申请本阶段所需要的所有资源。上游Task执行完毕后开始调度执行下游的Task，读取上游的数据，执行本阶段的计算任务，执行完毕之后，调度后一个阶段的Task，依次进行调度，直到作业执行完成）</li>
+<li>Lazy_From_Sources_With_Batch_Slot_Request分阶段Slot重用调度（适用于批处理。与分阶段调度基本一样，区别在于该模式下使用批处理资源申请模式，可以在资源不足的情况下执行作业，但是需要确保在本阶段的作业执行中没有Shuffle行为）</li>
+</ol>
+</li>
+</ul>
+<h3 id="关键组件"><a href="#关键组件" class="headerlink" title="关键组件"></a>关键组件</h3><h4 id="JobMaster"><a href="#JobMaster" class="headerlink" title="JobMaster"></a>JobMaster</h4><ol>
+<li><p>调度执行和管理（将JobGraph转化为ExecutionGraph，调度Task的执行，并处理Task的异常）</p>
+</li>
+<li><ul>
+<li>InputSplit 分配</li>
+<li>结果分区跟踪</li>
+<li>作业执行异常</li>
+</ul>
+</li>
+<li><p>作业Slot资源管理</p>
+</li>
+<li><p>检查点与保存点</p>
+</li>
+<li><p>监控运维相关</p>
+</li>
+<li><p>心跳管理</p>
+</li>
+</ol>
+<h4 id="Task"><a href="#Task" class="headerlink" title="Task"></a>Task</h4><p>结构</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141948.png"></p>
+<h3 id="作业调度失败"><a href="#作业调度失败" class="headerlink" title="作业调度失败"></a>作业调度失败</h3><h4 id="失败异常分类"><a href="#失败异常分类" class="headerlink" title="失败异常分类"></a>失败异常分类</h4><ul>
+<li>NonRecoverableError：不可恢复的错误。此类错误意味着即便是重启也无法恢复作业到正常状态，一旦发生此类错误，则作业执行失败，直接退出作业执行</li>
+<li>PartitionDataMissingError：分区数据不可访问错误。下游Task无法读取上游Task产生的数据，需要重启上游的Task</li>
+<li>EnvironmentError：环境的错误。这种错误需要在调度策略上进行改进，如使用黑名单机制，排除有问题的机器、服务，避免将失败的Task重新调度到这些机器上。</li>
+<li>RecoverableError：可恢复的错误</li>
+</ul>
+<h2 id="容错"><a href="#容错" class="headerlink" title="容错"></a>容错</h2><h3 id="容错保证语义"><a href="#容错保证语义" class="headerlink" title="容错保证语义"></a>容错保证语义</h3><ul>
+<li>At-Most-Once（最多一次）</li>
+<li>At-Leat-Once（最少一次）</li>
+<li>Exactly-Once（引擎内严格一次）</li>
+<li>End-to-End Exaacly-Once （端到端严格一次）</li>
+</ul>
+<h3 id="保存点恢复"><a href="#保存点恢复" class="headerlink" title="保存点恢复"></a>保存点恢复</h3><ol>
+<li>算子顺序的改变，如果对应的UID没变，则可以恢复，如果对应的UID变了则恢复失败。</li>
+<li>作业中添加了新的算子，如果是无状态算子，没有影响，可以正常恢复，如果是有状态的算子，跟无状态的算子一样处理。</li>
+<li>从作业中删除了一个有状态的算子，默认需要恢复保存点中所记录的所有算子的状态，如果删除了一个有状态的算子，从保存点恢复的时候被删除的OperatorID找不到，所以会报错，可以通过在命令中添加-allowNonRestoredState （short: -n）跳过无法恢复的算子。</li>
+<li>添加和删除无状态的算子，如果手动设置了UID，则可以恢复，保存点中不记录无状态的算子，如果是自动分配的UID，那么有状态算子的UID可能会变（Flink使用一个单调递增的计数器生成UID，DAG改版，计数器极有可能会变），很有可能恢复失败。</li>
+<li>恢复的时候调整并行度，Flink1.2.0及以上版本,如果没有使用作废的API，则没问题；1.2.0以下版本需要首先升级到1.2.0才可以。</li>
+</ol>
+<h3 id="端到端严格一次"><a href="#端到端严格一次" class="headerlink" title="端到端严格一次"></a>端到端严格一次</h3><h4 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h4><ul>
+<li>数据源支持断点读取</li>
+<li>外部存储支持回滚机制或者满足幂等性</li>
+</ul>
+<h3 id="图解-1"><a href="#图解-1" class="headerlink" title="图解"></a>图解</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210142018.png"></p>
+<h4 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h4><p>TwoPhaseCommitSinkFunction</p>
+<ol>
+<li>beginTransaction，开启一个事务，在临时目录中创建一个临时文件，之后写入数据到该文件中。此过程为不同的事务创建隔离，避免数据混淆。</li>
+<li>preCommit。预提交阶段。将缓存数据块写出到创建的临时文件，然后关闭该文件，确保不再写入新数据到该文件，同时开启一个新事务，执行属于下一个检查点的写入操作。</li>
+<li>commit。在提交阶段，以原子操作的方式将上一阶段的文件写入真正的文件目录下。如果提交失败，Flink应用会重启，并调用TwoPhaseCommitSinkFunction#recoverAndCommit方法尝试恢复并重新提交事务。</li>
+<li>abort。一旦终止事务，删除临时文件。</li>
+</ol>
+<h2 id="Flink-SQL"><a href="#Flink-SQL" class="headerlink" title="Flink SQL"></a>Flink SQL</h2><h3 id="关系图-1"><a href="#关系图-1" class="headerlink" title="关系图"></a>关系图</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210142040.png"></p>
+<h2 id="FLINK-API"><a href="#FLINK-API" class="headerlink" title="FLINK API"></a>FLINK API</h2><h3 id="DataStrem-JOIN"><a href="#DataStrem-JOIN" class="headerlink" title="DataStrem JOIN"></a>DataStrem JOIN</h3><h4 id="Window-JOIN"><a href="#Window-JOIN" class="headerlink" title="Window JOIN"></a>Window JOIN</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">stream.join(otherStream)</span><br><span class="line">    .where(&lt;KeySelector&gt;)</span><br><span class="line">    .equalTo(&lt;KeySelector&gt;)</span><br><span class="line">    .window(&lt;WindowAssigner&gt;)</span><br><span class="line">    .apply(&lt;JoinFunction&gt;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Tumbling-Window-Join"><a href="#Tumbling-Window-Join" class="headerlink" title="Tumbling Window Join"></a>Tumbling Window Join</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">DataStream&lt;Integer&gt; orangeStream = ...</span><br><span class="line">DataStream&lt;Integer&gt; greenStream = ...</span><br><span class="line"></span><br><span class="line">orangeStream.join(greenStream)</span><br><span class="line">    .where(&lt;KeySelector&gt;)</span><br><span class="line">    .equalTo(&lt;KeySelector&gt;)</span><br><span class="line">    .window(TumblingEventTimeWindows.of(Time.milliseconds(2)))</span><br><span class="line">    .apply (new JoinFunction&lt;Integer, Integer, String&gt; ()&#123;</span><br><span class="line">        @Override</span><br><span class="line">        public String join(Integer first, Integer second) &#123;</span><br><span class="line">            return first + &quot;,&quot; + second;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Sliding-Window-Join"><a href="#Sliding-Window-Join" class="headerlink" title="Sliding Window Join"></a>Sliding Window Join</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">DataStream&lt;Integer&gt; orangeStream = ...</span><br><span class="line">DataStream&lt;Integer&gt; greenStream = ...</span><br><span class="line"></span><br><span class="line">orangeStream.join(greenStream)</span><br><span class="line">    .where(&lt;KeySelector&gt;)</span><br><span class="line">    .equalTo(&lt;KeySelector&gt;)</span><br><span class="line">    .window(SlidingEventTimeWindows.of(Time.milliseconds(2) /* size */, Time.milliseconds(1) /* slide */))</span><br><span class="line">    .apply (new JoinFunction&lt;Integer, Integer, String&gt; ()&#123;</span><br><span class="line">        @Override</span><br><span class="line">        public String join(Integer first, Integer second) &#123;</span><br><span class="line">            return first + &quot;,&quot; + second;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Session-Window-Join"><a href="#Session-Window-Join" class="headerlink" title="Session Window Join"></a>Session Window Join</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">DataStream&lt;Integer&gt; orangeStream = ...</span><br><span class="line">DataStream&lt;Integer&gt; greenStream = ...</span><br><span class="line"></span><br><span class="line">orangeStream.join(greenStream)</span><br><span class="line">    .where(&lt;KeySelector&gt;)</span><br><span class="line">    .equalTo(&lt;KeySelector&gt;)</span><br><span class="line">    .window(EventTimeSessionWindows.withGap(Time.milliseconds(1)))</span><br><span class="line">    .apply (new JoinFunction&lt;Integer, Integer, String&gt; ()&#123;</span><br><span class="line">        @Override</span><br><span class="line">        public String join(Integer first, Integer second) &#123;</span><br><span class="line">            return first + &quot;,&quot; + second;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>知识源于积累,登峰造极源于自律!</p>
+<p>好文章就得收藏慢慢品, 文章转载于: <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/44G_siAfCLINOR0bBrun3g">https://mp.weixin.qq.com/s/44G_siAfCLINOR0bBrun3g</a></p>
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/zhifubaoPay.png">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/weixinPay.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          xubatian
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://xubatian.cn/Flink总结速览/" title="Flink总结速览" target="_blank">http://xubatian.cn/Flink总结速览/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外均为原创，采用 CC BY 4.0 CN协议 许可协议。转载请注明出处:https://www.xubatian.cn/
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">转载文章收录</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kafka</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">kafka面试题</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -349,17 +777,141 @@
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+    
 
     
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/Flink%E6%80%BB%E7%BB%93%E9%80%9F%E8%A7%88/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/kafka%E9%9D%A2%E8%AF%95%E5%B8%B8%E9%81%87%E9%97%AE%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">kafka面试常遇问题</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Flink-%E6%A0%B8%E5%BF%83%E7%89%B9%E7%82%B9"><span class="toc-number">1.</span> <span class="toc-text">Flink 核心特点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%B9%E6%B5%81%E4%B8%80%E4%BD%93"><span class="toc-number">1.1.</span> <span class="toc-text">批流一体</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E9%9D%A0%E7%9A%84%E5%AE%B9%E9%94%99%E8%83%BD%E5%8A%9B"><span class="toc-number">1.2.</span> <span class="toc-text">可靠的容错能力</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E6%9E%B6%E6%9E%84"><span class="toc-number">1.3.</span> <span class="toc-text">运行时架构</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Flink-%E5%BA%94%E7%94%A8"><span class="toc-number"></span> <span class="toc-text">Flink 应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%B5%81"><span class="toc-number">0.1.</span> <span class="toc-text">数据流</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#DataStream-%E4%BD%93%E7%B3%BB"><span class="toc-number">0.1.1.</span> <span class="toc-text">DataStream 体系</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AEAPI"><span class="toc-number">0.1.2.</span> <span class="toc-text">处理数据API</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%8A%BD%E8%B1%A1"><span class="toc-number"></span> <span class="toc-text">核心抽象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.</span> <span class="toc-text">环境对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%B5%81%E5%85%83%E7%B4%A0"><span class="toc-number">2.</span> <span class="toc-text">数据流元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Flink-%E5%BC%82%E6%AD%A5IO"><span class="toc-number">3.</span> <span class="toc-text">Flink 异步IO</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E7%90%86"><span class="toc-number">3.1.</span> <span class="toc-text">原理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%88%86%E5%8C%BA"><span class="toc-number">4.</span> <span class="toc-text">数据分区</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3"><span class="toc-number"></span> <span class="toc-text">窗口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">实现原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Watermark-%EF%BC%88%E6%B0%B4%E5%8D%B0%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">Watermark （水印）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8"><span class="toc-number">2.1.</span> <span class="toc-text">作用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DataStream-Watermark-%E7%94%9F%E6%88%90"><span class="toc-number">2.2.</span> <span class="toc-text">DataStream Watermark 生成</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-number"></span> <span class="toc-text">内存管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E4%B8%BB%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">自主内存管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E5%9B%A0"><span class="toc-number">1.1.</span> <span class="toc-text">原因</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">内存模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E5%9B%BE"><span class="toc-number">2.1.</span> <span class="toc-text">内存模型图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MemorySegment%EF%BC%88%E5%86%85%E5%AD%98%E6%AE%B5%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">MemorySegment（内存段）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9B%BE%E8%A7%A3"><span class="toc-number">2.2.1.</span> <span class="toc-text">图解</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%93%E6%9E%84"><span class="toc-number">2.2.2.</span> <span class="toc-text">结构</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.2.3.</span> <span class="toc-text">实现</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MemroyManager%EF%BC%88%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%99%A8%EF%BC%89"><span class="toc-number">2.3.</span> <span class="toc-text">MemroyManager（内存管理器）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#State%EF%BC%88%E7%8A%B6%E6%80%81%EF%BC%89"><span class="toc-number"></span> <span class="toc-text">State（状态）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%B1%BB"><span class="toc-number">1.</span> <span class="toc-text">分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E5%AD%98%E5%82%A8"><span class="toc-number">2.</span> <span class="toc-text">状态存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E5%88%86%E5%B8%83"><span class="toc-number">3.</span> <span class="toc-text">重分布</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A%E6%8F%90%E4%BA%A4"><span class="toc-number"></span> <span class="toc-text">作业提交</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86"><span class="toc-number"></span> <span class="toc-text">资源管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E5%9B%BE"><span class="toc-number">1.</span> <span class="toc-text">关系图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Slot%E9%80%89%E6%8B%A9%E7%AD%96%E7%95%A5"><span class="toc-number">2.</span> <span class="toc-text">Slot选择策略</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6"><span class="toc-number"></span> <span class="toc-text">调度</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E7%BB%84%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">关键组件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#JobMaster"><span class="toc-number">1.1.</span> <span class="toc-text">JobMaster</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Task"><span class="toc-number">1.2.</span> <span class="toc-text">Task</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A%E8%B0%83%E5%BA%A6%E5%A4%B1%E8%B4%A5"><span class="toc-number">2.</span> <span class="toc-text">作业调度失败</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%B1%E8%B4%A5%E5%BC%82%E5%B8%B8%E5%88%86%E7%B1%BB"><span class="toc-number">2.1.</span> <span class="toc-text">失败异常分类</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%B9%E9%94%99"><span class="toc-number"></span> <span class="toc-text">容错</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%B9%E9%94%99%E4%BF%9D%E8%AF%81%E8%AF%AD%E4%B9%89"><span class="toc-number">1.</span> <span class="toc-text">容错保证语义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%9D%E5%AD%98%E7%82%B9%E6%81%A2%E5%A4%8D"><span class="toc-number">2.</span> <span class="toc-text">保存点恢复</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AB%AF%E5%88%B0%E7%AB%AF%E4%B8%A5%E6%A0%BC%E4%B8%80%E6%AC%A1"><span class="toc-number">3.</span> <span class="toc-text">端到端严格一次</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E6%8F%90%E6%9D%A1%E4%BB%B6"><span class="toc-number">3.1.</span> <span class="toc-text">前提条件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E8%A7%A3-1"><span class="toc-number">4.</span> <span class="toc-text">图解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0-1"><span class="toc-number">4.1.</span> <span class="toc-text">实现</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Flink-SQL"><span class="toc-number"></span> <span class="toc-text">Flink SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E5%9B%BE-1"><span class="toc-number">1.</span> <span class="toc-text">关系图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FLINK-API"><span class="toc-number"></span> <span class="toc-text">FLINK API</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DataStrem-JOIN"><span class="toc-number">1.</span> <span class="toc-text">DataStrem JOIN</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Window-JOIN"><span class="toc-number">1.1.</span> <span class="toc-text">Window JOIN</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tumbling-Window-Join"><span class="toc-number">2.</span> <span class="toc-text">Tumbling Window Join</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sliding-Window-Join"><span class="toc-number">3.</span> <span class="toc-text">Sliding Window Join</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Session-Window-Join"><span class="toc-number">4.</span> <span class="toc-text">Session Window Join</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
+  
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'true' == true ? true : false;
+   var verify = 'ture' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '.comment',
+            notify: notify,
+            verify: verify,
+            app_id: "4C7T8fSNVA6RnfQksa8BmdFc-gzGzoHsz",
+            app_key: "V57hYH4l9NRzmpobtAIN5gzq",
+            placeholder: "开始你的评论吧...",
+            avatar:"mm"
+        });
+    }
+</script>
+    </section>
+  
+
+
+
+
+
 
 
           </div>
@@ -399,9 +951,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
@@ -623,15 +1175,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">转载文章收录</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">kafka</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">kafka面试题</a>
               </li>
             
             <div class="clearfix"></div>
