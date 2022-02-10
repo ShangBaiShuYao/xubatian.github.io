@@ -293,7 +293,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/Flink%E6%B5%81%E5%BC%8F%E8%AF%BB%E5%8F%96%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B%E6%BC%94%E7%A4%BA/">Flink流式读取文本数据计算过程演示</a>
+	  <a class="article-title" href="/Flink%E6%B5%81%E5%BC%8F%E8%AF%BB%E5%8F%96%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B%E6%BC%94%E7%A4%BA/">Flink有界流式读取文本数据计算过程演示</a>
 	
     </h1>
   
@@ -316,7 +316,9 @@
     
     <p>Flink流式读取文本数据计算过程演示</p>
 <p>Flink是懒加载的,第一遍会检测整体代码.</p>
-<p>Flink是一行一行读取文本数据的, 读一行计算一行. </p>
+<p>并行度设置为1,就是单线程执行,所以Flink是一行一行读取文本数据的, 读一行计算一行. </p>
+<p>sum算子是有状态的. 所以他的历史数据是保存在sum算子里面.sum算子做聚合计算的,他是一个有状态的算子.</p>
+<p>批处理最终是输出一次,而流处理来一条计算一条.所以他保留了状态.方便后面来一条和前面对比进行计算.</p>
     
     <a class="article-more-a" style="display: none; href="/Flink%E6%B5%81%E5%BC%8F%E8%AF%BB%E5%8F%96%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B%E6%BC%94%E7%A4%BA/#more">more >></a>
     

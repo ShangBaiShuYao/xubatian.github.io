@@ -6,7 +6,7 @@
   <link href="http://xubatian.cn/atom.xml" rel="self"/>
   
   <link href="http://xubatian.cn/"/>
-  <updated>2022-02-07T16:24:53.550Z</updated>
+  <updated>2022-02-10T01:22:54.758Z</updated>
   <id>http://xubatian.cn/</id>
   
   <author>
@@ -17,18 +17,20 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Flink流式读取文本数据计算过程演示</title>
+    <title>Flink有界流式读取文本数据计算过程演示</title>
     <link href="http://xubatian.cn/Flink%E6%B5%81%E5%BC%8F%E8%AF%BB%E5%8F%96%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B%E6%BC%94%E7%A4%BA/"/>
     <id>http://xubatian.cn/Flink%E6%B5%81%E5%BC%8F%E8%AF%BB%E5%8F%96%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B%E6%BC%94%E7%A4%BA/</id>
     <published>2022-02-07T16:22:27.000Z</published>
-    <updated>2022-02-07T16:24:53.550Z</updated>
+    <updated>2022-02-10T01:22:54.758Z</updated>
     
-    <content type="html"><![CDATA[<p>Flink流式读取文本数据计算过程演示</p><p>Flink是懒加载的,第一遍会检测整体代码.</p><p>Flink是一行一行读取文本数据的, 读一行计算一行. </p><span id="more"></span><div style="position: relative; padding: 30% 45%;"><iframe style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/2022-02-08_00-18-10.mp4" frameborder="no" scrolling="no"></iframe></div> ]]></content>
+    <content type="html"><![CDATA[<p>Flink流式读取文本数据计算过程演示</p><p>Flink是懒加载的,第一遍会检测整体代码.</p><p>并行度设置为1,就是单线程执行,所以Flink是一行一行读取文本数据的, 读一行计算一行. </p><p>sum算子是有状态的. 所以他的历史数据是保存在sum算子里面.sum算子做聚合计算的,他是一个有状态的算子.</p><p>批处理最终是输出一次,而流处理来一条计算一条.所以他保留了状态.方便后面来一条和前面对比进行计算.</p><span id="more"></span><p>源码地址: <a href="https://github.com/ShangBaiShuYao/flink-learning-from-zhisheng/blob/main/flink-1.14.3-Demo/src/main/java/www/xubatian/cn/FlinkDemo01/Flink_WordCount_Bounded.java">https://github.com/ShangBaiShuYao/flink-learning-from-zhisheng/blob/main/flink-1.14.3-Demo/src/main/java/www/xubatian/cn/FlinkDemo01/Flink_WordCount_Bounded.java</a></p><p>结果演示:</p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210091224.png"></p><div style="position: relative; padding: 30% 45%;"><iframe style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/2022-02-08_00-18-10.mp4" frameborder="no" scrolling="no"></iframe></div> ]]></content>
     
     
     <summary type="html">&lt;p&gt;Flink流式读取文本数据计算过程演示&lt;/p&gt;
 &lt;p&gt;Flink是懒加载的,第一遍会检测整体代码.&lt;/p&gt;
-&lt;p&gt;Flink是一行一行读取文本数据的, 读一行计算一行. &lt;/p&gt;</summary>
+&lt;p&gt;并行度设置为1,就是单线程执行,所以Flink是一行一行读取文本数据的, 读一行计算一行. &lt;/p&gt;
+&lt;p&gt;sum算子是有状态的. 所以他的历史数据是保存在sum算子里面.sum算子做聚合计算的,他是一个有状态的算子.&lt;/p&gt;
+&lt;p&gt;批处理最终是输出一次,而流处理来一条计算一条.所以他保留了状态.方便后面来一条和前面对比进行计算.&lt;/p&gt;</summary>
     
     
     
