@@ -25,7 +25,7 @@
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210112614.png">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210112638.png">
 <meta property="article:published_time" content="2022-02-10T03:16:03.000Z">
-<meta property="article:modified_time" content="2022-02-10T03:29:31.170Z">
+<meta property="article:modified_time" content="2022-02-10T03:31:05.346Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="转载文章收录">
 <meta property="article:tag" content="kafka">
@@ -326,7 +326,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">6.1k字</span>
+      <span class="post-count">6.2k字</span>
     </span>
   </span>
 
@@ -459,6 +459,9 @@
 <h6 id="follower故障"><a href="#follower故障" class="headerlink" title="follower故障"></a>follower故障</h6><p>follower发生故障后会被临时踢出ISR，待该follower恢复后，follower会读取本地磁盘记录的上次的HW，并将log文件高于HW的部分截取掉，从HW开始向leader进行同步。等该follower的LEO大于等于该Partition的HW，即follower追上leader之后，就可以重新加入ISR了。</p>
 <h6 id="leader故障"><a href="#leader故障" class="headerlink" title="leader故障"></a>leader故障</h6><p>leader发生故障之后，会从ISR中选出一个新的leader，之后，为保证多个副本之间的数据一致性，其余的follower会先将各自的log文件高于HW的部分截掉，然后从新的leader同步数据。</p>
 <p>注意：这只能保证副本之间的数据一致性，并不能保证数据不丢失或者不重复。</p>
+<p>问题纠正:</p>
+<p> (1)ISR包含leader，不只是follower,所有的元数据都是Controller来维护的</p>
+<p> (2)其实不是什么ack不ack的 Follower 发起 Fetcher请求 之后会返回 success ； 这就理解为  Follower向leader回复了ack，容易误解为ack是生产者和borker的关系。还有这句话应该是follow向leader反馈消息</p>
 <h3 id="kafka的副本机制"><a href="#kafka的副本机制" class="headerlink" title="kafka的副本机制"></a>kafka的副本机制</h3><p>参考上一个问题(副本数据同步策略)。</p>
 <h3 id="kafka的消费分区分配策略"><a href="#kafka的消费分区分配策略" class="headerlink" title="kafka的消费分区分配策略"></a>kafka的消费分区分配策略</h3><p>一个consumer group中有多个consumer，一个topic有多个partition，所以必然会涉及到partition的分配问题，即确定那个partition由哪个consumer来消费 Kafka有三种分配策略，一是RoundRobin，一是Range。高版本还有一个StickyAssignor策略 将分区的所有权从一个消费者移到另一个消费者称为重新平衡（rebalance）。当以下事件发生时，Kafka 将会进行一次分区分配：</p>
 <p>同一个 Consumer Group 内新增消费者。</p>
