@@ -6,21 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://xubatian.cn">
-  <title>Tag: Flink | 我的梦想是星辰大海</title>
+  <title>Flink 原理与实现: Flink核心概念之任务链 | 我的梦想是星辰大海</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta name="description" content="知识源于积累,登峰造极源于自律">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我的梦想是星辰大海">
-<meta property="og:url" content="http://xubatian.cn/tags/Flink/index.html">
+  <meta name="description" content="好记性,烂笔头:①socket不能多并行度消费. 而kafka是可以多并行度消费的. kafka有多个分区.    ②keyby不是一个算子,他是决定我们的数据进入到下游的哪一个并行度里面的.他自己没有并行度的.他不会对数据做任何的操作.数据可能从一个并行度来的. 进过keyby之后,可能把他发到好多个并行度里面去了.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flink 原理与实现: Flink核心概念之任务链">
+<meta property="og:url" content="http://xubatian.cn/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B9%8B%E4%BB%BB%E5%8A%A1%E9%93%BE/index.html">
 <meta property="og:site_name" content="我的梦想是星辰大海">
-<meta property="og:description" content="知识源于积累,登峰造极源于自律">
+<meta property="og:description" content="好记性,烂笔头:①socket不能多并行度消费. 而kafka是可以多并行度消费的. kafka有多个分区.    ②keyby不是一个算子,他是决定我们的数据进入到下游的哪一个并行度里面的.他自己没有并行度的.他不会对数据做任何的操作.数据可能从一个并行度来的. 进过keyby之后,可能把他发到好多个并行度里面去了.">
 <meta property="og:locale">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210221830.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210222115.png">
+<meta property="article:published_time" content="2022-02-10T14:15:46.000Z">
+<meta property="article:modified_time" content="2022-02-11T04:14:37.668Z">
 <meta property="article:author" content="xubatian">
-<meta property="article:tag" content="徐霸天,xubatian,上白书妖,shangbaishuyao">
+<meta property="article:tag" content="Flink">
+<meta property="article:tag" content="Flink任务链">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210221830.png">
   
   
     <link rel="icon" href="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/favicon.ico">
@@ -282,41 +288,140 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Flink-原理与实现-Flink核心概念之任务链" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B9%8B%E4%BB%BB%E5%8A%A1%E9%93%BE/" class="archive-article-date">
-        <time datetime="2022-02-10T14:15:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-10</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B9%8B%E4%BB%BB%E5%8A%A1%E9%93%BE/">Flink 原理与实现: Flink核心概念之任务链</a>
-	
+    <h1 class="article-title" itemprop="name">
+      Flink 原理与实现: Flink核心概念之任务链
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B9%8B%E4%BB%BB%E5%8A%A1%E9%93%BE/" class="archive-article-date">
+        <time datetime="2022-02-10T14:15:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-10</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">755字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">2分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="好记性-烂笔头"><a href="#好记性-烂笔头" class="headerlink" title="好记性,烂笔头:"></a>好记性,烂笔头:</h3><p>①socket不能多并行度消费. 而kafka是可以多并行度消费的. kafka有多个分区.   </p>
+<p>②keyby不是一个算子,他是决定我们的数据进入到下游的哪一个并行度里面的.他自己没有并行度的.他不会对数据做任何的操作.数据可能从一个并行度来的. 进过keyby之后,可能把他发到好多个并行度里面去了.</p>
+<span id="more"></span>
+
+<h3 id="正文"><a href="#正文" class="headerlink" title="正文:"></a>正文:</h3><p>任务链的意思就是说,我们把两个算子按照一定的条件连接在一起.形成一个统一的Task<br>这就是所谓的任务链.并且我们可以在图上可以看到,如下图所示:</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210221830.png"></p>
+<p>任务链可以当做Spark中的stage理解. 但是他比stage灵活. spark中根据宽依赖划分stage. 所以Flink保留此特点. 如果你是重分区的操作.他就一定会划分到两个不同的任务链里面来. 除此之外Flink的任务链还要看并行度. </p>
+<p>这个任务链有一定的条件,首先他们的<strong>①并行度要相同</strong>.所谓的并行度相同就是One-to-one,One-to-one不是说他们只有一个,而是指他们的并行度相同.第二个条件就是他们<strong>②中间没有shuffle</strong>.中间没有shuffle才会通过任务链把他们合在一起.这个任务链不用我们去做的.不过呢,我们可以设置让所有的算子之间完全隔离.就算你有条件来通过这个任务链来进行合并,我们也不让你构建一个任务链.我们只要加一个disableOperatorChaining(禁用这个任务链),禁用这个任务链之后,就算你符合条件,他也不把你这两个task链在一起,形成一个统一的Task.<br>但是这两种那个更好呢?<strong>当然是有任务链的更好.有任务链可以提高吞吐,减少IO操作</strong>.<br>所以,大多数情况下,我这一行代码(streamEnv.disableOperatorChaining)不应该做.</p>
+<p><strong>③共享组不同也不能形成任务链</strong> 共享组的作用就是把同一个任务放在同一个slot里面</p>
+<p>相同并行度的one to one操作，Flink这样相连的算子链接在一起形成一个task，原来的算子成为里面的一部分。将算子链接成task是非常有效的优化：它能减少线程之间的切换和基于缓存区的数据交换，在减少时延的同时提升吞吐量。链接的行为可以在编程API中进行指定。<br>streamEnv.disableOperatorChaining:表示所有操作算子都不构建任务链<br>.disableChaining() 加在其中一个算子中，表示：该算子和其他算子不一起构建任务链。它是独立的</p>
+<p>图 task与operator chains:</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210222115.png"></p>
+<p>任务链案例代码地址:</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/ShangBaiShuYao/flink-learning-from-zhisheng/blob/main/flink-1.12.0-Demo/src/main/java/com/shangbaishuyao/demo/FlinkDemo02/Flink01_WordCount_Chain.java">https://github.com/ShangBaiShuYao/flink-learning-from-zhisheng/blob/main/flink-1.12.0-Demo/src/main/java/com/shangbaishuyao/demo/FlinkDemo02/Flink01_WordCount_Chain.java</a></p>
+<div style="position: relative; padding: 30% 45%;">
+<iframe style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/2022-02-11_12-04-16.mp4" frameborder="no" scrolling="no">
+</iframe>
+</div> 
+
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/zhifubaoPay.png">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/weixinPay.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          xubatian
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://xubatian.cn/Flink-原理与实现-Flink核心概念之任务链/" title="Flink 原理与实现: Flink核心概念之任务链" target="_blank">http://xubatian.cn/Flink-原理与实现-Flink核心概念之任务链/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外均为原创，采用 CC BY 4.0 CN协议 许可协议。转载请注明出处:https://www.xubatian.cn/
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -332,7 +437,7 @@
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -345,395 +450,141 @@
 	</div>
 
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B9%8B%E4%BB%BB%E5%8A%A1%E9%93%BE/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink%E6%80%BB%E7%BB%93%E9%80%9F%E8%A7%88/" class="archive-article-date">
-        <time datetime="2022-02-10T06:11:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-10</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/Flink%E6%80%BB%E7%BB%93%E9%80%9F%E8%A7%88/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Flink总结速览</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink%E6%80%BB%E7%BB%93%E9%80%9F%E8%A7%88/">Flink总结速览</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A5%BD%E8%AE%B0%E6%80%A7-%E7%83%82%E7%AC%94%E5%A4%B4"><span class="toc-number">1.</span> <span class="toc-text">好记性,烂笔头:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-number">2.</span> <span class="toc-text">正文:</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink%E8%AF%BB%E5%8F%96%E6%97%A0%E7%95%8C%E6%B5%81%E6%95%B0%E6%8D%AE%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B%E6%BC%94%E7%A4%BA/" class="archive-article-date">
-        <time datetime="2022-02-10T02:07:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-10</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink%E8%AF%BB%E5%8F%96%E6%97%A0%E7%95%8C%E6%B5%81%E6%95%B0%E6%8D%AE%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B%E6%BC%94%E7%A4%BA/">Flink读取无界流数据计算过程演示</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink%E6%B5%81%E5%BC%8F%E8%AF%BB%E5%8F%96%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B%E6%BC%94%E7%A4%BA/" class="archive-article-date">
-        <time datetime="2022-02-07T16:22:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-08</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink%E6%B5%81%E5%BC%8F%E8%AF%BB%E5%8F%96%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B%E6%BC%94%E7%A4%BA/">Flink有界流式读取文本数据计算过程演示</a>
-	
-    </h1>
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'true' == true ? true : false;
+   var verify = 'ture' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '.comment',
+            notify: notify,
+            verify: verify,
+            app_id: "4C7T8fSNVA6RnfQksa8BmdFc-gzGzoHsz",
+            app_key: "V57hYH4l9NRzmpobtAIN5gzq",
+            placeholder: "开始你的评论吧...",
+            avatar:"mm"
+        });
+    }
+</script>
+    </section>
   
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink%E4%BD%BF%E7%94%A8idea%E5%B0%86%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB%E6%9B%BF%E6%8D%A2%E4%B8%BAlambda%E8%A1%A8%E8%BE%BE%E4%BC%9A%E6%93%A6%E9%99%A4%E6%B3%9B%E5%9E%8B/" class="archive-article-date">
-        <time datetime="2022-02-07T06:12:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-07</time>
-</a>
 
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink%E4%BD%BF%E7%94%A8idea%E5%B0%86%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB%E6%9B%BF%E6%8D%A2%E4%B8%BAlambda%E8%A1%A8%E8%BE%BE%E4%BC%9A%E6%93%A6%E9%99%A4%E6%B3%9B%E5%9E%8B/">Flink使用idea将匿名内部类替换为lambda表达会擦除泛型</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink%E6%B5%81%E5%A4%84%E7%90%86%E6%A1%88%E4%BE%8B/" class="archive-article-date">
-        <time datetime="2022-01-31T09:02:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-31</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink%E6%B5%81%E5%A4%84%E7%90%86%E6%A1%88%E4%BE%8B/">Flink流处理案例</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink%E9%83%A8%E7%BD%B2/" class="archive-article-date">
-        <time datetime="2022-01-20T21:39:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-21</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink%E9%83%A8%E7%BD%B2/">Flink部署</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink%E7%AE%80%E4%BB%8B/" class="archive-article-date">
-        <time datetime="2022-01-19T07:57:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-19</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink%E7%AE%80%E4%BB%8B/">Flink简介</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -773,9 +624,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
