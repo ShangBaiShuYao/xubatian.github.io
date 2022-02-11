@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://xubatian.cn">
-  <title>Tag: Flink任务链 | 我的梦想是星辰大海</title>
+  <title>Flink 原理与实现: Flink运行时的组件 | 我的梦想是星辰大海</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta name="description" content="知识源于积累,登峰造极源于自律">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我的梦想是星辰大海">
-<meta property="og:url" content="http://xubatian.cn/tags/Flink%E4%BB%BB%E5%8A%A1%E9%93%BE/index.html">
+  <meta name="description" content="Flink运行时架构主要包括四个不同的组件，它们会在运行流处理应用程序时协同工作：作业管理器（JobManager）、资源管理器（ResourceManager）、任务管理器（TaskManager），以及分发器（Dispatcher）。因为Flink是用Java和Scala实现的，所以所有组件都会运行在Java虚拟机上。每个组件的职责如下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flink 原理与实现: Flink运行时的组件">
+<meta property="og:url" content="http://xubatian.cn/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E8%BF%90%E8%A1%8C%E6%97%B6%E7%9A%84%E7%BB%84%E4%BB%B6/index.html">
 <meta property="og:site_name" content="我的梦想是星辰大海">
-<meta property="og:description" content="知识源于积累,登峰造极源于自律">
+<meta property="og:description" content="Flink运行时架构主要包括四个不同的组件，它们会在运行流处理应用程序时协同工作：作业管理器（JobManager）、资源管理器（ResourceManager）、任务管理器（TaskManager），以及分发器（Dispatcher）。因为Flink是用Java和Scala实现的，所以所有组件都会运行在Java虚拟机上。每个组件的职责如下">
 <meta property="og:locale">
+<meta property="article:published_time" content="2022-02-11T04:20:15.853Z">
+<meta property="article:modified_time" content="2022-02-11T04:24:56.113Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="徐霸天,xubatian,上白书妖,shangbaishuyao">
 <meta name="twitter:card" content="summary">
@@ -282,57 +284,133 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Flink-原理与实现-Flink运行时的组件" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B9%8B%E4%BB%BB%E5%8A%A1%E9%93%BE/" class="archive-article-date">
-        <time datetime="2022-02-10T14:15:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-10</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B9%8B%E4%BB%BB%E5%8A%A1%E9%93%BE/">Flink 原理与实现: Flink核心概念之任务链</a>
-	
+    <h1 class="article-title" itemprop="name">
+      Flink 原理与实现: Flink运行时的组件
     </h1>
   
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Flink任务链</a>
-        		</li>
-      		
-		</ul>
-	</div>
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
 
+<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E8%BF%90%E8%A1%8C%E6%97%B6%E7%9A%84%E7%BB%84%E4%BB%B6/" class="archive-article-date">
+        <time datetime="2022-02-11T04:20:15.853Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-11</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">2.3k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">8分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>Flink运行时架构主要包括四个不同的组件，它们会在运行流处理应用程序时协同工作：作业管理器（JobManager）、资源管理器（ResourceManager）、任务管理器（TaskManager），以及分发器（Dispatcher）。因为Flink是用Java和Scala实现的，所以所有组件都会运行在Java虚拟机上。每个组件的职责如下</p>
+<span id="more"></span>
+
+<h2 id="作业管理器（JobManager）"><a href="#作业管理器（JobManager）" class="headerlink" title="作业管理器（JobManager）"></a>作业管理器（JobManager）</h2><p>控制一个应用程序执行的主进程，也就是说，每个应用程序都会被一个不同的JobManager所控制执行。JobManager会先接收到要执行的应用程序，这个应用程序会包括：作业图（JobGraph）、逻辑数据流图（logical dataflow graph）和打包了所有的类、库和其它资源的JAR包。JobManager会把JobGraph转换成一个物理层面的数据流图，这个图被叫做“执行图”（ExecutionGraph），包含了所有可以并发执行的任务。JobManager会向资源管理器（ResourceManager）请求执行任务必要的资源，也就是任务管理器（TaskManager）上的插槽（slot）。一旦它获取到了足够的资源，就会将执行图分发到真正运行它们的TaskManager上。而在运行过程中，JobManager会负责所有需要中央协调的操作，比如说检查点（checkpoints）的协调。</p>
+<h3 id="博主解析"><a href="#博主解析" class="headerlink" title="博主解析:"></a>博主解析:</h3><p>JobManager是控制整个Flink Job运行的,所谓的控制就是,<br>①他负责监控②他负责Slot的分配或者Slot的调度.<br>这个Task在哪个Slot上运行,他给你分配好,这就是所谓的控制,JobManager就一句话,就是用来控制Flink Job的主进程的运行.<br>什么叫控制?控制的意思就是说你整个Job分成好几个任务,那么我这几个任务我需要把他分配到哪些Task Manager的哪些Slot上,这个Slot就表示资源的意思,同时还负责监控</p>
+<h2 id="资源管理器（ResourceManager）"><a href="#资源管理器（ResourceManager）" class="headerlink" title="资源管理器（ResourceManager）"></a>资源管理器（ResourceManager）</h2><p>主要负责管理任务管理器（TaskManager）的插槽（slot），TaskManger插槽是Flink中定义的处理资源单元。Flink为不同的环境和资源管理工具提供了不同资源管理器，比如YARN、Mesos、K8s，以及standalone部署。当JobManager申请插槽资源时，ResourceManager会将有空闲插槽的TaskManager分配给JobManager。如果ResourceManager没有足够的插槽来满足JobManager的请求，它还可以向资源提供平台发起会话，以提供启动TaskManager进程的容器。另外，ResourceManager还负责终止空闲的TaskManager，释放计算资源。</p>
+<h3 id="博主解析-1"><a href="#博主解析-1" class="headerlink" title="博主解析:"></a>博主解析:</h3><p>ResourceManager如果是yarn模式的话,这个在hadoop就讲过了.但是如果是Standalone模式的话.这个ResourceManager实际上就和我们的JobManager在一个进程里面,这点需要注意.<br>但是如果是yarn模式的话,ResourceManager是独立的,是yarn里面的主节点,主要负责资源的管理,管理所有Task Manager上的Slot.<br>这里面有个迷糊的地方,这个ResourceManager早就在hadoop上学过了,但是为什么说他是管理所以Task Manager的Slot呢?问题是,你这个Task Manager是属于你的Flink的.原来我们学Hadoop的时候说的是,ResourceManager是管理NodeManager上的资源的.可是,现在我们又说是管理Task Manager上的资源.这两句话难道是一样的吗?其实,这两句话本质上是一样的.为什么呢?因为,请问,在yarn模式下,这个TaskManager这个节点会运行在哪些节点上呢?是运行在NodeManager节点上呢?还是在ResourceManager节点上?还是运行在与NodeManager和ResourceManager都没关系的其他节点上呢?其实,他一定是运行在NodeManager上,并且他只能运行在NodeManager上,他是在NodeManager上去启动TaskManager.那如果是这样的话.你在NodeManager上启动TaskManager的话,你不就是申请NodeManager上的资源嘛.申请了NodeManager上的资源你才能够启动对应的TaskManager.所以说,我们之前学的ResourceManager就是来管理和分配NodeManager上的资源的.这句话是对的.由于你NodeManager上有资源,所以他可以在某一个NodoManager上去启动Flink Job需要运行的TaskManager.假设在hadoop102上的NodeManager上启动了一个TaskManager,他之所以能够启动,一定是他有空余的资源才能够启动.假设他有空余一个G的资源,那启动了一个TaskManager.(为什么这里说是一个G呢?因为我们配置文件中指定了默认情况下TaskManager占用内存是一个G,所以这和Flink的配置文件是关联起来的).所以,假设是启动一个G,这一个G是给TaskManager用的,并且你指定了TaskManager上的Slot数量是3,那么他会把这一个G的资源均匀的切成三份,分给这三个Slot.由于在我们Flink这个框架里面,我们的资源是在TaskManager上的Slot的,所以我们也可以用另外一句话来描述,就是说,我们ResourceManager来负责管理和分配TaskManager上的Slot.</p>
+<h2 id="任务管理器（TaskManager）"><a href="#任务管理器（TaskManager）" class="headerlink" title="任务管理器（TaskManager）"></a>任务管理器（TaskManager）</h2><p>Flink中的工作进程。通常在Flink中会有多个TaskManager运行，每一个TaskManager都包含了一定数量的插槽（slots）。插槽的数量限制了TaskManager能够执行的任务数量。启动之后，TaskManager会向资源管理器(ResourceManager)注册它的插槽；收到资源管理器的指令后，TaskManager就会将一个或者多个插槽提供给JobManager调用。JobManager就可以向插槽分配任务（tasks）来执行了。在执行过程中，一个TaskManager可以跟其它运行同一应用程序的TaskManager交换数据。</p>
+<h3 id="博主解析-2"><a href="#博主解析-2" class="headerlink" title="博主解析:"></a>博主解析:</h3><p>TaskManager是在Flink job运行过程中,是他的工作进程.TaskManager一定是一个进程.每一个TaskManager包含一定数量的Slot.这个Slot的数量就限制了你这个TaskManager的并行执行任务的数量.<br>那Slot的数量是在哪里设置的呢? 就是在你的配置文件中设置的.也可以在命令中设置.这个命令是yarn-session -s…略…(这个-s 里面就是你的Slot数量)<br>上面详细说过,这Slot是共享整个TaskManager上的内存资源的.如果你这个TaskManager是一个G,那么我三个Slot都共享这一个G.<br>还有一点就是,在yarn模式下,这个TaskManager是在你的Flink Job 提交之后,根据你这个Job的资源的需求情况来启动这个TaskManager的.当前,前提条件是基于你的yarn模式,不是基于standalone模式的.<br>所以,这个TaskManager在yarn模式中是这样的.就是你这Job一提交,ResourceManager根据你提交的Job运行时候的执行图,确定你需要多少Slot.假设你需要三个Slot,ResourceManager发现你需要三个Slot,那ResourceManager就只需要启动一个TaskManager就可以了.因为一个TaskManager上就有三个Slot(配置文件上指定的),够用了.尽管其他的NodeManager上也可以启动TaskManager,但是这就没必要启动了.这就是Flink的特点.Flink和MapReduce和Spark不一样.他不是在Job没提交之前就将所有改启动的都先启动了.因为这样有些东西的浪费的.比如Work进程里面的executor,他尽管没有运行executor,他也运行在哪里,这就很浪费.<br>所以,当假设你需要三个Slot,那我就给你启动一个TaskManager,这时候你肯定还有其他空闲的资源,这时候,我用户还可以提交一个新的Flink Job进来.新的Flink job也是一样,ResourceManager根据你这个新的Flink job运行的资源,需求情况,又给你去启动对应的TaskManager.<br>新问题: 假设我写的task任务(即task job)运行的时候需要的Slot比较多.我需要九个Slot.如果你资源有的情况下,他一定会给你启动三个TaskManager.反正他启动的TaskManager一定是够你这个task Job用的.除非我ResourceManager所管理的资源已经没有了,那就没办法了,只能等待.因为他已经没有资源给你运行了</p>
+<h2 id="分发器（Dispatcher）"><a href="#分发器（Dispatcher）" class="headerlink" title="分发器（Dispatcher）"></a>分发器（Dispatcher）</h2><p>可以跨作业运行，它为应用提交提供了REST接口。当一个应用被提交执行时，分发器就会启动并将应用移交给一个JobManager。由于是REST接口，所以Dispatcher可以作为集群的一个HTTP接入点，这样就能够不受防火墙阻挡。Dispatcher也会启动一个Web UI，用来方便地展示和监控作业执行的信息。Dispatcher在架构中可能并不是必需的，这取决于应用提交运行的方式。</p>
+<h3 id="博主解析-3"><a href="#博主解析-3" class="headerlink" title="博主解析:"></a>博主解析:</h3><p>什么是分发器呢?如果我通过谷歌访问Flink的web-UI界面,访问的端口号是默认的是8081,这个就是Dispatcher(分发器).<br>在Flink自带的standalone模式下也是有Dispatcher(分发器)的.在Yarn模式下也是有的.那个Dispatcher是在哪里呢?其实他是在JobManager里面的.<br>实际上,在实际操作中我们先打开了8088这个hadoop的yarn的页面,在8088这个页面看到了Application,Application这一行的最右面有一个ApplicationMaster的超链接,点击这个ApplicationMaster就打开了我们的Dispatcher(分发器)了.<br>所以Dispatcher实际上就是给我们提供的一个restful的一个接口.restful接口实际上就是可以通过HTTP来接入的.<br>要知道,在standalone和yarn模式下都有Dispatcher的.</p>
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/zhifubaoPay.png">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/weixinPay.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          xubatian
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://xubatian.cn/Flink-原理与实现-Flink运行时的组件/" title="Flink 原理与实现: Flink运行时的组件" target="_blank">http://xubatian.cn/Flink-原理与实现-Flink运行时的组件/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外均为原创，采用 CC BY 4.0 CN协议 许可协议。转载请注明出处:https://www.xubatian.cn/
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -345,17 +423,141 @@
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+    
 
     
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E8%BF%90%E8%A1%8C%E6%97%B6%E7%9A%84%E7%BB%84%E4%BB%B6/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B9%8B%E4%BB%BB%E5%8A%A1%E9%93%BE/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Flink 原理与实现: Flink核心概念之任务链</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E5%99%A8%EF%BC%88JobManager%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">作业管理器（JobManager）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%9A%E4%B8%BB%E8%A7%A3%E6%9E%90"><span class="toc-number">1.1.</span> <span class="toc-text">博主解析:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E5%99%A8%EF%BC%88ResourceManager%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">资源管理器（ResourceManager）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%9A%E4%B8%BB%E8%A7%A3%E6%9E%90-1"><span class="toc-number">2.1.</span> <span class="toc-text">博主解析:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E7%AE%A1%E7%90%86%E5%99%A8%EF%BC%88TaskManager%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">任务管理器（TaskManager）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%9A%E4%B8%BB%E8%A7%A3%E6%9E%90-2"><span class="toc-number">3.1.</span> <span class="toc-text">博主解析:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%8F%91%E5%99%A8%EF%BC%88Dispatcher%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">分发器（Dispatcher）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%9A%E4%B8%BB%E8%A7%A3%E6%9E%90-3"><span class="toc-number">4.1.</span> <span class="toc-text">博主解析:</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
+  
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'true' == true ? true : false;
+   var verify = 'ture' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '.comment',
+            notify: notify,
+            verify: verify,
+            app_id: "4C7T8fSNVA6RnfQksa8BmdFc-gzGzoHsz",
+            app_key: "V57hYH4l9NRzmpobtAIN5gzq",
+            placeholder: "开始你的评论吧...",
+            avatar:"mm"
+        });
+    }
+</script>
+    </section>
+  
+
+
+
+
+
 
 
           </div>
@@ -395,9 +597,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
@@ -620,10 +822,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">kafka</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Flink任务链</a>
               </li>
             
             <div class="clearfix"></div>

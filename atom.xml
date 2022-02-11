@@ -6,7 +6,7 @@
   <link href="http://xubatian.cn/atom.xml" rel="self"/>
   
   <link href="http://xubatian.cn/"/>
-  <updated>2022-02-11T04:14:37.668Z</updated>
+  <updated>2022-02-11T04:24:56.113Z</updated>
   <id>http://xubatian.cn/</id>
   
   <author>
@@ -17,11 +17,30 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Flink 原理与实现: Flink运行时的组件</title>
+    <link href="http://xubatian.cn/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E8%BF%90%E8%A1%8C%E6%97%B6%E7%9A%84%E7%BB%84%E4%BB%B6/"/>
+    <id>http://xubatian.cn/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E8%BF%90%E8%A1%8C%E6%97%B6%E7%9A%84%E7%BB%84%E4%BB%B6/</id>
+    <published>2022-02-11T04:20:15.853Z</published>
+    <updated>2022-02-11T04:24:56.113Z</updated>
+    
+    <content type="html"><![CDATA[<p>Flink运行时架构主要包括四个不同的组件，它们会在运行流处理应用程序时协同工作：作业管理器（JobManager）、资源管理器（ResourceManager）、任务管理器（TaskManager），以及分发器（Dispatcher）。因为Flink是用Java和Scala实现的，所以所有组件都会运行在Java虚拟机上。每个组件的职责如下</p><span id="more"></span><h2 id="作业管理器（JobManager）"><a href="#作业管理器（JobManager）" class="headerlink" title="作业管理器（JobManager）"></a>作业管理器（JobManager）</h2><p>控制一个应用程序执行的主进程，也就是说，每个应用程序都会被一个不同的JobManager所控制执行。JobManager会先接收到要执行的应用程序，这个应用程序会包括：作业图（JobGraph）、逻辑数据流图（logical dataflow graph）和打包了所有的类、库和其它资源的JAR包。JobManager会把JobGraph转换成一个物理层面的数据流图，这个图被叫做“执行图”（ExecutionGraph），包含了所有可以并发执行的任务。JobManager会向资源管理器（ResourceManager）请求执行任务必要的资源，也就是任务管理器（TaskManager）上的插槽（slot）。一旦它获取到了足够的资源，就会将执行图分发到真正运行它们的TaskManager上。而在运行过程中，JobManager会负责所有需要中央协调的操作，比如说检查点（checkpoints）的协调。</p><h3 id="博主解析"><a href="#博主解析" class="headerlink" title="博主解析:"></a>博主解析:</h3><p>JobManager是控制整个Flink Job运行的,所谓的控制就是,<br>①他负责监控②他负责Slot的分配或者Slot的调度.<br>这个Task在哪个Slot上运行,他给你分配好,这就是所谓的控制,JobManager就一句话,就是用来控制Flink Job的主进程的运行.<br>什么叫控制?控制的意思就是说你整个Job分成好几个任务,那么我这几个任务我需要把他分配到哪些Task Manager的哪些Slot上,这个Slot就表示资源的意思,同时还负责监控</p><h2 id="资源管理器（ResourceManager）"><a href="#资源管理器（ResourceManager）" class="headerlink" title="资源管理器（ResourceManager）"></a>资源管理器（ResourceManager）</h2><p>主要负责管理任务管理器（TaskManager）的插槽（slot），TaskManger插槽是Flink中定义的处理资源单元。Flink为不同的环境和资源管理工具提供了不同资源管理器，比如YARN、Mesos、K8s，以及standalone部署。当JobManager申请插槽资源时，ResourceManager会将有空闲插槽的TaskManager分配给JobManager。如果ResourceManager没有足够的插槽来满足JobManager的请求，它还可以向资源提供平台发起会话，以提供启动TaskManager进程的容器。另外，ResourceManager还负责终止空闲的TaskManager，释放计算资源。</p><h3 id="博主解析-1"><a href="#博主解析-1" class="headerlink" title="博主解析:"></a>博主解析:</h3><p>ResourceManager如果是yarn模式的话,这个在hadoop就讲过了.但是如果是Standalone模式的话.这个ResourceManager实际上就和我们的JobManager在一个进程里面,这点需要注意.<br>但是如果是yarn模式的话,ResourceManager是独立的,是yarn里面的主节点,主要负责资源的管理,管理所有Task Manager上的Slot.<br>这里面有个迷糊的地方,这个ResourceManager早就在hadoop上学过了,但是为什么说他是管理所以Task Manager的Slot呢?问题是,你这个Task Manager是属于你的Flink的.原来我们学Hadoop的时候说的是,ResourceManager是管理NodeManager上的资源的.可是,现在我们又说是管理Task Manager上的资源.这两句话难道是一样的吗?其实,这两句话本质上是一样的.为什么呢?因为,请问,在yarn模式下,这个TaskManager这个节点会运行在哪些节点上呢?是运行在NodeManager节点上呢?还是在ResourceManager节点上?还是运行在与NodeManager和ResourceManager都没关系的其他节点上呢?其实,他一定是运行在NodeManager上,并且他只能运行在NodeManager上,他是在NodeManager上去启动TaskManager.那如果是这样的话.你在NodeManager上启动TaskManager的话,你不就是申请NodeManager上的资源嘛.申请了NodeManager上的资源你才能够启动对应的TaskManager.所以说,我们之前学的ResourceManager就是来管理和分配NodeManager上的资源的.这句话是对的.由于你NodeManager上有资源,所以他可以在某一个NodoManager上去启动Flink Job需要运行的TaskManager.假设在hadoop102上的NodeManager上启动了一个TaskManager,他之所以能够启动,一定是他有空余的资源才能够启动.假设他有空余一个G的资源,那启动了一个TaskManager.(为什么这里说是一个G呢?因为我们配置文件中指定了默认情况下TaskManager占用内存是一个G,所以这和Flink的配置文件是关联起来的).所以,假设是启动一个G,这一个G是给TaskManager用的,并且你指定了TaskManager上的Slot数量是3,那么他会把这一个G的资源均匀的切成三份,分给这三个Slot.由于在我们Flink这个框架里面,我们的资源是在TaskManager上的Slot的,所以我们也可以用另外一句话来描述,就是说,我们ResourceManager来负责管理和分配TaskManager上的Slot.</p><h2 id="任务管理器（TaskManager）"><a href="#任务管理器（TaskManager）" class="headerlink" title="任务管理器（TaskManager）"></a>任务管理器（TaskManager）</h2><p>Flink中的工作进程。通常在Flink中会有多个TaskManager运行，每一个TaskManager都包含了一定数量的插槽（slots）。插槽的数量限制了TaskManager能够执行的任务数量。启动之后，TaskManager会向资源管理器(ResourceManager)注册它的插槽；收到资源管理器的指令后，TaskManager就会将一个或者多个插槽提供给JobManager调用。JobManager就可以向插槽分配任务（tasks）来执行了。在执行过程中，一个TaskManager可以跟其它运行同一应用程序的TaskManager交换数据。</p><h3 id="博主解析-2"><a href="#博主解析-2" class="headerlink" title="博主解析:"></a>博主解析:</h3><p>TaskManager是在Flink job运行过程中,是他的工作进程.TaskManager一定是一个进程.每一个TaskManager包含一定数量的Slot.这个Slot的数量就限制了你这个TaskManager的并行执行任务的数量.<br>那Slot的数量是在哪里设置的呢? 就是在你的配置文件中设置的.也可以在命令中设置.这个命令是yarn-session -s…略…(这个-s 里面就是你的Slot数量)<br>上面详细说过,这Slot是共享整个TaskManager上的内存资源的.如果你这个TaskManager是一个G,那么我三个Slot都共享这一个G.<br>还有一点就是,在yarn模式下,这个TaskManager是在你的Flink Job 提交之后,根据你这个Job的资源的需求情况来启动这个TaskManager的.当前,前提条件是基于你的yarn模式,不是基于standalone模式的.<br>所以,这个TaskManager在yarn模式中是这样的.就是你这Job一提交,ResourceManager根据你提交的Job运行时候的执行图,确定你需要多少Slot.假设你需要三个Slot,ResourceManager发现你需要三个Slot,那ResourceManager就只需要启动一个TaskManager就可以了.因为一个TaskManager上就有三个Slot(配置文件上指定的),够用了.尽管其他的NodeManager上也可以启动TaskManager,但是这就没必要启动了.这就是Flink的特点.Flink和MapReduce和Spark不一样.他不是在Job没提交之前就将所有改启动的都先启动了.因为这样有些东西的浪费的.比如Work进程里面的executor,他尽管没有运行executor,他也运行在哪里,这就很浪费.<br>所以,当假设你需要三个Slot,那我就给你启动一个TaskManager,这时候你肯定还有其他空闲的资源,这时候,我用户还可以提交一个新的Flink Job进来.新的Flink job也是一样,ResourceManager根据你这个新的Flink job运行的资源,需求情况,又给你去启动对应的TaskManager.<br>新问题: 假设我写的task任务(即task job)运行的时候需要的Slot比较多.我需要九个Slot.如果你资源有的情况下,他一定会给你启动三个TaskManager.反正他启动的TaskManager一定是够你这个task Job用的.除非我ResourceManager所管理的资源已经没有了,那就没办法了,只能等待.因为他已经没有资源给你运行了</p><h2 id="分发器（Dispatcher）"><a href="#分发器（Dispatcher）" class="headerlink" title="分发器（Dispatcher）"></a>分发器（Dispatcher）</h2><p>可以跨作业运行，它为应用提交提供了REST接口。当一个应用被提交执行时，分发器就会启动并将应用移交给一个JobManager。由于是REST接口，所以Dispatcher可以作为集群的一个HTTP接入点，这样就能够不受防火墙阻挡。Dispatcher也会启动一个Web UI，用来方便地展示和监控作业执行的信息。Dispatcher在架构中可能并不是必需的，这取决于应用提交运行的方式。</p><h3 id="博主解析-3"><a href="#博主解析-3" class="headerlink" title="博主解析:"></a>博主解析:</h3><p>什么是分发器呢?如果我通过谷歌访问Flink的web-UI界面,访问的端口号是默认的是8081,这个就是Dispatcher(分发器).<br>在Flink自带的standalone模式下也是有Dispatcher(分发器)的.在Yarn模式下也是有的.那个Dispatcher是在哪里呢?其实他是在JobManager里面的.<br>实际上,在实际操作中我们先打开了8088这个hadoop的yarn的页面,在8088这个页面看到了Application,Application这一行的最右面有一个ApplicationMaster的超链接,点击这个ApplicationMaster就打开了我们的Dispatcher(分发器)了.<br>所以Dispatcher实际上就是给我们提供的一个restful的一个接口.restful接口实际上就是可以通过HTTP来接入的.<br>要知道,在standalone和yarn模式下都有Dispatcher的.</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;Flink运行时架构主要包括四个不同的组件，它们会在运行流处理应用程序时协同工作：作业管理器（JobManager）、资源管理器（ResourceManager）、任务管理器（TaskManager），以及分发器（Dispatcher）。因为Flink是用Java和Scala实现的，所以所有组件都会运行在Java虚拟机上。每个组件的职责如下&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="大数据" scheme="http://xubatian.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>Flink 原理与实现: Flink核心概念之任务链</title>
     <link href="http://xubatian.cn/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B9%8B%E4%BB%BB%E5%8A%A1%E9%93%BE/"/>
     <id>http://xubatian.cn/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B9%8B%E4%BB%BB%E5%8A%A1%E9%93%BE/</id>
     <published>2022-02-10T14:15:46.000Z</published>
-    <updated>2022-02-11T04:14:37.668Z</updated>
+    <updated>2022-02-11T04:20:42.100Z</updated>
     
     <content type="html"><![CDATA[<h3 id="好记性-烂笔头"><a href="#好记性-烂笔头" class="headerlink" title="好记性,烂笔头:"></a>好记性,烂笔头:</h3><p>①socket不能多并行度消费. 而kafka是可以多并行度消费的. kafka有多个分区.   </p><p>②keyby不是一个算子,他是决定我们的数据进入到下游的哪一个并行度里面的.他自己没有并行度的.他不会对数据做任何的操作.数据可能从一个并行度来的. 进过keyby之后,可能把他发到好多个并行度里面去了.</p><span id="more"></span><h3 id="正文"><a href="#正文" class="headerlink" title="正文:"></a>正文:</h3><p>任务链的意思就是说,我们把两个算子按照一定的条件连接在一起.形成一个统一的Task<br>这就是所谓的任务链.并且我们可以在图上可以看到,如下图所示:</p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210221830.png"></p><p>任务链可以当做Spark中的stage理解. 但是他比stage灵活. spark中根据宽依赖划分stage. 所以Flink保留此特点. 如果你是重分区的操作.他就一定会划分到两个不同的任务链里面来. 除此之外Flink的任务链还要看并行度. </p><p>这个任务链有一定的条件,首先他们的<strong>①并行度要相同</strong>.所谓的并行度相同就是One-to-one,One-to-one不是说他们只有一个,而是指他们的并行度相同.第二个条件就是他们<strong>②中间没有shuffle</strong>.中间没有shuffle才会通过任务链把他们合在一起.这个任务链不用我们去做的.不过呢,我们可以设置让所有的算子之间完全隔离.就算你有条件来通过这个任务链来进行合并,我们也不让你构建一个任务链.我们只要加一个disableOperatorChaining(禁用这个任务链),禁用这个任务链之后,就算你符合条件,他也不把你这两个task链在一起,形成一个统一的Task.<br>但是这两种那个更好呢?<strong>当然是有任务链的更好.有任务链可以提高吞吐,减少IO操作</strong>.<br>所以,大多数情况下,我这一行代码(streamEnv.disableOperatorChaining)不应该做.</p><p><strong>③共享组不同也不能形成任务链</strong> 共享组的作用就是把同一个任务放在同一个slot里面</p><p>相同并行度的one to one操作，Flink这样相连的算子链接在一起形成一个task，原来的算子成为里面的一部分。将算子链接成task是非常有效的优化：它能减少线程之间的切换和基于缓存区的数据交换，在减少时延的同时提升吞吐量。链接的行为可以在编程API中进行指定。<br>streamEnv.disableOperatorChaining:表示所有操作算子都不构建任务链<br>.disableChaining() 加在其中一个算子中，表示：该算子和其他算子不一起构建任务链。它是独立的</p><p>图 task与operator chains:</p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210222115.png"></p><p>任务链案例代码地址:</p><p><a href="https://github.com/ShangBaiShuYao/flink-learning-from-zhisheng/blob/main/flink-1.12.0-Demo/src/main/java/com/shangbaishuyao/demo/FlinkDemo02/Flink01_WordCount_Chain.java">https://github.com/ShangBaiShuYao/flink-learning-from-zhisheng/blob/main/flink-1.12.0-Demo/src/main/java/com/shangbaishuyao/demo/FlinkDemo02/Flink01_WordCount_Chain.java</a></p><div style="position: relative; padding: 30% 45%;"><iframe style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/2022-02-11_12-04-16.mp4" frameborder="no" scrolling="no"></iframe></div> ]]></content>
     
@@ -35,8 +54,6 @@
     
     
     <category term="Flink" scheme="http://xubatian.cn/tags/Flink/"/>
-    
-    <category term="Flink任务链" scheme="http://xubatian.cn/tags/Flink%E4%BB%BB%E5%8A%A1%E9%93%BE/"/>
     
   </entry>
   
@@ -450,27 +467,6 @@
     
     
     <summary type="html">&lt;p&gt;闲适因为忙碌才获得意义。如果摸鱼成为常态，放松就失去了意义；如果划水占据人生，幸福就会失去方向。               ——人民日报    &lt;/p&gt;</summary>
-    
-    
-    
-    <category term="大数据" scheme="http://xubatian.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
-    
-    
-    <category term="spark" scheme="http://xubatian.cn/tags/spark/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SparkCore之RDD概述</title>
-    <link href="http://xubatian.cn/SparkCore%E4%B9%8BRDD%E6%A6%82%E8%BF%B0/"/>
-    <id>http://xubatian.cn/SparkCore%E4%B9%8BRDD%E6%A6%82%E8%BF%B0/</id>
-    <published>2022-01-19T06:22:21.000Z</published>
-    <updated>2022-01-23T02:58:21.728Z</updated>
-    
-    <content type="html"><![CDATA[<p>仰观天宇，时间更加深邃；俯身耕耘，未来无限可能                  ——人民日报    </p><span id="more"></span><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_331.jpg" alt="blog: www.xubatian.cn"></p><p>我们Spark中的stage是按照shuffle来切的.</p><h1 id="RDD概述"><a href="#RDD概述" class="headerlink" title="RDD概述"></a>RDD概述</h1><h2 id="什么是RDD"><a href="#什么是RDD" class="headerlink" title="什么是RDD"></a>什么是RDD</h2><p>RDD（Resilient Distributed Dataset）叫做弹性分布式数据集，是Spark中最基本的数据抽象。代码中是一个抽象类，它代表一个弹性的(分区)、不可变(元素)、可分区、里面的元素可并行计算的集合。</p><p>RDD是抽象类</p><h2 id="RDD的属性"><a href="#RDD的属性" class="headerlink" title="RDD的属性"></a>RDD的属性</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_332.png" alt="blog: www.xubatian.cn"></p><p>（1）一组分区（Partition）,切片和分区是一样的，即数据集的基本组成单位；<br>（2）一个计算每个分区的函数；<br>（3）RDD之间的依赖关系；<br>（4）一个Partitioner，即RDD的分片函数；<br>（5）一个列表，存储存取每个Partition的优先位置（preferred location）。</p><h2 id="RDD特点"><a href="#RDD特点" class="headerlink" title="RDD特点"></a>RDD特点</h2><p>RDD表示只读(不可变性)的分区的数据集，对RDD进行改动，只能通过RDD的转换操作，由一个RDD得到一个新的RDD，新的RDD包含了从其他RDD衍生所必需的信息。RDDs之间存在依赖，RDD的执行是按照血缘关系延时计算的。如果血缘关系较长，可以通过持久化RDD来切断血缘关系。</p><h2 id="弹性"><a href="#弹性" class="headerlink" title="弹性"></a>弹性</h2><p>存储的弹性：内存与磁盘的自动切换；<br>容错的弹性：数据丢失可以自动恢复；<br>计算的弹性：计算出错重试机制；<br>分片的弹性：可根据需要重新分片。</p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_333.png" alt="blog: www.xubatian.cn"></p><h2 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h2><p>RDD逻辑上是分区的，每个分区的数据是抽象存在的，计算的时候会通过一个compute(计算)函数得到每个分区的数据。如果RDD是通过已有的文件系统构建，则compute(计算)函数是读取指定文件系统中的数据，如果RDD是通过其他RDD转换而来，则compute(计算)函数是执行转换逻辑将其他RDD的数据进行转换</p><h2 id="只读"><a href="#只读" class="headerlink" title="只读"></a>只读</h2><p>RDD是只读的（元素不可变），要想改变RDD中的数据，只能在现有的RDD基础上创建新的RDD。<br>由一个RDD转换到另一个RDD，可以通过丰富的操作算子实现，不再像MapReduce那样只能写map和reduce了。</p><p>RDD的操作算子包括两类，<br>一类叫做Transformations(转换)，它是用来将RDD进行转化，构建RDD的血缘关系；<br>另一类叫做Actions(行动)，它是用来触发RDD的计算，得到RDD的相关计算结果或者将RDD保存的文件系统中。下图是RDD所支持的操作算子列表。</p><h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><p>RDDs通过操作算子进行转换，转换得到的新RDD包含了从其他RDDs衍生所必需的信息，RDDs之间维护着这种血缘关系，也称之为依赖。如下图所示，</p><p>依赖包括两种，<br>一种是窄依赖，RDDs之间分区是一一对应的，<br>另一种是宽依赖，下游RDD的每个分区与上游RDD(也称之为父RDD)的每个分区都有关，是多对多的关系。(一对一,多对多指的是分区) </p><p>这里的一对一,一对多指的是分区</p><p>注意: 依赖和shuffle有关系</p><p>原图:</p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_334.png" alt="blog: www.xubatian.cn"></p><p>博主解读:</p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_336.png" alt="blog: www.xubatian.cn"></p><p>父RDD中的全部数据被某一个子RDD的某个分区全部拥有我们叫窄依赖</p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_337.png" alt="blog: www.xubatian.cn"></p><h2 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h2><p>如果在应用程序中多次使用同一个RDD，可以将该RDD缓存起来，该RDD只有在第一次计算的时候会根据血缘关系得到分区的数据，在后续其他地方用到该RDD的时候，会直接从缓存处取而不用再根据血缘关系计算，这样就加速后期的重用。如下图所示，RDD-1经过一系列的转换后得到RDD-n并保存到hdfs，RDD-1在这一过程中会有个中间结果，如果将其缓存到内存，那么在随后的RDD-1转换到RDD-m这一过程中，就不会计算其之前的RDD-0了。</p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_338.png" alt="blog: www.xubatian.cn"></p><h2 id="CheckPoint"><a href="#CheckPoint" class="headerlink" title="CheckPoint"></a>CheckPoint</h2><p>切断血缘关系后可以从CheckPoint中拿数据</p><p>虽然RDD的血缘关系天然地可以实现容错，当RDD的某个分区数据失败或丢失，可以通过血缘关系重建。但是对于长时间迭代型应用来说，随着迭代的进行，RDDs之间的血缘关系会越来越长，一旦在后续迭代过程中出错，则需要通过非常长的血缘关系去重建，势必影响性能。为此，RDD支持checkpoint将数据保存到持久化的存储中，这样就可以切断之前的血缘关系，因为checkpoint后的RDD不需要知道它的父RDDs了，它可以从checkpoint处拿到数据。</p><p>checkPoint将数据持久化了之后他就会切断血缘关系, 因为他认为你持久化到文件当中后这个数据就不会丢了,这个依赖关系就不需要了,就切断了. 因为你是文件嘛, 而且默认一般存在hdfs中,hdfs又默认有三个副本. 所以他觉得你数据不会丢了. 既然不会丢了,依赖关系就不要了, 因为依赖关系就是防止你数据丢了重新计算做数据恢复的.</p><p>但是你缓存到内存当中,你不能将依赖切断, 因为内存当中数据可能会掉的.他可能还要用这个依赖关系重新做计算的.</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_339.png" alt="blog: www.xubatian.cn"></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;仰观天宇，时间更加深邃；俯身耕耘，未来无限可能                  ——人民日报    &lt;/p&gt;</summary>
     
     
     
