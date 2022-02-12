@@ -6,21 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://xubatian.cn">
-  <title>Tag: hive | 我的梦想是星辰大海</title>
+  <title>YARN调度器【capacity-scheduler.xml】默认配置 | 我的梦想是星辰大海</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta name="description" content="知识源于积累,登峰造极源于自律">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我的梦想是星辰大海">
-<meta property="og:url" content="http://xubatian.cn/tags/hive/index.html">
+  <meta name="description" content="Hadoop版本：3.1.3 1、三种常见调度器     1.1、先进先出调度器     1.2、容量调度器     1.3、公平调度器 2、容量调度器 多队列配置 3、单词 4、默认配置【capacity-scheduler.xml】">
+<meta property="og:type" content="article">
+<meta property="og:title" content="YARN调度器【capacity-scheduler.xml】默认配置">
+<meta property="og:url" content="http://xubatian.cn/YARN%E8%B0%83%E5%BA%A6%E5%99%A8%E3%80%90capacity-scheduler-xml%E3%80%91%E9%BB%98%E8%AE%A4%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="我的梦想是星辰大海">
-<meta property="og:description" content="知识源于积累,登峰造极源于自律">
+<meta property="og:description" content="Hadoop版本：3.1.3 1、三种常见调度器     1.1、先进先出调度器     1.2、容量调度器     1.3、公平调度器 2、容量调度器 多队列配置 3、单词 4、默认配置【capacity-scheduler.xml】">
 <meta property="og:locale">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220212181307.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220212181328.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210423104042285.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1llbGxvd19weXRob24=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220212181655.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220212181909.png">
+<meta property="article:published_time" content="2022-02-12T10:11:21.000Z">
+<meta property="article:modified_time" content="2022-02-12T10:20:31.134Z">
 <meta property="article:author" content="xubatian">
-<meta property="article:tag" content="徐霸天,xubatian,上白书妖,shangbaishuyao">
+<meta property="article:tag" content="hadoop">
+<meta property="article:tag" content="yarn">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220212181307.png">
   
   
     <link rel="icon" href="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/favicon.ico">
@@ -273,53 +282,202 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-YARN调度器【capacity-scheduler-xml】默认配置" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hive%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E6%94%B6%E5%BD%95/" class="archive-article-date">
-        <time datetime="2022-01-18T14:43:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hive%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E6%94%B6%E5%BD%95/">hive常用函数收录</a>
-	
+    <h1 class="article-title" itemprop="name">
+      YARN调度器【capacity-scheduler.xml】默认配置
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/YARN%E8%B0%83%E5%BA%A6%E5%99%A8%E3%80%90capacity-scheduler-xml%E3%80%91%E9%BB%98%E8%AE%A4%E9%85%8D%E7%BD%AE/" class="archive-article-date">
+        <time datetime="2022-02-12T10:11:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-12</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">2.6k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">13分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>Hadoop版本：3.1.3</p>
+<pre><code>1、三种常见调度器
+    1.1、先进先出调度器
+    1.2、容量调度器
+    1.3、公平调度器
+2、容量调度器 多队列配置
+3、单词
+4、默认配置【capacity-scheduler.xml】
+</code></pre>
+<span id="more"></span>
+
+<h1 id="1、三种常见调度器"><a href="#1、三种常见调度器" class="headerlink" title="1、三种常见调度器"></a>1、三种常见调度器</h1><h2 id="1-1、先进先出调度器"><a href="#1-1、先进先出调度器" class="headerlink" title="1.1、先进先出调度器"></a>1.1、先进先出调度器</h2><pre><code>first-in first-out scheduler
+FIFO Scheduler
+后入队的任务 要等待 前入队的任务 出队
+</code></pre>
+<p>可配置：<br>    1、每个用户的最大资源占比，防止单个用户把资源占满<br>    2、限制哪些用户可以提交应用到本队列 </p>
+<h2 id="1-2、容量调度器"><a href="#1-2、容量调度器" class="headerlink" title="1.2、容量调度器"></a>1.2、容量调度器</h2><pre><code>Capacity Scheduler
+相当于 多个 FIFO Scheduler
+不同队列上的任务可以并行（比如 3个队列就可以并行3个任务）
+相同队列上的任务不能并行
+</code></pre>
+<p>可配置：<br>    1、默认容量占比：各个队列占据一定百分比的资源<br>    （如：a队列40% b队列60%）<br>    2、最大容量占比：队列占据的资源百分比的最大值<br>    （如：a队列最大70%，当超出40%时，可以借b队列的空闲资源，最多借30%） </p>
+<pre><code>划分方式：
+按业务划分（更常用）：下单、支付、物流…
+按技术划分：HIVE、Spark、Flink…
+</code></pre>
+<h2 id="1-3、公平调度器"><a href="#1-3、公平调度器" class="headerlink" title="1.3、公平调度器"></a>1.3、公平调度器</h2><pre><code>Fair Scheduler
+和Capacity Scheduler类似，可以多队列配置；不同的是，叶子队列不是FIFO的
+在同一条叶子队列上，所有作业可以并发；
+资源分配的依据：时间尺度、优先级、资源缺额…
+</code></pre>
+<p>在时间尺度上获得公平的资源</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220212181307.png"></p>
+<p>最大最小公平分配算法</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220212181328.png"></p>
+<h1 id="2、容量调度器-多队列配置"><a href="#2、容量调度器-多队列配置" class="headerlink" title="2、容量调度器 多队列配置"></a>2、容量调度器 多队列配置</h1><h2 id="1、编辑配置文件"><a href="#1、编辑配置文件" class="headerlink" title="1、编辑配置文件"></a>1、编辑配置文件</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim $HADOOP_HOME/etc/hadoop/capacity-scheduler.xml</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、修改根队列下面的叶队列名称，逗号分隔（此处新增队列名称为hive）"><a href="#2、修改根队列下面的叶队列名称，逗号分隔（此处新增队列名称为hive）" class="headerlink" title="2、修改根队列下面的叶队列名称，逗号分隔（此处新增队列名称为hive）"></a>2、修改<strong>根队列</strong>下面的<strong>叶队列</strong>名称，逗号分隔（此处新增队列名称为<code>hive</code>）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.root.queues&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;default,hive&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;在根队列下设置叶队列名称&lt;/description&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、修改-名为default的队列-的容量占比"><a href="#3、修改-名为default的队列-的容量占比" class="headerlink" title="3、修改 名为default的队列 的容量占比"></a>3、修改 名为default的队列 的容量占比</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.root.default.capacity&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;40&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;设置root下名为default队列的容量占比&lt;/description&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4、给新队列配置"><a href="#4、给新队列配置" class="headerlink" title="4、给新队列配置"></a>4、给新队列配置</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.root.hive.capacity&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;60&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;root下名为hive的队列 的 容量占比&lt;/description&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.root.hive.user-limit-factor&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;1&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;每个用户可以占据该队列资源占比的上限（防止某用户把资源占满）&lt;/description&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.root.hive.maximum-capacity&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;80&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;该队列的最大容量占比（可外借80-60=20）&lt;/description&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.root.hive.state&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;RUNNING&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;该队列状态（RUNNING或STOPPED）&lt;/description&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.root.hive.acl_submit_applications&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;*&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;访问控制列表：限定哪些用户 能访问该队列&lt;/description&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.root.hive.acl_administer_queue&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;*&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;访问控制列表：限定哪些用户 可以管理该队列上的作业&lt;/description&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.root.hive.acl_application_max_priority&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;*&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.root.hive.maximum-application-lifetime&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;-1&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;提交到该队列的应用 的 最大生存时间（-1表示无限时间）&lt;/description&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.root.hive.default-application-lifetime&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;-1&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;提交到该队列的应用 的 默认生存时间（-1表示无限时间；要求小于最大生存时间）&lt;/description&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="5、分发配置"><a href="#5、分发配置" class="headerlink" title="5、分发配置"></a>5、分发配置</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync.py $HADOOP_HOME/etc/hadoop/capacity-scheduler.xml</span><br></pre></td></tr></table></figure>
+
+<h2 id="6、查看浏览器，端口8088"><a href="#6、查看浏览器，端口8088" class="headerlink" title="6、查看浏览器，端口8088"></a>6、查看浏览器，端口<code>8088</code></h2><p><img src="https://img-blog.csdnimg.cn/20210423104042285.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1llbGxvd19weXRob24=,size_16,color_FFFFFF,t_70"></p>
+<p>7、提交到指定队列</p>
+<ul>
+<li>Java代码的<code>org.apache.hadoop.conf.Configuration</code></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">configuration.set(&quot;mapred.job.queuename&quot;, &quot;hive&quot;);</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>HIVE</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set mapred.job.queue.name=hive</span><br></pre></td></tr></table></figure>
+
+<h1 id="3、单词"><a href="#3、单词" class="headerlink" title="3、单词"></a>3、单词</h1><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220212181655.png"></p>
+<h1 id="4、默认配置【capacity-scheduler-xml】"><a href="#4、默认配置【capacity-scheduler-xml】" class="headerlink" title="4、默认配置【capacity-scheduler.xml】"></a>4、默认配置【capacity-<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=scheduler&spm=1001.2101.3001.7020">scheduler</a>.xml】</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 容量调度器中 挂起和运行的应用程序 的 最大数量 --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.maximum-applications&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;10000&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;Maximum number of applications that can be pending and running.&lt;/description&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 可以用来运行【Application Masters】的最大资源占比 --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.maximum-am-resource-percent&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;0.1&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;</span><br><span class="line">Maximum percent of resources in the cluster which can be used to run </span><br><span class="line">application masters i.e. controls number of concurrent running applications.</span><br><span class="line">    &lt;/description&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 容量调度器中的【资源计算器】，它用来 比较资源，默认比较资源的内存，</span><br><span class="line">另外可以选择别的资源计算器，从资源的多个维度（不仅内存，还有CPU等）来比较 --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.resource-calculator&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;org.apache.hadoop.yarn.util.resource.DefaultResourceCalculator&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;</span><br><span class="line">The ResourceCalculator implementation to be used to compare Resources in the scheduler.</span><br><span class="line">The default i.e. DefaultResourceCalculator only uses Memory while</span><br><span class="line">DominantResourceCalculator uses dominant-resource to compare </span><br><span class="line">multi-dimensional resources such as Memory, CPU etc.</span><br><span class="line">    &lt;/description&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 在 名为root的队列 下 设置队列名称（默认default一条队列，可设置多队列） --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.root.queues&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;default&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;The queues at the this level (root is the root queue).&lt;/description&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- root下名为default的队列 的 容量占比 --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.root.default.capacity&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;100&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;Default queue target capacity.&lt;/description&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 每个用户可以占据该队列资源占比的上限（防止某用户把资源占满） --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.root.default.user-limit-factor&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;1&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;Default queue user limit a percentage from 0.0 to 1.0.&lt;/description&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 该队列的最大容量占比 --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.root.default.maximum-capacity&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;100&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 该队列状态（RUNNING or STOPPED） --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.root.default.state&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;RUNNING&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 访问控制列表：限定哪些用户 能访问该队列 --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.root.default.acl_submit_applications&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;*&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 访问控制列表：限定哪些用户 可以管理该队列上的作业 --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.root.default.acl_administer_queue&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;*&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;The ACL of who can administer jobs on the default queue.&lt;/description&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.root.default.acl_application_max_priority&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;*&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;</span><br><span class="line">The ACL of who can submit applications with configured priority.</span><br><span class="line">For e.g, [user=&#123;name&#125; group=&#123;name&#125; max_priority=&#123;priority&#125; default_priority=&#123;priority&#125;]</span><br><span class="line">    &lt;/description&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 提交到该队列的应用 的 最大生存时间（-1表示无限时间） --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.root.default.maximum-application-lifetime&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;-1&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;</span><br><span class="line">Maximum lifetime of an application which is submitted to a queue</span><br><span class="line">in seconds. Any value less than or equal to zero will be considered as disabled.</span><br><span class="line">This will be a hard time limit for all applications in this</span><br><span class="line">queue. If positive value is configured then any application submitted</span><br><span class="line">to this queue will be killed after exceeds the configured lifetime.</span><br><span class="line">User can also specify lifetime per application basis in</span><br><span class="line">application submission context. But user lifetime will be</span><br><span class="line">overridden if it exceeds queue maximum lifetime. It is point-in-time</span><br><span class="line">configuration.</span><br><span class="line">Note : Configuring too low value will result in killing application</span><br><span class="line">sooner. This feature is applicable only for leaf queue.</span><br><span class="line">    &lt;/description&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 提交到该队列的应用 的 默认生存时间（-1表示无限时间；要求小于最大生存时间） --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.root.default.default-application-lifetime&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;-1&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;</span><br><span class="line">Default lifetime of an application which is submitted to a queue</span><br><span class="line">in seconds. Any value less than or equal to zero will be considered as</span><br><span class="line">disabled.</span><br><span class="line">If the user has not submitted application with lifetime value then this</span><br><span class="line">value will be taken. It is point-in-time configuration.</span><br><span class="line">Note : Default lifetime can&#x27;t exceed maximum lifetime. This feature is</span><br><span class="line">applicable only for leaf queue.</span><br><span class="line">    &lt;/description&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.node-locality-delay&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;40&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;</span><br><span class="line">Number of missed scheduling opportunities after which the CapacityScheduler </span><br><span class="line">attempts to schedule rack-local containers.</span><br><span class="line">When setting this parameter, the size of the cluster should be taken into account.</span><br><span class="line">We use 40 as the default value, which is approximately the number of nodes in one rack.</span><br><span class="line">Note, if this value is -1, the locality constraint in the container request</span><br><span class="line">will be ignored, which disables the delay scheduling.</span><br><span class="line">    &lt;/description&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.rack-locality-additional-delay&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;-1&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;</span><br><span class="line">Number of additional missed scheduling opportunities over the node-locality-delay</span><br><span class="line">ones, after which the CapacityScheduler attempts to schedule off-switch containers,</span><br><span class="line">instead of rack-local ones.</span><br><span class="line">Example: with node-locality-delay=40 and rack-locality-delay=20, the scheduler will</span><br><span class="line">attempt rack-local assignments after 40 missed opportunities, and off-switch assignments</span><br><span class="line">after 40+20=60 missed opportunities.</span><br><span class="line">When setting this parameter, the size of the cluster should be taken into account.</span><br><span class="line">We use -1 as the default value, which disables this feature. In this case, the number</span><br><span class="line">of missed opportunities for assigning off-switch containers is calculated based on</span><br><span class="line">the number of containers and unique locations specified in the resource request,</span><br><span class="line">as well as the size of the cluster.</span><br><span class="line">    &lt;/description&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.queue-mappings&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;</span><br><span class="line">A list of mappings that will be used to assign jobs to queues</span><br><span class="line">The syntax for this list is [u|g]:[name]:[queue_name][,next mapping]*</span><br><span class="line">Typically this list will be used to map users to queues,</span><br><span class="line">for example, u:%user:%user maps all users to queues with the same name</span><br><span class="line">as the user.</span><br><span class="line">    &lt;/description&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.queue-mappings-override.enable&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;false&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;</span><br><span class="line">If a queue mapping is present, will it override the value specified</span><br><span class="line">by the user? This can be used by administrators to place jobs in queues</span><br><span class="line">that are different than the one specified by the user.</span><br><span class="line">The default is false.</span><br><span class="line">    &lt;/description&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.per-node-heartbeat.maximum-offswitch-assignments&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;1&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;</span><br><span class="line">Controls the number of OFF_SWITCH assignments allowed</span><br><span class="line">during a node&#x27;s heartbeat. Increasing this value can improve</span><br><span class="line">scheduling rate for OFF_SWITCH containers. Lower values reduce</span><br><span class="line">&quot;clumping&quot; of applications on particular nodes. The default is 1.</span><br><span class="line">Legal values are 1-MAX_INT. This config is refreshable.</span><br><span class="line">    &lt;/description&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.scheduler.capacity.application.fail-fast&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;false&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;</span><br><span class="line">Whether RM should fail during recovery if previous applications&#x27;</span><br><span class="line">queue is no longer valid.</span><br><span class="line">    &lt;/description&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220212181909.png"></p>
+<p>知识源于积累,登峰造极源于自律!</p>
+<p>好文章就得收藏慢慢品, 文章转载于: <a target="_blank" rel="noopener" href="https://blog.csdn.net/Yellow_python/article/details/116021592">https://blog.csdn.net/Yellow_python/article/details/116021592</a></p>
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/zhifubaoPay.png">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/weixinPay.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          xubatian
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://xubatian.cn/YARN调度器【capacity-scheduler-xml】默认配置/" title="YARN调度器【capacity-scheduler.xml】默认配置" target="_blank">http://xubatian.cn/YARN调度器【capacity-scheduler-xml】默认配置/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外均为原创，采用 CC BY 4.0 CN协议 许可协议。转载请注明出处:https://www.xubatian.cn/
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">yarn</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -332,125 +490,141 @@
 	</div>
 
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/YARN%E8%B0%83%E5%BA%A6%E5%99%A8%E3%80%90capacity-scheduler-xml%E3%80%91%E9%BB%98%E8%AE%A4%E9%85%8D%E7%BD%AE/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hive%E7%AE%80%E4%BB%8B(%E4%BA%8C)/" class="archive-article-date">
-        <time datetime="2022-01-18T10:35:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B9%8B%E5%B9%B6%E8%A1%8C%E5%BA%A6%EF%BC%88Parallelism%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Flink 原理与实现: Flink核心概念之并行度（Parallelism）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hive%E7%AE%80%E4%BB%8B(%E4%BA%8C)/">hive简介(二)</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E3%80%81%E4%B8%89%E7%A7%8D%E5%B8%B8%E8%A7%81%E8%B0%83%E5%BA%A6%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text">1、三种常见调度器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1%E3%80%81%E5%85%88%E8%BF%9B%E5%85%88%E5%87%BA%E8%B0%83%E5%BA%A6%E5%99%A8"><span class="toc-number">1.1.</span> <span class="toc-text">1.1、先进先出调度器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2%E3%80%81%E5%AE%B9%E9%87%8F%E8%B0%83%E5%BA%A6%E5%99%A8"><span class="toc-number">1.2.</span> <span class="toc-text">1.2、容量调度器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3%E3%80%81%E5%85%AC%E5%B9%B3%E8%B0%83%E5%BA%A6%E5%99%A8"><span class="toc-number">1.3.</span> <span class="toc-text">1.3、公平调度器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81%E5%AE%B9%E9%87%8F%E8%B0%83%E5%BA%A6%E5%99%A8-%E5%A4%9A%E9%98%9F%E5%88%97%E9%85%8D%E7%BD%AE"><span class="toc-number">2.</span> <span class="toc-text">2、容量调度器 多队列配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E7%BC%96%E8%BE%91%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">2.1.</span> <span class="toc-text">1、编辑配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E4%BF%AE%E6%94%B9%E6%A0%B9%E9%98%9F%E5%88%97%E4%B8%8B%E9%9D%A2%E7%9A%84%E5%8F%B6%E9%98%9F%E5%88%97%E5%90%8D%E7%A7%B0%EF%BC%8C%E9%80%97%E5%8F%B7%E5%88%86%E9%9A%94%EF%BC%88%E6%AD%A4%E5%A4%84%E6%96%B0%E5%A2%9E%E9%98%9F%E5%88%97%E5%90%8D%E7%A7%B0%E4%B8%BAhive%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">2、修改根队列下面的叶队列名称，逗号分隔（此处新增队列名称为hive）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E4%BF%AE%E6%94%B9-%E5%90%8D%E4%B8%BAdefault%E7%9A%84%E9%98%9F%E5%88%97-%E7%9A%84%E5%AE%B9%E9%87%8F%E5%8D%A0%E6%AF%94"><span class="toc-number">2.3.</span> <span class="toc-text">3、修改 名为default的队列 的容量占比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E7%BB%99%E6%96%B0%E9%98%9F%E5%88%97%E9%85%8D%E7%BD%AE"><span class="toc-number">2.4.</span> <span class="toc-text">4、给新队列配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81%E5%88%86%E5%8F%91%E9%85%8D%E7%BD%AE"><span class="toc-number">2.5.</span> <span class="toc-text">5、分发配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81%E6%9F%A5%E7%9C%8B%E6%B5%8F%E8%A7%88%E5%99%A8%EF%BC%8C%E7%AB%AF%E5%8F%A38088"><span class="toc-number">2.6.</span> <span class="toc-text">6、查看浏览器，端口8088</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%E3%80%81%E5%8D%95%E8%AF%8D"><span class="toc-number">3.</span> <span class="toc-text">3、单词</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4%E3%80%81%E9%BB%98%E8%AE%A4%E9%85%8D%E7%BD%AE%E3%80%90capacity-scheduler-xml%E3%80%91"><span class="toc-number">4.</span> <span class="toc-text">4、默认配置【capacity-scheduler.xml】</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hive%E7%AE%80%E4%BB%8B(%E4%B8%80)/" class="archive-article-date">
-        <time datetime="2022-01-18T08:44:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hive%E7%AE%80%E4%BB%8B(%E4%B8%80)/">hive简介(一)</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'true' == true ? true : false;
+   var verify = 'ture' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '.comment',
+            notify: notify,
+            verify: verify,
+            app_id: "4C7T8fSNVA6RnfQksa8BmdFc-gzGzoHsz",
+            app_key: "V57hYH4l9NRzmpobtAIN5gzq",
+            placeholder: "开始你的评论吧...",
+            avatar:"mm"
+        });
+    }
+</script>
+    </section>
   
 
-    
+
+
+
+
 
 
           </div>
@@ -490,9 +664,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
