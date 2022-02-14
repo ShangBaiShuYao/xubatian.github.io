@@ -6,21 +6,35 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://xubatian.cn">
-  <title>Archives: 2022 | 我的梦想是星辰大海</title>
+  <title>Flink 原理与实现: Flink的状态编程和容错机制之算子状态和键控状态 | 我的梦想是星辰大海</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta name="description" content="知识源于积累,登峰造极源于自律">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我的梦想是星辰大海">
-<meta property="og:url" content="http://xubatian.cn/archives/2022/page/4/index.html">
+  <meta name="description" content="Flink的状态编程概述​    在我们的Flink中,他默认就是有状态的.他和spark的一个本质的区别.有状态,但是他的状态是如何分布的呢?​            状态分为两类: 算子状态(operator state)和键控状态(keyed state) ​    算子状态:  ​            是由Flink每一个子任务自己把任务运行过程中的一些业务或者逻辑或者数据,由自己来保存">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flink 原理与实现: Flink的状态编程和容错机制之算子状态和键控状态">
+<meta property="og:url" content="http://xubatian.cn/Flink%20%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0:%20Flink%E7%9A%84%E7%8A%B6%E6%80%81%E7%BC%96%E7%A8%8B%E5%92%8C%E5%AE%B9%E9%94%99%E6%9C%BA%E5%88%B6%E4%B9%8B%E7%AE%97%E5%AD%90%E7%8A%B6%E6%80%81%E5%92%8C%E9%94%AE%E6%8E%A7%E7%8A%B6%E6%80%81/index.html">
 <meta property="og:site_name" content="我的梦想是星辰大海">
-<meta property="og:description" content="知识源于积累,登峰造极源于自律">
+<meta property="og:description" content="Flink的状态编程概述​    在我们的Flink中,他默认就是有状态的.他和spark的一个本质的区别.有状态,但是他的状态是如何分布的呢?​            状态分为两类: 算子状态(operator state)和键控状态(keyed state) ​    算子状态:  ​            是由Flink每一个子任务自己把任务运行过程中的一些业务或者逻辑或者数据,由自己来保存">
 <meta property="og:locale">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214160955.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214161028.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214161059.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214161121.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214161229.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214161422.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214161438.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214161603.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214161855.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214162021.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214162040.png">
+<meta property="article:published_time" content="2022-02-14T08:08:20.000Z">
+<meta property="article:modified_time" content="2022-02-14T08:39:24.246Z">
 <meta property="article:author" content="xubatian">
-<meta property="article:tag" content="徐霸天,xubatian,上白书妖,shangbaishuyao">
+<meta property="article:tag" content="Flink">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214160955.png">
   
   
     <link rel="icon" href="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/favicon.ico">
@@ -273,53 +287,183 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Flink 原理与实现: Flink的状态编程和容错机制之算子状态和键控状态" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/SparkCore%E4%B9%8BRDD%E7%BC%96%E7%A8%8B%E7%9A%84%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B/" class="archive-article-date">
-        <time datetime="2022-01-19T06:50:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-19</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/SparkCore%E4%B9%8BRDD%E7%BC%96%E7%A8%8B%E7%9A%84%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B/">SparkCore之RDD编程的编程模型</a>
-	
+    <h1 class="article-title" itemprop="name">
+      Flink 原理与实现: Flink的状态编程和容错机制之算子状态和键控状态
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/Flink%20%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0:%20Flink%E7%9A%84%E7%8A%B6%E6%80%81%E7%BC%96%E7%A8%8B%E5%92%8C%E5%AE%B9%E9%94%99%E6%9C%BA%E5%88%B6%E4%B9%8B%E7%AE%97%E5%AD%90%E7%8A%B6%E6%80%81%E5%92%8C%E9%94%AE%E6%8E%A7%E7%8A%B6%E6%80%81/" class="archive-article-date">
+        <time datetime="2022-02-14T08:08:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-14</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">2.6k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">9分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="Flink的状态编程概述"><a href="#Flink的状态编程概述" class="headerlink" title="Flink的状态编程概述"></a>Flink的状态编程概述</h1><p>​    在我们的Flink中,他默认就是有状态的.他和spark的一个本质的区别.有状态,但是他的状态是如何分布的呢?<br>​            <strong>状态分为两类: 算子状态(operator state)和键控状态(keyed state)</strong></p>
+<p>​    算子状态: </p>
+<p>​            是由Flink每一个子任务自己把任务运行过程中的一些业务或者逻辑或者数据,由自己来保存的或者说由自己来管理的,这样的状态称为算子状态.</p>
+<p>​            所以算子状态的作用范围是限定为当前的算子任务的.</p>
+<p>​            什么叫算子任务啊?</p>
+<span id="more"></span>
+
+<p>​            比如如下图:<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214160955.png"></p>
+<p>​            如图所示: sum()就是一个算子.这个算子里面在真正运行的过程中要看你这里写的并行度是多少.假设我这里定义的并行度setParallelism(2)是2.如图所示:</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214161028.png"></p>
+<p>​        如图所示:图上这句话的意思就是表示,我的这个sum()算子他有两个子任务.因为他有两个并行度.所以他就有两个子任务.这意味着由同一并行任务所处理的所有数据都可以访问到相同的状态，<strong>状态对于同一任务而言是共享的。但是算子状态不能由相同或不同算子的另一个任务访问</strong>。这是什么意思呢?如下图所以:就以下图sum()为例,因为我们知道下图这个sum()一定是用到状态了.</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214161059.png"></p>
+<p>​        如图所示: 如果我给这个sum()的并行度设置为2.就意味着这个sum()这个算子有两个subtask即子任务.他是这样子的: 就是他每一个subtask(子任务)都有各自所管理的算子状态.</p>
+<p>​        就算你这两个subtask(子任务)都属于同一个算子.他也是不能够相互访问的.他是不能访问另外一个的.所以所谓的作用范围其实就是限定当前算子的子任务的.如下图所示:</p>
+<p>​        <img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214161121.png"></p>
+<p>而我们这样的<strong>算子状态</strong>呢,他有三种基本数据的存储结构.这所说的是算子管理的这些状态有三个存储方式.</p>
+<p>​        第一种是<strong>列表状态(List state)</strong>:就是说我们的算子状态中的数据是使用列表的方式.是存在一个列表里面的.把整个算子的所有数据以一组列表的方式存储起来.</p>
+<p>​        第二种是<strong>联合列表状态(Union List State)</strong>:他也是以列表来存放算子状态的所有的数据.他和前面列表状态的区别是: 在发生故障时,或者从保存点启动应用程序去恢复数据的时候,他的运行代码不同.</p>
+<p>​        第三种是<strong>广播状态(Broadcast state)</strong>:广播状态的意思就是说.我现在有一个算子.这个算子里面呢,他有一些数据或者说有一些逻辑,这个逻辑呢,其他的算子也是会用得到这个逻辑的.或者说这个数据,其他的算子也会用得到.那怎么办呢? 我们前面讲过,算子和算子之间的任务是不能共享的.这个时候呢,我们可以把这个状态存为一种广播状态,存为广播状态的话,这种情况下,他会把状态数据往其他的子任务上去发.这样的话,其他任务上也会有这个所谓的状态数据了.</p>
+<p>​        不管怎么说,这个算子状态一般情况下是不能由程序员来控制的.(这个我们只需要知道就OK了). 而真正能由程序员控制的状态是键控状态(Keyed state),所谓键控状态(Keyed State)就是说我们这个状态只会依赖于数据中的键来进行维护和存储的.这种称之为键控状态.那我们马上就想到,我们sum()这个算子里面存的每一个单词,存的每一个单词里面的数据,实际上就是一种键控状态.如图所示:</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214161229.png"></p>
+<p>​        因为他是根据数据流中定义的键来进行维护和管理的,那我们访问的时候也是根据键来进行访问.<strong>Flink为每一个键值维护一个状态实例,让你每次可以修改或者你可以根据键去访问</strong>,<strong>当然删除实际上也是可以删除,删除实际上我们调用一下clear()就可以了.这样的一个键控状态(Keyed state )的数据有点类似于一个分布式的键值对(keyed-value)的map数据结构</strong>.为什么叫分布式的呢?因为我们有很多并行度,每个并行度很有可能一直在多个不同的slot上运行.slot是一个线程.那么这个slot这个线程所在的JVM里面就会保存这个状态信息.保存这个键控状态(Keyed state)的值.键控状态的值是以键值对进行存储的. 你的键就是你数据中定义的那个键. <strong>你这个键在某一个JVM中存放了,他有可能还会在另外一个TaskManager的JVM上再存一个吗? 不会的</strong>.所以,其他的TaskManager上所存放的这些状态是可能有其他的键.那么对整个集群而言就是一个分布式的Key-Value数据结构.而且是惟一的Key.就算是分布式的也是一个唯一的Key.刚才我们已经说了,一个key他只会在某一台TaskManager上的JVM所管理的内存里面存放的.至于这个数据存放,后面会说.</p>
+<p>​        当然,我们的Key-Value(键控状态)也是有所谓的数据结构的.它存储的数据结构呢有这么几种:</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214161422.png"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214161438.png"></p>
+<p>​            <strong>流式计算分为无状态和有状态两种情况</strong>。无状态的计算观察每个独立事件，并根据最后一个事件输出结果。例如，流处理应用程序从传感器接收温度读数，并在温度超过90度时发出警告。有状态的计算则会基于多个事件输出结果。以下是一些例子。</p>
+<p>​            所有类型的窗口。例如，计算过去一小时的平均温度，就是有状态的计算。</p>
+<p>​            所有用于复杂事件处理的状态机。例如，若在一分钟内收到两个相差20度以上的温度读数，则发出警告，这是有状态的计算。</p>
+<p>​            流与流之间的所有关联操作，以及流与静态表或动态表之间的关联操作，都是有状态的计算。</p>
+<p>​            下图展示了无状态流处理和有状态流处理的主要区别。无状态流处理分别接收每条数据记录(图中的黑条)，然后根据最新输入的数据生成输出数据(白条)。有状态流处理会维护状态(根据每条输入记录进行更新)，并基于最新输入的记录和当前的状态值生成输出记录(灰条)。</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214161603.png"></p>
+<p>上图中输入数据由黑条表示。无状 态流处理每次只转换一条输入记录，并且仅根据最新的输入记录输出结果(白条)。有状态 流处理维护所有已处理记录的状态值，并根据每条新输入的记录更新状态，因此输出记录(灰条)反映的是综合考虑多个事件之后的结果。</p>
+<p>尽管无状态的计算很重要，但是流处理对有状态的计算更感兴趣。事实上，正确地实现有状态的计算比实现无状态的计算难得多。旧的流处理系统并不支持有状态的计算，而新一代的流处理系统则将状态及其正确性视为重中之重。</p>
+<h1 id="有状态的算子和应用程序"><a href="#有状态的算子和应用程序" class="headerlink" title="有状态的算子和应用程序"></a>有状态的算子和应用程序</h1><p>​        Flink内置的很多算子，数据源source，数据存储sink都是有状态的，流中的数据都是buffer records，会保存一定的元素或者元数据。例如: ProcessWindowFunction会缓存输入流的数据，ProcessFunction会保存设置的定时器信息等等。</p>
+<p>在Flink中，状态始终与特定算子相关联。总的来说，有两种类型的状态：</p>
+<pre><code>     算子状态（operator state）
+     键控状态（keyed state）
+</code></pre>
+<h2 id="算子状态（operator-state）"><a href="#算子状态（operator-state）" class="headerlink" title="算子状态（operator state）"></a>算子状态（operator state）</h2><p>​        算子状态的作用范围限定为算子任务。这意味着由同一并行任务所处理的所有数据都可以访问到相同的状态，状态对于同一任务而言是共享的。算子状态不能由相同或不同算子的另一个任务访问。</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214161855.png"></p>
+<h2 id="键控状态（keyed-state）"><a href="#键控状态（keyed-state）" class="headerlink" title="键控状态（keyed state）"></a>键控状态（keyed state）</h2><p>​        键控状态是根据输入数据流中定义的键（key）来维护和访问的。Flink为每个键值维护一个状态实例，并将具有相同键的所有数据，都分区到同一个算子任务中，这个任务会维护和处理这个key对应的状态。当任务处理一条数据时，它会自动将状态的访问范围限定为当前数据的key。因此，具有相同key的所有数据都会访问相同的状态。Keyed State很类似于一个分布式的key-value map数据结构，只能用于KeyedStream（keyBy算子处理之后）。</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214162021.png"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214162040.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">val sensorData: DataStream[SensorReading] = ...</span><br><span class="line">val keyedData: KeyedStream[SensorReading, String] = sensorData.keyBy(_.id)</span><br><span class="line">val alerts: DataStream[(String, Double, Double)] = keyedData</span><br><span class="line">.flatMap(new TemperatureAlertFunction(1.7))</span><br><span class="line">class TemperatureAlertFunction(val threshold: Double) extends RichFlatMapFunction[SensorReading, (String, Double, Double)] &#123;</span><br><span class="line">//定义一个值状态</span><br><span class="line">private var lastTempState: ValueState[Double] = _</span><br><span class="line">override def open(parameters: Configuration): Unit = &#123;</span><br><span class="line">val lastTempDescriptor = new ValueStateDescriptor[Double](&quot;lastTemp&quot;, classOf[Double])</span><br><span class="line">lastTempState = getRuntimeContext.getState[Double](lastTempDescriptor)</span><br><span class="line">&#125;</span><br><span class="line">override def flatMap(reading: SensorReading,</span><br><span class="line">out: Collector[(String, Double, Double)]): Unit = &#123;</span><br><span class="line">val lastTemp = lastTempState.value()</span><br><span class="line">val tempDiff = (reading.temperature - lastTemp).abs</span><br><span class="line">if (tempDiff &gt; threshold) &#123;</span><br><span class="line">out.collect((reading.id, reading.temperature, tempDiff))</span><br><span class="line">&#125;</span><br><span class="line">this.lastTempState.update(reading.temperature)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过RuntimeContext注册StateDescriptor。StateDescriptor以状态state的名字和存储的数据类型为参数。</p>
+<p>在open()方法中创建state变量。注意复习之前的RichFunction相关知识。</p>
+<p>接下来我们使用了FlatMap with keyed ValueState的快捷方式flatMapWithState实现以上需求。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">val alerts: DataStream[(String, Double, Double)] = keyedSensorData</span><br><span class="line">  .flatMapWithState[(String, Double, Double), Double] &#123;</span><br><span class="line">    case (in: SensorReading, None) =&gt;</span><br><span class="line">      (List.empty, Some(in.temperature))</span><br><span class="line">    case (r: SensorReading, lastTemp: Some[Double]) =&gt;</span><br><span class="line">      val tempDiff = (r.temperature - lastTemp.get).abs</span><br><span class="line">      if (tempDiff &gt; 1.7) &#123;</span><br><span class="line">        (List((r.id, r.temperature, tempDiff)), Some(r.temperature))</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        (List.empty, Some(r.temperature))</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/zhifubaoPay.png">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/weixinPay.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          xubatian
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://xubatian.cn/Flink 原理与实现: Flink的状态编程和容错机制之算子状态和键控状态/" title="Flink 原理与实现: Flink的状态编程和容错机制之算子状态和键控状态" target="_blank">http://xubatian.cn/Flink 原理与实现: Flink的状态编程和容错机制之算子状态和键控状态/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外均为原创，采用 CC BY 4.0 CN协议 许可协议。转载请注明出处:https://www.xubatian.cn/
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -332,515 +476,140 @@
 	</div>
 
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/Flink%20%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0:%20Flink%E7%9A%84%E7%8A%B6%E6%80%81%E7%BC%96%E7%A8%8B%E5%92%8C%E5%AE%B9%E9%94%99%E6%9C%BA%E5%88%B6%E4%B9%8B%E7%AE%97%E5%AD%90%E7%8A%B6%E6%80%81%E5%92%8C%E9%94%AE%E6%8E%A7%E7%8A%B6%E6%80%81/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/SparkCore%E4%B9%8BRDD%E6%A6%82%E8%BF%B0/" class="archive-article-date">
-        <time datetime="2022-01-19T06:22:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-19</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E7%9A%84ProcessFunction-API%EF%BC%88%E5%BA%95%E5%B1%82API%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Flink 原理与实现: Flink的ProcessFunction API（底层API）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/SparkCore%E4%B9%8BRDD%E6%A6%82%E8%BF%B0/">SparkCore之RDD概述</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Flink%E7%9A%84%E7%8A%B6%E6%80%81%E7%BC%96%E7%A8%8B%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">Flink的状态编程概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%89%E7%8A%B6%E6%80%81%E7%9A%84%E7%AE%97%E5%AD%90%E5%92%8C%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F"><span class="toc-number">2.</span> <span class="toc-text">有状态的算子和应用程序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%97%E5%AD%90%E7%8A%B6%E6%80%81%EF%BC%88operator-state%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">算子状态（operator state）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%AE%E6%8E%A7%E7%8A%B6%E6%80%81%EF%BC%88keyed-state%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">键控状态（keyed state）</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/spark%E5%9F%BA%E7%A1%80%E8%A7%A3%E6%9E%90/" class="archive-article-date">
-        <time datetime="2022-01-19T03:09:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-19</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/spark%E5%9F%BA%E7%A1%80%E8%A7%A3%E6%9E%90/">spark基础解析</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hive%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E6%94%B6%E5%BD%95/" class="archive-article-date">
-        <time datetime="2022-01-18T14:43:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hive%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E6%94%B6%E5%BD%95/">hive常用函数收录</a>
-	
-    </h1>
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'true' == true ? true : false;
+   var verify = 'ture' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '.comment',
+            notify: notify,
+            verify: verify,
+            app_id: "4C7T8fSNVA6RnfQksa8BmdFc-gzGzoHsz",
+            app_key: "V57hYH4l9NRzmpobtAIN5gzq",
+            placeholder: "开始你的评论吧...",
+            avatar:"mm"
+        });
+    }
+</script>
+    </section>
   
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hive%E7%AE%80%E4%BB%8B(%E4%BA%8C)/" class="archive-article-date">
-        <time datetime="2022-01-18T10:35:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hive%E7%AE%80%E4%BB%8B(%E4%BA%8C)/">hive简介(二)</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hive%E7%AE%80%E4%BB%8B(%E4%B8%80)/" class="archive-article-date">
-        <time datetime="2022-01-18T08:44:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hive%E7%AE%80%E4%BB%8B(%E4%B8%80)/">hive简介(一)</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/zookeeper%E7%AE%80%E4%BB%8B/" class="archive-article-date">
-        <time datetime="2022-01-18T06:51:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/zookeeper%E7%AE%80%E4%BB%8B/">Zookeeper简介</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">zookeeper</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/%E5%8A%A8%E6%80%81/" class="archive-article-date">
-        <time datetime="2022-01-18T05:08:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/%E5%8A%A8%E6%80%81/">小目标</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">动态</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/动态//" class="article-tag-list-link color3">动态</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Hadoop%E7%94%9F%E4%BA%A7%E8%B0%83%E4%BC%98%E6%89%8B%E5%86%8C/" class="archive-article-date">
-        <time datetime="2022-01-17T13:57:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-17</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Hadoop%E7%94%9F%E4%BA%A7%E8%B0%83%E4%BC%98%E6%89%8B%E5%86%8C/">Hadoop生产调优手册</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop企业级优化</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Hadoop%E4%BC%81%E4%B8%9A%E4%BC%98%E5%8C%96/" class="archive-article-date">
-        <time datetime="2022-01-16T16:08:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-17</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Hadoop%E4%BC%81%E4%B8%9A%E4%BC%98%E5%8C%96/">Hadoop企业优化</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop企业级优化</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2022/page/3/">上一页</a><a class="page-number" href="/archives/2022/">1</a><a class="page-number" href="/archives/2022/page/2/">2</a><a class="page-number" href="/archives/2022/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/2022/page/5/">5</a><a class="page-number" href="/archives/2022/page/6/">6</a><a class="extend next" rel="next" href="/archives/2022/page/5/">下一页</a>
-    </nav>
-  
 
 
 
@@ -881,8 +650,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

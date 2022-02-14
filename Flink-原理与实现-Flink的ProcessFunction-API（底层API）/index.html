@@ -6,21 +6,31 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://xubatian.cn">
-  <title>Archives: 2022 | 我的梦想是星辰大海</title>
+  <title>Flink 原理与实现: Flink的ProcessFunction API（底层API） | 我的梦想是星辰大海</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta name="description" content="知识源于积累,登峰造极源于自律">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我的梦想是星辰大海">
-<meta property="og:url" content="http://xubatian.cn/archives/2022/page/4/index.html">
+  <meta name="description" content="Flink底层API概述ProcessFunction API是属于Flink三层API中最底层的一层API.最底层的API意味着什么呢? ​        顾名思义就是我们可以做任何你想要做的任何事情.你可以理解为底层的API我们想要处理一些细腻化的操作,或者要处理一些特殊的业务.我如果使用高级的API ,DataStream API已经搞定不了的情况下.最后呢,我们就可以是用ProcessFu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flink 原理与实现: Flink的ProcessFunction API（底层API）">
+<meta property="og:url" content="http://xubatian.cn/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E7%9A%84ProcessFunction-API%EF%BC%88%E5%BA%95%E5%B1%82API%EF%BC%89/index.html">
 <meta property="og:site_name" content="我的梦想是星辰大海">
-<meta property="og:description" content="知识源于积累,登峰造极源于自律">
+<meta property="og:description" content="Flink底层API概述ProcessFunction API是属于Flink三层API中最底层的一层API.最底层的API意味着什么呢? ​        顾名思义就是我们可以做任何你想要做的任何事情.你可以理解为底层的API我们想要处理一些细腻化的操作,或者要处理一些特殊的业务.我如果使用高级的API ,DataStream API已经搞定不了的情况下.最后呢,我们就可以是用ProcessFu">
 <meta property="og:locale">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214154851.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214155410.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214155648.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214160025.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214160123.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214160218.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214160312.png">
+<meta property="article:published_time" content="2022-02-14T07:44:22.000Z">
+<meta property="article:modified_time" content="2022-02-14T08:05:53.264Z">
 <meta property="article:author" content="xubatian">
-<meta property="article:tag" content="徐霸天,xubatian,上白书妖,shangbaishuyao">
+<meta property="article:tag" content="Flink">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214154851.png">
   
   
     <link rel="icon" href="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/favicon.ico">
@@ -273,53 +283,189 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Flink-原理与实现-Flink的ProcessFunction-API（底层API）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/SparkCore%E4%B9%8BRDD%E7%BC%96%E7%A8%8B%E7%9A%84%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B/" class="archive-article-date">
-        <time datetime="2022-01-19T06:50:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-19</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/SparkCore%E4%B9%8BRDD%E7%BC%96%E7%A8%8B%E7%9A%84%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B/">SparkCore之RDD编程的编程模型</a>
-	
+    <h1 class="article-title" itemprop="name">
+      Flink 原理与实现: Flink的ProcessFunction API（底层API）
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E7%9A%84ProcessFunction-API%EF%BC%88%E5%BA%95%E5%B1%82API%EF%BC%89/" class="archive-article-date">
+        <time datetime="2022-02-14T07:44:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-14</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">3.8k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">13分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="Flink底层API概述"><a href="#Flink底层API概述" class="headerlink" title="Flink底层API概述"></a>Flink底层API概述</h1><p>ProcessFunction API是属于Flink三层API中最底层的一层API.最底层的API意味着什么呢?</p>
+<p>​        顾名思义就是我们可以做任何你想要做的任何事情.你可以理解为底层的API我们想要处理一些细腻化的操作,或者要处理一些特殊的业务.我如果使用高级的API ,DataStream API已经搞定不了的情况下.最后呢,我们就可以是用ProcessFunction API. ProcessFunction API是属于我们Flink里面最底层的转换算子.在这个最底层的转换算子中.我们可以有很多的工作可以做.或者有很多的功能可以完成.可以访问时间戳.那我们访问的时间戳是什么时间戳呢?是处理的时间戳.也可以是当前进来的那条数据的时间戳.那么当前进来的时间戳和处理的时间戳我们不是可以使用system.currenttimemillis()吗?但是这个时候我们使用这个是不准确的.<strong>你要想访问准确的时间的话.我们就可以使用底层的API.他就给我们提供了一个方法.我们可以访问watermark,还可以查看当前的水位线.水位线实际上是这样的,就是他每个两百毫秒调用一次.是需要更新这个水位线的.因为水位线有两种.</strong></p>
+<p>一种是周期性的水位线.<br>还有一种是间断性的水位线.</p>
+<p>周期性的水位线就是说我每隔多长时间来更新一下或者设置一下这个新的水位线.就是这个意思.那么当前<strong>最新的水位线是多少我们都可以通过在底层API中去拿到</strong>.甚至我们还可以<strong>注册定时的事件.</strong></p>
+<p>什么叫注册定时的事件呢?</p>
+<p>​    比如说:我们到达某一个条件之后我想触发一个事件.触发一个新的事件.这个事件我规定你在三秒钟之后你给我执行.那么在三秒钟还没到的时候我就有必要把这个事件注册一下.注册之后,从现在开始到三秒钟之后他会自动触发.所以你可以理解为定义,我们定义一个马上过一段时间要触发的一个事件.</p>
+<p>​        还可以输出一个特定的一些事件.比如说超时的一些事件.什么意思呢?比如说我们现在正在处理数据.假设处理数据的时候我们发现可能某一个条件还没成熟.那么没关系,我们可以在几秒钟之后设置一个超时时间.在几秒钟之后我们再进行处理.这就是所谓的超时时间.</p>
+<p><strong>实际上几秒钟之后再处理的话,也是需要注册一个定时事件的</strong>.因为你要注册一个处理的时间,多长时间之后再进行处理.这些都是原来我们的API所无法做到的.那我们就可以通过ProcessFunction API这个底层的API来进行处理.</p>
+<span id="more"></span>
+
+<p><strong>Flink给我们提供了8中ProcessFunction API.</strong></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214154851.png"></p>
+<p>这些窗口函数说白了就是一个个的对象,看着像函数,实际上他是对象.或者说就是一个类.那我们要用的话是声明一个匿名方法吗?不是的,是声明一个匿名函数吗?不是的.而是你需要写一个类去继承这8个ProcessFunction.他是我们真正的窗口函数类.如果你要把前面的知识点串联起来的话.</p>
+<p>Flink里面我们提供了三种函数类</p>
+<p>匿名函数不好</p>
+<p>一个是普通的函数类.</p>
+<p>第二个是富函数类.</p>
+<p>第三个是底层处理的函数类.</p>
+<p>所以我们有三种函数类.这块儿函数类有一个特点,他不是说你要声明写一个匿名函数就可以了.而是你必须要写一个类去继承他.</p>
+<p>这里最常用的是ProcessFunction和KeyedProcessFunction.</p>
+<p>下面以KeyedProcessFunction举例子.</p>
+<p>​        我们之前学习的转换算子是无法访问事件的时间戳信息和水位线信息的。而这在一些应用场景下，极为重要。例如MapFunction这样的map转换算子就无法访问时间戳或者当前事件的事件时间。<br>​        基于此，DataStream API提供了一系列的Low-Level(底层的)转换算子。可以访问时间戳、watermark以及注册定时事件。还可以输出特定的一些事件，例如超时事件等。Process Function用来构建事件驱动的应用以及实现自定义的业务逻辑(使用之前的window函数和转换算子无法实现)。例如，Flink SQL就是使用Process Function实现的。<br>Flink提供了8个Process Function：<br>ProcessFunction<br>KeyedProcessFunction<br>CoProcessFunction<br>ProcessJoinFunction<br>BroadcastProcessFunction<br>KeyedBroadcastProcessFunction<br>ProcessWindowFunction<br>ProcessAllWindowFunction</p>
+<h1 id="KeyedProcessFunction"><a href="#KeyedProcessFunction" class="headerlink" title="KeyedProcessFunction"></a>KeyedProcessFunction</h1><p><strong>这里以KeyedProcessFunction举例,因为他用的最多.上面的这8个ProcessFunction API即底层API,都是按照下面连个案例去操作的.</strong></p>
+<p>​        以下例子说明,就是你可以通过这个Process Function中,拿到你想要拿到的任何东西,包括你对侧输出流的管理,包括你对当前的运行时间还有当前的watermark,当前的TimerService(时间服务),TimerService里面又可以注册一个触发器,并且还可以删除一个触发器.总之一句话,就是底层的ProcessFunction提供了所有你想要拿到的东西.都可以在底层的ProcessFunction API里面拿</p>
+<p>​        KeyedProcessFunction是专门用来操作KeyedStream的.只会操作KeyedStream.</p>
+<p>​        KeyedProcessFunction他会处理我们流的每一个元素.可以输出多个元素.也可以输出0个,也可以输出1个.这个我们之前说的DataStream API里面的处理函数或者转换函数不一样的.比如我们在DataStream中说的FlatMap这个处理函数(注意:处理函数就是所谓的转换函数),这里FlatMap他是把一条数据变成n条数据,即把一个元素转换成多个元素.还有一个,比如说map算子,map算子就是把一条数据通过map输出一条数据.我们可不可以用map算子来把一条数输出0条数据呢?(0个元素就代表不输出的意思.) 请问可以这样做吗?不可以的.那为什么我们后面不能输出null呢?输出null不就是代表不输出了呢?因为null也是等于0的呀!因为我们的map是要申明类型的,一个输入类型,一个输出类型.那我们写代码的时候输出一个null不就行了嘛?你什么代码也不写,这是不行的,因为这个代码是必须有返回值的.你这个方法声明的返回值你却没有返回任何东西的话,你的语法就通不过,然后他的编译也通不过.那什么都不输出的话编译不通过,那我就输出个null不行吗?不行,输出null的话,在执行过程中是会报错的.为什么?因为他要把输出的数据还要反序列化一下.在我们Flink中,流的处理,尤其在后面写到Sink里面他要进行序列化的.也就是说,他会造成后面的算子报错的现象.可能你这个map算子不会报错,但是会造成后面的算子报错.因为后面的算子他要反序列化你这个map算子输出的对象.那这个时候因为你为null,那他就会报一个空指针异常的错误.所以说,他做不到.</p>
+<p>​        但是我们当前的底层API即KeyedProcessFunction这个底层API他就可以做到,他可以不输出.因为它里面的方法是没有返回值的.他既然没有返回值,我不输出,我不写代码就可以了.他可以输出1个元素也可以输出0个元素.他是非常灵活的.这就是所谓的底层API.当然,灵活归灵活,只不过代码写的稍微多一点.以前是调一个函数就ok了.现在我们用底层API我们还得写一个类.去继承这个父类.然后重写父类的所有抽象方法.而且我们所有的ProcessFunction都继承自RichFunction接口.RichFunction接口的特点是,有生命周期的管理.你可以知道我们这个subtask,就是我们这算子所对应的subtask在什么时候初始化,什么时候关闭.什么时候初始化的回调方法就是Open()方法.什么时候关闭的回调方法就是close()方法.这就是所谓的声明周期.还可以的到当前运行的上下文环境getRuntimeContext().这个上下文环境以后是要用的.为什么呢?因为我们前面说,我们的底层API可以访问时间,可以访问watermark(水位线),可以注册事件.那么可以通过谁来注册事件呢?就是通过我们运行时的上下环境,就是getRuntimeContext()来进行注册事件.</p>
+<p>​        归纳总结: 我们整个Flink学了三种函数类.普通的函数类.富函数类和底层处理的函数类.那我们是不是可以认为底层处理的函数类可以做前面两种所有能做的事情.除此之外,我们的底层处理的函数还能做额外的一些事情,比如说注册新的事件,访问时间戳等等.或者说底层处理的函数类,就是我们所谓的写代码过程中发现一个业务数据做不到的我们就可以放大招了,使用我们底层处理的函数类来完成我们想要的需求.那如果底层处理的函数类都搞定不了的话,那就是我们技术选型有问题了.我们就不该选用Flink了.</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214155410.png"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214155648.png"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214160025.png"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214160123.png"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214160218.png"></p>
+<h1 id="时间服务-TimerService-和-定时器（Timers）"><a href="#时间服务-TimerService-和-定时器（Timers）" class="headerlink" title="时间服务 (TimerService )和 定时器（Timers）"></a>时间服务 (TimerService )和 定时器（Timers）</h1><p>Context和OnTimerContext所持有的TimerService对象拥有以下方法:</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214160312.png"></p>
+<p>当定时器timer触发时，会执行回调函数onTimer()。注意定时器timer只能在keyed streams上面使用。</p>
+<p>下面举个例子说明KeyedProcessFunction如何操作KeyedStream。</p>
+<p>需求：监控温度传感器的温度值，如果温度值在一秒钟之内(processing time)连续上升，则报警。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">val warnings = readings</span><br><span class="line">.keyBy(_.id)</span><br><span class="line">.process(new TempIncreaseAlertFunction)</span><br></pre></td></tr></table></figure>
+
+<p>看一下TempIncreaseAlertFunction如何实现, 程序中使用了ValueState这样一个状态变量。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">class TempIncreaseAlertFunction extends KeyedProcessFunction[String, SensorReading, String] &#123;</span><br><span class="line">  // 保存上一个传感器温度值</span><br><span class="line">  lazy val lastTemp: ValueState[Double] = getRuntimeContext.getState(</span><br><span class="line">    new ValueStateDescriptor[Double](&quot;lastTemp&quot;, Types.of[Double])</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">  // 保存注册的定时器的时间戳</span><br><span class="line">  lazy val currentTimer: ValueState[Long] = getRuntimeContext.getState(</span><br><span class="line">    new ValueStateDescriptor[Long](&quot;timer&quot;, Types.of[Long])</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">  override def processElement(r: SensorReading,</span><br><span class="line">                          ctx: KeyedProcessFunction[String, SensorReading, String]#Context,</span><br><span class="line">                          out: Collector[String]): Unit = &#123;</span><br><span class="line">    // 取出上一次的温度</span><br><span class="line">    val prevTemp = lastTemp.value()</span><br><span class="line">    // 将当前温度更新到上一次的温度这个变量中</span><br><span class="line">    lastTemp.update(r.temperature)</span><br><span class="line"></span><br><span class="line">    val curTimerTimestamp = currentTimer.value()</span><br><span class="line">    if (prevTemp == 0.0 || r.temperature &lt; prevTemp) &#123;</span><br><span class="line">      // 温度下降或者是第一个温度值，删除定时器</span><br><span class="line">      ctx.timerService().deleteProcessingTimeTimer(curTimerTimestamp)</span><br><span class="line">      // 清空状态变量</span><br><span class="line">      currentTimer.clear()</span><br><span class="line">    &#125; else if (r.temperature &gt; prevTemp &amp;&amp; curTimerTimestamp == 0) &#123;</span><br><span class="line">      // 温度上升且我们并没有设置定时器</span><br><span class="line">      val timerTs = ctx.timerService().currentProcessingTime() + 1000</span><br><span class="line">      ctx.timerService().registerProcessingTimeTimer(timerTs)</span><br><span class="line"></span><br><span class="line">      currentTimer.update(timerTs)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  override def onTimer(ts: Long,</span><br><span class="line">                    ctx: KeyedProcessFunction[String, SensorReading, String]#OnTimerContext,</span><br><span class="line">                    out: Collector[String]): Unit = &#123;</span><br><span class="line">    out.collect(&quot;传感器id为: &quot; + ctx.getCurrentKey + &quot;的传感器温度值已经连续1s上升了。&quot;)</span><br><span class="line">    currentTimer.clear()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="侧输出流（SideOutput）【注意：测输出流是用来替代Split算子的。Split算子已经过时了。】"><a href="#侧输出流（SideOutput）【注意：测输出流是用来替代Split算子的。Split算子已经过时了。】" class="headerlink" title="侧输出流（SideOutput）【注意：测输出流是用来替代Split算子的。Split算子已经过时了。】"></a>侧输出流（SideOutput）【注意：测输出流是用来替代Split算子的。Split算子已经过时了。】</h1><p>​        侧输出流是用来替代Split算子的,split算子实际上已经过时了.侧输出流的意思就是说,我们把一条流分成多个流.这个侧输出流可以这样子的.就是一条主流两个测流.或者一条主流,三个测流.这就根据你自己的意思来决定.但是有一个特点就是你的类型必须相同.那么,如果你输出侧输出流的话.你必须需要用到我们的底层,也需要用到底层的function才行的.所以这个侧输出流他也是属于我们的ProcessFunction API里面的.就是底层API里面的.<br>​        由于我们可以输出多条测流,那么每一个测流呢,我们可以定义一个OutputTag[X]对象来区分.其中的X就是他每条测流里面的每个元素的类型.所以需要在前面就得定义一个OutputTag[X].有多少个侧输出流,你就需要定义多少个OutputTag[X].实际上你可以理解为就是我当前测流的一个标记.或者我当前测流的一个标签.到时候你去拿我这个测流的时候,你也是根据这个标签去拿.</p>
+<p>​        大部分的DataStream API的算子的输出是单一输出，也就是某种数据类型的流。除了split算子，可以将一条流分成多条流，这些流的数据类型也都相同。process function的side outputs功能可以产生多条流，并且这些流的数据类型可以不一样。一个side output可以定义为OutputTag[X]对象，X是输出流的数据类型。process function可以通过Context对象发射一个事件到一个或者多个side outputs。</p>
+<p>下面是一个示例程序:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">val monitoredReadings: DataStream[SensorReading] = readings</span><br><span class="line">  .process(new FreezingMonitor)</span><br><span class="line"></span><br><span class="line">monitoredReadings</span><br><span class="line">  .getSideOutput(new OutputTag[String](&quot;freezing-alarms&quot;))</span><br><span class="line">  .print()</span><br><span class="line"></span><br><span class="line">readings.print()</span><br></pre></td></tr></table></figure>
+
+<p>接下来我们实现FreezingMonitor函数，用来监控传感器温度值，将温度值低于32F的温度输出到side output。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class FreezingMonitor extends ProcessFunction[SensorReading, SensorReading] &#123;</span><br><span class="line">  // 定义一个侧输出标签</span><br><span class="line">  lazy val freezingAlarmOutput: OutputTag[String] =</span><br><span class="line">    new OutputTag[String](&quot;freezing-alarms&quot;)</span><br><span class="line"></span><br><span class="line">  override def processElement(r: SensorReading,</span><br><span class="line">                              ctx: ProcessFunction[SensorReading, SensorReading]#Context,</span><br><span class="line">                              out: Collector[SensorReading]): Unit = &#123;</span><br><span class="line">    // 温度在32F以下时，输出警告信息</span><br><span class="line">    if (r.temperature &lt; 32.0) &#123;</span><br><span class="line">      ctx.output(freezingAlarmOutput, s&quot;Freezing Alarm for $&#123;r.id&#125;&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">    // 所有数据直接常规输出到主流</span><br><span class="line">    out.collect(r)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="CoProcessFunction-这是将两条流汇成一个流的"><a href="#CoProcessFunction-这是将两条流汇成一个流的" class="headerlink" title="CoProcessFunction(这是将两条流汇成一个流的)"></a>CoProcessFunction(这是将两条流汇成一个流的)</h1><p>CoProcessFunction,这个是将两个流汇成一个流的.CoProcessFunction和我们之前讲的两个底层的函数不一样.它里面有两个需要实现的方法.如果你需要把两条流汇成一个流的话.你就要分别处理,所以要<strong>重写CoProcessFunction里面的两个方法:ProcessElement1()和ProcessElement2().那如果我想要将他汇成一个流的话,我只需要在这两个方法中用同样的代码去删除就可以了.</strong></p>
+<p>对于两条输入流，DataStream API提供了CoProcessFunction这样的low-level操作。CoProcessFunction提供了操作每一个输入流的方法: processElement1()和processElement2()。</p>
+<p>类似于ProcessFunction，这两种方法都通过Context对象来调用。这个Context对象可以访问事件数据，定时器时间戳，TimerService，以及side outputs。CoProcessFunction也提供了onTimer()回调函数。</p>
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/zhifubaoPay.png">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/weixinPay.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          xubatian
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://xubatian.cn/Flink-原理与实现-Flink的ProcessFunction-API（底层API）/" title="Flink 原理与实现: Flink的ProcessFunction API（底层API）" target="_blank">http://xubatian.cn/Flink-原理与实现-Flink的ProcessFunction-API（底层API）/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外均为原创，采用 CC BY 4.0 CN协议 许可协议。转载请注明出处:https://www.xubatian.cn/
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -332,515 +478,149 @@
 	</div>
 
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E7%9A%84ProcessFunction-API%EF%BC%88%E5%BA%95%E5%B1%82API%EF%BC%89/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/SparkCore%E4%B9%8BRDD%E6%A6%82%E8%BF%B0/" class="archive-article-date">
-        <time datetime="2022-01-19T06:22:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-19</time>
-</a>
 
+
+<nav id="article-nav">
+  
+    <a href="/Flink%20%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0:%20Flink%E7%9A%84%E7%8A%B6%E6%80%81%E7%BC%96%E7%A8%8B%E5%92%8C%E5%AE%B9%E9%94%99%E6%9C%BA%E5%88%B6%E4%B9%8B%E7%AE%97%E5%AD%90%E7%8A%B6%E6%80%81%E5%92%8C%E9%94%AE%E6%8E%A7%E7%8A%B6%E6%80%81/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Flink 原理与实现: Flink的状态编程和容错机制之算子状态和键控状态
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink-%E7%9A%84%E6%97%B6%E9%97%B4%E8%AF%AD%E4%B9%89%E4%B8%8EWartermark-%E6%B0%B4%E4%BD%8D%E7%BA%BF-%E6%9C%BA%E5%88%B6/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Flink 原理与实现: Flink 的时间语义与Wartermark(水位线)机制</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/SparkCore%E4%B9%8BRDD%E6%A6%82%E8%BF%B0/">SparkCore之RDD概述</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Flink%E5%BA%95%E5%B1%82API%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">Flink底层API概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#KeyedProcessFunction"><span class="toc-number">2.</span> <span class="toc-text">KeyedProcessFunction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E6%9C%8D%E5%8A%A1-TimerService-%E5%92%8C-%E5%AE%9A%E6%97%B6%E5%99%A8%EF%BC%88Timers%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">时间服务 (TimerService )和 定时器（Timers）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BE%A7%E8%BE%93%E5%87%BA%E6%B5%81%EF%BC%88SideOutput%EF%BC%89%E3%80%90%E6%B3%A8%E6%84%8F%EF%BC%9A%E6%B5%8B%E8%BE%93%E5%87%BA%E6%B5%81%E6%98%AF%E7%94%A8%E6%9D%A5%E6%9B%BF%E4%BB%A3Split%E7%AE%97%E5%AD%90%E7%9A%84%E3%80%82Split%E7%AE%97%E5%AD%90%E5%B7%B2%E7%BB%8F%E8%BF%87%E6%97%B6%E4%BA%86%E3%80%82%E3%80%91"><span class="toc-number">4.</span> <span class="toc-text">侧输出流（SideOutput）【注意：测输出流是用来替代Split算子的。Split算子已经过时了。】</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CoProcessFunction-%E8%BF%99%E6%98%AF%E5%B0%86%E4%B8%A4%E6%9D%A1%E6%B5%81%E6%B1%87%E6%88%90%E4%B8%80%E4%B8%AA%E6%B5%81%E7%9A%84"><span class="toc-number">5.</span> <span class="toc-text">CoProcessFunction(这是将两条流汇成一个流的)</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/spark%E5%9F%BA%E7%A1%80%E8%A7%A3%E6%9E%90/" class="archive-article-date">
-        <time datetime="2022-01-19T03:09:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-19</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/spark%E5%9F%BA%E7%A1%80%E8%A7%A3%E6%9E%90/">spark基础解析</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hive%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E6%94%B6%E5%BD%95/" class="archive-article-date">
-        <time datetime="2022-01-18T14:43:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hive%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E6%94%B6%E5%BD%95/">hive常用函数收录</a>
-	
-    </h1>
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'true' == true ? true : false;
+   var verify = 'ture' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '.comment',
+            notify: notify,
+            verify: verify,
+            app_id: "4C7T8fSNVA6RnfQksa8BmdFc-gzGzoHsz",
+            app_key: "V57hYH4l9NRzmpobtAIN5gzq",
+            placeholder: "开始你的评论吧...",
+            avatar:"mm"
+        });
+    }
+</script>
+    </section>
   
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hive%E7%AE%80%E4%BB%8B(%E4%BA%8C)/" class="archive-article-date">
-        <time datetime="2022-01-18T10:35:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hive%E7%AE%80%E4%BB%8B(%E4%BA%8C)/">hive简介(二)</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hive%E7%AE%80%E4%BB%8B(%E4%B8%80)/" class="archive-article-date">
-        <time datetime="2022-01-18T08:44:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hive%E7%AE%80%E4%BB%8B(%E4%B8%80)/">hive简介(一)</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/zookeeper%E7%AE%80%E4%BB%8B/" class="archive-article-date">
-        <time datetime="2022-01-18T06:51:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/zookeeper%E7%AE%80%E4%BB%8B/">Zookeeper简介</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">zookeeper</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/%E5%8A%A8%E6%80%81/" class="archive-article-date">
-        <time datetime="2022-01-18T05:08:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/%E5%8A%A8%E6%80%81/">小目标</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">动态</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/动态//" class="article-tag-list-link color3">动态</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Hadoop%E7%94%9F%E4%BA%A7%E8%B0%83%E4%BC%98%E6%89%8B%E5%86%8C/" class="archive-article-date">
-        <time datetime="2022-01-17T13:57:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-17</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Hadoop%E7%94%9F%E4%BA%A7%E8%B0%83%E4%BC%98%E6%89%8B%E5%86%8C/">Hadoop生产调优手册</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop企业级优化</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Hadoop%E4%BC%81%E4%B8%9A%E4%BC%98%E5%8C%96/" class="archive-article-date">
-        <time datetime="2022-01-16T16:08:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-17</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Hadoop%E4%BC%81%E4%B8%9A%E4%BC%98%E5%8C%96/">Hadoop企业优化</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop企业级优化</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2022/page/3/">上一页</a><a class="page-number" href="/archives/2022/">1</a><a class="page-number" href="/archives/2022/page/2/">2</a><a class="page-number" href="/archives/2022/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/2022/page/5/">5</a><a class="page-number" href="/archives/2022/page/6/">6</a><a class="extend next" rel="next" href="/archives/2022/page/5/">下一页</a>
-    </nav>
-  
 
 
 
@@ -881,8 +661,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
