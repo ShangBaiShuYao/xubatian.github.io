@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210142018.png">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210142040.png">
 <meta property="article:published_time" content="2022-02-10T06:11:48.000Z">
-<meta property="article:modified_time" content="2022-02-10T06:40:53.045Z">
+<meta property="article:modified_time" content="2022-02-14T15:46:21.992Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="Flink">
 <meta name="twitter:card" content="summary">
@@ -348,106 +348,51 @@
     <h3 id="Flink-核心特点"><a href="#Flink-核心特点" class="headerlink" title="Flink 核心特点"></a>Flink 核心特点</h3><h4 id="批流一体"><a href="#批流一体" class="headerlink" title="批流一体"></a>批流一体</h4><p>所有的数据都天然带有时间的概念，必然发生在某一个时间点。把事件按照时间顺序排列起来，就形成了一个事件流，也叫作数据流。<strong>「无界数据」</strong>是持续产生的数据，所以必须持续地处理无界数据流。<strong>「有界数据」</strong>，就是在一个确定的时间范围内的数据流，有开始有结束，一旦确定了就不会再改变。</p>
 <span id="more"></span>
 
-<h4 id="可靠的容错能力"><a href="#可靠的容错能力" class="headerlink" title="可靠的容错能力"></a>可靠的容错能力</h4><ul>
-<li><p>集群级容错</p>
-</li>
-<li><ul>
-<li>集群管理器集成（Hadoop YARN、Mesos或Kubernetes）</li>
-<li>高可用性设置（HA模式基于ApacheZooKeeper）</li>
-</ul>
-</li>
-<li><p>应用级容错（ Checkpoint）</p>
-</li>
-<li><ul>
-<li>一致性（其本身支持Exactly-Once 语义）</li>
-<li>轻量级（检查点的执行异步和增量检查点）</li>
-</ul>
-</li>
-<li><p>高吞吐、低延迟</p>
-</li>
-</ul>
+<h4 id="可靠的容错能力"><a href="#可靠的容错能力" class="headerlink" title="可靠的容错能力"></a>可靠的容错能力</h4><p>集群级容错</p>
+<p>​    集群管理器集成（Hadoop YARN、Mesos或Kubernetes）</p>
+<p>​    高可用性设置（HA模式基于ApacheZooKeeper）</p>
+<p>应用级容错（ Checkpoint）</p>
+<p>​    一致性（其本身支持Exactly-Once 语义）</p>
+<p>​    轻量级（检查点的执行异步和增量检查点）</p>
+<p>高吞吐、低延迟</p>
 <h4 id="运行时架构"><a href="#运行时架构" class="headerlink" title="运行时架构"></a>运行时架构</h4><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141319.png"></p>
-<ul>
-<li><p>Flink 客户端</p>
-</li>
-<li><ul>
-<li>提交Flink作业到Flink集群</li>
-<li>Stream Graph 和 Job Graph构建</li>
-</ul>
-</li>
-<li><p>JobManager</p>
-</li>
-<li><ul>
-<li>资源申请</li>
-<li>任务调度</li>
-<li>应用容错</li>
-</ul>
-</li>
-<li><p>TaskManager</p>
-</li>
-<li><ul>
-<li>接收JobManager 分发的子任务，管理子任务</li>
-<li>任务处理（消费数据、处理数据）</li>
-</ul>
-</li>
-</ul>
-<h2 id="Flink-应用"><a href="#Flink-应用" class="headerlink" title="Flink 应用"></a>Flink 应用</h2><h4 id="数据流"><a href="#数据流" class="headerlink" title="数据流"></a>数据流</h4><h5 id="DataStream-体系"><a href="#DataStream-体系" class="headerlink" title="DataStream 体系"></a>DataStream 体系</h5><ol>
-<li><p>DataStream(每个DataStream都有一个Transformation对象)</p>
-</li>
-<li><p>DataStreamSource（DataStream的起点）</p>
-</li>
-<li><p>DataStreamSink（DataStream的输出）</p>
-</li>
-<li><p>KeyedStream（表示根据指定的Key记性分组的数据流）</p>
-</li>
-<li><p>WindowdeStream &amp; AllWindowedStream（根据key分组且基于WindowAssigner切分窗口的数据流）</p>
-</li>
-<li><p>JoinedStreams &amp; CoGroupedStreams</p>
-</li>
-<li><ol>
-<li>JoinedStreams底层使用CoGroupedStreams来实现</li>
-<li>CoGrouped侧重的是Group，对数据进行分组，是对同一个key上的两组集合进行操作</li>
-<li>Join侧重的是数据对，对同一个key的每一对元素进行操作</li>
-</ol>
-</li>
-<li><p>ConnectedStreams（表示两个数据流的组合）</p>
-</li>
-<li><p>BroadcastStream &amp; BroadcastConnectedStream（DataStream的广播行为）</p>
-</li>
-<li><p>IterativeStream（包含IterativeStream的Dataflow是一个有向有环图）</p>
-</li>
-<li><p>AsyncDataStream（在DataStream上使用异步函数的能力）</p>
-</li>
-</ol>
+<p>Flink 客户端</p>
+<p>​        提交Flink作业到Flink集群</p>
+<p>​        Stream Graph 和 Job Graph构建</p>
+<p>JobManager</p>
+<p>​        资源申请</p>
+<p>​        任务调度</p>
+<p>​        应用容错</p>
+<p>TaskManager</p>
+<p>​        接收JobManager 分发的子任务，管理子任务</p>
+<p>​        任务处理（消费数据、处理数据）</p>
+<h2 id="Flink-应用"><a href="#Flink-应用" class="headerlink" title="Flink 应用"></a>Flink 应用</h2><h4 id="数据流"><a href="#数据流" class="headerlink" title="数据流"></a>数据流</h4><h5 id="DataStream-体系"><a href="#DataStream-体系" class="headerlink" title="DataStream 体系"></a>DataStream 体系</h5><p>DataStream(每个DataStream都有一个Transformation对象)</p>
+<p>DataStreamSource（DataStream的起点）</p>
+<p>DataStreamSink（DataStream的输出）</p>
+<p>KeyedStream（表示根据指定的Key记性分组的数据流）</p>
+<p>WindowdeStream &amp; AllWindowedStream（根据key分组且基于WindowAssigner切分窗口的数据流）</p>
+<p>JoinedStreams &amp; CoGroupedStreams</p>
+<p>​        JoinedStreams底层使用CoGroupedStreams来实现</p>
+<p>​        CoGrouped侧重的是Group，对数据进行分组，是对同一个key上的两组集合进行操作</p>
+<p>​        Join侧重的是数据对，对同一个key的每一对元素进行操作</p>
+<p>ConnectedStreams（表示两个数据流的组合）</p>
+<p>BroadcastStream &amp; BroadcastConnectedStream（DataStream的广播行为）</p>
+<p>IterativeStream（包含IterativeStream的Dataflow是一个有向有环图）</p>
+<p>AsyncDataStream（在DataStream上使用异步函数的能力）</p>
 <h5 id="处理数据API"><a href="#处理数据API" class="headerlink" title="处理数据API"></a>处理数据API</h5><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141359.png"></p>
 <h2 id="核心抽象"><a href="#核心抽象" class="headerlink" title="核心抽象"></a>核心抽象</h2><h3 id="环境对象"><a href="#环境对象" class="headerlink" title="环境对象"></a>环境对象</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141427.png"></p>
 <h3 id="数据流元素"><a href="#数据流元素" class="headerlink" title="数据流元素"></a>数据流元素</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141448.png"></p>
-<ol>
-<li><p>StreamRecord（数据流中的一条记录｜事件）</p>
-</li>
-<li><ol>
-<li>数据的值本身</li>
-<li>时间戳（可选）</li>
-</ol>
-</li>
-<li><p>LatencyMarker（用来近似评估延迟）</p>
-</li>
-<li><ol>
-<li>周期性的在数据源算子中创造出来的时间戳</li>
-<li>算子编号</li>
-<li>数据源所在的Task编号</li>
-</ol>
-</li>
-<li><p>Watemark（是一个时间戳，用来告诉算子所有时间早于等于Watermark的事件或记录都已经到达，不会再有比Watermark更早的记录，算子可以根据Watermark触发窗口的计算、清理资源等）</p>
-</li>
-<li><p>StreamStatus（用来通知Task是否会继续接收到上游的记录或者Watermark）</p>
-</li>
-<li><ol>
-<li>空闲状态（IDLE）。</li>
-<li>活动状态（ACTIVE）。</li>
-</ol>
-</li>
-</ol>
+<p>StreamRecord（数据流中的一条记录｜事件）</p>
+<p>​        数据的值本身</p>
+<p>​        时间戳（可选）</p>
+<p>LatencyMarker（用来近似评估延迟）</p>
+<p>​        周期性的在数据源算子中创造出来的时间戳</p>
+<p>​        算子编号</p>
+<p>​        数据源所在的Task编号</p>
+<p>Watemark（是一个时间戳，用来告诉算子所有时间早于等于Watermark的事件或记录都已经到达，不会再有比Watermark更早的记录，算子可以根据Watermark触发窗口的计算、清理资源等）</p>
+<p>StreamStatus（用来通知Task是否会继续接收到上游的记录或者Watermark）</p>
+<p>​        空闲状态（IDLE）。</p>
+<p>​        活动状态（ACTIVE）。</p>
 <h3 id="Flink-异步IO"><a href="#Flink-异步IO" class="headerlink" title="Flink 异步IO"></a>Flink 异步IO</h3><h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141557.png"></p>
 <p>顺序输出模式（先收到的数据元素先输出，后续数据元素的异步函数调用无论是否先完成，都需要等待）</p>
 <p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141620.png"></p>
@@ -462,56 +407,31 @@
 <li>KeyGroupStreamPartitioner（KeyedStream根据KeyGroup索引编号进行分区，该分区器不是提供给用户来用的）</li>
 </ul>
 <h2 id="窗口"><a href="#窗口" class="headerlink" title="窗口"></a>窗口</h2><h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141709.png"></p>
-<ul>
-<li><p>WindowAssigner（用来决定某个元素被分配到哪个/哪些窗口中去）</p>
-</li>
-<li><p>WindowTrigger（决定一个窗口何时能够呗计算或清除，每一个窗口都拥有一个属于自己的Trigger）</p>
-</li>
-<li><p>WindowEvictor（窗口数据的过滤器，可在Window Function 执行前或后，从Window中过滤元素）</p>
-</li>
-<li><ul>
-<li>CountEvictor：计数过滤器。在Window中保留指定数量的元素，并从窗口头部开始丢弃其余元素</li>
-<li>DeltaEvictor：阈值过滤器。丢弃超过阈值的数据记录</li>
-<li>TimeEvictor：时间过滤器。保留最新一段时间内的元素</li>
-</ul>
-</li>
-</ul>
+<p>WindowAssigner（用来决定某个元素被分配到哪个/哪些窗口中去）</p>
+<p>WindowTrigger（决定一个窗口何时能够呗计算或清除，每一个窗口都拥有一个属于自己的Trigger）</p>
+<p>WindowEvictor（窗口数据的过滤器，可在Window Function 执行前或后，从Window中过滤元素）</p>
+<p>​        CountEvictor：计数过滤器。在Window中保留指定数量的元素，并从窗口头部开始丢弃其余元素</p>
+<p>​        DeltaEvictor：阈值过滤器。丢弃超过阈值的数据记录</p>
+<p>​        TimeEvictor：时间过滤器。保留最新一段时间内的元素</p>
 <h3 id="Watermark-（水印）"><a href="#Watermark-（水印）" class="headerlink" title="Watermark （水印）"></a>Watermark （水印）</h3><h4 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h4><p>用于处理乱序事件，而正确地处理乱序事件，通常用Watermark机制结合窗口来实现</p>
-<h4 id="DataStream-Watermark-生成"><a href="#DataStream-Watermark-生成" class="headerlink" title="DataStream Watermark 生成"></a>DataStream Watermark 生成</h4><ol>
-<li><p>Source Function 中生成Watermark</p>
-</li>
-<li><p>DataStream API 中生成Watermark</p>
-</li>
-<li><ol>
-<li>AssingerWithPeriodicWatermarks （周期性的生成Watermark策略，不会针对每个事件都生成）</li>
-<li>AssingerWithPunctuatedWatermarks （对每个事件都尝试进行Watermark的生成，如果生成的结果是null 或Watermark小于之前的，则不会发往下游）</li>
-</ol>
-</li>
-</ol>
-<h2 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h2><h3 id="自主内存管理"><a href="#自主内存管理" class="headerlink" title="自主内存管理"></a>自主内存管理</h3><h4 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h4><ol>
-<li><p>JVM内存管理的不足</p>
-</li>
-<li><ol>
-<li>有效数据密度低</li>
-<li>垃圾回收（大数据场景下需要消耗大量的内存，更容易触发Full GC ）</li>
-<li>OOM 问题影响稳定性</li>
-<li>缓存未命中问题（Java对象在堆上存储时并不是连续的）</li>
-</ol>
-</li>
-<li><p>自主内存管理</p>
-</li>
-<li><ol>
-<li>堆上内存的使用、监控、调试简单，堆外内存出现问题后的诊断则较为复杂</li>
-<li>Flink有时需要分配短生命周期的MemorySegment，在堆外内存上分配比在堆上内存开销更高。</li>
-<li>在Flink的测试中，部分操作在堆外内存上会比堆上内存慢</li>
-<li>大内存（上百GB）JVM的启动需要很长时间，Full GC可以达到分钟级。使用堆外内存，可以将大量的数据保存在堆外，极大地减小堆内存，避免GC和内存溢出的问题。</li>
-<li>高效的IO操作。堆外内存在写磁盘或网络传输时是zero-copy，而堆上内存则至少需要1次内存复制。</li>
-<li>堆外内存是进程间共享的。也就是说，即使JVM进程崩溃也不会丢失数据。这可以用来做故障恢复（Flink暂时没有利用这项功能，不过未来很可能会去做）</li>
-<li>堆外内存的优势</li>
-<li>堆外内存的不足</li>
-</ol>
-</li>
-</ol>
+<h4 id="DataStream-Watermark-生成"><a href="#DataStream-Watermark-生成" class="headerlink" title="DataStream Watermark 生成"></a>DataStream Watermark 生成</h4><p>Source Function 中生成Watermark</p>
+<p>DataStream API 中生成Watermark</p>
+<p>​        AssingerWithPeriodicWatermarks （周期性的生成Watermark策略，不会针对每个事件都生成）</p>
+<p>​        AssingerWithPunctuatedWatermarks （对每个事件都尝试进行Watermark的生成，如果生成的结果是null 或Watermark小于之前的，则不会发往下游）</p>
+<h2 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h2><h3 id="自主内存管理"><a href="#自主内存管理" class="headerlink" title="自主内存管理"></a>自主内存管理</h3><h4 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h4><p><strong>JVM内存管理的不足</strong></p>
+<p>​        有效数据密度低</p>
+<p>​        垃圾回收（大数据场景下需要消耗大量的内存，更容易触发Full GC ）</p>
+<p>​        OOM 问题影响稳定性</p>
+<p>​        缓存未命中问题（Java对象在堆上存储时并不是连续的）</p>
+<p><strong>自主内存管理</strong></p>
+<p>​        堆上内存的使用、监控、调试简单，堆外内存出现问题后的诊断则较为复杂</p>
+<p>​        Flink有时需要分配短生命周期的MemorySegment，在堆外内存上分配比在堆上内存开销更高。</p>
+<p>​        在Flink的测试中，部分操作在堆外内存上会比堆上内存慢</p>
+<p>​        大内存（上百GB）JVM的启动需要很长时间，Full GC可以达到分钟级。使用堆外内存，可以将大量的数据保存在堆外，极大地减小堆内存，避免GC和内存溢出的问题。</p>
+<p>​        高效的IO操作。堆外内存在写磁盘或网络传输时是zero-copy，而堆上内存则至少需要1次内存复制。</p>
+<p>​        堆外内存是进程间共享的。也就是说，即使JVM进程崩溃也不会丢失数据。这可以用来做故障恢复（Flink暂时没有利用这项功能，不过未来很可能会去做）</p>
+<p>​        堆外内存的优势</p>
+<p>​        堆外内存的不足</p>
 <h3 id="内存模型"><a href="#内存模型" class="headerlink" title="内存模型"></a>内存模型</h3><h4 id="内存模型图"><a href="#内存模型图" class="headerlink" title="内存模型图"></a>内存模型图</h4><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141759.png"></p>
 <h4 id="MemorySegment（内存段）"><a href="#MemorySegment（内存段）" class="headerlink" title="MemorySegment（内存段）"></a>MemorySegment（内存段）</h4><p>一个MemorySegment对应着一个32KB大小的内存块。这块内存既可以是堆上内存（Java的byte数组），也可以是堆外内存（基于Netty的DirectByteBuffer）</p>
 <h5 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h5><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220210141819.png"></p>
@@ -519,11 +439,8 @@
 <li><p>BYTE_ARRAY_BASE_OFFSET（二进制字节数组的起始索引）</p>
 </li>
 <li><p>LITTLE_ENDIAN（判断是否为Little Endian模式的字节存储顺序，若不是，就是Big Endian模式）</p>
-</li>
-<li><ul>
-<li>Big Endian：低地址存放最高有效字节（MSB）</li>
-<li>Little Endian：低地址存放最低有效字节（LSB）X86机器</li>
-</ul>
+<p>​        Big Endian：低地址存放最高有效字节（MSB）</p>
+<p>​        Little Endian：低地址存放最低有效字节（LSB）X86机器</p>
 </li>
 <li><p>HeapMemory（如果MemeorySegment使用堆上内存，则表示一个堆上的字节数组（byte［］），如果MemorySegment使用堆外内存，则为null）</p>
 </li>
@@ -571,61 +488,32 @@
 <li><p>PreviousAllocationSlotSelectionStrategy（已分配Slot优先的选择策略），如果当前没有空闲的已分配Slot，则仍然会使用位置优先的策略来分配和申请Slot</p>
 </li>
 </ul>
-<h2 id="调度"><a href="#调度" class="headerlink" title="调度"></a>调度</h2><ul>
-<li><p>SchedulerNG （调度器）</p>
-</li>
-<li><ul>
-<li>作用</li>
-<li>实现</li>
-</ul>
-</li>
-<li><ol>
-<li>DefaultScheduler（使用ScchedulerStrategy来实现）</li>
-<li>LegacyScheduler（实际使用了原来的ExecutionGraph的调度逻辑）</li>
-</ol>
-</li>
-<li><ol>
-<li>作业的生命周期管理（开始调度、挂起、取消）</li>
-<li>作业执行资源的申请、分配、释放</li>
-<li>作业状态的管理（发布过程中的状态变化、作业异常时的FailOver</li>
-<li>作业的信息提供，对外提供作业的详细信息</li>
-</ol>
-</li>
-<li><p>SchedulingStrategy（调度策略）</p>
-</li>
-<li><ul>
-<li>实现</li>
-</ul>
-</li>
-<li><ol>
-<li>EagerSchelingStrategy（该调度策略用来执行流计算作业的调度）</li>
-<li>LazyFromSourceSchedulingStrategy（该调度策略用来执行批处理作业的调度）</li>
-</ol>
-</li>
-<li><ol>
-<li>startScheduling：调度入口，触发调度器的调度行为</li>
-<li>restartTasks：重启执行失败的Task，一般是Task执行异常导致的</li>
-<li>onExecutionStateChange：当Execution的状态发生改变时</li>
-<li>onPartitionConsumable：当IntermediateResultParitititon中的数据可以消费时</li>
-</ol>
-</li>
-<li><p>ScheduleMode（调度模式）</p>
-</li>
-<li><ol>
-<li>Eager调度（该模式适用于流计算。一次性申请需要所有的资源，如果资源不足，则作业启动失败。）</li>
-<li>Lazy_From_Sources分阶段调度（适用于批处理。从Source Task开始分阶段调度，申请资源的时候，一次性申请本阶段所需要的所有资源。上游Task执行完毕后开始调度执行下游的Task，读取上游的数据，执行本阶段的计算任务，执行完毕之后，调度后一个阶段的Task，依次进行调度，直到作业执行完成）</li>
-<li>Lazy_From_Sources_With_Batch_Slot_Request分阶段Slot重用调度（适用于批处理。与分阶段调度基本一样，区别在于该模式下使用批处理资源申请模式，可以在资源不足的情况下执行作业，但是需要确保在本阶段的作业执行中没有Shuffle行为）</li>
-</ol>
-</li>
-</ul>
+<h2 id="调度"><a href="#调度" class="headerlink" title="调度"></a>调度</h2><p><strong>SchedulerNG （调度器）</strong></p>
+<p>​    作用</p>
+<p>​    实现</p>
+<p>​    DefaultScheduler（使用ScchedulerStrategy来实现）</p>
+<p>​    LegacyScheduler（实际使用了原来的ExecutionGraph的调度逻辑）    </p>
+<p>​    作业的生命周期管理（开始调度、挂起、取消）</p>
+<p>​    作业执行资源的申请、分配、释放</p>
+<p>​    作业状态的管理（发布过程中的状态变化、作业异常时的FailOver</p>
+<p>​    作业的信息提供，对外提供作业的详细信息</p>
+<p><strong>SchedulingStrategy（调度策略）</strong></p>
+<p>​    实现</p>
+<p>​        EagerSchelingStrategy（该调度策略用来执行流计算作业的调度）</p>
+<p>​        LazyFromSourceSchedulingStrategy（该调度策略用来执行批处理作业的调度）</p>
+<p>​        startScheduling：调度入口，触发调度器的调度行为</p>
+<p>​        restartTasks：重启执行失败的Task，一般是Task执行异常导致的</p>
+<p>​        onExecutionStateChange：当Execution的状态发生改变</p>
+<p>​        onPartitionConsumable：当IntermediateResultParitititon中的数据可以消费时</p>
+<p><strong>ScheduleMode（调度模式）</strong></p>
+<p>​        Eager调度（该模式适用于流计算。一次性申请需要所有的资源，如果资源不足，则作业启动失败。）</p>
+<p>​        Lazy_From_Sources分阶段调度（适用于批处理。从Source Task开始分阶段调度，申请资源的时候，一次性申请本阶段所需要的所有资源。上游Task执行完毕后开始调度执行下游的Task，读取上游的数据，执行本阶段的计算任务，执行完毕之后，调度后一个阶段的Task，依次进行调度，直到作业执行完成）</p>
+<p>​        Lazy_From_Sources_With_Batch_Slot_Request分阶段Slot重用调度（适用于批处理。与分阶段调度基本一样，区别在于该模式下使用批处理资源申请模式，可以在资源不足的情况下执行作业，但是需要确保在本阶段的作业执行中没有Shuffle行为）</p>
 <h3 id="关键组件"><a href="#关键组件" class="headerlink" title="关键组件"></a>关键组件</h3><h4 id="JobMaster"><a href="#JobMaster" class="headerlink" title="JobMaster"></a>JobMaster</h4><ol>
 <li><p>调度执行和管理（将JobGraph转化为ExecutionGraph，调度Task的执行，并处理Task的异常）</p>
-</li>
-<li><ul>
-<li>InputSplit 分配</li>
-<li>结果分区跟踪</li>
-<li>作业执行异常</li>
-</ul>
+<p>​        InputSplit 分配</p>
+<p>​        结果分区跟踪</p>
+<p>​        作业执行异常</p>
 </li>
 <li><p>作业Slot资源管理</p>
 </li>
