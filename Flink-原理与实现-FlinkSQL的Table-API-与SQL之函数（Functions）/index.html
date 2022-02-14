@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214220859.png">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214221100.png">
 <meta property="article:published_time" content="2022-02-14T14:00:35.000Z">
-<meta property="article:modified_time" content="2022-02-14T14:12:48.398Z">
+<meta property="article:modified_time" content="2022-02-14T14:14:24.887Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="Flink">
 <meta name="twitter:card" content="summary">
@@ -342,16 +342,11 @@
 <p>Table API：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ANY1 === ANY2</span><br><span class="line"></span><br><span class="line">ANY1 &gt; ANY2</span><br></pre></td></tr></table></figure>
 
-
-
 <h3 id="2-逻辑函数"><a href="#2-逻辑函数" class="headerlink" title="2.逻辑函数"></a>2.逻辑函数</h3><p>SQL：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">boolean1 OR boolean2</span><br><span class="line"></span><br><span class="line">boolean IS FALSE</span><br><span class="line"></span><br><span class="line">NOT boolean</span><br></pre></td></tr></table></figure>
 
 <p>Table API：</p>
-<p>​    </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">BOOLEAN1 || BOOLEAN2</span><br><span class="line"></span><br><span class="line">BOOLEAN.isFalse</span><br><span class="line"></span><br><span class="line">!BOOLEAN</span><br></pre></td></tr></table></figure>
-
-
 
 <h3 id="3-算术函数"><a href="#3-算术函数" class="headerlink" title="3.算术函数"></a>3.算术函数</h3><p>SQL：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">numeric1 + numeric2</span><br><span class="line"></span><br><span class="line">POWER(numeric1, numeric2)</span><br></pre></td></tr></table></figure>
@@ -359,15 +354,11 @@
 <p>Table API：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NUMERIC1 + NUMERIC2</span><br><span class="line"></span><br><span class="line">NUMERIC1.power(NUMERIC2)</span><br></pre></td></tr></table></figure>
 
-
-
 <h3 id="4-字符串函数"><a href="#4-字符串函数" class="headerlink" title="4.字符串函数"></a>4.字符串函数</h3><p>SQL：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">string1 || string2</span><br><span class="line"></span><br><span class="line">UPPER(string)</span><br><span class="line"></span><br><span class="line">CHAR_LENGTH(string)</span><br></pre></td></tr></table></figure>
 
 <p>Table API：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">STRING1 + STRING2</span><br><span class="line"></span><br><span class="line">STRING.upperCase()</span><br><span class="line"></span><br><span class="line">STRING.charLength()</span><br></pre></td></tr></table></figure>
-
-
 
 <h3 id="5-时间函数"><a href="#5-时间函数" class="headerlink" title="5.时间函数"></a>5.时间函数</h3><p>SQL：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">DATE string</span><br><span class="line"></span><br><span class="line">TIMESTAMP string</span><br><span class="line"></span><br><span class="line">	CURRENT_TIME</span><br><span class="line"></span><br><span class="line">INTERVAL string range</span><br></pre></td></tr></table></figure>
@@ -375,19 +366,17 @@
 <p>Table API：    </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">STRING.toDate</span><br><span class="line"></span><br><span class="line">STRING.toTimestamp</span><br><span class="line"></span><br><span class="line">currentTime()</span><br><span class="line"></span><br><span class="line">NUMERIC.days</span><br><span class="line"></span><br><span class="line">NUMERIC.minutes</span><br></pre></td></tr></table></figure>
 
-
-
 <h3 id="6-聚合函数"><a href="#6-聚合函数" class="headerlink" title="6.聚合函数"></a>6.聚合函数</h3><p>SQL：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">COUNT(*)</span><br><span class="line"></span><br><span class="line">SUM([ ALL | DISTINCT ] expression)</span><br><span class="line"></span><br><span class="line">RANK()</span><br><span class="line"></span><br><span class="line">ROW_NUMBER()</span><br></pre></td></tr></table></figure>
 
 <p>Table API：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FIELD.count</span><br><span class="line"></span><br><span class="line">FIELD.sum0  </span><br></pre></td></tr></table></figure>
 
-<h2 id="UDF"><a href="#UDF" class="headerlink" title="UDF"></a><strong>UDF</strong></h2><p>用户定义函数（User-defined Functions，UDF）是一个重要的特性，因为它们显著地扩展了查询（Query）的表达能力。一些系统内置函数无法解决的需求，我们可以用UDF来自定义实现。</p>
+<h2 id="UDF"><a href="#UDF" class="headerlink" title="UDF"></a><strong>UDF</strong></h2><p>​        用户定义函数（User-defined Functions，UDF）是一个重要的特性，因为它们显著地扩展了查询（Query）的表达能力。一些系统内置函数无法解决的需求，我们可以用UDF来自定义实现。</p>
 <h3 id="注册用户自定义函数UDF"><a href="#注册用户自定义函数UDF" class="headerlink" title="注册用户自定义函数UDF"></a><strong>注册用户自定义函数UDF</strong></h3><p>​        在大多数情况下，用户定义的函数必须先注册，然后才能在查询中使用。不需要专门为Scala 的Table API注册函数。</p>
 <p>函数通过调用registerFunction（）方法在TableEnvironment中注册。当用户定义的函数被注册时，它被插入到TableEnvironment的函数目录中，这样Table API或SQL解析器就可以识别并正确地解释它。</p>
-<h3 id="标量函数（Scalar-Functions）"><a href="#标量函数（Scalar-Functions）" class="headerlink" title="标量函数（Scalar Functions）"></a><strong>标量函数（Scalar Functions）</strong></h3><p>用户定义的标量函数，可以将0、1或多个标量值，映射到新的标量值。</p>
-<p>为了定义标量函数，必须在org.apache.flink.table.functions中扩展基类Scalar Function，并实现（一个或多个）求值（evaluation，eval）方法。标量函数的行为由求值方法决定，求值方法必须公开声明并命名为eval（直接def声明，没有override）。求值方法的参数类型和返回类型，确定了标量函数的参数和返回类型。</p>
+<h3 id="标量函数（Scalar-Functions）"><a href="#标量函数（Scalar-Functions）" class="headerlink" title="标量函数（Scalar Functions）"></a><strong>标量函数（Scalar Functions）</strong></h3><p>​        用户定义的标量函数，可以将0、1或多个标量值，映射到新的标量值。</p>
+<p>​        为了定义标量函数，必须在org.apache.flink.table.functions中扩展基类Scalar Function，并实现（一个或多个）求值（evaluation，eval）方法。标量函数的行为由求值方法决定，求值方法必须公开声明并命名为eval（直接def声明，没有override）。求值方法的参数类型和返回类型，确定了标量函数的参数和返回类型。</p>
 <p>在下面的代码中，我们定义自己的HashCode函数，在TableEnvironment中注册它，并在查询中调用它。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 自定义一个标量函数</span><br><span class="line">public static class HashCode extends ScalarFunction &#123;</span><br><span class="line">    private int factor = 13;</span><br><span class="line"></span><br><span class="line">    public HashCode(int factor) &#123;</span><br><span class="line">        this.factor = factor;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int eval(String s) &#123;</span><br><span class="line">        return s.hashCode() * factor;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -411,7 +400,7 @@
 <p>然后是SQL的方式：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tableEnv.createTemporaryView(&quot;sensor&quot;, sensorTable);</span><br><span class="line">Table resultSqlTable = tableEnv.sqlQuery(&quot;select id, ts, word, length &quot; +</span><br><span class="line">        &quot;from sensor, lateral table( split(id) ) as splitId(word, length)&quot;);</span><br></pre></td></tr></table></figure>
 
-<h3 id="聚合函数（Aggregate-Functions）"><a href="#聚合函数（Aggregate-Functions）" class="headerlink" title="聚合函数（Aggregate Functions）"></a><strong>聚合函数（Aggregate Functions）</strong></h3><p>用户自定义聚合函数（User-Defined Aggregate Functions，UDAGGs）可以把一个表中的数据，聚合成一个标量值。用户定义的聚合函数，是通过继承AggregateFunction抽象类实现的。</p>
+<h3 id="聚合函数（Aggregate-Functions）"><a href="#聚合函数（Aggregate-Functions）" class="headerlink" title="聚合函数（Aggregate Functions）"></a><strong>聚合函数（Aggregate Functions）</strong></h3><p>​        用户自定义聚合函数（User-Defined Aggregate Functions，UDAGGs）可以把一个表中的数据，聚合成一个标量值。用户定义的聚合函数，是通过继承AggregateFunction抽象类实现的。</p>
 <p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214220859.png"></p>
 <p>上图中显示了一个聚合的例子。</p>
 <p>假设现在有一张表，包含了各种饮料的数据。该表由三列（id、name和price）、五行组成数据。现在我们需要找到表中所有饮料的最高价格，即执行max（）聚合，结果将是一个数值。</p>
@@ -427,7 +416,7 @@
 <li> accumulate()</li>
 <li> getValue()</li>
 </ul>
-<p>除了上述方法之外，还有一些可选择实现的方法。其中一些方法，可以让系统执行查询更有效率，而另一些方法，对于某些场景是必需的。例如，如果聚合函数应用在会话窗口（session group window）的上下文中，则merge（）方法是必需的。</p>
+<p>​    除了上述方法之外，还有一些可选择实现的方法。其中一些方法，可以让系统执行查询更有效率，而另一些方法，对于某些场景是必需的。例如，如果聚合函数应用在会话窗口（session group window）的上下文中，则merge（）方法是必需的。</p>
 <ul>
 <li> retract() </li>
 <li> merge() </li>
@@ -439,9 +428,9 @@
 <p>接下来就可以在代码中调用了。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 创建一个聚合函数实例</span><br><span class="line">AvgTemp avgTemp = new AvgTemp();</span><br><span class="line"></span><br><span class="line">// Table API的调用 </span><br><span class="line">tableEnv.registerFunction(&quot;avgTemp&quot;, avgTemp);</span><br><span class="line">Table resultTable = sensorTable</span><br><span class="line">        .groupBy(&quot;id&quot;)</span><br><span class="line">        .aggregate(&quot;avgTemp(temperature) as avgTemp&quot;)</span><br><span class="line">        .select(&quot;id, avgTemp&quot;);</span><br><span class="line">// sql</span><br><span class="line">tableEnv.createTemporaryView(&quot;sensor&quot;, sensorTable);</span><br><span class="line">Table resultSqlTable = tableEnv.sqlQuery(&quot;select id, avgTemp(temperature) &quot; +</span><br><span class="line">        &quot;from sensor group by id&quot;);</span><br><span class="line"></span><br><span class="line">tableEnv.toRetractStream(resultTable, Row.class).print(&quot;result&quot;);</span><br><span class="line">tableEnv.toRetractStream(resultSqlTable, Row.class).print(&quot;sql&quot;);</span><br></pre></td></tr></table></figure>
 
-<h3 id="表聚合函数（Table-Aggregate-Functions）"><a href="#表聚合函数（Table-Aggregate-Functions）" class="headerlink" title="表聚合函数（Table Aggregate Functions）"></a><strong>表聚合函数（Table Aggregate Functions）</strong></h3><p>用户定义的表聚合函数（User-Defined Table Aggregate Functions，UDTAGGs），可以把一个表中数据，聚合为具有多行和多列的结果表。这跟AggregateFunction非常类似，只是之前聚合结果是一个标量值，现在变成了一张表。</p>
+<h3 id="表聚合函数（Table-Aggregate-Functions）"><a href="#表聚合函数（Table-Aggregate-Functions）" class="headerlink" title="表聚合函数（Table Aggregate Functions）"></a><strong>表聚合函数（Table Aggregate Functions）</strong></h3><p>​        用户定义的表聚合函数（User-Defined Table Aggregate Functions，UDTAGGs），可以把一个表中数据，聚合为具有多行和多列的结果表。这跟AggregateFunction非常类似，只是之前聚合结果是一个标量值，现在变成了一张表。</p>
 <p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214221100.png"></p>
-<p>比如现在我们需要找到表中所有饮料的前2个最高价格，即执行top2（）表聚合。我们需要检查5行中的每一行，得到的结果将是一个具有排序后前2个值的表。</p>
+<p>​        比如现在我们需要找到表中所有饮料的前2个最高价格，即执行top2（）表聚合。我们需要检查5行中的每一行，得到的结果将是一个具有排序后前2个值的表。</p>
 <p>用户定义的表聚合函数，是通过继承TableAggregateFunction抽象类来实现的。</p>
 <p>TableAggregateFunction的工作原理如下。</p>
 <ul>
