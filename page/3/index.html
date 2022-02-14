@@ -276,6 +276,115 @@
             
 
   
+    <article id="post-为什么要知道Hadoop机架感知？" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%9F%A5%E9%81%93Hadoop%E6%9C%BA%E6%9E%B6%E6%84%9F%E7%9F%A5%EF%BC%9F/">为什么要知道Hadoop机架感知？</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%9F%A5%E9%81%93Hadoop%E6%9C%BA%E6%9E%B6%E6%84%9F%E7%9F%A5%EF%BC%9F/" class="archive-article-date">
+        <time datetime="2022-02-10T02:59:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-10</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h4 id="一、首先，我为什么聊机架感知"><a href="#一、首先，我为什么聊机架感知" class="headerlink" title="一、首先，我为什么聊机架感知"></a><strong>一、首先，我为什么聊机架感知</strong></h4><p> 在了解hdfs<a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/clb?from=10680">负载均衡</a>时，需要获取DataNode情况，包括每个DataNode磁盘使用情况，获取到数据不均衡，就要做负载均衡处理。做负载均衡就要考虑热点数据发送到哪里去，集群服务器配置是否相同，机架使用情况等。</p>
+<p> 机架感知在这里面有3个很重要的原因：</p>
+<p>1、数据扩容，扩容的服务器在新机架上，导致数据不均衡</p>
+<p>2、机架上的服务器磁盘配置不同（至于为什么，先不细聊）</p>
+<p>通过感知机架，方便系统管理员手动操作，从而实现负载均衡</p>
+<p>3、副本策略三副本，同节点、同机架、不同机架（同机房），可以实现保证有效存储时同时最大化安全策略</p>
+<p>​                                                                                                                        </p>
+    
+    <a class="article-more-a" style="display: none; href="/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%9F%A5%E9%81%93Hadoop%E6%9C%BA%E6%9E%B6%E6%84%9F%E7%9F%A5%EF%BC%9F/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机架感知</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%9F%A5%E9%81%93Hadoop%E6%9C%BA%E6%9E%B6%E6%84%9F%E7%9F%A5%EF%BC%9F/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Flink读取无界流数据计算过程演示" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1160,105 +1269,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/streamx%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%8F%8A%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E7%BC%96%E8%AF%91/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Flink部署" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/Flink%E9%83%A8%E7%BD%B2/">Flink部署</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/Flink%E9%83%A8%E7%BD%B2/" class="archive-article-date">
-        <time datetime="2022-01-20T21:39:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-21</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>所处的位置不同，看到的风景和思考的问题也有所不同。——人民日报</p>
-    
-    <a class="article-more-a" style="display: none; href="/Flink%E9%83%A8%E7%BD%B2/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/Flink%E9%83%A8%E7%BD%B2/">展开全文 >></a>
     </p>
     
 
