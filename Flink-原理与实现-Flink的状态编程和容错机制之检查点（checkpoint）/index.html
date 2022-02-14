@@ -19,8 +19,8 @@
 <meta property="og:description" content="​        Flink具体如何保证exactly-once呢? 它使用一种被称为”检查点”（checkpoint）的特性，在出现故障时将系统重置回正确状态。下面通过简单的类比来解释检查点的作用。 ​        假设你和两位朋友正在数项链上有多少颗珠子，如下图所示。你捏住珠子，边数边拨，每拨过一颗珠子就给总数加一。你的朋友也这样数他们手中的珠子。当你分神忘记数到哪里时，怎么办呢? 如果项链">
 <meta property="og:locale">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214170606.png">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214171234.png">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214171413.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214222509.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214222807.png">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214171442.png">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214171657.png">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214171719.png">
@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214172719.png">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214172742.png">
 <meta property="article:published_time" content="2022-02-14T09:03:12.000Z">
-<meta property="article:modified_time" content="2022-02-14T09:29:04.660Z">
+<meta property="article:modified_time" content="2022-02-14T14:28:15.594Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="Flink">
 <meta name="twitter:card" content="summary">
@@ -362,11 +362,11 @@
 <p>①隔一段时间(程序员设置),由JobManager来触发CheckPoint.<br>②CheckPoint保存在JobManager内存里面.</p>
 <p>保存CheckPoint之后就意味着我们程序有一份快照了.比如source5,sum奇数9,偶数6.保存了</p>
 <p>某个子任务挂掉造成整个Job挂掉.重启Job,需要保证状态一致.<br>一致性分为三种级别: ①最多一次②至少一次③精确一次<br>如何保证精确一次? 从上一个检查点开始恢复.从source5,sum奇数9,偶数6.开始恢复.<br>由于你offset是5,那就从5开始重新读.</p>
-<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214171234.png"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214222509.png"></p>
 <p>Jobmanger发送Barrier,Barrier里面封装id号, JobManager将barrier发送给每一个source.</p>
 <p>只是将Barrier发送到原来source流里面的数据中了.只是将Barrier插入到流里面了.</p>
 <p>算子接收到Barrier之后马上进行CheckPoint, 即将Barrier之前的offset保存到CheckPoint中. 保存在哪里呢? 保存在状态中,或者说保存在JobManager的内存中.<br>接收到Barrier之后,将offset保存到状态中,同时还要将Barrier以广播的形式发送出去.下面的几个节点都发. 下面的节点,如果有个source的情况下, 其中一个算子接收到Barrier之后,这个算子先暂停工作,将barrier后的数据缓存起来, 到了第二个source的Barrier来了之后在进行CheckPoint.即将offset保存到状态中.</p>
-<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214171413.png"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214222807.png"></p>
 <p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214171442.png"></p>
 <p>①CheckPoint的Barrier检查点机制确实可以做到Flink内部算子的精确一致. 但是无法做到端到端的一致.<br>如果想要保证端到端的一致就要考虑,source是哪一种source. 比如: source支不支持重置offset.  Kafka可以,kafka是支持offset重置的.  如果是kafka, 再结合CheckPoint就能做到end-to-end,即端到端的精确一致.</p>
 <p>我们到底把CheckPoint保存在哪里?<br><strong>checkPoint数据保存在哪里是由状态后端(state backend)的机制决定的.</strong></p>
