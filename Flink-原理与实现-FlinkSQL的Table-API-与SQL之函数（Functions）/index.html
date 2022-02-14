@@ -6,21 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://xubatian.cn">
-  <title>Category: 大数据 | 我的梦想是星辰大海</title>
+  <title>Flink 原理与实现: FlinkSQL的Table API 与SQL之函数（Functions） | 我的梦想是星辰大海</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta name="description" content="知识源于积累,登峰造极源于自律">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我的梦想是星辰大海">
-<meta property="og:url" content="http://xubatian.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/page/5/index.html">
+  <meta name="description" content="Flink Table 和 SQL内置了很多SQL中支持的函数；如果有无法满足的需要，则可以实现用户自定义的函数（UDF）来解决。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flink 原理与实现: FlinkSQL的Table API 与SQL之函数（Functions）">
+<meta property="og:url" content="http://xubatian.cn/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-FlinkSQL%E7%9A%84Table-API-%E4%B8%8ESQL%E4%B9%8B%E5%87%BD%E6%95%B0%EF%BC%88Functions%EF%BC%89/index.html">
 <meta property="og:site_name" content="我的梦想是星辰大海">
-<meta property="og:description" content="知识源于积累,登峰造极源于自律">
+<meta property="og:description" content="Flink Table 和 SQL内置了很多SQL中支持的函数；如果有无法满足的需要，则可以实现用户自定义的函数（UDF）来解决。">
 <meta property="og:locale">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214220859.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214221100.png">
+<meta property="article:published_time" content="2022-02-14T14:00:35.000Z">
+<meta property="article:modified_time" content="2022-02-14T14:12:48.398Z">
 <meta property="article:author" content="xubatian">
-<meta property="article:tag" content="徐霸天,xubatian,上白书妖,shangbaishuyao">
+<meta property="article:tag" content="Flink">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214220859.png">
   
   
     <link rel="icon" href="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/favicon.ico">
@@ -273,57 +278,278 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Flink-原理与实现-FlinkSQL的Table-API-与SQL之函数（Functions）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BYarn%E8%B5%84%E6%BA%90%E8%B0%83%E5%BA%A6%E5%99%A8/" class="archive-article-date">
-        <time datetime="2022-01-16T13:22:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-16</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BYarn%E8%B5%84%E6%BA%90%E8%B0%83%E5%BA%A6%E5%99%A8/">hadoop组成模块之Yarn资源调度器</a>
-	
+    <h1 class="article-title" itemprop="name">
+      Flink 原理与实现: FlinkSQL的Table API 与SQL之函数（Functions）
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-FlinkSQL%E7%9A%84Table-API-%E4%B8%8ESQL%E4%B9%8B%E5%87%BD%E6%95%B0%EF%BC%88Functions%EF%BC%89/" class="archive-article-date">
+        <time datetime="2022-02-14T14:00:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-14</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">2.5k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">10分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>Flink Table 和 SQL内置了很多SQL中支持的函数；如果有无法满足的需要，则可以实现用户自定义的函数（UDF）来解决。</p>
+<span id="more"></span>
+
+<h2 id="系统内置函数"><a href="#系统内置函数" class="headerlink" title="系统内置函数"></a><strong>系统内置函数</strong></h2><p>Flink Table API 和 SQL为用户提供了一组用于数据转换的内置函数。SQL中支持的很多函数，Table API和SQL都已经做了实现，其它还在快速开发扩展中。</p>
+<p>以下是一些典型函数的举例，全部的内置函数，可以参考官网介绍。</p>
+<h3 id="1-比较函数"><a href="#1-比较函数" class="headerlink" title="1.比较函数"></a>1.比较函数</h3><p>SQL：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">value1 = value2</span><br><span class="line"></span><br><span class="line">	value1 &gt; value2</span><br></pre></td></tr></table></figure>
+
+<p>Table API：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ANY1 === ANY2</span><br><span class="line"></span><br><span class="line">ANY1 &gt; ANY2</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-逻辑函数"><a href="#2-逻辑函数" class="headerlink" title="2.逻辑函数"></a>2.逻辑函数</h3><p>SQL：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">boolean1 OR boolean2</span><br><span class="line"></span><br><span class="line">boolean IS FALSE</span><br><span class="line"></span><br><span class="line">NOT boolean</span><br></pre></td></tr></table></figure>
+
+<p>Table API：</p>
+<p>​    </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">BOOLEAN1 || BOOLEAN2</span><br><span class="line"></span><br><span class="line">BOOLEAN.isFalse</span><br><span class="line"></span><br><span class="line">!BOOLEAN</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-算术函数"><a href="#3-算术函数" class="headerlink" title="3.算术函数"></a>3.算术函数</h3><p>SQL：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">numeric1 + numeric2</span><br><span class="line"></span><br><span class="line">POWER(numeric1, numeric2)</span><br></pre></td></tr></table></figure>
+
+<p>Table API：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NUMERIC1 + NUMERIC2</span><br><span class="line"></span><br><span class="line">NUMERIC1.power(NUMERIC2)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-字符串函数"><a href="#4-字符串函数" class="headerlink" title="4.字符串函数"></a>4.字符串函数</h3><p>SQL：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">string1 || string2</span><br><span class="line"></span><br><span class="line">UPPER(string)</span><br><span class="line"></span><br><span class="line">CHAR_LENGTH(string)</span><br></pre></td></tr></table></figure>
+
+<p>Table API：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">STRING1 + STRING2</span><br><span class="line"></span><br><span class="line">STRING.upperCase()</span><br><span class="line"></span><br><span class="line">STRING.charLength()</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-时间函数"><a href="#5-时间函数" class="headerlink" title="5.时间函数"></a>5.时间函数</h3><p>SQL：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">DATE string</span><br><span class="line"></span><br><span class="line">TIMESTAMP string</span><br><span class="line"></span><br><span class="line">	CURRENT_TIME</span><br><span class="line"></span><br><span class="line">INTERVAL string range</span><br></pre></td></tr></table></figure>
+
+<p>Table API：    </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">STRING.toDate</span><br><span class="line"></span><br><span class="line">STRING.toTimestamp</span><br><span class="line"></span><br><span class="line">currentTime()</span><br><span class="line"></span><br><span class="line">NUMERIC.days</span><br><span class="line"></span><br><span class="line">NUMERIC.minutes</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="6-聚合函数"><a href="#6-聚合函数" class="headerlink" title="6.聚合函数"></a>6.聚合函数</h3><p>SQL：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">COUNT(*)</span><br><span class="line"></span><br><span class="line">SUM([ ALL | DISTINCT ] expression)</span><br><span class="line"></span><br><span class="line">RANK()</span><br><span class="line"></span><br><span class="line">ROW_NUMBER()</span><br></pre></td></tr></table></figure>
+
+<p>Table API：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FIELD.count</span><br><span class="line"></span><br><span class="line">FIELD.sum0  </span><br></pre></td></tr></table></figure>
+
+<h2 id="UDF"><a href="#UDF" class="headerlink" title="UDF"></a><strong>UDF</strong></h2><p>用户定义函数（User-defined Functions，UDF）是一个重要的特性，因为它们显著地扩展了查询（Query）的表达能力。一些系统内置函数无法解决的需求，我们可以用UDF来自定义实现。</p>
+<h3 id="注册用户自定义函数UDF"><a href="#注册用户自定义函数UDF" class="headerlink" title="注册用户自定义函数UDF"></a><strong>注册用户自定义函数UDF</strong></h3><p>​        在大多数情况下，用户定义的函数必须先注册，然后才能在查询中使用。不需要专门为Scala 的Table API注册函数。</p>
+<p>函数通过调用registerFunction（）方法在TableEnvironment中注册。当用户定义的函数被注册时，它被插入到TableEnvironment的函数目录中，这样Table API或SQL解析器就可以识别并正确地解释它。</p>
+<h3 id="标量函数（Scalar-Functions）"><a href="#标量函数（Scalar-Functions）" class="headerlink" title="标量函数（Scalar Functions）"></a><strong>标量函数（Scalar Functions）</strong></h3><p>用户定义的标量函数，可以将0、1或多个标量值，映射到新的标量值。</p>
+<p>为了定义标量函数，必须在org.apache.flink.table.functions中扩展基类Scalar Function，并实现（一个或多个）求值（evaluation，eval）方法。标量函数的行为由求值方法决定，求值方法必须公开声明并命名为eval（直接def声明，没有override）。求值方法的参数类型和返回类型，确定了标量函数的参数和返回类型。</p>
+<p>在下面的代码中，我们定义自己的HashCode函数，在TableEnvironment中注册它，并在查询中调用它。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 自定义一个标量函数</span><br><span class="line">public static class HashCode extends ScalarFunction &#123;</span><br><span class="line">    private int factor = 13;</span><br><span class="line"></span><br><span class="line">    public HashCode(int factor) &#123;</span><br><span class="line">        this.factor = factor;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int eval(String s) &#123;</span><br><span class="line">        return s.hashCode() * factor;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>主函数中调用，计算sensor id的哈希值（前面部分照抄，流环境、表环境、读取source、建表）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) throws Exception &#123;</span><br><span class="line">    // 1. 创建环境</span><br><span class="line">    StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();</span><br><span class="line">    env.setParallelism(1);</span><br><span class="line"></span><br><span class="line">    StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);</span><br><span class="line"></span><br><span class="line">    // 2. 读取文件，得到 DataStream</span><br><span class="line">    String filePath = &quot;..\\sensor.txt&quot;;</span><br><span class="line"></span><br><span class="line">    DataStream&lt;String&gt; inputStream = env.readTextFile(filePath);</span><br><span class="line"></span><br><span class="line">    // 3. 转换成 Java Bean，并指定timestamp和watermark</span><br><span class="line">    DataStream&lt;SensorReading&gt; dataStream = inputStream</span><br><span class="line">            .map( line -&gt; &#123;</span><br><span class="line">                String[] fields = line.split(&quot;,&quot;);</span><br><span class="line">                return new SensorReading(fields[0], new Long(fields[1]), new Double(fields[2]));</span><br><span class="line">            &#125; );</span><br><span class="line"></span><br><span class="line">    // 4. 将 DataStream 转换为 Table</span><br><span class="line">    Table sensorTable = tableEnv.fromDataStream(dataStream, &quot;id, timestamp as ts, temperature&quot;);</span><br><span class="line"></span><br><span class="line">    // 5. 调用自定义hash函数，对id进行hash运算</span><br><span class="line">    HashCode hashCode = new HashCode(23);</span><br><span class="line">    tableEnv.registerFunction(&quot;hashCode&quot;, hashCode);</span><br><span class="line">    Table resultTable = sensorTable</span><br><span class="line">            .select(&quot;id, ts, hashCode(id)&quot;);</span><br><span class="line"></span><br><span class="line">    //  sql</span><br><span class="line">    tableEnv.createTemporaryView(&quot;sensor&quot;, sensorTable);</span><br><span class="line">    Table resultSqlTable = tableEnv.sqlQuery(&quot;select id, ts, hashCode(id) from sensor&quot;);</span><br><span class="line"></span><br><span class="line">    tableEnv.toAppendStream(resultTable, Row.class).print(&quot;result&quot;);</span><br><span class="line">    tableEnv.toRetractStream(resultSqlTable, Row.class).print(&quot;sql&quot;);</span><br><span class="line"></span><br><span class="line">    env.execute(&quot;scalar function test&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="表函数（Table-Functions）"><a href="#表函数（Table-Functions）" class="headerlink" title="表函数（Table Functions）"></a><strong>表函数（Table Functions）</strong></h3><p>与用户定义的标量函数类似，用户定义的表函数，可以将0、1或多个标量值作为输入参数；与标量函数不同的是，它可以返回任意数量的行作为输出，而不是单个值。</p>
+<p>为了定义一个表函数，必须扩展org.apache.flink.table.functions中的基类TableFunction并实现（一个或多个）求值方法。表函数的行为由其求值方法决定，求值方法必须是public的，并命名为eval。求值方法的参数类型，决定表函数的所有有效参数。</p>
+<p>返回表的类型由TableFunction的泛型类型确定。求值方法使用protected collect（T）方法发出输出行。</p>
+<p>在Table API中，Table函数需要与.joinLateral或.leftOuterJoinLateral一起使用。</p>
+<p>joinLateral算子，会将外部表中的每一行，与表函数（TableFunction，算子的参数是它的表达式）计算得到的所有行连接起来。</p>
+<p>而leftOuterJoinLateral算子，则是左外连接，它同样会将外部表中的每一行与表函数计算生成的所有行连接起来；并且，对于表函数返回的是空表的外部行，也要保留下来。</p>
+<p>在SQL中，则需要使用Lateral Table（<TableFunction>），或者带有ON TRUE条件的左连接。</p>
+<p>下面的代码中，我们将定义一个表函数，在表环境中注册它，并在查询中调用它。</p>
+<p>自定义TableFunction：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 自定义TableFunction</span><br><span class="line">public static class Split extends TableFunction&lt;Tuple2&lt;String, Integer&gt;&gt; &#123;</span><br><span class="line">    private String separator = &quot;,&quot;;</span><br><span class="line"></span><br><span class="line">    public Split(String separator) &#123;</span><br><span class="line">        this.separator = separator;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 类似flatmap，没有返回值</span><br><span class="line">    public void eval(String str) &#123;</span><br><span class="line">        for (String s : str.split(separator)) &#123;</span><br><span class="line">            collect(new Tuple2&lt;String, Integer&gt;(s, s.length()));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接下来，就是在代码中调用。首先是Table API的方式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Split split = new Split(&quot;_&quot;);</span><br><span class="line">tableEnv.registerFunction(&quot;split&quot;, split);</span><br><span class="line">Table resultTable = sensorTable</span><br><span class="line">        .joinLateral( &quot;split(id) as (word, length)&quot;)</span><br><span class="line">        .select(&quot;id, ts, word, length&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>然后是SQL的方式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tableEnv.createTemporaryView(&quot;sensor&quot;, sensorTable);</span><br><span class="line">Table resultSqlTable = tableEnv.sqlQuery(&quot;select id, ts, word, length &quot; +</span><br><span class="line">        &quot;from sensor, lateral table( split(id) ) as splitId(word, length)&quot;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="聚合函数（Aggregate-Functions）"><a href="#聚合函数（Aggregate-Functions）" class="headerlink" title="聚合函数（Aggregate Functions）"></a><strong>聚合函数（Aggregate Functions）</strong></h3><p>用户自定义聚合函数（User-Defined Aggregate Functions，UDAGGs）可以把一个表中的数据，聚合成一个标量值。用户定义的聚合函数，是通过继承AggregateFunction抽象类实现的。</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214220859.png"></p>
+<p>上图中显示了一个聚合的例子。</p>
+<p>假设现在有一张表，包含了各种饮料的数据。该表由三列（id、name和price）、五行组成数据。现在我们需要找到表中所有饮料的最高价格，即执行max（）聚合，结果将是一个数值。</p>
+<p>AggregateFunction的工作原理如下。</p>
+<ul>
+<li> 首先，它需要一个累加器，用来保存聚合中间结果的数据结构（状态）。可以通过调用AggregateFunction的createAccumulator（）方法创建空累加器。</li>
+<li> 随后，对每个输入行调用函数的accumulate（）方法来更新累加器。</li>
+<li> 处理完所有行后，将调用函数的getValue（）方法来计算并返回最终结果。</li>
+</ul>
+<p>AggregationFunction要求必须实现的方法：</p>
+<ul>
+<li> createAccumulator()</li>
+<li> accumulate()</li>
+<li> getValue()</li>
+</ul>
+<p>除了上述方法之外，还有一些可选择实现的方法。其中一些方法，可以让系统执行查询更有效率，而另一些方法，对于某些场景是必需的。例如，如果聚合函数应用在会话窗口（session group window）的上下文中，则merge（）方法是必需的。</p>
+<ul>
+<li> retract() </li>
+<li> merge() </li>
+<li> resetAccumulator()</li>
+</ul>
+<p>接下来我们写一个自定义AggregateFunction，计算一下每个sensor的平均温度值.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">// 定义AggregateFunction的Accumulator</span><br><span class="line">public static class AvgTempAcc &#123;</span><br><span class="line">    double sum = 0.0;</span><br><span class="line">    int count = 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 自定义一个聚合函数，求每个传感器的平均温度值，保存状态(tempSum, tempCount)</span><br><span class="line">public static class AvgTemp extends AggregateFunction&lt;Double, AvgTempAcc&gt;&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public Double getValue(AvgTempAcc accumulator) &#123;</span><br><span class="line">        return accumulator.sum / accumulator.count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public AvgTempAcc createAccumulator() &#123;</span><br><span class="line">        return new AvgTempAcc();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 实现一个具体的处理计算函数，accumulate</span><br><span class="line">    public void accumulate( AvgTempAcc accumulator, Double temp) &#123;</span><br><span class="line">        accumulator.sum += temp;</span><br><span class="line">        accumulator.count += 1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接下来就可以在代码中调用了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 创建一个聚合函数实例</span><br><span class="line">AvgTemp avgTemp = new AvgTemp();</span><br><span class="line"></span><br><span class="line">// Table API的调用 </span><br><span class="line">tableEnv.registerFunction(&quot;avgTemp&quot;, avgTemp);</span><br><span class="line">Table resultTable = sensorTable</span><br><span class="line">        .groupBy(&quot;id&quot;)</span><br><span class="line">        .aggregate(&quot;avgTemp(temperature) as avgTemp&quot;)</span><br><span class="line">        .select(&quot;id, avgTemp&quot;);</span><br><span class="line">// sql</span><br><span class="line">tableEnv.createTemporaryView(&quot;sensor&quot;, sensorTable);</span><br><span class="line">Table resultSqlTable = tableEnv.sqlQuery(&quot;select id, avgTemp(temperature) &quot; +</span><br><span class="line">        &quot;from sensor group by id&quot;);</span><br><span class="line"></span><br><span class="line">tableEnv.toRetractStream(resultTable, Row.class).print(&quot;result&quot;);</span><br><span class="line">tableEnv.toRetractStream(resultSqlTable, Row.class).print(&quot;sql&quot;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="表聚合函数（Table-Aggregate-Functions）"><a href="#表聚合函数（Table-Aggregate-Functions）" class="headerlink" title="表聚合函数（Table Aggregate Functions）"></a><strong>表聚合函数（Table Aggregate Functions）</strong></h3><p>用户定义的表聚合函数（User-Defined Table Aggregate Functions，UDTAGGs），可以把一个表中数据，聚合为具有多行和多列的结果表。这跟AggregateFunction非常类似，只是之前聚合结果是一个标量值，现在变成了一张表。</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214221100.png"></p>
+<p>比如现在我们需要找到表中所有饮料的前2个最高价格，即执行top2（）表聚合。我们需要检查5行中的每一行，得到的结果将是一个具有排序后前2个值的表。</p>
+<p>用户定义的表聚合函数，是通过继承TableAggregateFunction抽象类来实现的。</p>
+<p>TableAggregateFunction的工作原理如下。</p>
+<ul>
+<li><p> 首先，它同样需要一个累加器（Accumulator），它是保存聚合中间结果的数据结构。通过调用TableAggregateFunction的createAccumulator（）方法可以创建空累加器。</p>
+</li>
+<li><p> 随后，对每个输入行调用函数的accumulate（）方法来更新累加器。</p>
+</li>
+<li><p>处理完所有行后，将调用函数的emitValue（）方法来计算并返回最终结果。</p>
+</li>
+</ul>
+<p>AggregationFunction要求必须实现的方法：</p>
+<ul>
+<li> createAccumulator()</li>
+<li> accumulate()</li>
+</ul>
+<p>除了上述方法之外，还有一些可选择实现的方法。</p>
+<ul>
+<li><p> retract() </p>
+</li>
+<li><p> merge() </p>
+</li>
+<li><p> resetAccumulator() </p>
+</li>
+<li><p> emitValue() </p>
+</li>
+<li><p>emitUpdateWithRetract()</p>
+</li>
+</ul>
+<p>接下来我们写一个自定义TableAggregateFunction，用来提取每个sensor最高的两个温度值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">// 先定义一个 Accumulator </span><br><span class="line">public static class Top2TempAcc &#123;</span><br><span class="line">    double highestTemp = Double.MIN_VALUE;</span><br><span class="line">    double secondHighestTemp = Double.MIN_VALUE;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 自定义表聚合函数</span><br><span class="line">public static class Top2Temp extends TableAggregateFunction&lt;Tuple2&lt;Double, Integer&gt;, Top2TempAcc&gt; &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public Top2TempAcc createAccumulator() &#123;</span><br><span class="line">        return new Top2TempAcc();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 实现计算聚合结果的函数accumulate</span><br><span class="line">    public void accumulate(Top2TempAcc acc, Double temp) &#123;</span><br><span class="line">        if (temp &gt; acc.highestTemp) &#123;</span><br><span class="line">            acc.secondHighestTemp = acc.highestTemp;</span><br><span class="line">            acc.highestTemp = temp;</span><br><span class="line">        &#125; else if (temp &gt; acc.secondHighestTemp) &#123;</span><br><span class="line">            acc.secondHighestTemp = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // 实现一个输出结果的方法，最终处理完表中所有数据时调用</span><br><span class="line">    public void emitValue(Top2TempAcc acc, Collector&lt;Tuple2&lt;Double, Integer&gt;&gt; out) &#123;</span><br><span class="line">        out.collect(new Tuple2&lt;&gt;(acc.highestTemp, 1));</span><br><span class="line">        out.collect(new Tuple2&lt;&gt;(acc.secondHighestTemp, 2));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接下来就可以在代码中调用了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 创建一个表聚合函数实例</span><br><span class="line">Top2Temp top2Temp = new Top2Temp();</span><br><span class="line">tableEnv.registerFunction(&quot;top2Temp&quot;, top2Temp);</span><br><span class="line">Table resultTable = sensorTable</span><br><span class="line">        .groupBy(&quot;id&quot;)</span><br><span class="line">        .flatAggregate(&quot;top2Temp(temperature) as (temp, rank)&quot;)</span><br><span class="line">        .select(&quot;id, temp, rank&quot;);</span><br><span class="line"></span><br><span class="line">tableEnv.toRetractStream(resultTable, Row.class).print(&quot;result&quot;);</span><br></pre></td></tr></table></figure>
+
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/zhifubaoPay.png">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/weixinPay.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          xubatian
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://xubatian.cn/Flink-原理与实现-FlinkSQL的Table-API-与SQL之函数（Functions）/" title="Flink 原理与实现: FlinkSQL的Table API 与SQL之函数（Functions）" target="_blank">http://xubatian.cn/Flink-原理与实现-FlinkSQL的Table-API-与SQL之函数（Functions）/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外均为原创，采用 CC BY 4.0 CN协议 许可协议。转载请注明出处:https://www.xubatian.cn/
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Yarn</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -336,537 +562,141 @@
 	</div>
 
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-FlinkSQL%E7%9A%84Table-API-%E4%B8%8ESQL%E4%B9%8B%E5%87%BD%E6%95%B0%EF%BC%88Functions%EF%BC%89/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Hadoop%E6%95%B0%E6%8D%AE%E5%8E%8B%E7%BC%A9/" class="archive-article-date">
-        <time datetime="2022-01-16T12:38:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-16</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-FlinkSQL%E7%9A%84Table-API-%E4%B8%8ESQL%E4%B9%8B%E7%AA%97%E5%8F%A3%EF%BC%88Windows%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Flink 原理与实现: FlinkSQL的Table API 与SQL之窗口（Windows）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Hadoop%E6%95%B0%E6%8D%AE%E5%8E%8B%E7%BC%A9/">Hadoop数据压缩</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">hadoop压缩</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">系统内置函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%AF%94%E8%BE%83%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.</span> <span class="toc-text">1.比较函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%80%BB%E8%BE%91%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.</span> <span class="toc-text">2.逻辑函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%AE%97%E6%9C%AF%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text">3.算术函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0"><span class="toc-number">1.4.</span> <span class="toc-text">4.字符串函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%97%B6%E9%97%B4%E5%87%BD%E6%95%B0"><span class="toc-number">1.5.</span> <span class="toc-text">5.时间函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0"><span class="toc-number">1.6.</span> <span class="toc-text">6.聚合函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDF"><span class="toc-number">2.</span> <span class="toc-text">UDF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E7%94%A8%E6%88%B7%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0UDF"><span class="toc-number">2.1.</span> <span class="toc-text">注册用户自定义函数UDF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E9%87%8F%E5%87%BD%E6%95%B0%EF%BC%88Scalar-Functions%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">标量函数（Scalar Functions）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E5%87%BD%E6%95%B0%EF%BC%88Table-Functions%EF%BC%89"><span class="toc-number">2.3.</span> <span class="toc-text">表函数（Table Functions）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0%EF%BC%88Aggregate-Functions%EF%BC%89"><span class="toc-number">2.4.</span> <span class="toc-text">聚合函数（Aggregate Functions）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0%EF%BC%88Table-Aggregate-Functions%EF%BC%89"><span class="toc-number">2.5.</span> <span class="toc-text">表聚合函数（Table Aggregate Functions）</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hadoop%E7%9A%84%E8%AE%A1%E6%95%B0%E5%99%A8%E5%BA%94%E7%94%A8%E5%92%8C%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/" class="archive-article-date">
-        <time datetime="2022-01-16T10:58:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-16</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hadoop%E7%9A%84%E8%AE%A1%E6%95%B0%E5%99%A8%E5%BA%94%E7%94%A8%E5%92%8C%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/">hadoop的计数器应用和数据清洗</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop计数器应用</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">hadoop数据清洗</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hadoop%E6%A8%A1%E5%9D%97%E7%BB%84%E6%88%90%E4%B9%8BJoin%E5%A4%9A%E7%A7%8D%E5%BA%94%E7%94%A8/" class="archive-article-date">
-        <time datetime="2022-01-15T16:50:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-16</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hadoop%E6%A8%A1%E5%9D%97%E7%BB%84%E6%88%90%E4%B9%8BJoin%E5%A4%9A%E7%A7%8D%E5%BA%94%E7%94%A8/">hadoop模块组成之Join多种应用</a>
-	
-    </h1>
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'true' == true ? true : false;
+   var verify = 'ture' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '.comment',
+            notify: notify,
+            verify: verify,
+            app_id: "4C7T8fSNVA6RnfQksa8BmdFc-gzGzoHsz",
+            app_key: "V57hYH4l9NRzmpobtAIN5gzq",
+            placeholder: "开始你的评论吧...",
+            avatar:"mm"
+        });
+    }
+</script>
+    </section>
   
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">mapJoin</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">ReduceJoin</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/MapReduce%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86%E4%B9%8BInputFormat%E6%95%B0%E6%8D%AE%E8%BE%93%E5%85%A5/" class="archive-article-date">
-        <time datetime="2022-01-14T16:20:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-15</time>
-</a>
 
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/MapReduce%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86%E4%B9%8BInputFormat%E6%95%B0%E6%8D%AE%E8%BE%93%E5%85%A5/">MapReduce框架原理之InputFormat数据输入</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">mapreduce</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">InputFormat</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8Bmapreduce%E7%9A%84MapTask%E6%9C%BA%E5%88%B6%E5%92%8CreduceTask%E6%9C%BA%E5%88%B6/" class="archive-article-date">
-        <time datetime="2022-01-14T14:22:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-14</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8Bmapreduce%E7%9A%84MapTask%E6%9C%BA%E5%88%B6%E5%92%8CreduceTask%E6%9C%BA%E5%88%B6/">hadoop组成模块之mapreduce的MapTask机制和reduceTask机制</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MapReduce</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MapTask</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BYarn-HA%E9%AB%98%E5%8F%AF%E7%94%A8/" class="archive-article-date">
-        <time datetime="2022-01-14T07:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-14</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BYarn-HA%E9%AB%98%E5%8F%AF%E7%94%A8/">hadoop组成模块之Yarn-HA高可用</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Yarn</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Yarn HA</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BHDFS-HA%E9%AB%98%E5%8F%AF%E7%94%A8/" class="archive-article-date">
-        <time datetime="2022-01-14T06:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-14</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BHDFS-HA%E9%AB%98%E5%8F%AF%E7%94%A8/">hadoop组成模块之HDFS HA高可用</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HDFS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">HDFS HA</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/%E4%BB%8EHadoop%E6%A1%86%E6%9E%B6%E8%AE%A8%E8%AE%BA%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%94%9F%E6%80%81/" class="archive-article-date">
-        <time datetime="2022-01-13T05:53:25.434Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-13</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/%E4%BB%8EHadoop%E6%A1%86%E6%9E%B6%E8%AE%A8%E8%AE%BA%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%94%9F%E6%80%81/">从Hadoop框架讨论大数据生态</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%98%AF%E4%BB%80%E4%B9%88/" class="archive-article-date">
-        <time datetime="2022-01-13T05:05:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-13</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%98%AF%E4%BB%80%E4%B9%88/">大数据是什么?</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/page/4/">上一页</a><a class="page-number" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">1</a><span class="space">&hellip;</span><a class="page-number" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/page/3/">3</a><a class="page-number" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/page/6/">6</a><a class="extend next" rel="next" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/page/6/">下一页</a>
-    </nav>
-  
 
 
           </div>
@@ -906,10 +736,10 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
