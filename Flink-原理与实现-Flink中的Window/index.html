@@ -6,21 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://xubatian.cn">
-  <title>Archives: 2022 | 我的梦想是星辰大海</title>
+  <title>Flink 原理与实现: Flink中的Window | 我的梦想是星辰大海</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta name="description" content="知识源于积累,登峰造极源于自律">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我的梦想是星辰大海">
-<meta property="og:url" content="http://xubatian.cn/archives/2022/page/4/index.html">
+  <meta name="description" content="Window主要分为哪几种?window主要分为CountWindow:  计数窗口:按照指定的数据条数生成一个Window，与时间无关。 TimeWindow:    时间窗口:按照指定的数据条数生成一个Window，与时间无关。 而我们最关心的就是TimeWindow,因为他和时间有关系.TimeWindow又分为三种: 滑动窗口,滚动窗口,会话窗口. 滚动窗口和滑动窗口有一个特点,就是他们的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flink 原理与实现: Flink中的Window">
+<meta property="og:url" content="http://xubatian.cn/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E4%B8%AD%E7%9A%84Window/index.html">
 <meta property="og:site_name" content="我的梦想是星辰大海">
-<meta property="og:description" content="知识源于积累,登峰造极源于自律">
+<meta property="og:description" content="Window主要分为哪几种?window主要分为CountWindow:  计数窗口:按照指定的数据条数生成一个Window，与时间无关。 TimeWindow:    时间窗口:按照指定的数据条数生成一个Window，与时间无关。 而我们最关心的就是TimeWindow,因为他和时间有关系.TimeWindow又分为三种: 滑动窗口,滚动窗口,会话窗口. 滚动窗口和滑动窗口有一个特点,就是他们的">
 <meta property="og:locale">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214141018.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214141145.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214141305.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214141539.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214141811.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214142001.png">
+<meta property="article:published_time" content="2022-02-14T06:03:51.000Z">
+<meta property="article:modified_time" content="2022-02-14T06:22:43.400Z">
 <meta property="article:author" content="xubatian">
-<meta property="article:tag" content="徐霸天,xubatian,上白书妖,shangbaishuyao">
+<meta property="article:tag" content="Flink">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214141018.png">
   
   
     <link rel="icon" href="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/favicon.ico">
@@ -273,53 +282,175 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Flink-原理与实现-Flink中的Window" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hive%E7%AE%80%E4%BB%8B(%E4%BA%8C)/" class="archive-article-date">
-        <time datetime="2022-01-18T10:35:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hive%E7%AE%80%E4%BB%8B(%E4%BA%8C)/">hive简介(二)</a>
-	
+    <h1 class="article-title" itemprop="name">
+      Flink 原理与实现: Flink中的Window
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E4%B8%AD%E7%9A%84Window/" class="archive-article-date">
+        <time datetime="2022-02-14T06:03:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-14</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">2.5k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">8分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p><strong>Window主要分为哪几种?</strong><br>window主要分为<br><strong>CountWindow</strong>:  计数窗口:按照指定的数据条数生成一个Window，与时间无关。</p>
+<p><strong>TimeWindow</strong>:    时间窗口:按照指定的数据条数生成一个Window，与时间无关。</p>
+<p>而我们最关心的就是<strong>TimeWindow</strong>,因为他和时间有关系.<br><strong>TimeWindow又分为三种: 滑动窗口,滚动窗口,会话窗口.</strong></p>
+<p>滚动窗口和滑动窗口有一个特点,就是他们的时间是对齐的.</p>
+<p>所谓的时间对齐是什么意思呢?</p>
+<span id="more"></span>
+
+<p>就是你不管是哪一个并行度,里面所有的时间是对齐的.对齐说的是数据的时间对齐.比如说我这窗口的起始时间是10:05分,那我所有的,只要是10:05分的数据,都属于我接下来这新开的窗口.因为我假设我开窗的起始时间,实际上说的就是 我的开窗时间是10:05分的话,那么我不管你是哪个组的,也不管你是哪个分区的.我们的数据只要到达10:05分,就属于当前我们这个窗口.这就叫所谓的时间对齐.滚动窗口是没有滑动步长的,只有滑动窗口才有滑动步长.</p>
+<p>​    如果我们在选择窗口开窗的时候,还需要对窗口里面的数据进行处理.对数据进行处理的话,我们称之为windowFunction,也称之为窗口函数.<br>​    <strong>WindowFunction(窗口函数)分为两类,一类叫增量聚合函数,另一种叫全窗口函数</strong><br>​    增量聚合函数的意思就是说,在窗口里面,因为一个窗口是一个起始时间到结束时间.这个时间段内,源源不断的会有数据过来.那么你来一条数据我就处理一条数据,来一条数据我就处理一条数据.这是一种情况.还有一种情况就是全窗口函数,等这个窗口结束了,所有数据都来了,我一次性处理.这两种处理方式就是所谓的增量聚合函数和全窗口函数.在大多数的</p>
+<p>​    生产环境中,我们使用增量聚合函数比较合适.因为假设你后面一个窗口里面数据量特别多的话.你如果一次性全部处理的话,你处理时间是比较长的.但是如果我数据量很多,我来一条就处理一条,来一条就处理一条,那我事实上我就把我处理的时间均匀的分散到这个很长的时间段里面去了.所以他实际上比不会耽误我们的时间.</p>
+<p>所以我们重点关心增量聚合函数.他有两大类,<br><strong>一个叫ReduceFunction,另一个叫AggregateFunction,都是属于增量聚合函数.</strong></p>
+<h1 id="Window"><a href="#Window" class="headerlink" title="Window"></a>Window</h1><p>Window开窗,开往窗口之后怎么办?是由windowFunctions来决定的</p>
+<p><strong>Window就是把无限的流，按照时间或者条数或者会话切成有限的流。本来你的流是无限的,我们按照一定规则切成一段一段的有限的流.而每一小段就是一段窗口(window)</strong></p>
+<h2 id="Window概述"><a href="#Window概述" class="headerlink" title="Window概述"></a>Window概述</h2><p>​        Spark streaming流式计算是一种被设计用于处理无限数据集的数据处理引擎，而无限数据集是指一种不断增长的本质上无限的数据集，而<strong>window是一种切割无限数据为有限块进行处理的手段</strong>。</p>
+<p>​        Window是无限数据流处理的核心，Window将一个无限的stream拆分成有限大小的”buckets”桶，我们可以在这些桶上做计算操作。</p>
+<h2 id="Window类型"><a href="#Window类型" class="headerlink" title="Window类型"></a>Window类型</h2><p><strong>Window可以分成两类</strong>：<br>        CountWindow(计数窗口)：按照指定的数据条数生成一个Window，与时间无关。<br>        TimeWindow(时间窗口)：按照时间生成Window。<br>对于TimeWindow，可以根据窗口实现原理的不同分成三类：<strong>滚动窗口（Tumbling Window）、滑动窗口（Sliding Window）和会话窗口(Session Window）。</strong></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214141018.png"></p>
+<p><strong>滑动窗口有可能有某两条数据进到第一个窗口同时又进入到第二个窗口</strong></p>
+<p><strong>滚动窗口只要设置窗口的长度就可以了.</strong></p>
+<h3 id="1-滚动窗口（Tumbling-Windows）"><a href="#1-滚动窗口（Tumbling-Windows）" class="headerlink" title="1.滚动窗口（Tumbling Windows）"></a>1.滚动窗口（Tumbling Windows）</h3><p>将数据依据固定的窗口长度对数据进行切片。<br><strong>特点：时间对齐，窗口长度固定，没有重叠。</strong></p>
+<p><strong>时间对齐是啥意思?什么情况下时间对齐?如果你的窗口没有加ALL的话</strong></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214141145.png"></p>
+<p>​        我们的窗口是基于KeyedStream的.就是分完组之后再使用窗口函数.你既然是KeyedStream那就是有很多一组一组的数据.如下图所示: user1,user2,user3你可以理解为三个组.这三个组他的时间一定是一致的.所以称之为时间对齐.就是说,如果Window1的时间是2019年11月11日11点11分11秒的话,那么window2,window3,window4等等所有的滑动窗口的组都是这个时间.所以说是时间对齐.窗口长度固定,没有重叠.没有重叠就是说任何一条数据不可能重复进入到两个窗口.随意说,我们定义这样的一个滚动窗口只需要定义窗口长度就可以了.</p>
+<p>滚动窗口分配器将每个元素分配到一个指定窗口大小的窗口中，滚动窗口有一个固定的大小，并且不会出现重叠。例如：如果你指定了一个5分钟大小的滚动窗口，窗口的创建如下图所示：</p>
+<p><strong>滚动窗口</strong>示例图:</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214141305.png"></p>
+<p><strong>适用场景</strong>：适合做BI统计等（做每个时间段的聚合计算）。</p>
+<h3 id="2-滑动窗口（Sliding-Windows）"><a href="#2-滑动窗口（Sliding-Windows）" class="headerlink" title="2.滑动窗口（Sliding Windows）"></a>2.滑动窗口（Sliding Windows）</h3><p>滑动窗口是固定窗口的更广义的一种形式，滑动窗口由固定的窗口长度和滑动间隔组成。</p>
+<p><strong>特点：时间对齐，窗口长度固定,增加滑动步长，可以有重叠。</strong></p>
+<p>​    由于他增加了滑动步长,所以说,他可以出现数据的重叠.<br>​    滑动窗口分配器将元素分配到固定长度的窗口中，与滚动窗口类似，窗口的大小由窗口大小参数来配置，另一个窗口滑动参数控制滑动窗口开始的频率。因此，滑动窗口如果滑动参数小于窗口大小的话，窗口是可以重叠的，在这种情况下元素会被分配到多个窗口中。<br>​    例如，你有10分钟的窗口和5分钟的滑动，那么每个窗口中5分钟的窗口里包含着上个10分钟产生的数据，如下图所示：</p>
+<p><strong>滑动窗口</strong>示例图:</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214141539.png"></p>
+<p><strong>适用场景</strong>：对最近一个时间段内的统计（求某接口最近5min的失败率来决定是否要报警）。</p>
+<h3 id="3-会话窗口（Session-Windows）"><a href="#3-会话窗口（Session-Windows）" class="headerlink" title="3.会话窗口（Session Windows）"></a>3.会话窗口（Session Windows）</h3><p>​        会话窗口就是说在<strong>某一个你指定的时间长度内.没有数据来了.假设我规定这个时间长度为5秒.那么上一个窗口结束之后5秒内都没有数据来.5秒钟之后,到第六秒开始有数据来了.那么我们就认为,从第六秒开始,就是一个新的窗口了</strong>.所以他中间有一个时间的间隙.这就称之为会话窗口.为什么称之为会话窗口呢?因为你发现没有,既然他有时间的间隙的话,就好比一次一次的会话一样.</p>
+<p>​        假如你开发了一个web项目跑在Tomcat里面的话.默认情况下,会话的超时时间是多少?半小时.所谓默认的会话超时时间是什么意思?他这个半小时是从什么时刻开始算的?是从你这个会话的最后一次访问的时间开始算的.半个小时之后你这个会话就超时了. 会话超时的话,说白了你这个会话就结束了.那么以后来的数据就是另外一个会话.或者以后来的请求就是另外一个会话.这里我们的timeout就是所谓的会话超时时间.这个会话超时时间假设你设定为5秒.那么这5秒从哪里开始算呢?就是从window1的最后一条数据进来的时间开始算.5秒钟之后,如果你还是没有数据来.那么就会产生一个窗口2;但是假设你这5秒钟内还一直有数据来呢?有数据来还是属于window1.而这个window1的边界就开始往后延伸.因为他是严格按照会话的超时时间来进行切割window.来切割widow的话,这个特点就是他这个时间没有对齐的.</p>
+<p>​        很明显时间没有对齐呀!因为很有可能某一个window他的数据量比较大,且时间跨度比较长.那么下一个窗口的量比较大,时间跨度比较短,这也是有可能的.所以时间无对齐的. </p>
+<p>​         所以会话窗口（Session Windows）由一系列事件组合一个指定时间长度的timeout间隙组成，类似于web应用的session，也就是一段时间没有接收到新数据就会生成新的窗口。</p>
+<p>​        特点：时间无对齐。</p>
+<p>​        session窗口分配器通过session活动来对元素进行分组，session窗口跟滚动窗口和滑动窗口相比，不会有重叠和固定的开始时间和结束时间的情况，相反，当它在一个固定的时间周期内不再收到元素，即非活动间隔产生，那个这个窗口就会关闭。一个session窗口通过一个session间隔来配置，这个session间隔定义了非活跃周期的长度，当这个非活跃周期产生，那么当前的session将关闭并且后续的元素将被分配到新的session窗口中去。</p>
+<p><strong>会话窗口</strong>示例图</p>
+<p>​    <img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214141811.png"></p>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214142001.png"></p>
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/zhifubaoPay.png">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/weixinPay.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          xubatian
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://xubatian.cn/Flink-原理与实现-Flink中的Window/" title="Flink 原理与实现: Flink中的Window" target="_blank">http://xubatian.cn/Flink-原理与实现-Flink中的Window/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外均为原创，采用 CC BY 4.0 CN协议 许可协议。转载请注明出处:https://www.xubatian.cn/
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -332,539 +463,140 @@
 	</div>
 
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E4%B8%AD%E7%9A%84Window/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hive%E7%AE%80%E4%BB%8B(%E4%B8%80)/" class="archive-article-date">
-        <time datetime="2022-01-18T08:44:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/Hadoop%E6%95%B0%E6%8D%AE%E5%8E%8B%E7%BC%A9/YARN%E8%B0%83%E5%BA%A6%E5%99%A8%E3%80%90capacity-scheduler-xml%E3%80%91%E9%BB%98%E8%AE%A4%E9%85%8D%E7%BD%AE/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">YARN调度器【capacity-scheduler.xml】默认配置</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hive%E7%AE%80%E4%BB%8B(%E4%B8%80)/">hive简介(一)</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Window"><span class="toc-number">1.</span> <span class="toc-text">Window</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Window%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">Window概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Window%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.</span> <span class="toc-text">Window类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%BB%9A%E5%8A%A8%E7%AA%97%E5%8F%A3%EF%BC%88Tumbling-Windows%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.滚动窗口（Tumbling Windows）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%EF%BC%88Sliding-Windows%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.滑动窗口（Sliding Windows）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%BC%9A%E8%AF%9D%E7%AA%97%E5%8F%A3%EF%BC%88Session-Windows%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">3.会话窗口（Session Windows）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%E5%BD%95"><span class="toc-number">1.3.</span> <span class="toc-text">附录</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/zookeeper%E7%AE%80%E4%BB%8B/" class="archive-article-date">
-        <time datetime="2022-01-18T06:51:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/zookeeper%E7%AE%80%E4%BB%8B/">Zookeeper简介</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">zookeeper</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/%E5%8A%A8%E6%80%81/" class="archive-article-date">
-        <time datetime="2022-01-18T05:08:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/%E5%8A%A8%E6%80%81/">小目标</a>
-	
-    </h1>
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'true' == true ? true : false;
+   var verify = 'ture' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '.comment',
+            notify: notify,
+            verify: verify,
+            app_id: "4C7T8fSNVA6RnfQksa8BmdFc-gzGzoHsz",
+            app_key: "V57hYH4l9NRzmpobtAIN5gzq",
+            placeholder: "开始你的评论吧...",
+            avatar:"mm"
+        });
+    }
+</script>
+    </section>
   
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">动态</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/动态//" class="article-tag-list-link color3">动态</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Hadoop%E7%94%9F%E4%BA%A7%E8%B0%83%E4%BC%98%E6%89%8B%E5%86%8C/" class="archive-article-date">
-        <time datetime="2022-01-17T13:57:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-17</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Hadoop%E7%94%9F%E4%BA%A7%E8%B0%83%E4%BC%98%E6%89%8B%E5%86%8C/">Hadoop生产调优手册</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop企业级优化</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Hadoop%E4%BC%81%E4%B8%9A%E4%BC%98%E5%8C%96/" class="archive-article-date">
-        <time datetime="2022-01-16T16:08:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-17</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Hadoop%E4%BC%81%E4%B8%9A%E4%BC%98%E5%8C%96/">Hadoop企业优化</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop企业级优化</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BYarn%E8%B5%84%E6%BA%90%E8%B0%83%E5%BA%A6%E5%99%A8/" class="archive-article-date">
-        <time datetime="2022-01-16T13:22:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-16</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BYarn%E8%B5%84%E6%BA%90%E8%B0%83%E5%BA%A6%E5%99%A8/">hadoop组成模块之Yarn资源调度器</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Yarn</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Hadoop%E6%95%B0%E6%8D%AE%E5%8E%8B%E7%BC%A9/" class="archive-article-date">
-        <time datetime="2022-01-16T12:38:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-16</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Hadoop%E6%95%B0%E6%8D%AE%E5%8E%8B%E7%BC%A9/">Hadoop数据压缩</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">hadoop压缩</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hadoop%E7%9A%84%E8%AE%A1%E6%95%B0%E5%99%A8%E5%BA%94%E7%94%A8%E5%92%8C%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/" class="archive-article-date">
-        <time datetime="2022-01-16T10:58:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-16</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hadoop%E7%9A%84%E8%AE%A1%E6%95%B0%E5%99%A8%E5%BA%94%E7%94%A8%E5%92%8C%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/">hadoop的计数器应用和数据清洗</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop计数器应用</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">hadoop数据清洗</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hadoop%E6%A8%A1%E5%9D%97%E7%BB%84%E6%88%90%E4%B9%8BJoin%E5%A4%9A%E7%A7%8D%E5%BA%94%E7%94%A8/" class="archive-article-date">
-        <time datetime="2022-01-15T16:50:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-16</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hadoop%E6%A8%A1%E5%9D%97%E7%BB%84%E6%88%90%E4%B9%8BJoin%E5%A4%9A%E7%A7%8D%E5%BA%94%E7%94%A8/">hadoop模块组成之Join多种应用</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">mapJoin</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">ReduceJoin</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2022/page/3/">上一页</a><a class="page-number" href="/archives/2022/">1</a><a class="page-number" href="/archives/2022/page/2/">2</a><a class="page-number" href="/archives/2022/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/2022/page/5/">5</a><a class="page-number" href="/archives/2022/page/6/">6</a><a class="extend next" rel="next" href="/archives/2022/page/5/">下一页</a>
-    </nav>
-  
 
 
 
@@ -905,8 +637,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

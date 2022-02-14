@@ -6,7 +6,7 @@
   <link href="http://xubatian.cn/atom.xml" rel="self"/>
   
   <link href="http://xubatian.cn/"/>
-  <updated>2022-02-12T10:20:31.134Z</updated>
+  <updated>2022-02-14T06:22:43.400Z</updated>
   <id>http://xubatian.cn/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Flink 原理与实现: Flink中的Window</title>
+    <link href="http://xubatian.cn/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E4%B8%AD%E7%9A%84Window/"/>
+    <id>http://xubatian.cn/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E4%B8%AD%E7%9A%84Window/</id>
+    <published>2022-02-14T06:03:51.000Z</published>
+    <updated>2022-02-14T06:22:43.400Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>Window主要分为哪几种?</strong><br>window主要分为<br><strong>CountWindow</strong>:  计数窗口:按照指定的数据条数生成一个Window，与时间无关。</p><p><strong>TimeWindow</strong>:    时间窗口:按照指定的数据条数生成一个Window，与时间无关。</p><p>而我们最关心的就是<strong>TimeWindow</strong>,因为他和时间有关系.<br><strong>TimeWindow又分为三种: 滑动窗口,滚动窗口,会话窗口.</strong></p><p>滚动窗口和滑动窗口有一个特点,就是他们的时间是对齐的.</p><p>所谓的时间对齐是什么意思呢?</p><span id="more"></span><p>就是你不管是哪一个并行度,里面所有的时间是对齐的.对齐说的是数据的时间对齐.比如说我这窗口的起始时间是10:05分,那我所有的,只要是10:05分的数据,都属于我接下来这新开的窗口.因为我假设我开窗的起始时间,实际上说的就是 我的开窗时间是10:05分的话,那么我不管你是哪个组的,也不管你是哪个分区的.我们的数据只要到达10:05分,就属于当前我们这个窗口.这就叫所谓的时间对齐.滚动窗口是没有滑动步长的,只有滑动窗口才有滑动步长.</p><p>​    如果我们在选择窗口开窗的时候,还需要对窗口里面的数据进行处理.对数据进行处理的话,我们称之为windowFunction,也称之为窗口函数.<br>​    <strong>WindowFunction(窗口函数)分为两类,一类叫增量聚合函数,另一种叫全窗口函数</strong><br>​    增量聚合函数的意思就是说,在窗口里面,因为一个窗口是一个起始时间到结束时间.这个时间段内,源源不断的会有数据过来.那么你来一条数据我就处理一条数据,来一条数据我就处理一条数据.这是一种情况.还有一种情况就是全窗口函数,等这个窗口结束了,所有数据都来了,我一次性处理.这两种处理方式就是所谓的增量聚合函数和全窗口函数.在大多数的</p><p>​    生产环境中,我们使用增量聚合函数比较合适.因为假设你后面一个窗口里面数据量特别多的话.你如果一次性全部处理的话,你处理时间是比较长的.但是如果我数据量很多,我来一条就处理一条,来一条就处理一条,那我事实上我就把我处理的时间均匀的分散到这个很长的时间段里面去了.所以他实际上比不会耽误我们的时间.</p><p>所以我们重点关心增量聚合函数.他有两大类,<br><strong>一个叫ReduceFunction,另一个叫AggregateFunction,都是属于增量聚合函数.</strong></p><h1 id="Window"><a href="#Window" class="headerlink" title="Window"></a>Window</h1><p>Window开窗,开往窗口之后怎么办?是由windowFunctions来决定的</p><p><strong>Window就是把无限的流，按照时间或者条数或者会话切成有限的流。本来你的流是无限的,我们按照一定规则切成一段一段的有限的流.而每一小段就是一段窗口(window)</strong></p><h2 id="Window概述"><a href="#Window概述" class="headerlink" title="Window概述"></a>Window概述</h2><p>​        Spark streaming流式计算是一种被设计用于处理无限数据集的数据处理引擎，而无限数据集是指一种不断增长的本质上无限的数据集，而<strong>window是一种切割无限数据为有限块进行处理的手段</strong>。</p><p>​        Window是无限数据流处理的核心，Window将一个无限的stream拆分成有限大小的”buckets”桶，我们可以在这些桶上做计算操作。</p><h2 id="Window类型"><a href="#Window类型" class="headerlink" title="Window类型"></a>Window类型</h2><p><strong>Window可以分成两类</strong>：<br>        CountWindow(计数窗口)：按照指定的数据条数生成一个Window，与时间无关。<br>        TimeWindow(时间窗口)：按照时间生成Window。<br>对于TimeWindow，可以根据窗口实现原理的不同分成三类：<strong>滚动窗口（Tumbling Window）、滑动窗口（Sliding Window）和会话窗口(Session Window）。</strong></p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214141018.png"></p><p><strong>滑动窗口有可能有某两条数据进到第一个窗口同时又进入到第二个窗口</strong></p><p><strong>滚动窗口只要设置窗口的长度就可以了.</strong></p><h3 id="1-滚动窗口（Tumbling-Windows）"><a href="#1-滚动窗口（Tumbling-Windows）" class="headerlink" title="1.滚动窗口（Tumbling Windows）"></a>1.滚动窗口（Tumbling Windows）</h3><p>将数据依据固定的窗口长度对数据进行切片。<br><strong>特点：时间对齐，窗口长度固定，没有重叠。</strong></p><p><strong>时间对齐是啥意思?什么情况下时间对齐?如果你的窗口没有加ALL的话</strong></p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214141145.png"></p><p>​        我们的窗口是基于KeyedStream的.就是分完组之后再使用窗口函数.你既然是KeyedStream那就是有很多一组一组的数据.如下图所示: user1,user2,user3你可以理解为三个组.这三个组他的时间一定是一致的.所以称之为时间对齐.就是说,如果Window1的时间是2019年11月11日11点11分11秒的话,那么window2,window3,window4等等所有的滑动窗口的组都是这个时间.所以说是时间对齐.窗口长度固定,没有重叠.没有重叠就是说任何一条数据不可能重复进入到两个窗口.随意说,我们定义这样的一个滚动窗口只需要定义窗口长度就可以了.</p><p>滚动窗口分配器将每个元素分配到一个指定窗口大小的窗口中，滚动窗口有一个固定的大小，并且不会出现重叠。例如：如果你指定了一个5分钟大小的滚动窗口，窗口的创建如下图所示：</p><p><strong>滚动窗口</strong>示例图:</p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214141305.png"></p><p><strong>适用场景</strong>：适合做BI统计等（做每个时间段的聚合计算）。</p><h3 id="2-滑动窗口（Sliding-Windows）"><a href="#2-滑动窗口（Sliding-Windows）" class="headerlink" title="2.滑动窗口（Sliding Windows）"></a>2.滑动窗口（Sliding Windows）</h3><p>滑动窗口是固定窗口的更广义的一种形式，滑动窗口由固定的窗口长度和滑动间隔组成。</p><p><strong>特点：时间对齐，窗口长度固定,增加滑动步长，可以有重叠。</strong></p><p>​    由于他增加了滑动步长,所以说,他可以出现数据的重叠.<br>​    滑动窗口分配器将元素分配到固定长度的窗口中，与滚动窗口类似，窗口的大小由窗口大小参数来配置，另一个窗口滑动参数控制滑动窗口开始的频率。因此，滑动窗口如果滑动参数小于窗口大小的话，窗口是可以重叠的，在这种情况下元素会被分配到多个窗口中。<br>​    例如，你有10分钟的窗口和5分钟的滑动，那么每个窗口中5分钟的窗口里包含着上个10分钟产生的数据，如下图所示：</p><p><strong>滑动窗口</strong>示例图:</p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214141539.png"></p><p><strong>适用场景</strong>：对最近一个时间段内的统计（求某接口最近5min的失败率来决定是否要报警）。</p><h3 id="3-会话窗口（Session-Windows）"><a href="#3-会话窗口（Session-Windows）" class="headerlink" title="3.会话窗口（Session Windows）"></a>3.会话窗口（Session Windows）</h3><p>​        会话窗口就是说在<strong>某一个你指定的时间长度内.没有数据来了.假设我规定这个时间长度为5秒.那么上一个窗口结束之后5秒内都没有数据来.5秒钟之后,到第六秒开始有数据来了.那么我们就认为,从第六秒开始,就是一个新的窗口了</strong>.所以他中间有一个时间的间隙.这就称之为会话窗口.为什么称之为会话窗口呢?因为你发现没有,既然他有时间的间隙的话,就好比一次一次的会话一样.</p><p>​        假如你开发了一个web项目跑在Tomcat里面的话.默认情况下,会话的超时时间是多少?半小时.所谓默认的会话超时时间是什么意思?他这个半小时是从什么时刻开始算的?是从你这个会话的最后一次访问的时间开始算的.半个小时之后你这个会话就超时了. 会话超时的话,说白了你这个会话就结束了.那么以后来的数据就是另外一个会话.或者以后来的请求就是另外一个会话.这里我们的timeout就是所谓的会话超时时间.这个会话超时时间假设你设定为5秒.那么这5秒从哪里开始算呢?就是从window1的最后一条数据进来的时间开始算.5秒钟之后,如果你还是没有数据来.那么就会产生一个窗口2;但是假设你这5秒钟内还一直有数据来呢?有数据来还是属于window1.而这个window1的边界就开始往后延伸.因为他是严格按照会话的超时时间来进行切割window.来切割widow的话,这个特点就是他这个时间没有对齐的.</p><p>​        很明显时间没有对齐呀!因为很有可能某一个window他的数据量比较大,且时间跨度比较长.那么下一个窗口的量比较大,时间跨度比较短,这也是有可能的.所以时间无对齐的. </p><p>​         所以会话窗口（Session Windows）由一系列事件组合一个指定时间长度的timeout间隙组成，类似于web应用的session，也就是一段时间没有接收到新数据就会生成新的窗口。</p><p>​        特点：时间无对齐。</p><p>​        session窗口分配器通过session活动来对元素进行分组，session窗口跟滚动窗口和滑动窗口相比，不会有重叠和固定的开始时间和结束时间的情况，相反，当它在一个固定的时间周期内不再收到元素，即非活动间隔产生，那个这个窗口就会关闭。一个session窗口通过一个session间隔来配置，这个session间隔定义了非活跃周期的长度，当这个非活跃周期产生，那么当前的session将关闭并且后续的元素将被分配到新的session窗口中去。</p><p><strong>会话窗口</strong>示例图</p><p>​    <img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214141811.png"></p><h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214142001.png"></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;Window主要分为哪几种?&lt;/strong&gt;&lt;br&gt;window主要分为&lt;br&gt;&lt;strong&gt;CountWindow&lt;/strong&gt;:  计数窗口:按照指定的数据条数生成一个Window，与时间无关。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;TimeWindow&lt;/strong&gt;:    时间窗口:按照指定的数据条数生成一个Window，与时间无关。&lt;/p&gt;
+&lt;p&gt;而我们最关心的就是&lt;strong&gt;TimeWindow&lt;/strong&gt;,因为他和时间有关系.&lt;br&gt;&lt;strong&gt;TimeWindow又分为三种: 滑动窗口,滚动窗口,会话窗口.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;滚动窗口和滑动窗口有一个特点,就是他们的时间是对齐的.&lt;/p&gt;
+&lt;p&gt;所谓的时间对齐是什么意思呢?&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="大数据" scheme="http://xubatian.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+    
+    <category term="Flink" scheme="http://xubatian.cn/tags/Flink/"/>
+    
+  </entry>
   
   <entry>
     <title>YARN调度器【capacity-scheduler.xml】默认配置</title>
@@ -481,27 +506,6 @@ streamEnv.setParallelism(1)//加在ENV上表示默认所有的算子平行度都
     
     
     <category term="Flink" scheme="http://xubatian.cn/tags/Flink/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>《说书人》朱广权+尼格买提版</title>
-    <link href="http://xubatian.cn/%E8%AF%B4%E4%B9%A6%E4%BA%BA/"/>
-    <id>http://xubatian.cn/%E8%AF%B4%E4%B9%A6%E4%BA%BA/</id>
-    <published>2022-01-28T14:33:41.000Z</published>
-    <updated>2022-02-07T16:23:15.288Z</updated>
-    
-    <content type="html"><![CDATA[<p>侠义多是平凡辈 , 无须仗剑走天涯。——朱广权</p><span id="more"></span><div style="position: relative; padding: 30% 45%;"><iframe style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/%E3%80%90%E5%89%8D%E6%96%B9%E9%AB%98%E7%87%83%E3%80%91%E5%BD%93%E5%94%A2%E5%91%90%E9%81%87%E8%A7%81%E7%94%B5%E9%9F%B3%EF%BC%81%E6%9C%B1%E5%B9%BF%E6%9D%83-%E5%B0%BC%E6%A0%BC%E4%B9%B0%E6%8F%90%E7%89%88%E3%80%8A%E8%AF%B4%E4%B9%A6%E4%BA%BA%E3%80%8B.mp4" frameborder="no" scrolling="no"></iframe></div> ]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;侠义多是平凡辈 , 无须仗剑走天涯。——朱广权&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="轻松一刻" scheme="http://xubatian.cn/categories/%E8%BD%BB%E6%9D%BE%E4%B8%80%E5%88%BB/"/>
-    
-    
-    <category term="轻松一刻" scheme="http://xubatian.cn/tags/%E8%BD%BB%E6%9D%BE%E4%B8%80%E5%88%BB/"/>
     
   </entry>
   
