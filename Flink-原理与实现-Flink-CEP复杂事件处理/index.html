@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214232124.png">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214232600.png">
 <meta property="article:published_time" content="2022-02-14T14:52:35.000Z">
-<meta property="article:modified_time" content="2022-02-14T15:26:10.079Z">
+<meta property="article:modified_time" content="2022-02-14T15:31:08.053Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="Flink">
 <meta name="twitter:card" content="summary">
@@ -396,7 +396,9 @@
 <h2 id="Pattern-API"><a href="#Pattern-API" class="headerlink" title="Pattern API"></a><strong>Pattern API</strong></h2><p>每个Pattern都应该包含几个步骤，或者叫做state。从一个state到另一个state，通常我们需要定义一些条件，例如下列的代码：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">val loginFailPattern = Pattern.begin[LoginEvent](&quot;begin&quot;)</span><br><span class="line">  .where(_.eventType.equals(&quot;fail&quot;))</span><br><span class="line">  .next(&quot;next&quot;)</span><br><span class="line">  .where(_.eventType.equals(&quot;fail&quot;))</span><br><span class="line">  .within(Time.seconds(10)</span><br></pre></td></tr></table></figure>
 
-<p>每个state都应该有一个标示：例如.begin<a href="%22begin%22">LoginEvent</a>中的”begin”</p>
+<p>每个state都应该有一个标示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">例如 .begin[LoginEvent](&quot;begin&quot;)中的&quot;begin&quot;</span><br></pre></td></tr></table></figure>
+
 <p>每个state都需要有一个唯一的名字，而且需要一个filter来过滤条件，这个过滤条件定义事件需要符合的条件，例如: </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.where(_.eventType.equals(&quot;fail&quot;))</span><br></pre></td></tr></table></figure>
 
