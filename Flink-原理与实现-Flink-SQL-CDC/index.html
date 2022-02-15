@@ -6,25 +6,33 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://xubatian.cn">
-  <title>央视直播 | 我的梦想是星辰大海</title>
+  <title>Flink 原理与实现: Flink SQL CDC | 我的梦想是星辰大海</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta name="description" content="关注央视网,关注国家最新动态">
+  <meta name="description" content="摘要：20年7月，Flink 1.11 新版发布，在生态及易用性上有大幅提升，其中 Table &amp; SQL 开始支持 Change Data Capture（CDC）。CDC 被广泛使用在复制数据、更新缓存、微服务间同步数据、审计日志等场景，本文由社区由曾庆东同学分享，主要介绍 Flink SQL CDC 在生产环境的落地实践以及总结的实战经验 Tips：点击下方链接可查看社区直播的 Fl">
 <meta property="og:type" content="article">
-<meta property="og:title" content="央视直播">
-<meta property="og:url" content="http://xubatian.cn/%E5%A4%AE%E8%A7%86%E7%9B%B4%E6%92%AD/index.html">
+<meta property="og:title" content="Flink 原理与实现: Flink SQL CDC">
+<meta property="og:url" content="http://xubatian.cn/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink-SQL-CDC/index.html">
 <meta property="og:site_name" content="我的梦想是星辰大海">
-<meta property="og:description" content="关注央视网,关注国家最新动态">
+<meta property="og:description" content="摘要：20年7月，Flink 1.11 新版发布，在生态及易用性上有大幅提升，其中 Table &amp; SQL 开始支持 Change Data Capture（CDC）。CDC 被广泛使用在复制数据、更新缓存、微服务间同步数据、审计日志等场景，本文由社区由曾庆东同学分享，主要介绍 Flink SQL CDC 在生产环境的落地实践以及总结的实战经验 Tips：点击下方链接可查看社区直播的 Fl">
 <meta property="og:locale">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220216000755.png">
-<meta property="article:published_time" content="2022-02-15T16:06:42.000Z">
-<meta property="article:modified_time" content="2022-02-15T16:32:40.565Z">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220216005047.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220216005207.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220216005222.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220216005300.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220216005324.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220216005414.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220216005428.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220216005503.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220216005522.png">
+<meta property="article:published_time" content="2022-02-15T16:47:32.000Z">
+<meta property="article:modified_time" content="2022-02-15T16:58:42.361Z">
 <meta property="article:author" content="xubatian">
-<meta property="article:tag" content="轻松一刻">
+<meta property="article:tag" content="Flink">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220216000755.png">
+<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220216005047.png">
   
   
     <link rel="icon" href="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/favicon.ico">
@@ -277,14 +285,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-央视直播" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Flink-原理与实现-Flink-SQL-CDC" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      央视直播
+      Flink 原理与实现: Flink SQL CDC
     </h1>
   
 
@@ -296,8 +304,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/%E5%A4%AE%E8%A7%86%E7%9B%B4%E6%92%AD/" class="archive-article-date">
-        <time datetime="2022-02-15T16:06:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-16</time>
+<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink-SQL-CDC/" class="archive-article-date">
+        <time datetime="2022-02-15T16:47:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-16</time>
 </a>
 
   
@@ -310,7 +318,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">13字</span>
+      <span class="post-count">4.4k字</span>
     </span>
   </span>
 
@@ -319,7 +327,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">17分</span>
     </span>
   </span>
 </div>
@@ -330,7 +338,124 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h2 id="关注央视网-关注国家最新动态"><a href="#关注央视网-关注国家最新动态" class="headerlink" title="关注央视网,关注国家最新动态"></a><a target="_blank" rel="noopener" href="https://2022.cctv.com/live/cctv1/index.shtml?spm=C73465.PnE5ZJN2e0Bi.EHVA0D7NetYz.39">关注央视网,关注国家最新动态</a></h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220216000755.png"></p>
+    <p>摘要：20年7月，Flink 1.11 新版发布，在生态及易用性上有大幅提升，其中 Table &amp; SQL 开始支持 Change Data Capture（CDC）。CDC 被广泛使用在复制数据、更新缓存、微服务间同步数据、审计日志等场景，本文由社区由曾庆东同学分享，主要介绍 Flink SQL CDC 在生产环境的落地实践以及总结的实战经验</p>
+<p>Tips：点击下方链接可查看社区直播的 Flink SQL CDC 相关视频～<br><a target="_blank" rel="noopener" href="https://flink-learning.org.cn/developers/flink-training-course3/">https://flink-learning.org.cn/developers/flink-training-course3/</a></p>
+<span id="more"></span>
+
+<h1 id="01-项目背景"><a href="#01-项目背景" class="headerlink" title="01 项目背景"></a><strong>01 项目背景</strong></h1><p>本人目前参与的项目属于公司里面数据密集、计算密集的一个重要项目，需要提供高效且准确的 OLAP 服务，提供灵活且实时的报表。业务数据存储在 MySQL  中，通过主从复制同步到报表库。作为集团级公司，数据增长多而且快，出现了多个千万级、亿级的大表。为了实现各个维度的各种复杂的报表业务，有些千万级大表仍然需要进行 Join，计算规模非常惊人，经常不能及时响应请求。</p>
+<p>随着数据量的日益增长和实时分析的需求越来越大，急需对系统进行流式计算、实时化改造。正是在这个背景下，开始了我们与 Flink SQL CDC 的故事。</p>
+<h1 id="02-解决方案"><a href="#02-解决方案" class="headerlink" title="02 解决方案"></a><strong>02 解决方案</strong></h1><p>针对平台现在存在的问题，我们提出了把报表的数据实时化的方案。该方案主要通过 Flink SQL CDC + Elasticsearch 实现。Flink SQL 支持 CDC 模式的数据同步，将 MySQL  中的全增量数据实时地采集、预计算、并同步到 Elasticsearch 中，Elasticsearch  作为我们的实时报表和即席分析引擎。项目整体架构图如下所示：</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220216005047.png"></p>
+<p>实时报表实现具体思路是，使用 Flink CDC 读取全量数据，全量数据同步完成后，Flink CDC 会无缝切换至 MySQL 的 binlog  位点继续消费增量的变更数据，且保证不会多消费一条也不会少消费一条。读取到的账单和订单的全增量数据会与产品表做关联补全信息，并做一些预聚合，然后将聚合结果输出到 Elasticsearch，前端页面只需要到 Elasticsearch 通过精准匹配（terms）查找数据，或者再使用 agg  做高维聚合统计得到多个服务中心的报表数据。</p>
+<p>从整体架构中，可以看到，Flink SQL 及其 CDC 功能在我们的架构中扮演着核心角色。我们采用 Flink SQL CDC，而不是 Canal + Kafka  的传统架构，主要原因还是因为其依赖组件少，维护成本低，开箱即用，上手容易。具体来说 Flink SQL CDC  是一个集采集、计算、传输于一体的工具，其吸引我们的优点有：</p>
+<p>① 减少维护的组件、简化实现链路； </p>
+<p>② 减少端到端延迟； </p>
+<p>③ 减轻维护成本和开发成本； </p>
+<p>④ 支持 Exactly Once 的读取和计算（由于我们是账务系统，所以数据一致性非常重要）； </p>
+<p>⑤ 数据不落地，减少存储成本； </p>
+<p>⑥ 支持全量和增量流式读取；</p>
+<p>有关 Flink SQL CDC 的介绍和教程，可以观看 Apache Flink 社区发布的相关视频：</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1zt4y1D7kt/">https://www.bilibili.com/video/BV1zt4y1D7kt/</a></p>
+<p>项目使用的是 flink-cdc-connectors 中提供的 mysql-cdc 组件。这是一个 Flink 数据源，支持对 MySQL  数据库的全量和增量读取。它在扫描全表前会先加一个全局读锁，然后获取此时的 binlog  position，紧接着释放全局读锁。随后开始扫描全表，当全表快照读取完后，会从之前获取的 binlog position  获取增量的变更记录。因此这个读锁是非常轻量的，持锁时间非常短，不会对线上业务造成太大影响。更多信息可以参考  flink-cdc-connectors 项目官网：<a target="_blank" rel="noopener" href="https://github.com/ververica/flink-cdc-connectors%E3%80%82">https://github.com/ververica/flink-cdc-connectors。</a></p>
+<h1 id="03-项目运行环境与现状"><a href="#03-项目运行环境与现状" class="headerlink" title="03 项目运行环境与现状"></a><strong>03 项目运行环境与现状</strong></h1><p>我们在生产环境搭建了 Hadoop + Flink + Elasticsearch 分布式环境，采用的 Flink on YARN 的 per-job  模式运行，使用 RocksDB 作为 state backend，HDFS 作为 checkpoint 持久化地址，并且做好了 HDFS  的容错，保证 checkpoint 数据不丢失。我们使用 SQL Client 提交作业，所有作业统一使用纯 SQL，没有写一行 Java  代码。</p>
+<p>目前已上线了 3 个基于 Flink CDC 的作业，已稳定在线上运行了两个星期，并且业务产生的订单实收和账单实收数据能实时聚合输出到  Elasticsearch，输出的数据准确无误。现在也正在对其他报表采用 Flink SQL CDC  进行实时化改造，替换旧的业务系统，让系统数据更实时。</p>
+<h1 id="04-具体实现"><a href="#04-具体实现" class="headerlink" title="04 具体实现"></a><strong>04 具体实现</strong></h1><p>① 进入 Flink/bin，使用 ./sql-client.sh embedded 启动 SQL CLI 客户端。 </p>
+<p>② 使用 DDL 创建 Flink Source 和 Sink 表。这里创建的表字段个数不一定要与 MySQL 的字段个数和顺序一致，只需要挑选 MySQL 表中业务需要的字段即可，并且字段类型保持一致。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">-- 在Flink创建账单实收source表</span><br><span class="line">CREATE TABLE bill_info (</span><br><span class="line">  billCode STRING,</span><br><span class="line">  serviceCode STRING,</span><br><span class="line">  accountPeriod STRING,</span><br><span class="line">  subjectName STRING ,</span><br><span class="line">  subjectCode STRING,</span><br><span class="line">  occurDate TIMESTAMP,</span><br><span class="line">  amt  DECIMAL(11,2),</span><br><span class="line">  status STRING,</span><br><span class="line">  proc_time AS PROCTIME() -–使用维表时需要指定该字段</span><br><span class="line">) WITH (</span><br><span class="line">  &#x27;connector&#x27; = &#x27;mysql-cdc&#x27;, -- 连接器</span><br><span class="line">  &#x27;hostname&#x27; = &#x27;******&#x27;,   --mysql地址</span><br><span class="line">  &#x27;port&#x27; = &#x27;3307&#x27;,  -- mysql端口</span><br><span class="line">  &#x27;username&#x27; = &#x27;******&#x27;,  --mysql用户名</span><br><span class="line">  &#x27;password&#x27; = &#x27;******&#x27;,  -- mysql密码</span><br><span class="line">  &#x27;database-name&#x27; = &#x27;cdc&#x27;, --  数据库名称</span><br><span class="line">  &#x27;table-name&#x27; = &#x27;***&#x27;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">-- 在Flink创建订单实收source表</span><br><span class="line">CREATE TABLE order_info (</span><br><span class="line">  orderCode STRING,</span><br><span class="line">  serviceCode STRING,</span><br><span class="line">  accountPeriod STRING,</span><br><span class="line">  subjectName STRING ,</span><br><span class="line">  subjectCode STRING,</span><br><span class="line">  occurDate TIMESTAMP,</span><br><span class="line">  amt  DECIMAL(11, 2),</span><br><span class="line">  status STRING,</span><br><span class="line">  proc_time AS PROCTIME()  -–使用维表时需要指定该字段</span><br><span class="line">) WITH (</span><br><span class="line">  &#x27;connector&#x27; = &#x27;mysql-cdc&#x27;,</span><br><span class="line">  &#x27;hostname&#x27; = &#x27;******&#x27;,</span><br><span class="line">  &#x27;port&#x27; = &#x27;3307&#x27;,</span><br><span class="line">  &#x27;username&#x27; = &#x27;******&#x27;,</span><br><span class="line">  &#x27;password&#x27; = &#x27;******&#x27;,</span><br><span class="line">  &#x27;database-name&#x27; = &#x27;cdc&#x27;,</span><br><span class="line">  &#x27;table-name&#x27; = &#x27;***&#x27;,</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">-- 创建科目维表</span><br><span class="line">CREATE TABLE subject_info (</span><br><span class="line">  code VARCHAR(32) NOT NULL,</span><br><span class="line">  name VARCHAR(64) NOT NULL,</span><br><span class="line">  PRIMARY KEY (code) NOT ENFORCED  --指定主键</span><br><span class="line">) WITH (</span><br><span class="line">  &#x27;connector&#x27; = &#x27;jdbc&#x27;,</span><br><span class="line">  &#x27;url&#x27; = &#x27;jdbc:mysql://xxxx:xxxx/spd?useSSL=false&amp;autoReconnect=true&#x27;,</span><br><span class="line">  &#x27;driver&#x27; = &#x27;com.mysql.cj.jdbc.Driver&#x27;,</span><br><span class="line">  &#x27;table-name&#x27; = &#x27;***&#x27;,</span><br><span class="line">  &#x27;username&#x27; = &#x27;******&#x27;,</span><br><span class="line">  &#x27;password&#x27; = &#x27;******&#x27;,</span><br><span class="line">  &#x27;lookup.cache.max-rows&#x27; = &#x27;3000&#x27;,</span><br><span class="line">  &#x27;lookup.cache.ttl&#x27; = &#x27;10s&#x27;,</span><br><span class="line">  &#x27;lookup.max-retries&#x27; = &#x27;3&#x27;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">-- 创建实收分布结果表，把结果写到 Elasticsearch</span><br><span class="line">CREATE TABLE income_distribution (</span><br><span class="line">  serviceCode STRING,</span><br><span class="line">  accountPeriod STRING,</span><br><span class="line">  subjectCode STRING,</span><br><span class="line">  subjectName STRING,</span><br><span class="line">  amt  DECIMAL(13,2),</span><br><span class="line">  PRIMARY KEY (serviceCode, accountPeriod, subjectCode) NOT ENFORCED</span><br><span class="line">) WITH (</span><br><span class="line">  &#x27;connector&#x27; = &#x27;elasticsearch-7&#x27;,</span><br><span class="line">  &#x27;hosts&#x27; = &#x27;http://xxxx:9200&#x27;,</span><br><span class="line">  &#x27;index&#x27; = &#x27;income_distribution&#x27;,</span><br><span class="line">  &#x27;sink.bulk-flush.backoff.strategy&#x27; = &#x27;EXPONENTIAL&#x27;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>以上的建表 DDL 分别创建了订单实收 source 表、账单实收 source 表、产品科目维表和 Elasticsearch  结果表。建表完成后，Flink 是不会马上去同步 MySQL 的数据，而是等到用户提交了一个 insert 作业后才会执行同步数据，并且  Flink 不会存储数据。我们的第一个作业是计算收入分布，数据来源于 bill_info 和 order_info 两张 MySQL  表，并且账单实收表和订单实收表都需要关联维表数据获取应收科目的最新中文名称，按照服务中心、账期、科目代码和科目名称进行分组计算实收金额的 sum 值，实收分布具体 DML 如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO income_distribution</span><br><span class="line">SELECT t1.serviceCode, t1.accountPeriod, t1.subjectCode, t1.subjectName, SUM(amt) AS amt </span><br><span class="line">FROM (</span><br><span class="line">  SELECT b.serviceCode, b.accountPeriod, b.subjectCode, s.name AS subjectName, SUM(amt) AS amt </span><br><span class="line">  FROM bill_info AS b</span><br><span class="line">  JOIN subject_info FOR SYSTEM_TIME AS OF b.proc_time s ON b.subjectCode = s.code </span><br><span class="line">  GROUP BY b.serviceCode, b.accountPeriod, b.subjectCode, s.name</span><br><span class="line">UNION ALL</span><br><span class="line">  SELECT b.serviceCode, b.accountPeriod, b.subjectCode, s.name AS subjectName, SUM(amt) AS amt</span><br><span class="line">  FROM order_info AS b</span><br><span class="line">  JOIN subject_info FOR SYSTEM_TIME AS OF b.proc_time s ON b.subjectCode = s.code </span><br><span class="line">  GROUP BY b.serviceCode, b.accountPeriod, b.subjectCode, s.name</span><br><span class="line">) AS t1</span><br><span class="line">GROUP BY t1.serviceCode, t1.accountPeriod, t1.subjectCode, t1.subjectName;</span><br></pre></td></tr></table></figure>
+
+<p>Flink SQL 的维表 JOIN 和双流 JOIN 写法上不太一样，对于维表，还需要在 Flink source table 上添加一个  proctime 字段 proc_time AS PROCTIME()，关联的时候使用 FOR SYSTEM_TIME AS OF 的 SQL  语法查询时态表，意思是关联查询最新版本的维表数据。关于维表 JOIN 的使用可参阅：<a target="_blank" rel="noopener" href="https://ci.apache.org/projects/flink/flink-docs-release-1.11/zh/dev/table/streaming/joins.html%E3%80%82">https://ci.apache.org/projects/flink/flink-docs-release-1.11/zh/dev/table/streaming/joins.html。</a></p>
+<p>③ 在 SQL Client 执行以上作业后，YARN 会创建一个 Flink 集群运行作业，并且用户可以在 Hadoop  上查看到执行作业的所有信息，并且能进入 Flink 的 Web UI 页面查看 Flink 作业详情，以下是 Hadoop 所有作业情况。</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220216005207.png"></p>
+<p>④ 作业提交后，Flink SQL CDC 会扫描指定的 MySQL 表，在这期间 Flink 也会进行  checkpoint，所以需要按照上文所述的配置 checkpoint 的重试策略和重试次数。当数据被读取进 Flink 后，Flink  会流式地进行作业逻辑的计算，实时统计出聚合结果输出到 Elasticsearch（sink 端）。相当于我们使用 Flink 在 MySQL 的表上维护了一个实时的物化视图，并将这个实时物化视图的结果存在了 Elasticsearch 中。在  Elasticsearch 中使用 GET /income_distribution/_search{ “query”:  {“match_all”: {}}} 命令查看输出的实收分布结果，如下图：</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220216005222.png"></p>
+<p>通过图中的结果可以看出聚合结果被实时的计算出来，并写到了 Elasticsearch 中了。</p>
+<h1 id="05-踩过的坑和学到的经验"><a href="#05-踩过的坑和学到的经验" class="headerlink" title="05 踩过的坑和学到的经验"></a><strong>05 踩过的坑和学到的经验</strong></h1><h2 id="1-Flink-作业原来运行在-standalone-session-模式下，提交多个-Flink-作业会导致作业失败报错。"><a href="#1-Flink-作业原来运行在-standalone-session-模式下，提交多个-Flink-作业会导致作业失败报错。" class="headerlink" title="1. Flink 作业原来运行在 standalone session 模式下，提交多个 Flink 作业会导致作业失败报错。"></a><strong>1. Flink 作业原来运行在 standalone session 模式下，提交多个 Flink 作业会导致作业失败报错。</strong></h2><ul>
+<li><strong>原因：</strong>因为 standalone session 模式下启动多个作业会导致多个作业的 Task 共享一个 JVM，可能会导致一些不稳定的问题。并且排查问题时，多个作业的日志混在一个 TaskManager 中，增加了排查的难度。</li>
+</ul>
+<ul>
+<li><strong>解决方法：</strong>采用 YARN 的 per-job 模式启动多个作业，能有更好的隔离性。</li>
+</ul>
+<h2 id="2-SELECT-elasticsearch-table-报以下错误："><a href="#2-SELECT-elasticsearch-table-报以下错误：" class="headerlink" title="2. SELECT elasticsearch table 报以下错误："></a><strong>2. SELECT elasticsearch table 报以下错误：</strong></h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220216005300.png"></p>
+<ul>
+<li><strong>原因：</strong>Elasticsearch connector 目前只支持了 sink，不支持 source 。所以不能 SELECT elasticsearch table。</li>
+</ul>
+<h2 id="3-在-flink-conf-yaml-里修改默认并行度，但是在-Web-UI-看到作业的并行度还是-1，并行度修改不生效。"><a href="#3-在-flink-conf-yaml-里修改默认并行度，但是在-Web-UI-看到作业的并行度还是-1，并行度修改不生效。" class="headerlink" title="3. 在 flink-conf.yaml 里修改默认并行度，但是在 Web UI 看到作业的并行度还是 1，并行度修改不生效。"></a><strong>3. 在 flink-conf.yaml 里修改默认并行度，但是在 Web UI 看到作业的并行度还是 1，并行度修改不生效。</strong></h2><ul>
+<li><strong>解决办法：</strong>在使用 SQL Client 时 sql-client-defaults.yaml 中的并行度配置的优先级更高。在  sql-client-defaults.yaml 中修改并行度，或者删除 sql-client-defaults.yaml  中的并行度配置。更建议采用后者。</li>
+</ul>
+<h2 id="4-Flink-作业在扫描-MySQL-全量数据时，checkpoint-超时，出现作业-failover，如下图："><a href="#4-Flink-作业在扫描-MySQL-全量数据时，checkpoint-超时，出现作业-failover，如下图：" class="headerlink" title="4. Flink 作业在扫描 MySQL 全量数据时，checkpoint 超时，出现作业 failover，如下图："></a><strong>4. Flink 作业在扫描 MySQL 全量数据时，checkpoint 超时，出现作业 failover，如下图：</strong></h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220216005324.png"></p>
+<ul>
+<li><strong>原因：</strong>Flink CDC 在 scan 全表数据（我们的实收表有千万级数据）需要小时级的时间（受下游聚合反压影响），而在 scan 全表过程中是没有  offset 可以记录的（意味着没法做 checkpoint），但是 Flink 框架任何时候都会按照固定间隔时间做  checkpoint，所以此处 mysql-cdc source 做了比较取巧的方式，即在 scan 全表的过程中，会让执行中的  checkpoint 一直等待甚至超时。超时的 checkpoint 会被仍未认为是 failed checkpoint，默认配置下，这会触发  Flink 的 failover 机制，而默认的 failover 机制是不重启。所以会造成上面的现象。</li>
+</ul>
+<ul>
+<li><strong>解决办法：</strong>在 flink-conf.yaml 配置 failed checkpoint 容忍次数，以及失败重启策略，如下：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">execution.checkpointing.interval: 10min   # checkpoint间隔时间</span><br><span class="line">execution.checkpointing.tolerable-failed-checkpoints: 100  # checkpoint 失败容忍次数</span><br><span class="line">restart-strategy: fixed-delay  # 重试策略</span><br><span class="line">restart-strategy.fixed-delay.attempts: 2147483647   # 重试次数</span><br></pre></td></tr></table></figure>
+
+<p>目前 Flink 社区也有一个 issue（FLINK-18578）来支持 source 主动拒绝 checkpoint 的机制，将来基于该机制，能比较优雅地解决这个问题。</p>
+<h2 id="5-Flink-怎么样开启-YARN-的-per-job-模式？"><a href="#5-Flink-怎么样开启-YARN-的-per-job-模式？" class="headerlink" title="5. Flink 怎么样开启 YARN 的 per-job 模式？"></a><strong>5. Flink 怎么样开启 YARN 的 per-job 模式？</strong></h2><ul>
+<li><strong>解决方法：</strong>在 flink-conf.yaml 中配置 execution.target: yarn-per-job。</li>
+</ul>
+<h2 id="6-进入-SQL-Client-创建-table-后，在另外一个节点进入-SQL-Client-查询不到-table。"><a href="#6-进入-SQL-Client-创建-table-后，在另外一个节点进入-SQL-Client-查询不到-table。" class="headerlink" title="6. 进入 SQL Client 创建 table 后，在另外一个节点进入 SQL Client 查询不到 table。"></a><strong>6. 进入 SQL Client 创建 table 后，在另外一个节点进入 SQL Client 查询不到 table。</strong></h2><ul>
+<li><strong>原因：</strong>因为 SQL Client 默认的 Catalog 是在 in-memory 的，不是持久化 Catalog，所以这属于正常现象，每次启动 Catalog 里面都是空的。</li>
+</ul>
+<h2 id="7-作业在运行时-Elasticsearch-报如下错误："><a href="#7-作业在运行时-Elasticsearch-报如下错误：" class="headerlink" title="7. 作业在运行时 Elasticsearch 报如下错误："></a><strong>7. 作业在运行时 Elasticsearch 报如下错误：</strong></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Caused by: org.apache.Flink.elasticsearch7.shaded.org.elasticsearch.ElasticsearchException: Elasticsearch exception [type=illegal_argument_exception, reason=mapper [amt] cannot be changed from type [long] to [float]]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>原因：</strong>数据库表的字段 amt 的类型是 decimal，DDL 创建输出到 es 的 amt 字段的类型也是 decimal，因为输出到 es  的第一条数据的amt如果是整数，比如是 10，输出到 es 的类型是 long 类型的，es client 会自动创建 es 的索引并且设置  amt 字段为 long 类型的格式，那么如果下一次输出到 es 的 amt 是非整数 10.1，那么输出到 es  的时候就会出现类型不匹配的错误。</li>
+</ul>
+<ul>
+<li><strong>解决方法：</strong>手动生成 es 索引和 mapping 的信息，指定好 decimal 类型的数据格式是 saclefloat，但是在 DDL 处仍然可以保留该字段类型是 decimal。</li>
+</ul>
+<h2 id="8-作业在运行时-mysql-cdc-source-报如下错误："><a href="#8-作业在运行时-mysql-cdc-source-报如下错误：" class="headerlink" title="8. 作业在运行时 mysql cdc source 报如下错误："></a><strong>8. 作业在运行时 mysql cdc source 报如下错误：</strong></h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220216005414.png"></p>
+<ul>
+<li><strong>原因：</strong>因为数据库中别的表做了字段修改，CDC source 同步到了 ALTER DDL 语句，但是解析失败抛出的异常。</li>
+</ul>
+<ul>
+<li><strong>解决方法：</strong>在 flink-cdc-connectors 最新版本中已经修复该问题（跳过了无法解析的 DDL）。升级 connector jar 包到最新版本 1.1.0：flink-sql-connector-mysql-cdc-1.1.0.jar，替换 flink/lib 下的旧包。</li>
+</ul>
+<h2 id="9-扫描全表阶段慢，在-Web-UI-出现如下现象："><a href="#9-扫描全表阶段慢，在-Web-UI-出现如下现象：" class="headerlink" title="9. 扫描全表阶段慢，在 Web UI 出现如下现象："></a><strong>9. 扫描全表阶段慢，在 Web UI 出现如下现象：</strong></h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220216005428.png"></p>
+<ul>
+<li><strong>原因：</strong>扫描全表阶段慢不一定是 cdc source 的问题，可能是下游节点处理太慢反压了。</li>
+</ul>
+<ul>
+<li><strong>解决方法：</strong>通过 Web UI 的反压工具排查发现，瓶颈主要在聚合节点上。通过在 sql-client-defaults.yaml 文件配上 MiniBatch 相关参数和开启 distinct 优化（我们的聚合中有 count distinct），作业的 scan 效率得到了很大的提升，从原先的 10 小时，提升到了 1 小时。关于性能调优的参数可以参阅：<a target="_blank" rel="noopener" href="https://ci.apache.org/projects/flink/flink-docs-release-1.11/zh/dev/table/tuning/streaming_aggregation_optimization.html%E3%80%82">https://ci.apache.org/projects/flink/flink-docs-release-1.11/zh/dev/table/tuning/streaming_aggregation_optimization.html。</a></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">configuration:</span><br><span class="line">  table.exec.mini-batch.enabled: true</span><br><span class="line">  table.exec.mini-batch.allow-latency: 2s</span><br><span class="line">  table.exec.mini-batch.size: 5000</span><br><span class="line">  table.optimizer.distinct-agg.split.enabled: true</span><br></pre></td></tr></table></figure>
+
+<h2 id="10-CDC-source-扫描-MySQL-表期间，发现无法往该表-insert-数据。"><a href="#10-CDC-source-扫描-MySQL-表期间，发现无法往该表-insert-数据。" class="headerlink" title="10. CDC source 扫描 MySQL 表期间，发现无法往该表 insert 数据。"></a><strong>10. CDC source 扫描 MySQL 表期间，发现无法往该表 insert 数据。</strong></h2><ul>
+<li><strong>原因：</strong>由于使用的 MySQL 用户未授权 RELOAD 权限，导致无法获取全局读锁（FLUSH TABLES WITH READ LOCK）， CDC  source 就会退化成表级读锁，而使用表级读锁需要等到全表 scan 完，才能释放锁，所以会发现持锁时间过长的现象，影响其他业务写入数据。</li>
+</ul>
+<ul>
+<li><strong>解决方法：</strong>给使用的 MySQL 用户授予 RELOAD  权限即可。所需的权限列表详见文档：<a target="_blank" rel="noopener" href="https://github.com/ververica/flink-cdc-connectors/wiki/mysql-cdc-connector#setup-mysql-server%E3%80%82%E5%A6%82%E6%9E%9C%E5%87%BA%E4%BA%8E%E6%9F%90%E4%BA%9B%E5%8E%9F%E5%9B%A0%E6%97%A0%E6%B3%95%E6%8E%88%E4%BA%88">https://github.com/ververica/flink-cdc-connectors/wiki/mysql-cdc-connector#setup-mysql-server。如果出于某些原因无法授予</a> RELOAD 权限，也可以显式配上 ‘debezium.snapshot.locking.mode’ =  ‘none’来避免所有锁的获取，但要注意只有当快照期间表的 schema 不会变更才安全。</li>
+</ul>
+<h2 id="11-多个作业共用同一张-source-table-时，没有修改-server-id-导致读取出来的数据有丢失。"><a href="#11-多个作业共用同一张-source-table-时，没有修改-server-id-导致读取出来的数据有丢失。" class="headerlink" title="11. 多个作业共用同一张 source table 时，没有修改 server id 导致读取出来的数据有丢失。"></a><strong>11. 多个作业共用同一张 source table 时，没有修改 server id 导致读取出来的数据有丢失。</strong></h2><ul>
+<li><strong>原因：</strong>MySQL binlog 数据同步的原理是，CDC source 会伪装成 MySQL 集群的一个 slave（使用指定的 server id 作为唯一  id），然后从 MySQL 拉取 binlog 数据。如果一个 MySQL 集群中有多个 slave 有同样的  id，就会导致拉取数据错乱的问题。</li>
+</ul>
+<ul>
+<li><strong>解决方法：</strong>默认会随机生成一个 server id，容易有碰撞的风险。所以建议使用动态参数（table hint）在 query 中覆盖 server id。如下所示：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT *</span><br><span class="line">FROM bill_info /*+ OPTIONS(&#x27;server-id&#x27;=&#x27;123456&#x27;) */ ;</span><br></pre></td></tr></table></figure>
+
+<h2 id="12-在启动作业时，YARN-接收了任务，但作业一直未启动："><a href="#12-在启动作业时，YARN-接收了任务，但作业一直未启动：" class="headerlink" title="12. 在启动作业时，YARN 接收了任务，但作业一直未启动："></a><strong>12. 在启动作业时，YARN 接收了任务，但作业一直未启动：</strong></h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220216005503.png"></p>
+<ul>
+<li><strong>原因：</strong>Queue Resource Limit for AM 超过了限制资源限制。默认的最大内存是 30G (集群内存) * 0.1 = 3G，而每个 JM 申请 2G 内存，当提交第二个任务时，资源就不够了。</li>
+</ul>
+<ul>
+<li><strong>解决方法：</strong>调大 AM 的 resource limit，在 capacity-scheduler.xml 配置  yarn.scheduler.capacity.maximum-am-resource-percent，代表AM的占总资源的百分比，默认为0.1，改成0.3（根据服务器的性能灵活配置）。</li>
+</ul>
+<h2 id="13-AM-进程起不来，一直被-kill-掉。"><a href="#13-AM-进程起不来，一直被-kill-掉。" class="headerlink" title="13. AM 进程起不来，一直被 kill 掉。"></a><strong>13. AM 进程起不来，一直被 kill 掉。</strong></h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220216005522.png"></p>
+<ul>
+<li><strong>原因：</strong>386.9 MB of 1 GB physical memory used; 2.1 GB of 2.1 GB virtual memory  use。默认物理内存是 1GB，动态申请到了 1GB，其中使用了386.9 MB。物理内存 x 2.1=虚拟内存，1GBx2.1≈2.1GB  ，2.1GB 虚拟内存已经耗尽，当虚拟内存不够时候，AM 的 container 就会自杀。</li>
+</ul>
+<ul>
+<li><strong>解决方法：</strong>两个解决方案，或调整 yarn.nodemanager.vmem-pmem-ratio 值大点，或 yarn.nodemanager.vmem-check-enabled=false，关闭虚拟内存检查。参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/lzxlfly/article/details/89175452%E3%80%82">https://blog.csdn.net/lzxlfly/article/details/89175452。</a></li>
+</ul>
+<h1 id="06-总结"><a href="#06-总结" class="headerlink" title="06 总结"></a><strong>06 总结</strong></h1><p>为了提升了实时报表服务的可用性和实时性，一开始我们采用了 Canal+Kafka+Flink 的方案，可是发现需要写比较多的 Java 代码，而且还需要处理好 DataStream 和 Table  的转换以及 binlong 位置的获取，开发难度相对较大。另外，需要维护 Kafka 和 Canal  这两个组件的稳定运行，对于我们小团队来说成本也不小。由于我们公司已经有基于 Flink 的任务在线上运行，因此采用 Flink SQL CDC  就成了顺理成章的事情。基于 Flink SQL CDC 的方案只需要编写 SQL ，不用写一行 Java  代码就能完成实时链路的打通和实时报表的计算，对于我们来说非常的简单易用，而且在线上运行的稳定性和性能表现也让我们满意。</p>
+<p>知识源于积累,登峰造极源于自律!</p>
+<p>好文章就得收藏慢慢品, 文章转载于: <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/Mfn-fFegb5wzI8BIHhNGvQ">https://mp.weixin.qq.com/s/Mfn-fFegb5wzI8BIHhNGvQ</a></p>
 
     
 
@@ -376,7 +501,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://xubatian.cn/央视直播/" title="央视直播" target="_blank">http://xubatian.cn/央视直播/</a>
+          <a href="http://xubatian.cn/Flink-原理与实现-Flink-SQL-CDC/" title="Flink 原理与实现: Flink SQL CDC" target="_blank">http://xubatian.cn/Flink-原理与实现-Flink-SQL-CDC/</a>
         </li>
         
         <li>
@@ -398,7 +523,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">轻松一刻</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
         		</li>
       		
 		</ul>
@@ -410,7 +535,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/轻松一刻//" class="article-tag-list-link color5">轻松一刻</a>
+        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
         		</li>
       		
 		</ul>
@@ -465,7 +590,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/%E5%A4%AE%E8%A7%86%E7%9B%B4%E6%92%AD/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink-SQL-CDC/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -480,18 +605,9 @@
 
 <nav id="article-nav">
   
-    <a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink-SQL-CDC/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Flink 原理与实现: Flink SQL CDC
-        
-      </div>
-    </a>
   
-  
-    <a href="/Spark%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Spark-SQL%E7%BC%96%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Spark原理与实现: Spark SQL编程</div>
+    <a href="/%E5%A4%AE%E8%A7%86%E7%9B%B4%E6%92%AD/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">央视直播</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -518,7 +634,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E6%B3%A8%E5%A4%AE%E8%A7%86%E7%BD%91-%E5%85%B3%E6%B3%A8%E5%9B%BD%E5%AE%B6%E6%9C%80%E6%96%B0%E5%8A%A8%E6%80%81"><span class="toc-number">1.</span> <span class="toc-text">关注央视网,关注国家最新动态</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#01-%E9%A1%B9%E7%9B%AE%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">01 项目背景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#02-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">2.</span> <span class="toc-text">02 解决方案</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#03-%E9%A1%B9%E7%9B%AE%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B8%8E%E7%8E%B0%E7%8A%B6"><span class="toc-number">3.</span> <span class="toc-text">03 项目运行环境与现状</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#04-%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0"><span class="toc-number">4.</span> <span class="toc-text">04 具体实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#05-%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91%E5%92%8C%E5%AD%A6%E5%88%B0%E7%9A%84%E7%BB%8F%E9%AA%8C"><span class="toc-number">5.</span> <span class="toc-text">05 踩过的坑和学到的经验</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Flink-%E4%BD%9C%E4%B8%9A%E5%8E%9F%E6%9D%A5%E8%BF%90%E8%A1%8C%E5%9C%A8-standalone-session-%E6%A8%A1%E5%BC%8F%E4%B8%8B%EF%BC%8C%E6%8F%90%E4%BA%A4%E5%A4%9A%E4%B8%AA-Flink-%E4%BD%9C%E4%B8%9A%E4%BC%9A%E5%AF%BC%E8%87%B4%E4%BD%9C%E4%B8%9A%E5%A4%B1%E8%B4%A5%E6%8A%A5%E9%94%99%E3%80%82"><span class="toc-number">5.1.</span> <span class="toc-text">1. Flink 作业原来运行在 standalone session 模式下，提交多个 Flink 作业会导致作业失败报错。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-SELECT-elasticsearch-table-%E6%8A%A5%E4%BB%A5%E4%B8%8B%E9%94%99%E8%AF%AF%EF%BC%9A"><span class="toc-number">5.2.</span> <span class="toc-text">2. SELECT elasticsearch table 报以下错误：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%9C%A8-flink-conf-yaml-%E9%87%8C%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E5%B9%B6%E8%A1%8C%E5%BA%A6%EF%BC%8C%E4%BD%86%E6%98%AF%E5%9C%A8-Web-UI-%E7%9C%8B%E5%88%B0%E4%BD%9C%E4%B8%9A%E7%9A%84%E5%B9%B6%E8%A1%8C%E5%BA%A6%E8%BF%98%E6%98%AF-1%EF%BC%8C%E5%B9%B6%E8%A1%8C%E5%BA%A6%E4%BF%AE%E6%94%B9%E4%B8%8D%E7%94%9F%E6%95%88%E3%80%82"><span class="toc-number">5.3.</span> <span class="toc-text">3. 在 flink-conf.yaml 里修改默认并行度，但是在 Web UI 看到作业的并行度还是 1，并行度修改不生效。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Flink-%E4%BD%9C%E4%B8%9A%E5%9C%A8%E6%89%AB%E6%8F%8F-MySQL-%E5%85%A8%E9%87%8F%E6%95%B0%E6%8D%AE%E6%97%B6%EF%BC%8Ccheckpoint-%E8%B6%85%E6%97%B6%EF%BC%8C%E5%87%BA%E7%8E%B0%E4%BD%9C%E4%B8%9A-failover%EF%BC%8C%E5%A6%82%E4%B8%8B%E5%9B%BE%EF%BC%9A"><span class="toc-number">5.4.</span> <span class="toc-text">4. Flink 作业在扫描 MySQL 全量数据时，checkpoint 超时，出现作业 failover，如下图：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Flink-%E6%80%8E%E4%B9%88%E6%A0%B7%E5%BC%80%E5%90%AF-YARN-%E7%9A%84-per-job-%E6%A8%A1%E5%BC%8F%EF%BC%9F"><span class="toc-number">5.5.</span> <span class="toc-text">5. Flink 怎么样开启 YARN 的 per-job 模式？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E8%BF%9B%E5%85%A5-SQL-Client-%E5%88%9B%E5%BB%BA-table-%E5%90%8E%EF%BC%8C%E5%9C%A8%E5%8F%A6%E5%A4%96%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9%E8%BF%9B%E5%85%A5-SQL-Client-%E6%9F%A5%E8%AF%A2%E4%B8%8D%E5%88%B0-table%E3%80%82"><span class="toc-number">5.6.</span> <span class="toc-text">6. 进入 SQL Client 创建 table 后，在另外一个节点进入 SQL Client 查询不到 table。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E4%BD%9C%E4%B8%9A%E5%9C%A8%E8%BF%90%E8%A1%8C%E6%97%B6-Elasticsearch-%E6%8A%A5%E5%A6%82%E4%B8%8B%E9%94%99%E8%AF%AF%EF%BC%9A"><span class="toc-number">5.7.</span> <span class="toc-text">7. 作业在运行时 Elasticsearch 报如下错误：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E4%BD%9C%E4%B8%9A%E5%9C%A8%E8%BF%90%E8%A1%8C%E6%97%B6-mysql-cdc-source-%E6%8A%A5%E5%A6%82%E4%B8%8B%E9%94%99%E8%AF%AF%EF%BC%9A"><span class="toc-number">5.8.</span> <span class="toc-text">8. 作业在运行时 mysql cdc source 报如下错误：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E6%89%AB%E6%8F%8F%E5%85%A8%E8%A1%A8%E9%98%B6%E6%AE%B5%E6%85%A2%EF%BC%8C%E5%9C%A8-Web-UI-%E5%87%BA%E7%8E%B0%E5%A6%82%E4%B8%8B%E7%8E%B0%E8%B1%A1%EF%BC%9A"><span class="toc-number">5.9.</span> <span class="toc-text">9. 扫描全表阶段慢，在 Web UI 出现如下现象：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-CDC-source-%E6%89%AB%E6%8F%8F-MySQL-%E8%A1%A8%E6%9C%9F%E9%97%B4%EF%BC%8C%E5%8F%91%E7%8E%B0%E6%97%A0%E6%B3%95%E5%BE%80%E8%AF%A5%E8%A1%A8-insert-%E6%95%B0%E6%8D%AE%E3%80%82"><span class="toc-number">5.10.</span> <span class="toc-text">10. CDC source 扫描 MySQL 表期间，发现无法往该表 insert 数据。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E5%A4%9A%E4%B8%AA%E4%BD%9C%E4%B8%9A%E5%85%B1%E7%94%A8%E5%90%8C%E4%B8%80%E5%BC%A0-source-table-%E6%97%B6%EF%BC%8C%E6%B2%A1%E6%9C%89%E4%BF%AE%E6%94%B9-server-id-%E5%AF%BC%E8%87%B4%E8%AF%BB%E5%8F%96%E5%87%BA%E6%9D%A5%E7%9A%84%E6%95%B0%E6%8D%AE%E6%9C%89%E4%B8%A2%E5%A4%B1%E3%80%82"><span class="toc-number">5.11.</span> <span class="toc-text">11. 多个作业共用同一张 source table 时，没有修改 server id 导致读取出来的数据有丢失。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E5%9C%A8%E5%90%AF%E5%8A%A8%E4%BD%9C%E4%B8%9A%E6%97%B6%EF%BC%8CYARN-%E6%8E%A5%E6%94%B6%E4%BA%86%E4%BB%BB%E5%8A%A1%EF%BC%8C%E4%BD%86%E4%BD%9C%E4%B8%9A%E4%B8%80%E7%9B%B4%E6%9C%AA%E5%90%AF%E5%8A%A8%EF%BC%9A"><span class="toc-number">5.12.</span> <span class="toc-text">12. 在启动作业时，YARN 接收了任务，但作业一直未启动：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-AM-%E8%BF%9B%E7%A8%8B%E8%B5%B7%E4%B8%8D%E6%9D%A5%EF%BC%8C%E4%B8%80%E7%9B%B4%E8%A2%AB-kill-%E6%8E%89%E3%80%82"><span class="toc-number">5.13.</span> <span class="toc-text">13. AM 进程起不来，一直被 kill 掉。</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#06-%E6%80%BB%E7%BB%93"><span class="toc-number">6.</span> <span class="toc-text">06 总结</span></a></li></ol>
                     </div>
                 </span>
             </div>
