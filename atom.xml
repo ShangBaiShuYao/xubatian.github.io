@@ -6,7 +6,7 @@
   <link href="http://xubatian.cn/atom.xml" rel="self"/>
   
   <link href="http://xubatian.cn/"/>
-  <updated>2022-02-15T02:21:55.314Z</updated>
+  <updated>2022-02-15T03:44:33.995Z</updated>
   <id>http://xubatian.cn/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Flink 原理与实现: Flink-CDC</title>
+    <link href="http://xubatian.cn/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink-CDC/"/>
+    <id>http://xubatian.cn/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink-CDC/</id>
+    <published>2022-02-15T03:38:00.000Z</published>
+    <updated>2022-02-15T03:44:33.995Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="什么是CDC"><a href="#什么是CDC" class="headerlink" title="什么是CDC"></a>什么是CDC</h1><p>CDC是Change Data Capture(变更数据获取)的简称。核心思想是，监测并捕获数据库的变动（包括数据或数据表的插入、更新以及删除等），将这些变更按发生的顺序完整记录下来，写入到消息中间件中以供其他服务进行订阅及消费。</p><h1 id="CDC的种类"><a href="#CDC的种类" class="headerlink" title="CDC的种类"></a>CDC的种类</h1><p><strong>CDC主要分为基于查询的CDC和基于Binlog的CDC两种方式</strong>，我们主要了解一下这两种之间的区别：</p><span id="more"></span><table><thead><tr><th></th><th>基于查询的CDC</th><th>基于Binlog的CDC</th></tr></thead><tbody><tr><td>开源产品</td><td>Sqoop、Kafka JDBC Source</td><td>Canal（国内用的多）、Maxwell、Debezium(国外用的多)</td></tr><tr><td>执行模式</td><td>Batch(批处理)</td><td>Streaming(流式)</td></tr><tr><td>是否可以捕获所有数据变化</td><td>否</td><td>是</td></tr><tr><td>延迟性</td><td>高延迟</td><td>低延迟</td></tr><tr><td>是否增加数据库压力</td><td>是</td><td>否</td></tr></tbody></table><p>注意：</p><p>​         Flink里面的CDC其实内置了Debezium. 这个flinkcdc是阿里搞的,他并没有合并到flink的核心包里面.所以官网上是找不到的.他的资料在git上面. 我们要用只能去Github上去找资料.<br>​        <strong>Sqoop导数据是每天凌晨30分启动任务去导数据.一次性到数据.</strong><br>​        <strong>Maxwell是变化一条导一条.</strong></p><h1 id="Flink-CDC"><a href="#Flink-CDC" class="headerlink" title="Flink-CDC"></a>Flink-CDC</h1><p>​            Flink社区开发了 flink-cdc-connectors 组件，这是一个可以直接从 MySQL、PostgreSQL 等数据库直接读取全量数据和增量变更数据的 source 组件。目前也已开源，开源地址：<a href="https://github.com/ververica/flink-cdc-connectors">https://github.com/ververica/flink-cdc-connectors</a></p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220215114212.png"></p><h1 id="FlinkCDC案例实操"><a href="#FlinkCDC案例实操" class="headerlink" title="FlinkCDC案例实操"></a>FlinkCDC案例实操</h1><p>案例代码: <a href="https://github.com/ShangBaiShuYao/flink-learning-from-zhisheng/blob/main/flink-cdc/src/main/java/com/shangbaishuyao/flinkcdc/">https://github.com/ShangBaiShuYao/flink-learning-from-zhisheng/blob/main/flink-cdc/src/main/java/com/shangbaishuyao/flinkcdc/</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;什么是CDC&quot;&gt;&lt;a href=&quot;#什么是CDC&quot; class=&quot;headerlink&quot; title=&quot;什么是CDC&quot;&gt;&lt;/a&gt;什么是CDC&lt;/h1&gt;&lt;p&gt;CDC是Change Data Capture(变更数据获取)的简称。核心思想是，监测并捕获数据库的变动（包括数据或数据表的插入、更新以及删除等），将这些变更按发生的顺序完整记录下来，写入到消息中间件中以供其他服务进行订阅及消费。&lt;/p&gt;
+&lt;h1 id=&quot;CDC的种类&quot;&gt;&lt;a href=&quot;#CDC的种类&quot; class=&quot;headerlink&quot; title=&quot;CDC的种类&quot;&gt;&lt;/a&gt;CDC的种类&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;CDC主要分为基于查询的CDC和基于Binlog的CDC两种方式&lt;/strong&gt;，我们主要了解一下这两种之间的区别：&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="大数据" scheme="http://xubatian.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+    
+    <category term="Flink" scheme="http://xubatian.cn/tags/Flink/"/>
+    
+  </entry>
   
   <entry>
     <title>Flink 原理与实现: Flink流计算常用算子（Flink算子大全）</title>
@@ -466,27 +488,6 @@ streamEnv.setParallelism(1)//加在ENV上表示默认所有的算子平行度都
 &lt;p&gt;​        每个task slot表示TaskManager拥有资源的一个固定大小的子集。假如一个TaskManager有三个slot，那么它会将其管理的内存分成三份给各个slot。资源slot化意味着一个subtask将不需要跟来自其他job的subtask竞争被管理的内存，取而代之的是它将拥有一定数量的内存储备。需要注意的是，这里不会涉及到CPU的隔离，slot目前仅仅用来隔离task的受管理的内存。&lt;/p&gt;
 &lt;p&gt;​        通过调整task slot的数量，允许用户定义subtask之间如何互相隔离。如果一个TaskManager一个slot，那将意味着每个task group运行在独立的JVM中（该JVM可能是通过一个特定的容器启动的），而一个TaskManager多个slot意味着更多的subtask可以共享同一个JVM。而在同一个JVM进程中的task将共享TCP连接（基于多路复用）和心跳消息。它们也可能共享数据集和数据结构，因此这减少了每个task的负载。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220211124632.png&quot;&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="大数据" scheme="http://xubatian.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
-    
-    
-    <category term="Flink" scheme="http://xubatian.cn/tags/Flink/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Flink 原理与实现: Flink任务调度原理概念</title>
-    <link href="http://xubatian.cn/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%86%E6%A6%82%E5%BF%B5/"/>
-    <id>http://xubatian.cn/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%86%E6%A6%82%E5%BF%B5/</id>
-    <published>2022-02-11T04:33:07.000Z</published>
-    <updated>2022-02-11T04:36:00.355Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220211123327.png"></p><span id="more"></span><p>​        客户端不是运行时和程序执行的一部分，但它用于准备并发送dataflow(JobGraph)给Master(JobManager)，然后，客户端断开连接或者维持连接以等待接收计算结果。</p><p>​        当 Flink 集群启动后，首先会启动一个 JobManger 和一个或多个的 TaskManager。由 Client 提交任务给 JobManager，JobManager 再调度任务到各个 TaskManager 去执行，然后 TaskManager 将心跳和统计信息汇报给 JobManager。TaskManager 之间以流的形式进行数据的传输。上述三者均为独立的 JVM 进程.</p><p>​        <strong>Client</strong> 为提交 Job 的客户端，可以是运行在任何机器上（与 JobManager 环境连通即可）。提交 Job 后，Client 可以结束进程（Streaming的任务），也可以不结束并等待结果返回。</p><p>​        <strong>JobManager</strong> 主要负责调度 Job 并协调 Task 做 checkpoint，职责上很像 Storm 的 Nimbus。从 Client 处接收到 Job 和 JAR 包等资源后，会生成优化后的执行计划，并以 Task 的单元调度到各个 TaskManager 去执行。</p><p>​        <strong>TaskManager</strong> 在启动的时候就设置好了槽位数（Slot），每个 slot 能启动一个 Task，Task 为线程。从 JobManager 处接收需要部署的 Task，部署启动后，与自己的上游建立 Netty 连接，接收数据并处理。</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220211123327.png&quot;&gt;&lt;/p&gt;</summary>
     
     
     
