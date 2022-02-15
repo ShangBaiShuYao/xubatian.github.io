@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220215095354.png">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220215095336.png">
 <meta property="article:published_time" content="2022-02-15T01:20:27.000Z">
-<meta property="article:modified_time" content="2022-02-15T02:11:52.231Z">
+<meta property="article:modified_time" content="2022-02-15T02:21:55.314Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="Flink">
 <meta name="twitter:card" content="summary">
@@ -338,7 +338,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">23分</span>
+      <span class="post-count">22分</span>
     </span>
   </span>
 </div>
@@ -371,21 +371,6 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">val parameters = new Configuration</span><br><span class="line">// recursive.file.enumeration 开启递归</span><br><span class="line">parameters.setBoolean(&quot;recursive.file.enumeration&quot;, true)</span><br><span class="line">val file = env.readTextFile(&quot;/data&quot;).withParameters(parameters)</span><br></pre></td></tr></table></figure>
 
 <h3 id="4-readTextFile：读取压缩文件"><a href="#4-readTextFile：读取压缩文件" class="headerlink" title="4. readTextFile：读取压缩文件"></a><strong>4. readTextFile：读取压缩文件</strong></h3><p>对于以下压缩类型，不需要指定任何额外的inputformat方法，flink可以自动识别并且解压。但是，压缩文件可能不会并行读取，可能是顺序读取的，这样可能会影响作业的可伸缩性。</p>
-<table>
-<thead>
-<tr>
-<th>压缩方法</th>
-<th>文件扩展名</th>
-<th>是否可并行读取</th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<p>因格式问题，此处显示不全，完整的表格内容可到公号【五分钟学大数据】查看</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">val file = env.readTextFile(&quot;/data/file.gz&quot;)</span><br></pre></td></tr></table></figure>
 
 <h3 id="二、Transform转换算子"><a href="#二、Transform转换算子" class="headerlink" title="二、Transform转换算子"></a><strong>二、Transform转换算子</strong></h3><p>因为Transform算子基于Source算子操作，所以首先构建Flink执行环境及Source算子，后续Transform算子操作基于此：</p>
