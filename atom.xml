@@ -6,7 +6,7 @@
   <link href="http://xubatian.cn/atom.xml" rel="self"/>
   
   <link href="http://xubatian.cn/"/>
-  <updated>2022-02-15T15:44:49.053Z</updated>
+  <updated>2022-02-15T16:10:09.797Z</updated>
   <id>http://xubatian.cn/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>央视直播</title>
+    <link href="http://xubatian.cn/%E5%A4%AE%E8%A7%86%E7%9B%B4%E6%92%AD/"/>
+    <id>http://xubatian.cn/%E5%A4%AE%E8%A7%86%E7%9B%B4%E6%92%AD/</id>
+    <published>2022-02-15T16:06:42.000Z</published>
+    <updated>2022-02-15T16:10:09.797Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="关注央视网-关注国家最新动态"><a href="#关注央视网-关注国家最新动态" class="headerlink" title="关注央视网,关注国家最新动态"></a><a href="https://2022.cctv.com/live/cctv1/index.shtml?spm=C73465.PnE5ZJN2e0Bi.EHVA0D7NetYz.39">关注央视网,关注国家最新动态</a></h2><span id="more"></span><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220216000755.png"></p>]]></content>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;关注央视网-关注国家最新动态&quot;&gt;&lt;a href=&quot;#关注央视网-关注国家最新动态&quot; class=&quot;headerlink&quot; title=&quot;关注央视网,关注国家最新动态&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://2022.cctv.com/live/cctv1/index.shtml?spm=C73465.PnE5ZJN2e0Bi.EHVA0D7NetYz.39&quot;&gt;关注央视网,关注国家最新动态&lt;/a&gt;&lt;/h2&gt;</summary>
+    
+    
+    
+    <category term="轻松一刻" scheme="http://xubatian.cn/categories/%E8%BD%BB%E6%9D%BE%E4%B8%80%E5%88%BB/"/>
+    
+    
+    <category term="轻松一刻" scheme="http://xubatian.cn/tags/%E8%BD%BB%E6%9D%BE%E4%B8%80%E5%88%BB/"/>
+    
+  </entry>
   
   <entry>
     <title>Spark原理与实现: Spark SQL编程</title>
@@ -447,28 +468,6 @@
     <summary type="html">&lt;h1 id=&quot;时间语义与Wartermark-水位线-阐述&quot;&gt;&lt;a href=&quot;#时间语义与Wartermark-水位线-阐述&quot; class=&quot;headerlink&quot; title=&quot;时间语义与Wartermark(水位线)阐述:&quot;&gt;&lt;/a&gt;时间语义与Wartermark(水位线)阐述:&lt;/h1&gt;&lt;p&gt;用到了时间语义和watermark,所以Flink和sparkStreaming是有一定的区别的.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Flink中的时间语义有三种:&lt;/strong&gt;&lt;/p&gt;
 &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Event Time(事件触发的时间或者是事件创建的时间),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Ingestion Time(进入Flink的时间),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Processing Time(Flink在处理这条数据的时间),&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
-    
-    
-    
-    <category term="大数据" scheme="http://xubatian.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
-    
-    
-    <category term="Flink" scheme="http://xubatian.cn/tags/Flink/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Flink 原理与实现: Flink中的Window API</title>
-    <link href="http://xubatian.cn/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E4%B8%AD%E7%9A%84Window-API/"/>
-    <id>http://xubatian.cn/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E4%B8%AD%E7%9A%84Window-API/</id>
-    <published>2022-02-14T06:26:50.000Z</published>
-    <updated>2022-02-14T07:00:18.604Z</updated>
-    
-    <content type="html"><![CDATA[<p>附录算子俯瞰图:</p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214142001.png"></p><span id="more"></span><h1 id="TimeWindow-时间窗口"><a href="#TimeWindow-时间窗口" class="headerlink" title="TimeWindow(时间窗口)"></a>TimeWindow(时间窗口)</h1><p><strong>时间窗口有三种:滚动窗口,滑动窗口, 会话窗口</strong></p><p>​        <strong>TimeWindow是将指定时间范围内的所有数据组成一个window，一次对一个window里面的所有数据进行计算。</strong></p><p>​        注意：timeWindow函数必须在keyBy之后，timeWindowAll则不需要</p><p><strong>不管你是三种窗口中的哪一种，如果你的窗口函数的后面没有加All的话，那就是基于我们的keyedStream的，加了All就是基于我们的DataStream的.</strong></p><h2 id="1-滚动窗口（Tumbling-Window）"><a href="#1-滚动窗口（Tumbling-Window）" class="headerlink" title="1.滚动窗口（Tumbling Window）"></a>1.滚动窗口（Tumbling Window）</h2><p>Flink默认的时间窗口根据Processing Time 进行窗口的划分，将Flink获取到的数据根据进入Flink的时间划分到不同的窗口中</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">val minTempPerWindow = dataStream</span><br><span class="line">  .map(r =&gt; (r.id, r.temperature))</span><br><span class="line">  .keyBy(_._1)</span><br><span class="line">  .timeWindow(Time.seconds(15))</span><br><span class="line">  .reduce((r1, r2) =&gt; (r1._1, r1._2.min(r2._2)))</span><br></pre></td></tr></table></figure><p>注意:</p><p>​        滚动窗口一定要在keyBy之后去调用.keyBy之后调用的话,由于它是滚动窗口.我们只需要传一个参数,就是窗口的长度就可以了.<br>​        如果你仔细想的话,你发现有一个问题:  就是假设我窗口的长度为15秒,那么当前某一个窗口他的起始的时间是怎么算的?是不是就是把你当前的时间除以15呀.直接除以15取模,取模之后的到一个什么?</p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214143417.png"></p><p>​            时间间隔可以通过<strong>Time.milliseconds(x)毫秒，Time.seconds(x)秒，Time.minutes(x)分钟</strong>,等其中的一个来指定。</p><p>​            TimeWindow()实际上就是设置我们的窗口.窗口设置好之后,要么做聚合要么做其他操做,一般来说就是做聚合.</p><h2 id="2-滑动窗口（SlidingEventTimeWindows）"><a href="#2-滑动窗口（SlidingEventTimeWindows）" class="headerlink" title="2.滑动窗口（SlidingEventTimeWindows）"></a>2.滑动窗口（SlidingEventTimeWindows）</h2><p>​        <strong>滑动窗口和滚动窗口的函数名是完全一致的</strong>，只是在传参数时需要传入两个参数，一个是window_size，一个是sliding_size。</p><p>​        下面代码中的sliding_size设置为了5s，也就是说，窗口每5s就计算一次，每一次计算的window范围是15s内的所有元素。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">val minTempPerWindow: DataStream[(String, Double)] = dataStream</span><br><span class="line">  .map(r =&gt; (r.id, r.temperature))</span><br><span class="line">  .keyBy(_._1)</span><br><span class="line">  .timeWindow(Time.seconds(15), Time.seconds(5))</span><br><span class="line">  .reduce((r1, r2) =&gt; (r1._1, r1._2.min(r2._2)))</span><br><span class="line">.window(EventTimeSessionWindows.withGap(Time.minutes(10))</span><br></pre></td></tr></table></figure><p><strong>时间间隔可以通过Time.milliseconds(x)，Time.seconds(x)，Time.minutes(x)等其中的一个来指定。</strong></p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214143631.png"></p><h1 id="CountWindow-计数窗口"><a href="#CountWindow-计数窗口" class="headerlink" title="CountWindow(计数窗口)"></a>CountWindow(计数窗口)</h1><p>​        **CountWindow(计数窗口)**也有所谓的滚动窗口和滑动窗口,但是他只有这两个,没有所谓的会话窗口</p><p>​        CountWindow根据窗口中相同key元素的数量来触发执行，执行时只计算元素数量达到窗口大小的key对应的结果。</p><p>​        注意：CountWindow的window_size指的是相同Key的元素的个数，不是输入的所有元素的总数。</p><h2 id="1-滚动窗口（Tumbling-Window）-1"><a href="#1-滚动窗口（Tumbling-Window）-1" class="headerlink" title="1.滚动窗口（Tumbling Window）"></a>1.滚动窗口（Tumbling Window）</h2><p>​       <strong>默认的CountWindow是一个滚动窗口，只需要指定窗口大小即可，当元素数量达到窗口大小时，就会触发窗口的执行。</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">val minTempPerWindow: DataStream[(String, Double)] = dataStream</span><br><span class="line">  .map(r =&gt; (r.id, r.temperature))</span><br><span class="line">  .keyBy(_._1)</span><br><span class="line">  .countWindow(5)</span><br><span class="line">  .reduce((r1, r2) =&gt; (r1._1, r1._2.max(r2._2)))</span><br></pre></td></tr></table></figure><h2 id="2-滑动窗口（SlidingEventTimeWindows）-1"><a href="#2-滑动窗口（SlidingEventTimeWindows）-1" class="headerlink" title="2.滑动窗口（SlidingEventTimeWindows）"></a>2.滑动窗口（SlidingEventTimeWindows）</h2><p>​        滑动窗口和滚动窗口的函数名是完全一致的，只是在传参数时需要传入两个参数，一个是window_size，一个是sliding_size。</p><p>​        下面代码中的sliding_size设置为了2，也就是说，每收到两个相同key的数据就计算一次，每一次计算的window范围是5个元素。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">val keyedStream: KeyedStream[(String, Int), Tuple] = dataStream.map(r =&gt; (r.id, r.temperature)).keyBy(0)</span><br><span class="line">//每当某一个key的个数达到2的时候,触发计算，计算最近该key最近10个元素的内容</span><br><span class="line">val windowedStream: WindowedStream[(String, Int), Tuple, GlobalWindow] = keyedStream.countWindow(10,2)</span><br><span class="line">val sumDstream: DataStream[(String, Int)] = windowedStream.sum(1)</span><br></pre></td></tr></table></figure><h1 id="window-function-窗口函数"><a href="#window-function-窗口函数" class="headerlink" title="window function(窗口函数)"></a>window function(窗口函数)</h1><p> <strong>window function(窗口函数) :  这里面有增量聚合函数和全窗口函数</strong></p><p>​        <strong>window function 定义了要对窗口中收集的数据做的计算操作，主要可以分为两类：</strong></p><h2 id="1-增量聚合函数（incremental-aggregation-functions）"><a href="#1-增量聚合函数（incremental-aggregation-functions）" class="headerlink" title="1.增量聚合函数（incremental aggregation functions）"></a>1.增量聚合函数（incremental aggregation functions）</h2><p>​                        每条数据到来就进行计算，保持一个简单的状态。典型的增量聚合函数有ReduceFunction, AggregateFunction。</p><h2 id="2-全窗口函数（full-window-functions）"><a href="#2-全窗口函数（full-window-functions）" class="headerlink" title="2.全窗口函数（full window functions）"></a>2.全窗口函数（full window functions）</h2><p>​                        先把窗口所有数据收集起来，等到计算的时候会遍历所有数据。</p><p>​                        ProcessWindowFunction和ProcessAllWindowFunction就是一个全窗口函数。</p><p>​                        Apply也是全量的.</p><h1 id="其它可选API"><a href="#其它可选API" class="headerlink" title="其它可选API"></a>其它可选API</h1><p><strong>.trigger() —— 触发器</strong></p><p>定义 window 什么时候关闭，触发计算并输出结果</p><p><strong>.evitor() —— 移除器</strong></p><p>定义移除某些数据的逻辑</p><p><strong>.allowedLateness()</strong> —— 允许处理迟到的数据</p><p><strong>.sideOutputLateData()</strong> —— 将迟到的数据放入侧输出流</p><p><strong>.getSideOutput()</strong> —— 获取侧输出流</p><h2 id="什么叫允许处理迟到的数据"><a href="#什么叫允许处理迟到的数据" class="headerlink" title="什么叫允许处理迟到的数据?"></a>什么叫允许处理迟到的数据?</h2><p>这个时候就得考虑,我们的开窗的规则.他到底是按照什么时间来确定的.如果你开窗的规则不是按照执行时间,而是按照数据生成的时间.那就有可能出现所谓迟到的数据.举例:假设我数据的产生是在2:05分产生的.产生数据之后通过kafka再到我们的flink里面.中间是不是有一个过程呀?中间可能隔离一分钟等时间.然后到了我们的FlinkJob里面之后,Flink Job默认情况下他不是探讨你的数据生成的时间,而是探讨执行时间.执行时间肯定是按照顺序来的.但有没有可能是2:05产生的数据先来,下一条数据是2:04分生成的数据呢?当然有可能.所以假设以后要做这个流处理,要严格按照这个数据的生成时间,那这个时候就会出现所谓的迟到的数据.比如说2:05分的数据来了之后发现2:04分的数据还没来.他是真正执行完之后可能下一个窗口才来.那这个就叫所谓的迟到的数据.如果你要严格按照时间顺序的话,你就需要将2:05分的数据等一下.就要想办法让2:04分的这个迟到的数据放到2:05分的数据之前处理.那有什么解决办法呢?</p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214145930.png"></p><p>**这三个操作就是其中一个解决方法.就是把迟到的数据单独放到一个分支流数据中.叫侧输出流.放到侧输出流中,我们还得取到侧输出流中的数据.这就是一个不太好的办法.**这个实际上也没法做到实时性.而且你也不知道到底哪个是迟到的数据.什么样的数据才算做迟到的数据.没有一个标准.所以这种处理迟到数据的办法不是最好的.只是他是其中一种.当然还有其他的一些参数,这里只介绍到这里.</p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214150000.png"></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;附录算子俯瞰图:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214142001.png&quot;&gt;&lt;/p&gt;</summary>
     
     
     
