@@ -6,21 +6,34 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://xubatian.cn">
-  <title>Category: 大数据 | 我的梦想是星辰大海</title>
+  <title>Spark原理与实现: Spark SQL编程 | 我的梦想是星辰大海</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta name="description" content="知识源于积累,登峰造极源于自律">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我的梦想是星辰大海">
-<meta property="og:url" content="http://xubatian.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/page/6/index.html">
+  <meta name="description" content="Spark SQL编程注意: 建表一定是数据集,对数据集进行建表即用df. 而执行SQL是spark.sql() SparkSession新的起始点​        在老的版本中，SparkSQL提供两种SQL查询起始点：一个叫SQLContext，用于Spark自己提供的SQL查询；一个叫HiveContext，用于连接Hive的查询。​        现在是使用的是SparkSession了.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spark原理与实现: Spark SQL编程">
+<meta property="og:url" content="http://xubatian.cn/Spark%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Spark-SQL%E7%BC%96%E7%A8%8B/index.html">
 <meta property="og:site_name" content="我的梦想是星辰大海">
-<meta property="og:description" content="知识源于积累,登峰造极源于自律">
+<meta property="og:description" content="Spark SQL编程注意: 建表一定是数据集,对数据集进行建表即用df. 而执行SQL是spark.sql() SparkSession新的起始点​        在老的版本中，SparkSQL提供两种SQL查询起始点：一个叫SQLContext，用于Spark自己提供的SQL查询；一个叫HiveContext，用于连接Hive的查询。​        现在是使用的是SparkSession了.">
 <meta property="og:locale">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220215232827.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220215232850.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220215232913.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220215233030.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220215233059.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220215233353.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220215233442.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220215234017.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220215234137.png">
+<meta property="article:published_time" content="2022-02-15T15:27:25.000Z">
+<meta property="article:modified_time" content="2022-02-15T15:44:49.053Z">
 <meta property="article:author" content="xubatian">
-<meta property="article:tag" content="徐霸天,xubatian,上白书妖,shangbaishuyao">
+<meta property="article:tag" content="spark">
+<meta property="article:tag" content="spark SQL">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220215232827.png">
   
   
     <link rel="icon" href="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/favicon.ico">
@@ -273,57 +286,320 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Spark原理与实现-Spark-SQL编程" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Hadoop%E6%95%B0%E6%8D%AE%E5%8E%8B%E7%BC%A9/" class="archive-article-date">
-        <time datetime="2022-01-16T12:38:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-16</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Hadoop%E6%95%B0%E6%8D%AE%E5%8E%8B%E7%BC%A9/">Hadoop数据压缩</a>
-	
+    <h1 class="article-title" itemprop="name">
+      Spark原理与实现: Spark SQL编程
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/Spark%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Spark-SQL%E7%BC%96%E7%A8%8B/" class="archive-article-date">
+        <time datetime="2022-02-15T15:27:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-15</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">3.5k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">16分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="Spark-SQL编程"><a href="#Spark-SQL编程" class="headerlink" title="Spark SQL编程"></a>Spark SQL编程</h1><p>注意: 建表一定是数据集,对数据集进行建表即用df. 而执行SQL是spark.sql()</p>
+<h1 id="SparkSession新的起始点"><a href="#SparkSession新的起始点" class="headerlink" title="SparkSession新的起始点"></a>SparkSession新的起始点</h1><p>​        在老的版本中，SparkSQL提供两种SQL查询起始点：一个叫SQLContext，用于Spark自己提供的SQL查询；一个叫HiveContext，用于连接Hive的查询。<br>​        现在是使用的是SparkSession了.实际上就是将两个结合了.所以你很方便的去查寻一个json文件,也可以查询一个hive数据.统一的数据入口<br>​        SparkSession是Spark最新的SQL查询起始点，实质上是SQLContext和HiveContext的组合，所以在SQLContex和HiveContext上可用的API在SparkSession上同样是可以使用的。SparkSession内部封装了sparkContext，所以计算实际上是由sparkContext完成的。<br>在Spark SQL中SparkSession是创建DataFrame和执行SQL的入口</p>
+<span id="more"></span>
+
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220215232827.png"></p>
+<p>DataFrame和dataset可以相互转换. DataFrame是Dataset里面的一种特殊形式</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220215232850.png"></p>
+<p>ResultSet():这个方法很恶心,就是编译期不做类型校验,但是你一运行就会报类型转换异常</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220215232913.png"></p>
+<h1 id="DataFrame"><a href="#DataFrame" class="headerlink" title="DataFrame"></a>DataFrame</h1><h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">在Spark SQL中SparkSession是创建DataFrame和执行SQL的入口，所以DataFrame的创建是来自于sparkSession.从sparkSession中去找.而sparkSession是依赖于sparkContext来构建的.它里面放了一个sparkcontext对象,你可以拿出来. 你也可	以直接通过SparkConf来创建一个SparkSession.但是这种方式它里面也是在构建sparkSession之前构建了SparkContext. 因为SparkContext是用于跟Spark集群连接的.</span><br><span class="line"></span><br><span class="line">创建DataFrame有三种方式：</span><br><span class="line">1.通过Spark的数据源进行创建；</span><br><span class="line">2.从一个存在的RDD进行转换；</span><br><span class="line">3.还可以从Hive Table进行查询返回。</span><br></pre></td></tr></table></figure>
+
+<p>1）从Spark数据源进行创建<br>（1）查看Spark数据源进行创建的文件格式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; spark.read.</span><br><span class="line">csv   format   jdbc   json   load   option   options   orc   parquet   schema   table   text   textFile</span><br></pre></td></tr></table></figure>
+
+<p>（2）读取json文件创建DataFrame</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; val df = spark.read.json(&quot;/opt/module/spark/examples/src/main/resources/people.json&quot;)</span><br><span class="line">df: org.apache.spark.sql.DataFrame = [age: bigint, name: string]</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220215233030.png"></p>
+<p>（3）展示结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; df.show   这里面用的比较多的行动算子,我们之前写sparkCore是用collect的这种方式展现的是有结构信息的</span><br><span class="line">+----+-------+</span><br><span class="line">| age|   name|</span><br><span class="line">+----+-------+</span><br><span class="line">|null|Michael|</span><br><span class="line">|  30|   Andy|</span><br><span class="line">|  19| Justin|</span><br><span class="line">+----+-------+</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220215233059.png"></p>
+<p>2）从RDD进行转换<br>      后面讨论<br>3）从Hive Table进行查询返回<br>     后面讨论</p>
+<h2 id="SQL风格语法-主要"><a href="#SQL风格语法-主要" class="headerlink" title="SQL风格语法(主要)"></a>SQL风格语法(主要)</h2><p>1）创建一个DataFrame(注意在DataSet里面定义的一些函数,我DataFrame也是可以用的)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; val df = spark.read.json(&quot;/opt/module/spark/examples/src/main/resources/people.json&quot;)</span><br><span class="line">df: org.apache.spark.sql.DataFrame = [age: bigint, name: string]</span><br></pre></td></tr></table></figure>
+
+<p>2）对DataFrame创建一个临时表<br>View(视图),视图和table(表)有什么区别呢?视图使用来查的, 而表是用来增删改查的.因为当前的分布式数据集RDD具有不可变性.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; df.createOrReplaceTempView(&quot;people&quot;)  //参数是视图名</span><br></pre></td></tr></table></figure>
+
+<p>3）通过SQL语句实现查询全表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; val sqlDF = spark.sql(&quot;SELECT * FROM people&quot;)</span><br><span class="line">sqlDF: org.apache.spark.sql.DataFrame = [age: bigint, name: string]</span><br></pre></td></tr></table></figure>
+
+<p>4）结果展示</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; sqlDF.show</span><br><span class="line">+----+-------+</span><br><span class="line">| age|   name|</span><br><span class="line">+----+-------+</span><br><span class="line">|null|Michael|</span><br><span class="line">|  30|   Andy|</span><br><span class="line">|  19| Justin|</span><br><span class="line">+----+-------+</span><br></pre></td></tr></table></figure>
+
+<p>注意：普通临时表是Session范围内的，如果想应用范围内有效，可以使用全局临时表。使用全局临时表时需要全路径访问，如：global_temp.people</p>
+<p>5）对于DataFrame创建一个全局表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; spark.sql(&quot;SELECT * FROM global_temp.people&quot;).show()</span><br><span class="line">+----+-------+</span><br><span class="line">| age|   name|</span><br><span class="line">+----+-------+</span><br><span class="line">|null|Michael|</span><br><span class="line">|  30|   Andy|</span><br><span class="line">|  19| Justin|</span><br><span class="line"></span><br><span class="line">scala&gt; spark.newSession().sql(&quot;SELECT * FROM global_temp.people&quot;).show()</span><br><span class="line">+----+-------+</span><br><span class="line">| age|   name|</span><br><span class="line">+----+-------+</span><br><span class="line">|null|Michael|</span><br><span class="line">|  30|   Andy|</span><br><span class="line">|  19| Justin|</span><br><span class="line">+----+-------+</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220215233353.png"></p>
+<h2 id="DSL风格语法-次要-DSL风格叫领域特定语言"><a href="#DSL风格语法-次要-DSL风格叫领域特定语言" class="headerlink" title="DSL风格语法(次要) (DSL风格叫领域特定语言)"></a>DSL风格语法(次要) (DSL风格叫领域特定语言)</h2><p>DSL风格叫领域特定语言,就是说,他只能在sparkSQL当中能用,换一个地方就不能用了.很恶心.<br>DSL语言风格就是使用select,filter,map等这些函数.</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220215233442.png"></p>
+<p>1）创建一个DataFrame</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; val df = spark.read.json(&quot;/opt/module/spark/examples/src/main/resources/people.json&quot;)</span><br><span class="line">df: org.apache.spark.sql.DataFrame = [age: bigint, name: string]</span><br></pre></td></tr></table></figure>
+
+<p>2）查看DataFrame的Schema信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; df.printSchema</span><br><span class="line">root</span><br><span class="line"> |-- age: long (nullable = true)</span><br><span class="line"> |-- name: string (nullable = true)</span><br></pre></td></tr></table></figure>
+
+<p>3）只查看”name”列数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; df.select(&quot;name&quot;).show()</span><br><span class="line">+-------+</span><br><span class="line">|   name|</span><br><span class="line">+-------+</span><br><span class="line">|Michael|</span><br><span class="line">|   Andy|</span><br><span class="line">| Justin|</span><br><span class="line">+-------+</span><br></pre></td></tr></table></figure>
+
+<p>4）查看”name”列数据以及”age+1”数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; df.select($&quot;name&quot;, $&quot;age&quot; + 1).show()</span><br><span class="line">+-------+---------+</span><br><span class="line">|   name|(age + 1)|</span><br><span class="line">+-------+---------+</span><br><span class="line">|Michael|     null|</span><br><span class="line">|   Andy|       31|</span><br><span class="line">| Justin|       20|</span><br><span class="line">+-------+---------+</span><br></pre></td></tr></table></figure>
+
+<p>5）查看”age”大于”21”的数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; df.filter($&quot;age&quot; &gt; 21).show()</span><br><span class="line">+---+----+</span><br><span class="line">|age|name|</span><br><span class="line">+---+----+</span><br><span class="line">| 30|Andy|</span><br><span class="line">+---+----+</span><br></pre></td></tr></table></figure>
+
+<p>6）按照”age”分组，查看数据条数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; df.groupBy(&quot;age&quot;).count().show()</span><br><span class="line">+----+-----+</span><br><span class="line">| age|count|</span><br><span class="line">+----+-----+</span><br><span class="line">|  19|     1|</span><br><span class="line">|null|     1|</span><br><span class="line">|  30|     1|</span><br><span class="line">+----+-----+</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>创建DataFrame有三种方式：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">4.通过Spark的数据源进行创建；</span><br><span class="line">5.从一个存在的RDD进行转换；</span><br><span class="line">6.还可以从Hive Table进行查询返回。</span><br></pre></td></tr></table></figure>
+
+<h2 id="RDD转换为DataFrame"><a href="#RDD转换为DataFrame" class="headerlink" title="RDD转换为DataFrame"></a>RDD转换为DataFrame</h2><p>注意：如果需要RDD与DF(DataFrame)或者DS(DataSet)之间操作，那么都需要引入 import spark.implicits._  （spark不是包名，而是sparkSession对象的名称）</p>
+<p>前置条件：导入隐式转换并创建一个RDD</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; import spark.implicits._</span><br><span class="line">import spark.implicits._</span><br><span class="line"></span><br><span class="line">scala&gt; val peopleRDD = sc.textFile(&quot;examples/src/main/resources/people.txt&quot;)</span><br><span class="line">peopleRDD: org.apache.spark.rdd.RDD[String] = examples/src/main/resources/people.txt MapPartitionsRDD[3] at textFile at &lt;console&gt;:27</span><br></pre></td></tr></table></figure>
+
+<p>1）通过手动确定转换</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; peopleRDD.map&#123;x=&gt;val para = x.split(&quot;,&quot;);(para(0),para(1).trim.toInt)&#125;.toDF(&quot;name&quot;,&quot;age&quot;)</span><br><span class="line">res1: org.apache.spark.sql.DataFrame = [name: string, age: int]</span><br></pre></td></tr></table></figure>
+
+<p>2）通过反射确定（需要用到样例类）<br>（1）创建一个样例类,样例类其实就是和Java中的类一样</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; case class People(name:String, age:Int)</span><br></pre></td></tr></table></figure>
+
+<p>（2）根据样例类将RDD转换为DataFrame</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; peopleRDD.map&#123; x =&gt; val para = x.split(&quot;,&quot;);People(para(0),para(1).trim.toInt)&#125;.toDF</span><br><span class="line">res2: org.apache.spark.sql.DataFrame = [name: string, age: int]</span><br></pre></td></tr></table></figure>
+
+<p>3）通过编程的方式（了解）<br>（1）导入所需的类型</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; import org.apache.spark.sql.types._</span><br><span class="line">import org.apache.spark.sql.types._</span><br></pre></td></tr></table></figure>
+
+<p>（2）创建Schema</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; val structType: StructType = StructType(StructField(&quot;name&quot;, StringType) :: StructField(&quot;age&quot;, IntegerType) :: Nil)</span><br><span class="line">structType: org.apache.spark.sql.types.StructType = StructType(StructField(name,StringType,true), StructField(age,IntegerType,true))</span><br></pre></td></tr></table></figure>
+
+<p>（3）导入所需的类型</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; import org.apache.spark.sql.Row</span><br><span class="line">import org.apache.spark.sql.Row</span><br></pre></td></tr></table></figure>
+
+<p>（4）根据给定的类型创建二元组RDD</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; val data = peopleRDD.map&#123; x =&gt; val para = x.split(&quot;,&quot;);Row(para(0),para(1).trim.toInt)&#125;</span><br><span class="line">data: org.apache.spark.rdd.RDD[org.apache.spark.sql.Row] = MapPartitionsRDD[6] at map at &lt;console&gt;:33</span><br></pre></td></tr></table></figure>
+
+<p>（5）根据数据及给定的schema创建DataFrame</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; val dataFrame = spark.createDataFrame(data, structType)</span><br><span class="line">dataFrame: org.apache.spark.sql.DataFrame = [name: string, age: int]</span><br></pre></td></tr></table></figure>
+
+<h2 id="DataFrame转换为RDD"><a href="#DataFrame转换为RDD" class="headerlink" title="DataFrame转换为RDD"></a>DataFrame转换为RDD</h2><p>直接调用rdd即可<br>1）创建一个DataFrame</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; val df = spark.read.json(&quot;/opt/module/spark/examples/src/main/resources/people.json&quot;)</span><br><span class="line">df: org.apache.spark.sql.DataFrame = [age: bigint, name: string]</span><br></pre></td></tr></table></figure>
+
+<p>2）将DataFrame转换为RDD</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; val dfToRDD = df.rdd</span><br><span class="line">dfToRDD: org.apache.spark.rdd.RDD[org.apache.spark.sql.Row] = MapPartitionsRDD[19] at rdd at &lt;console&gt;:29</span><br></pre></td></tr></table></figure>
+
+<p>3）打印RDD</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; dfToRDD.collect</span><br><span class="line">res13: Array[org.apache.spark.sql.Row] = Array([Michael, 29], [Andy, 30], [Justin, 19])</span><br></pre></td></tr></table></figure>
+
+<h1 id="DataSet"><a href="#DataSet" class="headerlink" title="DataSet"></a>DataSet</h1><p>DataSet是具有强类型的数据集合，需要提供对应的类型信息。</p>
+<h2 id="创建-1"><a href="#创建-1" class="headerlink" title="创建"></a>创建</h2><p>1）创建一个样例类</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; case class Person(name: String, age: Long)</span><br><span class="line">defined class Person</span><br></pre></td></tr></table></figure>
+
+<p>2）创建DataSet</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; val caseClassDS = Seq(Person(&quot;Andy&quot;, 32)).toDS()</span><br><span class="line">caseClassDS: org.apache.spark.sql.Dataset[Person] = [name: string, age: bigint]</span><br></pre></td></tr></table></figure>
+
+<h2 id="RDD转换为DataSet"><a href="#RDD转换为DataSet" class="headerlink" title="RDD转换为DataSet"></a>RDD转换为DataSet</h2><p>SparkSQL能够自动将包含有case类的RDD转换成DataFrame，case类定义了table的结构，case类属性通过反射变成了表的列名。Case类可以包含诸如Seqs或者Array等复杂的结构。<br>1）创建一个RDD</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; val peopleRDD = sc.textFile(&quot;examples/src/main/resources/people.txt&quot;)</span><br><span class="line">peopleRDD: org.apache.spark.rdd.RDD[String] = examples/src/main/resources/people.txt MapPartitionsRDD[3] at textFile at &lt;console&gt;:27</span><br></pre></td></tr></table></figure>
+
+<p>2）创建一个样例类</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; case class Person(name: String, age: Long)</span><br><span class="line">defined class Person</span><br></pre></td></tr></table></figure>
+
+<p>3）将RDD转化为DataSet</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; peopleRDD.map(line =&gt; &#123;val para = line.split(&quot;,&quot;);Person(para(0),para(1).trim.toInt)&#125;).toDS</span><br><span class="line">res8: org.apache.spark.sql.Dataset[Person] = [name: string, age: bigint]</span><br></pre></td></tr></table></figure>
+
+<h2 id="DataSet转换为RDD"><a href="#DataSet转换为RDD" class="headerlink" title="DataSet转换为RDD"></a>DataSet转换为RDD</h2><p>调用rdd方法即可。<br>1）创建一个DataSet</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; val DS = Seq(Person(&quot;Andy&quot;, 32)).toDS()</span><br><span class="line">DS: org.apache.spark.sql.Dataset[Person] = [name: string, age: bigint]</span><br></pre></td></tr></table></figure>
+
+<p>2）将DataSet转换为RDD</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; DS.rdd</span><br><span class="line">res11: org.apache.spark.rdd.RDD[Person] = MapPartitionsRDD[15] at rdd at &lt;console&gt;:28</span><br></pre></td></tr></table></figure>
+
+<h2 id="DataFrame与DataSet的互操作"><a href="#DataFrame与DataSet的互操作" class="headerlink" title="DataFrame与DataSet的互操作"></a>DataFrame与DataSet的互操作</h2><h3 id="DataFrame转DataSet"><a href="#DataFrame转DataSet" class="headerlink" title="DataFrame转DataSet"></a>DataFrame转DataSet</h3><p>1）创建一个DateFrame</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; val df = spark.read.json(&quot;examples/src/main/resources/people.json&quot;)</span><br><span class="line">df: org.apache.spark.sql.DataFrame = [age: bigint, name: string]</span><br></pre></td></tr></table></figure>
+
+<p>2）创建一个样例类</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; case class Person(name: String, age: Long)</span><br><span class="line">defined class Person</span><br></pre></td></tr></table></figure>
+
+<p>3）将DataFrame转化为DataSet</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; df.as[Person]</span><br><span class="line">res14: org.apache.spark.sql.Dataset[Person] = [age: bigint, name: string]</span><br></pre></td></tr></table></figure>
+
+<h3 id="Dataset转DataFrame"><a href="#Dataset转DataFrame" class="headerlink" title="Dataset转DataFrame"></a>Dataset转DataFrame</h3><p>1）创建一个样例类</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; case class Person(name: String, age: Long)</span><br><span class="line">defined class Person</span><br></pre></td></tr></table></figure>
+
+<p>2）创建DataSet</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; val ds = Seq(Person(&quot;Andy&quot;, 32)).toDS()</span><br><span class="line">ds: org.apache.spark.sql.Dataset[Person] = [name: string, age: bigint]</span><br></pre></td></tr></table></figure>
+
+<p>3）将DataSet转化为DataFrame</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; val df = ds.toDF</span><br><span class="line">df: org.apache.spark.sql.DataFrame = [name: string, age: bigint]</span><br></pre></td></tr></table></figure>
+
+<p>4）展示</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; df.show</span><br><span class="line">+----+---+</span><br><span class="line">|name|age|</span><br><span class="line">+----+---+</span><br><span class="line">|Andy| 32|</span><br><span class="line">+----+---+</span><br></pre></td></tr></table></figure>
+
+<p>这种方法就是在给出每一列的类型后，使用as方法，转成Dataset，这在数据类型是DataFrame又需要针对各个字段处理时极为方便。在使用一些特殊的操作时，一定要加上 import spark.implicits._ 不然toDF、toDS无法使用。</p>
+<h2 id="RDD、DataFrame和DataSet"><a href="#RDD、DataFrame和DataSet" class="headerlink" title="RDD、DataFrame和DataSet"></a>RDD、DataFrame和DataSet</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220215234017.png"></p>
+<p>在SparkSQL中Spark为我们提供了两个新的抽象，分别是DataFrame和DataSet。他们和RDD有什么区别呢？首先从版本的产生上来看:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RDD (Spark1.0) —&gt; Dataframe(Spark1.3) —&gt; Dataset(Spark1.6)</span><br><span class="line">如果同样的数据都给到这三个数据结构，他们分别计算之后，都会给出相同的结果。不同是的他们的执行效率和执行方式。在后期的Spark版本中，DataSet有可能会逐步取代RDD和DataFrame成为唯一的API接口。</span><br></pre></td></tr></table></figure>
+
+<h3 id="三者的共性"><a href="#三者的共性" class="headerlink" title="三者的共性"></a>三者的共性</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">（1）RDD、DataFrame、DataSet全都是spark平台下的分布式弹性数据集，为处理超大型数据提供便利;</span><br><span class="line">（2）三者都有惰性机制，在进行创建、转换，如map方法时，不会立即执行，只有在遇到Action如foreach时，三者才会开始遍历运算;</span><br><span class="line">（3）三者有许多共同的函数，如filter，排序等;</span><br><span class="line">（4）在对DataFrame和Dataset进行操作许多操作都需要这个包:import spark.implicits._（在创建好SparkSession对象后尽量直接导入）,DataFrame和DataSet特别是和RDD进行操作的时候,则需要引入一个隐式转换.   因为这个spark session对象是由我们启动的spark-shell来给我们创建的,这个spark-shell窗口在启动的时候就已经将隐式转换导入进来了. 那就算把RDD在代码里面转成了样例类对象了,你调用.toDS调用不出来. 因为你没有加隐式转换.  而且这个隐式转换mport spark.implicits._  这个spark看起来像包,但是他不是, 这个spark是sparkSession的对象的对象 </span><br></pre></td></tr></table></figure>
+
+<h3 id="三者的互相转化"><a href="#三者的互相转化" class="headerlink" title="三者的互相转化"></a>三者的互相转化</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220215234137.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">RDD到DataFrame或者到dataSet,以及DataFrame到DataSet,这个过程我们认为是由简单到复杂,需要加东西的过程. 这一套过程都需要用到一个样例类. </span><br><span class="line">RDD到DataFrame用的是.toDF</span><br><span class="line">RDD到DataSet用的是.toDS</span><br><span class="line">DataFrame到DataSet用的是.as[样例类]</span><br><span class="line"></span><br><span class="line">DataFrame和dataSet到RDD或者Dataset到DataFrame 这是简的过程</span><br><span class="line">DataFrame和DataSet到RDD直接使用.rdd 即可</span><br><span class="line">DataSet到DataFrame使用.toDF</span><br></pre></td></tr></table></figure>
+
+<h3 id="IDEA创建SparkSQL程序"><a href="#IDEA创建SparkSQL程序" class="headerlink" title="IDEA创建SparkSQL程序"></a>IDEA创建SparkSQL程序</h3><p>1）添加依赖</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">&lt;groupId&gt;org.apache.spark&lt;/groupId&gt;</span><br><span class="line">&lt;artifactId&gt;spark-sql_2.11&lt;/artifactId&gt;</span><br><span class="line">&lt;version&gt;2.1.1&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<p>2）代码实现</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">import org.apache.spark.sql.SparkSession</span><br><span class="line">import org.apache.spark.&#123;SparkConf, SparkContext&#125;</span><br><span class="line"></span><br><span class="line">object HelloWorld &#123;</span><br><span class="line"></span><br><span class="line">  def main(args: Array[String]) &#123;</span><br><span class="line"></span><br><span class="line">    //创建SparkConf()并设置App名称</span><br><span class="line">    val spark = SparkSession</span><br><span class="line">      .builder()</span><br><span class="line"></span><br><span class="line">.master(&quot;local[*]&quot;)</span><br><span class="line">      .appName(&quot;HelloWorld&quot;)</span><br><span class="line">      //.config(&quot;spark.some.config.option&quot;, &quot;some-value&quot;)</span><br><span class="line">      .getOrCreate()</span><br><span class="line"></span><br><span class="line">//导入隐式转换</span><br><span class="line">import spark.implicits._</span><br><span class="line"></span><br><span class="line">//读取本地文件，创建DataFrame</span><br><span class="line">val df = spark.read.json(&quot;examples/src/main/resources/people.json&quot;)</span><br><span class="line"></span><br><span class="line">//打印</span><br><span class="line">df.show()</span><br><span class="line"></span><br><span class="line">//DSL风格：查询年龄在21岁以上的</span><br><span class="line">df.filter($&quot;age&quot; &gt; 21).show()</span><br><span class="line"></span><br><span class="line">//创建临时表</span><br><span class="line">df.createOrReplaceTempView(&quot;persons&quot;)</span><br><span class="line"></span><br><span class="line">//SQL风格：查询年龄在21岁以上的</span><br><span class="line">spark.sql(&quot;SELECT * FROM persons where age &gt; 21&quot;).show()</span><br><span class="line"></span><br><span class="line">//关闭连接</span><br><span class="line">spark.stop()</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="用户自定义函数"><a href="#用户自定义函数" class="headerlink" title="用户自定义函数"></a>用户自定义函数</h2><p>在Shell窗口中可以通过spark.udf功能用户可以自定义函数。</p>
+<h3 id="UDF"><a href="#UDF" class="headerlink" title="UDF"></a>UDF</h3><p>1）创建DataFrame</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; val df = spark.read.json(&quot;examples/src/main/resources/people.json&quot;)</span><br><span class="line">df: org.apache.spark.sql.DataFrame = [age: bigint, name: string]</span><br></pre></td></tr></table></figure>
+
+<p>2）打印数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; df.show()</span><br><span class="line">+----+-------+</span><br><span class="line">| age|   name|</span><br><span class="line">+----+-------+</span><br><span class="line">|null|Michael|</span><br><span class="line">|  30|   Andy|</span><br><span class="line">|  19| Justin|</span><br><span class="line">+----+-------+</span><br></pre></td></tr></table></figure>
+
+<p>3）注册UDF，功能为在数据前添加字符串<br>因为自定义函数,最终是在SQL里面去用,所以你得有函数名addName,  后面要有函数如何添加? 相当于你在hive当中自定义的函数. </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; spark.udf.register(&quot;addName&quot;, (x:String)=&gt; &quot;Name:&quot;+x)</span><br><span class="line">res5: org.apache.spark.sql.expressions.UserDefinedFunction = UserDefinedFunction(&lt;function1&gt;,StringType,Some(List(StringType)))</span><br></pre></td></tr></table></figure>
+
+<p>4）创建临时表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; df.createOrReplaceTempView(&quot;people&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>5）应用UDF</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; spark.sql(&quot;Select addName(name), age from people&quot;).show()</span><br><span class="line">+-----------------+----+</span><br><span class="line">|UDF:addName(name)| age|</span><br><span class="line">+-----------------+----+</span><br><span class="line">|     Name:Michael|null|</span><br><span class="line">|        Name:Andy|  30|</span><br><span class="line">|      Name:Justin|  19|</span><br><span class="line">+-----------------+----+</span><br></pre></td></tr></table></figure>
+
+<h3 id="UDAF"><a href="#UDAF" class="headerlink" title="UDAF"></a>UDAF</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">自定义UDAF函数,多进一出,聚合函数.</span><br><span class="line">多进:关心进来的数据是什么样子的</span><br><span class="line">出:出去看你做什么事情</span><br><span class="line">对于Spark程序和MR程序,他是一行一行读取的.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">强类型的Dataset和弱类型的DataFrame都提供了相关的聚合函数， 如 count()，countDistinct()，avg()，max()，min()。除此之外，用户可以设定自己的自定义聚合函数。通过继承UserDefinedAggregateFunction来实现用户自定义聚合函数。</span><br></pre></td></tr></table></figure>
+
+<p>1）需求：实现求平均工资的自定义聚合函数。<br>2）代码实现</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">import org.apache.spark.sql.expressions.MutableAggregationBuffer</span><br><span class="line">import org.apache.spark.sql.expressions.UserDefinedAggregateFunction</span><br><span class="line">import org.apache.spark.sql.types._</span><br><span class="line">import org.apache.spark.sql.Row</span><br><span class="line">import org.apache.spark.sql.SparkSession</span><br><span class="line"></span><br><span class="line">object MyAverage extends UserDefinedAggregateFunction &#123;</span><br><span class="line"></span><br><span class="line">// 聚合函数输入参数的数据类型</span><br><span class="line">def inputSchema: StructType = StructType(StructField(&quot;inputColumn&quot;, LongType) :: Nil)</span><br><span class="line"></span><br><span class="line">// 聚合缓冲区中值得数据类型</span><br><span class="line">def bufferSchema: StructType = &#123;</span><br><span class="line">StructType(StructField(&quot;sum&quot;, LongType) :: StructField(&quot;count&quot;, LongType) :: Nil)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 返回值的数据类型</span><br><span class="line">def dataType: DataType = DoubleType</span><br><span class="line"></span><br><span class="line">// 对于相同的输入是否一直返回相同的输出。</span><br><span class="line">def deterministic: Boolean = true</span><br><span class="line"></span><br><span class="line">// 初始化</span><br><span class="line">def initialize(buffer: MutableAggregationBuffer): Unit = &#123;</span><br><span class="line"></span><br><span class="line">// 存工资的总额</span><br><span class="line">buffer(0) = 0L</span><br><span class="line"></span><br><span class="line">// 存工资的个数</span><br><span class="line">buffer(1) = 0L</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 同一个分区数据合并</span><br><span class="line">def update(buffer: MutableAggregationBuffer, input: Row): Unit = &#123;</span><br><span class="line">if (!input.isNullAt(0)) &#123;</span><br><span class="line">buffer(0) = buffer.getLong(0) + input.getLong(0)</span><br><span class="line">buffer(1) = buffer.getLong(1) + 1</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 不同分区间数据合并</span><br><span class="line">def merge(buffer1: MutableAggregationBuffer, buffer2: Row): Unit = &#123;</span><br><span class="line">buffer1(0) = buffer1.getLong(0) + buffer2.getLong(0)</span><br><span class="line">buffer1(1) = buffer1.getLong(1) + buffer2.getLong(1)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 计算最终结果</span><br><span class="line">def evaluate(buffer: Row): Double = buffer.getLong(0).toDouble / buffer.getLong(1)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3）函数使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">// 注册函数</span><br><span class="line">spark.udf.register(&quot;myAverage&quot;, MyAverage)</span><br><span class="line"></span><br><span class="line">val df = spark.read.json(&quot;examples/src/main/resources/employees.json&quot;)</span><br><span class="line">df.createOrReplaceTempView(&quot;employees&quot;)</span><br><span class="line">df.show()</span><br><span class="line">// +-------+------+</span><br><span class="line">// |   name|salary|</span><br><span class="line">/ +-------+------+</span><br><span class="line">// |Michael|  3000|</span><br><span class="line">// |   Andy|  4500|</span><br><span class="line">// | Justin|  3500|</span><br><span class="line">// |  Berta|  4000|</span><br><span class="line">// +-------+------+</span><br><span class="line"></span><br><span class="line">val result = spark.sql(&quot;SELECT myAverage(salary) as average_salary FROM employees&quot;)</span><br><span class="line">result.show()</span><br><span class="line">// +--------------+</span><br><span class="line">// |average_salary|</span><br><span class="line">// +--------------+</span><br><span class="line">// |        3750.0 |</span><br><span class="line">// +--------------+</span><br></pre></td></tr></table></figure>
+
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/zhifubaoPay.png">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/weixinPay.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          xubatian
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://xubatian.cn/Spark原理与实现-Spark-SQL编程/" title="Spark原理与实现: Spark SQL编程" target="_blank">http://xubatian.cn/Spark原理与实现-Spark-SQL编程/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外均为原创，采用 CC BY 4.0 CN协议 许可协议。转载请注明出处:https://www.xubatian.cn/
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">hadoop压缩</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">spark SQL</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -336,541 +612,141 @@
 	</div>
 
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/Spark%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Spark-SQL%E7%BC%96%E7%A8%8B/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hadoop%E7%9A%84%E8%AE%A1%E6%95%B0%E5%99%A8%E5%BA%94%E7%94%A8%E5%92%8C%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/" class="archive-article-date">
-        <time datetime="2022-01-16T10:58:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-16</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/Spark%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-SparkSQL%E7%9A%84%E6%A6%82%E8%BF%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Spark原理与实现: SparkSQL的概述</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hadoop%E7%9A%84%E8%AE%A1%E6%95%B0%E5%99%A8%E5%BA%94%E7%94%A8%E5%92%8C%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/">hadoop的计数器应用和数据清洗</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop计数器应用</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">hadoop数据清洗</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Spark-SQL%E7%BC%96%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">Spark SQL编程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SparkSession%E6%96%B0%E7%9A%84%E8%B5%B7%E5%A7%8B%E7%82%B9"><span class="toc-number">2.</span> <span class="toc-text">SparkSession新的起始点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DataFrame"><span class="toc-number">3.</span> <span class="toc-text">DataFrame</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA"><span class="toc-number">3.1.</span> <span class="toc-text">创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E9%A3%8E%E6%A0%BC%E8%AF%AD%E6%B3%95-%E4%B8%BB%E8%A6%81"><span class="toc-number">3.2.</span> <span class="toc-text">SQL风格语法(主要)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DSL%E9%A3%8E%E6%A0%BC%E8%AF%AD%E6%B3%95-%E6%AC%A1%E8%A6%81-DSL%E9%A3%8E%E6%A0%BC%E5%8F%AB%E9%A2%86%E5%9F%9F%E7%89%B9%E5%AE%9A%E8%AF%AD%E8%A8%80"><span class="toc-number">3.3.</span> <span class="toc-text">DSL风格语法(次要) (DSL风格叫领域特定语言)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDD%E8%BD%AC%E6%8D%A2%E4%B8%BADataFrame"><span class="toc-number">3.4.</span> <span class="toc-text">RDD转换为DataFrame</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DataFrame%E8%BD%AC%E6%8D%A2%E4%B8%BARDD"><span class="toc-number">3.5.</span> <span class="toc-text">DataFrame转换为RDD</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DataSet"><span class="toc-number">4.</span> <span class="toc-text">DataSet</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-1"><span class="toc-number">4.1.</span> <span class="toc-text">创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDD%E8%BD%AC%E6%8D%A2%E4%B8%BADataSet"><span class="toc-number">4.2.</span> <span class="toc-text">RDD转换为DataSet</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DataSet%E8%BD%AC%E6%8D%A2%E4%B8%BARDD"><span class="toc-number">4.3.</span> <span class="toc-text">DataSet转换为RDD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DataFrame%E4%B8%8EDataSet%E7%9A%84%E4%BA%92%E6%93%8D%E4%BD%9C"><span class="toc-number">4.4.</span> <span class="toc-text">DataFrame与DataSet的互操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DataFrame%E8%BD%ACDataSet"><span class="toc-number">4.4.1.</span> <span class="toc-text">DataFrame转DataSet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dataset%E8%BD%ACDataFrame"><span class="toc-number">4.4.2.</span> <span class="toc-text">Dataset转DataFrame</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDD%E3%80%81DataFrame%E5%92%8CDataSet"><span class="toc-number">4.5.</span> <span class="toc-text">RDD、DataFrame和DataSet</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E8%80%85%E7%9A%84%E5%85%B1%E6%80%A7"><span class="toc-number">4.5.1.</span> <span class="toc-text">三者的共性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E8%80%85%E7%9A%84%E4%BA%92%E7%9B%B8%E8%BD%AC%E5%8C%96"><span class="toc-number">4.5.2.</span> <span class="toc-text">三者的互相转化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IDEA%E5%88%9B%E5%BB%BASparkSQL%E7%A8%8B%E5%BA%8F"><span class="toc-number">4.5.3.</span> <span class="toc-text">IDEA创建SparkSQL程序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0"><span class="toc-number">4.6.</span> <span class="toc-text">用户自定义函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UDF"><span class="toc-number">4.6.1.</span> <span class="toc-text">UDF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UDAF"><span class="toc-number">4.6.2.</span> <span class="toc-text">UDAF</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hadoop%E6%A8%A1%E5%9D%97%E7%BB%84%E6%88%90%E4%B9%8BJoin%E5%A4%9A%E7%A7%8D%E5%BA%94%E7%94%A8/" class="archive-article-date">
-        <time datetime="2022-01-15T16:50:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-16</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hadoop%E6%A8%A1%E5%9D%97%E7%BB%84%E6%88%90%E4%B9%8BJoin%E5%A4%9A%E7%A7%8D%E5%BA%94%E7%94%A8/">hadoop模块组成之Join多种应用</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">mapJoin</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">ReduceJoin</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/MapReduce%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86%E4%B9%8BInputFormat%E6%95%B0%E6%8D%AE%E8%BE%93%E5%85%A5/" class="archive-article-date">
-        <time datetime="2022-01-14T16:20:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-15</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/MapReduce%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86%E4%B9%8BInputFormat%E6%95%B0%E6%8D%AE%E8%BE%93%E5%85%A5/">MapReduce框架原理之InputFormat数据输入</a>
-	
-    </h1>
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'true' == true ? true : false;
+   var verify = 'ture' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '.comment',
+            notify: notify,
+            verify: verify,
+            app_id: "4C7T8fSNVA6RnfQksa8BmdFc-gzGzoHsz",
+            app_key: "V57hYH4l9NRzmpobtAIN5gzq",
+            placeholder: "开始你的评论吧...",
+            avatar:"mm"
+        });
+    }
+</script>
+    </section>
   
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">mapreduce</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">InputFormat</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8Bmapreduce%E7%9A%84MapTask%E6%9C%BA%E5%88%B6%E5%92%8CreduceTask%E6%9C%BA%E5%88%B6/" class="archive-article-date">
-        <time datetime="2022-01-14T14:22:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-14</time>
-</a>
 
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8Bmapreduce%E7%9A%84MapTask%E6%9C%BA%E5%88%B6%E5%92%8CreduceTask%E6%9C%BA%E5%88%B6/">hadoop组成模块之mapreduce的MapTask机制和reduceTask机制</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MapReduce</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MapTask</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BYarn-HA%E9%AB%98%E5%8F%AF%E7%94%A8/" class="archive-article-date">
-        <time datetime="2022-01-14T07:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-14</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BYarn-HA%E9%AB%98%E5%8F%AF%E7%94%A8/">hadoop组成模块之Yarn-HA高可用</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Yarn</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Yarn HA</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BHDFS-HA%E9%AB%98%E5%8F%AF%E7%94%A8/" class="archive-article-date">
-        <time datetime="2022-01-14T06:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-14</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hadoop%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97%E4%B9%8BHDFS-HA%E9%AB%98%E5%8F%AF%E7%94%A8/">hadoop组成模块之HDFS HA高可用</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HDFS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">HDFS HA</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/%E4%BB%8EHadoop%E6%A1%86%E6%9E%B6%E8%AE%A8%E8%AE%BA%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%94%9F%E6%80%81/" class="archive-article-date">
-        <time datetime="2022-01-13T05:53:25.434Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-13</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/%E4%BB%8EHadoop%E6%A1%86%E6%9E%B6%E8%AE%A8%E8%AE%BA%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%94%9F%E6%80%81/">从Hadoop框架讨论大数据生态</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%98%AF%E4%BB%80%E4%B9%88/" class="archive-article-date">
-        <time datetime="2022-01-13T05:05:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-13</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%98%AF%E4%BB%80%E4%B9%88/">大数据是什么?</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/mapreduce%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84shuffle%E6%9C%BA%E5%88%B6%E5%8E%9F%E7%90%86/" class="archive-article-date">
-        <time datetime="2022-01-12T15:09:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-12</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/mapreduce%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84shuffle%E6%9C%BA%E5%88%B6%E5%8E%9F%E7%90%86/">mapreduce过程中的shuffle机制原理</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">mapreduce</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">shuffle</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/page/5/">上一页</a><a class="page-number" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">1</a><span class="space">&hellip;</span><a class="page-number" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/page/4/">4</a><a class="page-number" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/page/7/">7</a><a class="extend next" rel="next" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/page/7/">下一页</a>
-    </nav>
-  
 
 
           </div>
@@ -910,10 +786,10 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
