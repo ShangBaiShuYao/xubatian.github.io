@@ -6,20 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://xubatian.cn">
-  <title>Tag: Flink | 我的梦想是星辰大海</title>
+  <title>Flink写入clickhouse案例 | 我的梦想是星辰大海</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta name="description" content="知识源于积累,登峰造极源于自律">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我的梦想是星辰大海">
-<meta property="og:url" content="http://xubatian.cn/tags/Flink/page/3/index.html">
+  <meta name="description" content="Flink写入clickhouse案例 源码地址:  https:&#x2F;&#x2F;github.com&#x2F;ShangBaiShuYao&#x2F;flink-learning-from-zhisheng&#x2F;blob&#x2F;main&#x2F;Flink-shangbaishuyao-RTDW-gmall-realtime&#x2F;src&#x2F;main&#x2F;java&#x2F;com&#x2F;shangbaishuyao&#x2F;gmall&#x2F;realtime&#x2F;app&#x2F;DWS&#x2F;Key">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flink写入clickhouse案例">
+<meta property="og:url" content="http://xubatian.cn/Flink%E5%86%99%E5%85%A5clickhouse%E6%A1%88%E4%BE%8B/index.html">
 <meta property="og:site_name" content="我的梦想是星辰大海">
-<meta property="og:description" content="知识源于积累,登峰造极源于自律">
+<meta property="og:description" content="Flink写入clickhouse案例 源码地址:  https:&#x2F;&#x2F;github.com&#x2F;ShangBaiShuYao&#x2F;flink-learning-from-zhisheng&#x2F;blob&#x2F;main&#x2F;Flink-shangbaishuyao-RTDW-gmall-realtime&#x2F;src&#x2F;main&#x2F;java&#x2F;com&#x2F;shangbaishuyao&#x2F;gmall&#x2F;realtime&#x2F;app&#x2F;DWS&#x2F;Key">
 <meta property="og:locale">
+<meta property="article:published_time" content="2022-02-16T17:40:56.000Z">
+<meta property="article:modified_time" content="2022-02-16T17:46:30.467Z">
 <meta property="article:author" content="xubatian">
-<meta property="article:tag" content="徐霸天,xubatian,上白书妖,shangbaishuyao">
+<meta property="article:tag" content="Flink">
+<meta property="article:tag" content="clickhouse">
 <meta name="twitter:card" content="summary">
   
   
@@ -273,41 +276,133 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Flink写入clickhouse案例" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B9%8BTaskManger%E4%B8%8ESlots/" class="archive-article-date">
-        <time datetime="2022-02-11T04:45:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-11</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B9%8BTaskManger%E4%B8%8ESlots/">Flink 原理与实现: Flink核心概念之TaskManger与Slots</a>
-	
+    <h1 class="article-title" itemprop="name">
+      Flink写入clickhouse案例
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/Flink%E5%86%99%E5%85%A5clickhouse%E6%A1%88%E4%BE%8B/" class="archive-article-date">
+        <time datetime="2022-02-16T17:40:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-17</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">1.2k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">5分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>Flink写入clickhouse案例</p>
+<p>源码地址: </p>
+<p><a target="_blank" rel="noopener" href="https://github.com/ShangBaiShuYao/flink-learning-from-zhisheng/blob/main/Flink-shangbaishuyao-RTDW-gmall-realtime/src/main/java/com/shangbaishuyao/gmall/realtime/app/DWS/KeywordStats4ProductApp.java">https://github.com/ShangBaiShuYao/flink-learning-from-zhisheng/blob/main/Flink-shangbaishuyao-RTDW-gmall-realtime/src/main/java/com/shangbaishuyao/gmall/realtime/app/DWS/KeywordStats4ProductApp.java</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/ShangBaiShuYao/flink-learning-from-zhisheng/blob/main/Flink-shangbaishuyao-RTDW-gmall-realtime/src/main/java/com/shangbaishuyao/gmall/realtime/utils/ClickHouseUtil.java">https://github.com/ShangBaiShuYao/flink-learning-from-zhisheng/blob/main/Flink-shangbaishuyao-RTDW-gmall-realtime/src/main/java/com/shangbaishuyao/gmall/realtime/utils/ClickHouseUtil.java</a></p>
+<span id="more"></span>
+
+<p>主程序:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">package com.shangbaishuyao.gmall.realtime.app.DWS;</span><br><span class="line"></span><br><span class="line">import com.shangbaishuyao.gmall.realtime.app.Function.KeywordUDTF;</span><br><span class="line">import com.shangbaishuyao.gmall.realtime.bean.KeywordStats;</span><br><span class="line">import com.shangbaishuyao.gmall.realtime.utils.ClickHouseUtil;</span><br><span class="line">import com.shangbaishuyao.gmall.realtime.utils.MyKafkaUtil;</span><br><span class="line">import org.apache.flink.streaming.api.datastream.DataStream;</span><br><span class="line">import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;</span><br><span class="line">import org.apache.flink.table.api.EnvironmentSettings;</span><br><span class="line">import org.apache.flink.table.api.Table;</span><br><span class="line">import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Author: shangbaishuyao</span><br><span class="line"> * Date: 2021/3/1</span><br><span class="line"> * Desc:  从商品统计中获取关键词</span><br><span class="line"> */</span><br><span class="line">public class KeywordStats4ProductApp &#123;</span><br><span class="line">    public static void main(String[] args) throws Exception &#123;</span><br><span class="line">        //TODO 0.基本环境准备</span><br><span class="line">        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();</span><br><span class="line">        //设置并行度</span><br><span class="line">        env.setParallelism(4);</span><br><span class="line">        /*</span><br><span class="line">        //CK相关设置</span><br><span class="line">        env.enableCheckpointing(5000, CheckpointingMode.AT_LEAST_ONCE);</span><br><span class="line">        env.getCheckpointConfig().setCheckpointTimeout(60000);</span><br><span class="line">        StateBackend fsStateBackend = new FsStateBackend(</span><br><span class="line">                &quot;hdfs://hadoop202:8020/gmall/flink/checkpoint/ProvinceStatsSqlApp&quot;);</span><br><span class="line">        env.setStateBackend(fsStateBackend);</span><br><span class="line">        System.setProperty(&quot;HADOOP_USER_NAME&quot;,&quot;shangbaishuyao&quot;);</span><br><span class="line">        */</span><br><span class="line">        //TODO 1.定义Table流环境</span><br><span class="line">        EnvironmentSettings settings = EnvironmentSettings</span><br><span class="line">            .newInstance()</span><br><span class="line">            .inStreamingMode()</span><br><span class="line">            .build();</span><br><span class="line"></span><br><span class="line">        StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env, settings);</span><br><span class="line"></span><br><span class="line">        //TODO 2.注册自定义函数</span><br><span class="line">        tableEnv.createTemporarySystemFunction(&quot;ik_analyze&quot;,  KeywordUDTF.class);</span><br><span class="line">        tableEnv.createTemporarySystemFunction(&quot;keywordProductC2R&quot;,  KeywordProductC2RUDTF.class);</span><br><span class="line"></span><br><span class="line">        //TODO 3.将数据源定义为动态表</span><br><span class="line">        String groupId = &quot;keyword_stats_app&quot;;</span><br><span class="line">        String productStatsSourceTopic =&quot;dws_product_stats&quot;;</span><br><span class="line"></span><br><span class="line">        tableEnv.executeSql(&quot;CREATE TABLE product_stats (spu_name STRING, &quot; +</span><br><span class="line">            &quot;click_ct BIGINT,&quot; +</span><br><span class="line">            &quot;cart_ct BIGINT,&quot; +</span><br><span class="line">            &quot;order_ct BIGINT ,&quot; +</span><br><span class="line">            &quot;stt STRING,edt STRING ) &quot; +</span><br><span class="line">            &quot;  WITH (&quot;+ MyKafkaUtil.getKafkaDDL(productStatsSourceTopic,groupId)+&quot;)&quot;);</span><br><span class="line"></span><br><span class="line">        //TODO 6.聚合计数</span><br><span class="line">        Table keywordStatsProduct = tableEnv.sqlQuery(&quot;select keyword,ct,source, &quot; +</span><br><span class="line">            &quot;DATE_FORMAT(stt,&#x27;yyyy-MM-dd HH:mm:ss&#x27;)  stt,&quot; +</span><br><span class="line">            &quot;DATE_FORMAT(edt,&#x27;yyyy-MM-dd HH:mm:ss&#x27;) as edt, &quot; +</span><br><span class="line">            &quot;UNIX_TIMESTAMP()*1000 ts from product_stats  , &quot; +</span><br><span class="line">            &quot;LATERAL TABLE(ik_analyze(spu_name)) as T(keyword) ,&quot; +</span><br><span class="line">            &quot;LATERAL TABLE(keywordProductC2R( click_ct ,cart_ct,order_ct)) as T2(ct,source)&quot;);</span><br><span class="line"></span><br><span class="line">        //TODO 7.转换为数据流</span><br><span class="line">        DataStream&lt;KeywordStats&gt; keywordStatsProductDataStream =</span><br><span class="line">            tableEnv.&lt;KeywordStats&gt;toAppendStream(keywordStatsProduct, KeywordStats.class);</span><br><span class="line"></span><br><span class="line">        keywordStatsProductDataStream.print();</span><br><span class="line">        //TODO 8.写入到ClickHouse</span><br><span class="line">        keywordStatsProductDataStream.addSink(</span><br><span class="line">            ClickHouseUtil.&lt;KeywordStats&gt;getJdbcSink(</span><br><span class="line">                &quot;insert into keyword_stats(keyword,ct,source,stt,edt,ts) values(?,?,?,?,?,?)&quot;</span><br><span class="line">            )</span><br><span class="line">        );</span><br><span class="line">        env.execute();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>clickhouse工具类:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line">package com.shangbaishuyao.gmall.realtime.utils;</span><br><span class="line"></span><br><span class="line">import com.shangbaishuyao.gmall.realtime.bean.TransientSink;</span><br><span class="line">import com.shangbaishuyao.gmall.realtime.common.GmallConfig;</span><br><span class="line">import org.apache.flink.connector.jdbc.JdbcConnectionOptions;</span><br><span class="line">import org.apache.flink.connector.jdbc.JdbcExecutionOptions;</span><br><span class="line">import org.apache.flink.connector.jdbc.JdbcSink;</span><br><span class="line">import org.apache.flink.connector.jdbc.JdbcStatementBuilder;</span><br><span class="line">import org.apache.flink.streaming.api.functions.sink.SinkFunction;</span><br><span class="line"></span><br><span class="line">import java.lang.reflect.Field;</span><br><span class="line">import java.sql.PreparedStatement;</span><br><span class="line">import java.sql.SQLException;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Author: 上白书妖</span><br><span class="line"> * Date: 2021/2/23</span><br><span class="line"> * Desc: 操作ClickHouse的工具类</span><br><span class="line"> *</span><br><span class="line"> * 其中flink-connector-jdbc 是官方通用的jdbcSink包。</span><br><span class="line"> * 只要引入对应的jdbc驱动，flink可以用它应对各种支持jdbc的数据库，</span><br><span class="line"> * 比如phoenix也可以用它。但是这个jdbc-sink只支持数据流对应一张数据表。</span><br><span class="line"> * 如果是一流对多表，就必须通过自定义的方式实现了，比如之前的维度数据。</span><br><span class="line"> * 虽然这种jdbc-sink只能一流对一表，但是由于内部使用了预编译器，</span><br><span class="line"> * 所以可以实现批量提交以优化写入速度。</span><br><span class="line"> *</span><br><span class="line"> * A.JdbcSink.&lt;T&gt;sink( )的四个参数说明</span><br><span class="line"> * 参数1： 传入Sql，格式如：insert into xxx values(?,?,?,?)</span><br><span class="line"> * 参数2:  可以用lambda表达实现(jdbcPreparedStatement, t) -&gt; t为数据对象，要装配到语句预编译器的参数中。</span><br><span class="line"> * 参数3：设定一些执行参数，比如重试次数，批次大小。</span><br><span class="line"> * 参数4：设定连接参数，比如地址，端口，驱动名。</span><br><span class="line"> */</span><br><span class="line">public class ClickHouseUtil &#123;</span><br><span class="line">    /**</span><br><span class="line">     * 获取向Clickhouse中写入数据的SinkFunction</span><br><span class="line">     *</span><br><span class="line">     * @param sql</span><br><span class="line">     * @param &lt;T&gt;</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static &lt;T&gt; SinkFunction getJdbcSink(String sql) &#123;</span><br><span class="line">        SinkFunction&lt;T&gt; sinkFunction = JdbcSink.&lt;T&gt;sink(</span><br><span class="line">            //要执行的SQL语句</span><br><span class="line">            sql,</span><br><span class="line">            //执行写入操作   就是将当前流中的对象属性赋值给SQL的占位符 insert into visitor_stats values(?,?,?,?,?,?,?,?,?,?,?,?)</span><br><span class="line">            new JdbcStatementBuilder&lt;T&gt;() &#123;</span><br><span class="line">                //obj  就是流中的一条数据对象</span><br><span class="line">                //我要想实现通用型的话,这个当前流的类型就不能固定,只能使用泛型.T. 可以用反射拿到属性.</span><br><span class="line">                @Override</span><br><span class="line">                public void accept(PreparedStatement ps, T obj) throws SQLException &#123;</span><br><span class="line">                    //insert into visitor_stats values(?,?,?,?,?,?,?,?,?,?,?,?)</span><br><span class="line">                    //获取当前类中  所有的属性</span><br><span class="line">                    Field[] fields = obj.getClass().getDeclaredFields();//这个可以获取私有的.</span><br><span class="line">                    //跳过的属性计数    insert into visitor_stats values(?,?,?,?,跳过,?,?,?,?,?,?,?)</span><br><span class="line">                    int skipOffset = 0;</span><br><span class="line"></span><br><span class="line">                    for (int i = 0; i &lt; fields.length; i++) &#123;</span><br><span class="line">                        Field field = fields[i];</span><br><span class="line">                        //通过属性对象获取属性上是否有@TransientSink注解</span><br><span class="line">                        TransientSink transientSink = field.getAnnotation(TransientSink.class);</span><br><span class="line">                        //如果transientSink不为空，说明属性上有@TransientSink标记，那么在给?占位符赋值的时候，应该跳过当前属性</span><br><span class="line">                        if (transientSink != null) &#123;</span><br><span class="line">                            skipOffset++;</span><br><span class="line">                            continue;</span><br><span class="line">                        &#125;</span><br><span class="line">                        //设置私有属性可访问</span><br><span class="line">                        field.setAccessible(true);</span><br><span class="line">                        try &#123;</span><br><span class="line">                            //获取属性值</span><br><span class="line">                            Object o = field.get(obj);</span><br><span class="line">                            ps.setObject(i + 1 - skipOffset, o);</span><br><span class="line">                        &#125; catch (IllegalAccessException e) &#123;</span><br><span class="line">                            e.printStackTrace();</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            //构建者设计模式，创建JdbcExecutionOptions对象，给batchSize属性赋值，执行执行批次大小</span><br><span class="line">            new JdbcExecutionOptions.Builder().withBatchSize(5).build(),</span><br><span class="line">            //构建者设计模式，JdbcConnectionOptions，给连接相关的属性进行赋值</span><br><span class="line">            new JdbcConnectionOptions.JdbcConnectionOptionsBuilder()</span><br><span class="line">                .withUrl(GmallConfig.CLICKHOUSE_URL)</span><br><span class="line">                .withDriverName(&quot;ru.yandex.clickhouse.ClickHouseDriver&quot;)</span><br><span class="line">                .build()</span><br><span class="line">        );</span><br><span class="line">        return sinkFunction;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/zhifubaoPay.png">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/weixinPay.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          xubatian
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://xubatian.cn/Flink写入clickhouse案例/" title="Flink写入clickhouse案例" target="_blank">http://xubatian.cn/Flink写入clickhouse案例/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外均为原创，采用 CC BY 4.0 CN协议 许可协议。转载请注明出处:https://www.xubatian.cn/
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -315,11 +410,15 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
         		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">clickhouse</a>
+        		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -332,507 +431,141 @@
 	</div>
 
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/Flink%E5%86%99%E5%85%A5clickhouse%E6%A1%88%E4%BE%8B/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%86%E6%A6%82%E5%BF%B5/" class="archive-article-date">
-        <time datetime="2022-02-11T04:33:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-11</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/ClickHouse%E7%9A%84%E5%89%AF%E6%9C%AC%E5%92%8C%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ClickHouse的副本和分片集群</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%86%E6%A6%82%E5%BF%B5/">Flink 原理与实现: Flink任务调度原理概念</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    此篇文章没有目录哦~
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E4%BB%BB%E5%8A%A1%E6%8F%90%E4%BA%A4%E6%B5%81%E7%A8%8B/" class="archive-article-date">
-        <time datetime="2022-02-11T04:27:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-11</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E4%BB%BB%E5%8A%A1%E6%8F%90%E4%BA%A4%E6%B5%81%E7%A8%8B/">Flink 原理与实现: Flink任务提交流程</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E8%BF%90%E8%A1%8C%E6%97%B6%E7%9A%84%E7%BB%84%E4%BB%B6/" class="archive-article-date">
-        <time datetime="2022-02-11T04:20:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-11</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E8%BF%90%E8%A1%8C%E6%97%B6%E7%9A%84%E7%BB%84%E4%BB%B6/">Flink 原理与实现: Flink运行时的组件</a>
-	
-    </h1>
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'true' == true ? true : false;
+   var verify = 'ture' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '.comment',
+            notify: notify,
+            verify: verify,
+            app_id: "4C7T8fSNVA6RnfQksa8BmdFc-gzGzoHsz",
+            app_key: "V57hYH4l9NRzmpobtAIN5gzq",
+            placeholder: "开始你的评论吧...",
+            avatar:"mm"
+        });
+    }
+</script>
+    </section>
   
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B9%8B%E4%BB%BB%E5%8A%A1%E9%93%BE/" class="archive-article-date">
-        <time datetime="2022-02-10T14:15:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-10</time>
-</a>
 
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B9%8B%E4%BB%BB%E5%8A%A1%E9%93%BE/">Flink 原理与实现: Flink核心概念之任务链</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink%E6%80%BB%E7%BB%93%E9%80%9F%E8%A7%88/" class="archive-article-date">
-        <time datetime="2022-02-10T06:11:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-10</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink%E6%80%BB%E7%BB%93%E9%80%9F%E8%A7%88/">Flink总结速览</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink%E8%AF%BB%E5%8F%96%E6%97%A0%E7%95%8C%E6%B5%81%E6%95%B0%E6%8D%AE%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B%E6%BC%94%E7%A4%BA/" class="archive-article-date">
-        <time datetime="2022-02-10T02:07:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-10</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink%E8%AF%BB%E5%8F%96%E6%97%A0%E7%95%8C%E6%B5%81%E6%95%B0%E6%8D%AE%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B%E6%BC%94%E7%A4%BA/">Flink读取无界流数据计算过程演示</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink%E6%B5%81%E5%BC%8F%E8%AF%BB%E5%8F%96%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B%E6%BC%94%E7%A4%BA/" class="archive-article-date">
-        <time datetime="2022-02-07T16:22:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-08</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink%E6%B5%81%E5%BC%8F%E8%AF%BB%E5%8F%96%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B%E6%BC%94%E7%A4%BA/">Flink有界流式读取文本数据计算过程演示</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink%E4%BD%BF%E7%94%A8idea%E5%B0%86%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB%E6%9B%BF%E6%8D%A2%E4%B8%BAlambda%E8%A1%A8%E8%BE%BE%E4%BC%9A%E6%93%A6%E9%99%A4%E6%B3%9B%E5%9E%8B/" class="archive-article-date">
-        <time datetime="2022-02-07T06:12:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-07</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink%E4%BD%BF%E7%94%A8idea%E5%B0%86%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB%E6%9B%BF%E6%8D%A2%E4%B8%BAlambda%E8%A1%A8%E8%BE%BE%E4%BC%9A%E6%93%A6%E9%99%A4%E6%B3%9B%E5%9E%8B/">Flink使用idea将匿名内部类替换为lambda表达会擦除泛型</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink%E6%B5%81%E5%A4%84%E7%90%86%E6%A1%88%E4%BE%8B/" class="archive-article-date">
-        <time datetime="2022-01-31T09:02:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-31</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink%E6%B5%81%E5%A4%84%E7%90%86%E6%A1%88%E4%BE%8B/">Flink流处理案例</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/tags/Flink/page/2/">上一页</a><a class="page-number" href="/tags/Flink/">1</a><a class="page-number" href="/tags/Flink/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/tags/Flink/page/4/">4</a><a class="extend next" rel="next" href="/tags/Flink/page/4/">下一页</a>
-    </nav>
-  
 
 
           </div>
@@ -872,9 +605,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
