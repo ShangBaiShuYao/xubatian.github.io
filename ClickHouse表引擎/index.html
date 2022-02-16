@@ -6,21 +6,58 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://xubatian.cn">
-  <title>Archives: 2022/2 | 我的梦想是星辰大海</title>
+  <title>ClickHouse表引擎 | 我的梦想是星辰大海</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta name="description" content="知识源于积累,登峰造极源于自律">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我的梦想是星辰大海">
-<meta property="og:url" content="http://xubatian.cn/archives/2022/02/index.html">
+  <meta name="description" content="表引擎的使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ClickHouse表引擎">
+<meta property="og:url" content="http://xubatian.cn/ClickHouse%E8%A1%A8%E5%BC%95%E6%93%8E/index.html">
 <meta property="og:site_name" content="我的梦想是星辰大海">
-<meta property="og:description" content="知识源于积累,登峰造极源于自律">
+<meta property="og:description" content="表引擎的使用">
 <meta property="og:locale">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217004854.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217005428.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217005448.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217005514.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217005604.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217005655.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217005736.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217005829.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217005847.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217005857.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217005917.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217005939.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217010017.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217010059.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217010125.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217010152.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217010213.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217010335.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217010442.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217010500.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217010727.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217010904.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217011106.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217010933.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217011322.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217011346.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217011431.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217011516.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217011601.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217011624.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217011728.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217011833.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217011907.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217011935.png">
+<meta property="article:published_time" content="2022-02-16T16:46:52.000Z">
+<meta property="article:modified_time" content="2022-02-16T17:20:05.097Z">
 <meta property="article:author" content="xubatian">
-<meta property="article:tag" content="徐霸天,xubatian,上白书妖,shangbaishuyao">
+<meta property="article:tag" content="clickhouse">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217004854.png">
   
   
     <link rel="icon" href="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/favicon.ico">
@@ -273,41 +310,267 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-ClickHouse表引擎" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
+    <h1 class="article-title" itemprop="name">
+      ClickHouse表引擎
+    </h1>
+  
+
+
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
 <a href="/ClickHouse%E8%A1%A8%E5%BC%95%E6%93%8E/" class="archive-article-date">
         <time datetime="2022-02-16T16:46:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-17</time>
 </a>
 
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">2.1k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">9分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="表引擎的使用"><a href="#表引擎的使用" class="headerlink" title="表引擎的使用"></a>表引擎的使用</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217004854.png"></p>
+<span id="more"></span>
+
+<h3 id="TinyLog"><a href="#TinyLog" class="headerlink" title="TinyLog"></a>TinyLog</h3><p>​            以列文件的形式保存在磁盘上，不支持索引，没有并发控制。一般保存少量数据的小表，生产环境上作用有限。可以用于<strong>平时练习测试</strong>用。如：</p>
+<pre><code>create table t_tinylog ( id String, name String) engine=TinyLog;
+</code></pre>
+<h3 id="Memory"><a href="#Memory" class="headerlink" title="Memory"></a>Memory</h3><p>​            内存引擎，数据以未压缩的原始形式直接保存在内存当中，服务器重启数据就会消失。读写操作不会相互阻塞，不支持索引。简单查询下有非常非常高的性能表现（超过10G/s）。<br>​            一般用到它的地方不多，除了用来测试，就是在需要非常高的性能，同时数据量又不太大（上限大概 1 亿行）的场景。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数据保存在内存中,但是内存数据不稳定,一旦服务器重启,数据消失.除非你对查询的性能有非常高的要求.但是这种情况很少.</span><br></pre></td></tr></table></figure>
+
+<h3 id="MergeTree-最强大的表引擎"><a href="#MergeTree-最强大的表引擎" class="headerlink" title="MergeTree(最强大的表引擎)"></a>MergeTree(最强大的表引擎)</h3><p>​            <strong>ClickHouse中最强大的表引擎当属MergeTree（合并树）引擎及该系列（MergeTree）中的其他引擎，支持索引和分区， 地位可以相当于innodb之于Mysql</strong>。 而且基于MergeTree，还衍生除了很多小弟，也是非常有特色的引擎。</p>
+<p><strong>建表语句</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">create table t_order_mt(</span><br><span class="line">    id UInt32,</span><br><span class="line">    sku_id String,</span><br><span class="line">    total_amount Decimal(16,2),</span><br><span class="line">    create_time  Datetime                      </span><br><span class="line"> ) engine =MergeTree</span><br><span class="line">   partition by toYYYYMMDD(create_time)      </span><br><span class="line">   primary key (id)</span><br><span class="line">   order by (id,sku_id);</span><br></pre></td></tr></table></figure>
+
+<p><strong>Partition</strong>:  分区,假如我Datetime设置的是2020-12-12 12:12 但是我的分区是按照2020-12-12来分区的转换成年月日的形式.<br><strong>primary key</strong>:  主键,以前的主键是数据看看表中字段的唯一标记. 现在在clickhouse中主键没有唯一标记.它主要做的就是提升我们的查询效率.他其实就是为了建我们的查询索引的.<br><strong>order by</strong>:  排序,在clickhouse中,order by不仅仅是排序,去重等也是依靠order by来做的</p>
+<p><strong>插入数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">insert into  t_order_mt values</span><br><span class="line">(101,&#x27;sku_001&#x27;,1000.00,&#x27;2020-06-01 12:00:00&#x27;) ,</span><br><span class="line">(102,&#x27;sku_002&#x27;,2000.00,&#x27;2020-06-01 11:00:00&#x27;),</span><br><span class="line">(102,&#x27;sku_004&#x27;,2500.00,&#x27;2020-06-01 12:00:00&#x27;),</span><br><span class="line">(102,&#x27;sku_002&#x27;,2000.00,&#x27;2020-06-01 13:00:00&#x27;),</span><br><span class="line">(102,&#x27;sku_002&#x27;,12000.00,&#x27;2020-06-01 13:00:00&#x27;),</span><br><span class="line">(102,&#x27;sku_002&#x27;,600.00,&#x27;2020-06-02 12:00:00&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>MergeTree其实还有很多参数(绝大多数用默认值即可)，但是三个参数是更加重要的，也涉及了关于MergeTree的很多概念。</strong></p>
+<h4 id="partition-by-分区-（可选项-不填的话数据在一个分区）"><a href="#partition-by-分区-（可选项-不填的话数据在一个分区）" class="headerlink" title="partition by 分区 （可选项,不填的话数据在一个分区）"></a>partition by 分区 （可选项,不填的话数据在一个分区）</h4><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217005428.png"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217005448.png"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217005514.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">optimize table xxxx final;</span><br></pre></td></tr></table></figure>
+
+<p>Ø 例如</p>
+<p>再次执行上面的插入操作</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">insert into  t_order_mt values</span><br><span class="line">(101,&#x27;sku_001&#x27;,1000.00,&#x27;2020-06-01 12:00:00&#x27;) ,</span><br><span class="line">(102,&#x27;sku_002&#x27;,2000.00,&#x27;2020-06-01 11:00:00&#x27;),</span><br><span class="line">(102,&#x27;sku_004&#x27;,2500.00,&#x27;2020-06-01 12:00:00&#x27;),</span><br><span class="line">(102,&#x27;sku_002&#x27;,2000.00,&#x27;2020-06-01 13:00:00&#x27;),</span><br><span class="line">(102,&#x27;sku_002&#x27;,12000.00,&#x27;2020-06-01 13:00:00&#x27;),</span><br><span class="line">(102,&#x27;sku_002&#x27;,600.00,&#x27;2020-06-02 12:00:00&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p>查看数据并没有纳入任何分区</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217005604.png"></p>
+<p>看到分成了四块,按照create_time分区.</p>
+<p>手动optimize之后</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop202 :) optimize table t_order_mt final;</span><br></pre></td></tr></table></figure>
+
+<p>再次查询</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217005655.png"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217005736.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">插入数据不会立马合并,要不然就是你插入的数据量足够大,要不然就是你插入的数据时间足够长,要不然就是你手动合并.</span><br></pre></td></tr></table></figure>
+
+<h4 id="primary-key主键-可选"><a href="#primary-key主键-可选" class="headerlink" title="primary key主键(可选)"></a>primary key主键(可选)</h4><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217005829.png"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217005847.png"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217005857.png"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217005917.png"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217005939.png"></p>
+<img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217010017.png" style="zoom:200%;" />
+
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217010059.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">稀疏索引的好处就是可以用很少的索引数据，定位更多的数据，代价就是只能定位到索引粒度的第一行，然后再进行进行一点扫描。</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217010125.png"></p>
+<h4 id="order-by（必选-作用-分区内排序）"><a href="#order-by（必选-作用-分区内排序）" class="headerlink" title="order by（必选,作用:分区内排序）"></a>order by（必选,作用:分区内排序）</h4><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217010152.png"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217010213.png"></p>
+<h3 id="二级索引"><a href="#二级索引" class="headerlink" title="二级索引"></a>二级索引</h3><p>​        目前在ClickHouse的官网上二级索引的功能是被标注为实验性的。即不稳定,还有很大的发展空间.</p>
+<h4 id="1-使用二级索引前需要增加设置"><a href="#1-使用二级索引前需要增加设置" class="headerlink" title="(1)使用二级索引前需要增加设置"></a>(1)使用二级索引前需要增加设置</h4><p>是否允许使用实验性的二级索引,开启二级索引:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set allow_experimental_data_skipping_indices=1;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-创建测试表"><a href="#2-创建测试表" class="headerlink" title="(2)创建测试表"></a>(2)创建测试表</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">create table t_order_mt2(</span><br><span class="line">    id UInt32,</span><br><span class="line">    sku_id String,</span><br><span class="line">    total_amount Decimal(16,2),</span><br><span class="line">    create_time  Datetime,</span><br><span class="line">	INDEX a total_amount TYPE minmax GRANULARITY 5</span><br><span class="line"> ) engine =MergeTree</span><br><span class="line">   partition by toYYYYMMDD(create_time)</span><br><span class="line">   primary key (id)</span><br><span class="line">   order by (id, sku_id);</span><br></pre></td></tr></table></figure>
+
+
+<p>其中<strong>GRANULARITY N</strong> 是设定二级索引对于一级索引粒度的粒度。</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217010335.png"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217010442.png"><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217010500.png"></p>
+<h4 id="3-插入数据"><a href="#3-插入数据" class="headerlink" title="(3)插入数据"></a>(3)插入数据</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">insert into  t_order_mt2 values</span><br><span class="line">(101,&#x27;sku_001&#x27;,1000.00,&#x27;2020-06-01 12:00:00&#x27;) ,</span><br><span class="line">(102,&#x27;sku_002&#x27;,2000.00,&#x27;2020-06-01 11:00:00&#x27;),</span><br><span class="line">(102,&#x27;sku_004&#x27;,2500.00,&#x27;2020-06-01 12:00:00&#x27;),</span><br><span class="line">(102,&#x27;sku_002&#x27;,2000.00,&#x27;2020-06-01 13:00:00&#x27;),</span><br><span class="line">(102,&#x27;sku_002&#x27;,12000.00,&#x27;2020-06-01 13:00:00&#x27;),</span><br><span class="line">(102,&#x27;sku_002&#x27;,600.00,&#x27;2020-06-02 12:00:00&#x27;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-对比效果"><a href="#4-对比效果" class="headerlink" title="(4)对比效果"></a>(4)对比效果</h4><p>那么在使用下面语句进行测试，可以看出二级索引能够为非主键字段的查询发挥作用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[shangbaishuyao@hadoop202 lib]$ clickhouse-client  --send_logs_level=trace &lt;&lt;&lt; &#x27;select * from t_order_mt2  where total_amount &gt; toDecimal32(900., 2)&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217010727.png"></p>
+<h3 id="数据TTL"><a href="#数据TTL" class="headerlink" title="数据TTL"></a>数据TTL</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217010904.png"></p>
+<h4 id="1-列级别TTL（执行整个列的失效时间）"><a href="#1-列级别TTL（执行整个列的失效时间）" class="headerlink" title="(1)列级别TTL（执行整个列的失效时间）"></a>(1)列级别TTL（执行整个列的失效时间）</h4><p><strong>创建测试表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">create table t_order_mt3(</span><br><span class="line">    id UInt32,</span><br><span class="line">    sku_id String,</span><br><span class="line">    total_amount Decimal(16,2)  TTL create_time+interval 10 SECOND, //表示当前这一列数值的存活时间.就是在你创建</span><br><span class="line">    create_time  Datetime                                           //时间过了十秒之后,这一列数据就失效了</span><br><span class="line"> ) engine =MergeTree</span><br><span class="line"> partition by toYYYYMMDD(create_time)</span><br><span class="line">   primary key (id)</span><br><span class="line">   order by (id, sku_id);</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p><strong>插入数据</strong>（注意：根据实际时间改变）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">insert into  t_order_mt3 values</span><br><span class="line">(106,&#x27;sku_001&#x27;,1000.00,&#x27;2020-06-12 22:52:30&#x27;),</span><br><span class="line">(107,&#x27;sku_002&#x27;,2000.00,&#x27;2020-06-12 22:52:30&#x27;),</span><br><span class="line">(110,&#x27;sku_003&#x27;,600.00,&#x27;2020-06-13 12:00:00&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>手动合并，查看效果  到期后，指定的字段数据归0</strong></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217011106.png"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217010933.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">其实这个TTL这个手动合并，其实不是帮你解决业务上的合并的。 其实他是从本身优化的角度来考虑的。 比如： 加入我有些数据，数据量比较大， 但是这些数据我执行完成后就不需要了， 那我可以设置一个失效时间。 在长时间后数据失效。 设置完失效时间后，虽然不能到了指定时间后，马上将这个字段重置为0. 但是他会过一段时间后，后台看到这个标记，后台会自动帮你进行合并。这样就相当于把空间释放掉了。这是Clickhouse自己做的一个优化。</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-表级TTL（指定整个表的失效时间）"><a href="#2-表级TTL（指定整个表的失效时间）" class="headerlink" title="(2)表级TTL（指定整个表的失效时间）"></a>(2)表级TTL（指定整个表的失效时间）</h4><p>下面的这条语句是数据会在create_time 之后10秒丢失</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table t_order_mt3 MODIFY TTL create_time + INTERVAL 10 SECOND;</span><br></pre></td></tr></table></figure>
+
+<p>涉及判断的字段必须是Date或者Datetime类型，推荐使用分区的日期字段。<br>能够使用的时间周期：</p>
+<ul>
+<li>SECOND</li>
+<li>MINUTE</li>
+<li>HOUR</li>
+<li>DAY</li>
+<li>WEEK</li>
+<li>MONTH</li>
+<li>QUARTER</li>
+<li>YEAR </li>
+</ul>
+<h2 id="ReplacingMergeTree"><a href="#ReplacingMergeTree" class="headerlink" title="ReplacingMergeTree"></a>ReplacingMergeTree</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217011322.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">去重不是业务上的去重,而是Clickhouse本身为了去优化做的去重.所以说,clickhouse是可以去重,但是什么时间去重,我们不确定. 所以说你给Clickhouse的数据应该是在你在前台已经去重的数据这更合适</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217011346.png"></p>
+<p><strong>案例演示</strong></p>
+<p><strong>创建表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">create table t_order_rmt(</span><br><span class="line">    id UInt32,</span><br><span class="line">    sku_id String,</span><br><span class="line">    total_amount Decimal(16,2) ,</span><br><span class="line">    create_time  Datetime </span><br><span class="line"> ) engine =ReplacingMergeTree(create_time)</span><br><span class="line">   partition by toYYYYMMDD(create_time)</span><br><span class="line">   primary key (id)</span><br><span class="line">   order by (id, sku_id);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217011431.png"></p>
+<p><strong>向表中插入数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">insert into  t_order_rmt values</span><br><span class="line">(101,&#x27;sku_001&#x27;,1000.00,&#x27;2020-06-01 12:00:00&#x27;) ,</span><br><span class="line">(102,&#x27;sku_002&#x27;,2000.00,&#x27;2020-06-01 11:00:00&#x27;),</span><br><span class="line">(102,&#x27;sku_004&#x27;,2500.00,&#x27;2020-06-01 12:00:00&#x27;),</span><br><span class="line">(102,&#x27;sku_002&#x27;,2000.00,&#x27;2020-06-01 13:00:00&#x27;),</span><br><span class="line">(102,&#x27;sku_002&#x27;,12000.00,&#x27;2020-06-01 13:00:00&#x27;),</span><br><span class="line">(102,&#x27;sku_002&#x27;,600.00,&#x27;2020-06-02 12:00:00&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>执行第一次查询</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop202 :) select * from t_order_rmt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217011516.png"></p>
+<p><strong>手动合并</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OPTIMIZE TABLE t_order_rmt FINAL;</span><br></pre></td></tr></table></figure>
+
+<p><strong>再执行一次查询</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop202 :) select * from t_order_rmt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217011601.png"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217011624.png"></p>
+<h2 id="SummingMergeTree-提供预聚合的作用"><a href="#SummingMergeTree-提供预聚合的作用" class="headerlink" title="SummingMergeTree(提供预聚合的作用)"></a>SummingMergeTree(提供预聚合的作用)</h2><pre><code>    对于不查询明细，只关心以维度进行汇总聚合结果的场景。如果只使用普通的MergeTree的话，无论是存储空间的开销，还是查询时临时聚合的开销都比较大。
+    ClickHouse 为了这种场景，提供了一种能够“预聚合”的引擎SummingMergeTree
+</code></pre>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217011728.png"></p>
+<p><strong>案例演示</strong></p>
+<p><strong>创建表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">create table t_order_smt(</span><br><span class="line">    id UInt32,</span><br><span class="line">    sku_id String,</span><br><span class="line">    total_amount Decimal(16,2) ,</span><br><span class="line">    create_time  Datetime </span><br><span class="line"> ) engine =SummingMergeTree(total_amount)</span><br><span class="line">   partition by toYYYYMMDD(create_time)</span><br><span class="line">   primary key (id)</span><br><span class="line">   order by (id,sku_id );</span><br></pre></td></tr></table></figure>
+
+<p><strong>插入数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">insert into  t_order_smt values</span><br><span class="line">(101,&#x27;sku_001&#x27;,1000.00,&#x27;2020-06-01 12:00:00&#x27;),</span><br><span class="line">(102,&#x27;sku_002&#x27;,2000.00,&#x27;2020-06-01 11:00:00&#x27;),</span><br><span class="line">(102,&#x27;sku_004&#x27;,2500.00,&#x27;2020-06-01 12:00:00&#x27;),</span><br><span class="line">(102,&#x27;sku_002&#x27;,2000.00,&#x27;2020-06-01 13:00:00&#x27;),</span><br><span class="line">(102,&#x27;sku_002&#x27;,12000.00,&#x27;2020-06-01 13:00:00&#x27;),</span><br><span class="line">(102,&#x27;sku_002&#x27;,600.00,&#x27;2020-06-02 12:00:00&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>执行第一次查询</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop202 :) select * from t_order_smt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217011833.png"></p>
+<p><strong>手动合并</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OPTIMIZE TABLE t_order_smt FINAL;</span><br></pre></td></tr></table></figure>
+
+<p><strong>再执行一次查询</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop202 :) select * from t_order_smt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217011907.png"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217011935.png"></p>
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/zhifubaoPay.png">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/weixinPay.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/ClickHouse%E8%A1%A8%E5%BC%95%E6%93%8E/">ClickHouse表引擎</a>
-	
-    </h1>
-  
+      </a>
+    </div>
+    
 
-
-        <div class="article-info info-on-right">
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          xubatian
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://xubatian.cn/ClickHouse表引擎/" title="ClickHouse表引擎" target="_blank">http://xubatian.cn/ClickHouse表引擎/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外均为原创，采用 CC BY 4.0 CN协议 许可协议。转载请注明出处:https://www.xubatian.cn/
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -319,7 +582,7 @@
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -332,515 +595,140 @@
 	</div>
 
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/ClickHouse%E8%A1%A8%E5%BC%95%E6%93%8E/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/ClickHouse%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
-        <time datetime="2022-02-16T16:34:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-17</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/ClickHouse%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ClickHouse数据类型</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/ClickHouse%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">ClickHouse数据类型</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">clickhouse</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E5%BC%95%E6%93%8E%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">表引擎的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TinyLog"><span class="toc-number">2.</span> <span class="toc-text">TinyLog</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Memory"><span class="toc-number">3.</span> <span class="toc-text">Memory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MergeTree-%E6%9C%80%E5%BC%BA%E5%A4%A7%E7%9A%84%E8%A1%A8%E5%BC%95%E6%93%8E"><span class="toc-number">4.</span> <span class="toc-text">MergeTree(最强大的表引擎)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#partition-by-%E5%88%86%E5%8C%BA-%EF%BC%88%E5%8F%AF%E9%80%89%E9%A1%B9-%E4%B8%8D%E5%A1%AB%E7%9A%84%E8%AF%9D%E6%95%B0%E6%8D%AE%E5%9C%A8%E4%B8%80%E4%B8%AA%E5%88%86%E5%8C%BA%EF%BC%89"><span class="toc-number">4.1.</span> <span class="toc-text">partition by 分区 （可选项,不填的话数据在一个分区）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#primary-key%E4%B8%BB%E9%94%AE-%E5%8F%AF%E9%80%89"><span class="toc-number">4.2.</span> <span class="toc-text">primary key主键(可选)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#order-by%EF%BC%88%E5%BF%85%E9%80%89-%E4%BD%9C%E7%94%A8-%E5%88%86%E5%8C%BA%E5%86%85%E6%8E%92%E5%BA%8F%EF%BC%89"><span class="toc-number">4.3.</span> <span class="toc-text">order by（必选,作用:分区内排序）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E7%BA%A7%E7%B4%A2%E5%BC%95"><span class="toc-number">5.</span> <span class="toc-text">二级索引</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%BD%BF%E7%94%A8%E4%BA%8C%E7%BA%A7%E7%B4%A2%E5%BC%95%E5%89%8D%E9%9C%80%E8%A6%81%E5%A2%9E%E5%8A%A0%E8%AE%BE%E7%BD%AE"><span class="toc-number">5.1.</span> <span class="toc-text">(1)使用二级索引前需要增加设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%88%9B%E5%BB%BA%E6%B5%8B%E8%AF%95%E8%A1%A8"><span class="toc-number">5.2.</span> <span class="toc-text">(2)创建测试表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="toc-number">5.3.</span> <span class="toc-text">(3)插入数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%AF%B9%E6%AF%94%E6%95%88%E6%9E%9C"><span class="toc-number">5.4.</span> <span class="toc-text">(4)对比效果</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AETTL"><span class="toc-number">6.</span> <span class="toc-text">数据TTL</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%88%97%E7%BA%A7%E5%88%ABTTL%EF%BC%88%E6%89%A7%E8%A1%8C%E6%95%B4%E4%B8%AA%E5%88%97%E7%9A%84%E5%A4%B1%E6%95%88%E6%97%B6%E9%97%B4%EF%BC%89"><span class="toc-number">6.1.</span> <span class="toc-text">(1)列级别TTL（执行整个列的失效时间）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%A1%A8%E7%BA%A7TTL%EF%BC%88%E6%8C%87%E5%AE%9A%E6%95%B4%E4%B8%AA%E8%A1%A8%E7%9A%84%E5%A4%B1%E6%95%88%E6%97%B6%E9%97%B4%EF%BC%89"><span class="toc-number">6.2.</span> <span class="toc-text">(2)表级TTL（指定整个表的失效时间）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ReplacingMergeTree"><span class="toc-number"></span> <span class="toc-text">ReplacingMergeTree</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SummingMergeTree-%E6%8F%90%E4%BE%9B%E9%A2%84%E8%81%9A%E5%90%88%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number"></span> <span class="toc-text">SummingMergeTree(提供预聚合的作用)</span></a>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/ClickHouse%E5%85%A5%E9%97%A8/" class="archive-article-date">
-        <time datetime="2022-02-16T16:19:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-17</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/ClickHouse%E5%85%A5%E9%97%A8/">ClickHouse入门</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">clickhouse</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/%E5%B8%B8%E7%94%A8%E7%9A%84shell%E8%84%9A%E6%9C%AC/" class="archive-article-date">
-        <time datetime="2022-02-16T14:17:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-16</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/%E5%B8%B8%E7%94%A8%E7%9A%84shell%E8%84%9A%E6%9C%AC/">常用的shell脚本</a>
-	
-    </h1>
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'true' == true ? true : false;
+   var verify = 'ture' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '.comment',
+            notify: notify,
+            verify: verify,
+            app_id: "4C7T8fSNVA6RnfQksa8BmdFc-gzGzoHsz",
+            app_key: "V57hYH4l9NRzmpobtAIN5gzq",
+            placeholder: "开始你的评论吧...",
+            avatar:"mm"
+        });
+    }
+</script>
+    </section>
   
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">shell</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-%E7%BB%B4%E5%BA%A6%E5%BB%BA%E6%A8%A1%E7%90%86%E8%AE%BA%E4%B9%8B%E4%BA%8B%E5%AE%9E%E8%A1%A8/" class="archive-article-date">
-        <time datetime="2022-02-16T05:30:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-16</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-%E7%BB%B4%E5%BA%A6%E5%BB%BA%E6%A8%A1%E7%90%86%E8%AE%BA%E4%B9%8B%E4%BA%8B%E5%AE%9E%E8%A1%A8/">数据仓库原理与实现: 维度建模理论之事实表</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据仓库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%BB%BA%E6%A8%A1%E6%A6%82%E8%BF%B0/" class="archive-article-date">
-        <time datetime="2022-02-16T05:25:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-16</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%BB%BA%E6%A8%A1%E6%A6%82%E8%BF%B0/">数据仓库原理与实现: 数据仓库建模概述</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据仓库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink-SQL-CDC/" class="archive-article-date">
-        <time datetime="2022-02-15T16:47:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-16</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink-SQL-CDC/">Flink 原理与实现: Flink SQL CDC</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/%E5%A4%AE%E8%A7%86%E7%9B%B4%E6%92%AD/" class="archive-article-date">
-        <time datetime="2022-02-15T16:06:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-16</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/%E5%A4%AE%E8%A7%86%E7%9B%B4%E6%92%AD/">央视直播</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">轻松一刻</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/轻松一刻//" class="article-tag-list-link color5">轻松一刻</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Spark%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Spark-SQL%E7%BC%96%E7%A8%8B/" class="archive-article-date">
-        <time datetime="2022-02-15T15:27:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-15</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Spark%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Spark-SQL%E7%BC%96%E7%A8%8B/">Spark原理与实现: Spark SQL编程</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">spark SQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Spark%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-SparkSQL%E7%9A%84%E6%A6%82%E8%BF%B0/" class="archive-article-date">
-        <time datetime="2022-02-15T15:13:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-15</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Spark%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-SparkSQL%E7%9A%84%E6%A6%82%E8%BF%B0/">Spark原理与实现: SparkSQL的概述</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">spark SQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2022/02/page/2/">2</a><a class="page-number" href="/archives/2022/02/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2022/02/page/5/">5</a><a class="extend next" rel="next" href="/archives/2022/02/page/2/">下一页</a>
-    </nav>
-  
 
 
 
@@ -881,8 +769,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
