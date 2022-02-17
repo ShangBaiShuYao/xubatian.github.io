@@ -280,6 +280,213 @@
             
 
   
+    <article id="post-Flink-原理与实现-Flink的ProcessFunction-API（底层API）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E7%9A%84ProcessFunction-API%EF%BC%88%E5%BA%95%E5%B1%82API%EF%BC%89/">Flink 原理与实现: Flink的ProcessFunction API（底层API）</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E7%9A%84ProcessFunction-API%EF%BC%88%E5%BA%95%E5%B1%82API%EF%BC%89/" class="archive-article-date">
+        <time datetime="2022-02-14T07:44:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-14</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="Flink底层API概述"><a href="#Flink底层API概述" class="headerlink" title="Flink底层API概述"></a>Flink底层API概述</h1><p>ProcessFunction API是属于Flink三层API中最底层的一层API.最底层的API意味着什么呢?</p>
+<p>​        顾名思义就是我们可以做任何你想要做的任何事情.你可以理解为底层的API我们想要处理一些细腻化的操作,或者要处理一些特殊的业务.我如果使用高级的API ,DataStream API已经搞定不了的情况下.最后呢,我们就可以是用ProcessFunction API. ProcessFunction API是属于我们Flink里面最底层的转换算子.在这个最底层的转换算子中.我们可以有很多的工作可以做.或者有很多的功能可以完成.可以访问时间戳.那我们访问的时间戳是什么时间戳呢?是处理的时间戳.也可以是当前进来的那条数据的时间戳.那么当前进来的时间戳和处理的时间戳我们不是可以使用system.currenttimemillis()吗?但是这个时候我们使用这个是不准确的.<strong>你要想访问准确的时间的话.我们就可以使用底层的API.他就给我们提供了一个方法.我们可以访问watermark,还可以查看当前的水位线.水位线实际上是这样的,就是他每个两百毫秒调用一次.是需要更新这个水位线的.因为水位线有两种.</strong></p>
+<p>一种是周期性的水位线.<br>还有一种是间断性的水位线.</p>
+<p>周期性的水位线就是说我每隔多长时间来更新一下或者设置一下这个新的水位线.就是这个意思.那么当前<strong>最新的水位线是多少我们都可以通过在底层API中去拿到</strong>.甚至我们还可以<strong>注册定时的事件.</strong></p>
+<p>什么叫注册定时的事件呢?</p>
+<p>​    比如说:我们到达某一个条件之后我想触发一个事件.触发一个新的事件.这个事件我规定你在三秒钟之后你给我执行.那么在三秒钟还没到的时候我就有必要把这个事件注册一下.注册之后,从现在开始到三秒钟之后他会自动触发.所以你可以理解为定义,我们定义一个马上过一段时间要触发的一个事件.</p>
+<p>​        还可以输出一个特定的一些事件.比如说超时的一些事件.什么意思呢?比如说我们现在正在处理数据.假设处理数据的时候我们发现可能某一个条件还没成熟.那么没关系,我们可以在几秒钟之后设置一个超时时间.在几秒钟之后我们再进行处理.这就是所谓的超时时间.</p>
+<p><strong>实际上几秒钟之后再处理的话,也是需要注册一个定时事件的</strong>.因为你要注册一个处理的时间,多长时间之后再进行处理.这些都是原来我们的API所无法做到的.那我们就可以通过ProcessFunction API这个底层的API来进行处理.</p>
+    
+    <a class="article-more-a" style="display: none; href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E7%9A%84ProcessFunction-API%EF%BC%88%E5%BA%95%E5%B1%82API%EF%BC%89/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E7%9A%84ProcessFunction-API%EF%BC%88%E5%BA%95%E5%B1%82API%EF%BC%89/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Flink-原理与实现-Flink-的时间语义与Wartermark-水位线-机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink-%E7%9A%84%E6%97%B6%E9%97%B4%E8%AF%AD%E4%B9%89%E4%B8%8EWartermark-%E6%B0%B4%E4%BD%8D%E7%BA%BF-%E6%9C%BA%E5%88%B6/">Flink 原理与实现: Flink 的时间语义与Wartermark(水位线)机制</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink-%E7%9A%84%E6%97%B6%E9%97%B4%E8%AF%AD%E4%B9%89%E4%B8%8EWartermark-%E6%B0%B4%E4%BD%8D%E7%BA%BF-%E6%9C%BA%E5%88%B6/" class="archive-article-date">
+        <time datetime="2022-02-14T07:05:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-14</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="时间语义与Wartermark-水位线-阐述"><a href="#时间语义与Wartermark-水位线-阐述" class="headerlink" title="时间语义与Wartermark(水位线)阐述:"></a>时间语义与Wartermark(水位线)阐述:</h1><p>用到了时间语义和watermark,所以Flink和sparkStreaming是有一定的区别的.</p>
+<p><strong>Flink中的时间语义有三种:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Event Time(事件触发的时间或者是事件创建的时间),</span><br><span class="line"></span><br><span class="line">Ingestion Time(进入Flink的时间),</span><br><span class="line"></span><br><span class="line">Processing Time(Flink在处理这条数据的时间),</span><br></pre></td></tr></table></figure>
+    
+    <a class="article-more-a" style="display: none; href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink-%E7%9A%84%E6%97%B6%E9%97%B4%E8%AF%AD%E4%B9%89%E4%B8%8EWartermark-%E6%B0%B4%E4%BD%8D%E7%BA%BF-%E6%9C%BA%E5%88%B6/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink-%E7%9A%84%E6%97%B6%E9%97%B4%E8%AF%AD%E4%B9%89%E4%B8%8EWartermark-%E6%B0%B4%E4%BD%8D%E7%BA%BF-%E6%9C%BA%E5%88%B6/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Flink-原理与实现-Flink中的Window-API" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1074,207 +1281,6 @@ streamEnv.setParallelism(1)//加在ENV上表示默认所有的算子平行度都
     
     <p class="article-more-link">
       <a class="article-more-a" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E4%BB%BB%E5%8A%A1%E6%8F%90%E4%BA%A4%E6%B5%81%E7%A8%8B/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Flink-原理与实现-Flink运行时的组件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E8%BF%90%E8%A1%8C%E6%97%B6%E7%9A%84%E7%BB%84%E4%BB%B6/">Flink 原理与实现: Flink运行时的组件</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E8%BF%90%E8%A1%8C%E6%97%B6%E7%9A%84%E7%BB%84%E4%BB%B6/" class="archive-article-date">
-        <time datetime="2022-02-11T04:20:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-11</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>Flink运行时架构主要包括四个不同的组件，它们会在运行流处理应用程序时协同工作：作业管理器（JobManager）、资源管理器（ResourceManager）、任务管理器（TaskManager），以及分发器（Dispatcher）。因为Flink是用Java和Scala实现的，所以所有组件都会运行在Java虚拟机上。每个组件的职责如下</p>
-    
-    <a class="article-more-a" style="display: none; href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E8%BF%90%E8%A1%8C%E6%97%B6%E7%9A%84%E7%BB%84%E4%BB%B6/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E8%BF%90%E8%A1%8C%E6%97%B6%E7%9A%84%E7%BB%84%E4%BB%B6/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Flink-原理与实现-Flink核心概念之任务链" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B9%8B%E4%BB%BB%E5%8A%A1%E9%93%BE/">Flink 原理与实现: Flink核心概念之任务链</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B9%8B%E4%BB%BB%E5%8A%A1%E9%93%BE/" class="archive-article-date">
-        <time datetime="2022-02-10T14:15:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-10</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h3 id="好记性-烂笔头"><a href="#好记性-烂笔头" class="headerlink" title="好记性,烂笔头:"></a>好记性,烂笔头:</h3><p>①socket不能多并行度消费. 而kafka是可以多并行度消费的. kafka有多个分区.   </p>
-<p>②keyby不是一个算子,他是决定我们的数据进入到下游的哪一个并行度里面的.他自己没有并行度的.他不会对数据做任何的操作.数据可能从一个并行度来的. 进过keyby之后,可能把他发到好多个并行度里面去了.</p>
-<p>8种数据传输的方式:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">KeyBy: 按照key的hash值分区, 相同的key一定会分到相同的分区.即相同的key进入相同的并行度,也就是说进入同一个子任务.</span><br><span class="line">Shuffle: 随机分的.</span><br><span class="line">Rebalance: 全局轮询,即上游的所有并行度都对下游所有并行度轮询.</span><br><span class="line">Rescale: 局部轮询,也就是说上游两个,下游四个.我上游两个在两个里面轮询了,一个人在两个里面轮询.</span><br><span class="line">Global: 所有数据发送到下游同一个并行度.</span><br><span class="line">Broadcast:所有数据发送到下游所有并行度.</span><br><span class="line">Forward:要求并行度相同,因为他是一对一的.</span><br><span class="line">Customer: 自定义.</span><br></pre></td></tr></table></figure>
-    
-    <a class="article-more-a" style="display: none; href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B9%8B%E4%BB%BB%E5%8A%A1%E9%93%BE/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B9%8B%E4%BB%BB%E5%8A%A1%E9%93%BE/">展开全文 >></a>
     </p>
     
 

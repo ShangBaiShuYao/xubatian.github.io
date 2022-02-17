@@ -280,6 +280,207 @@
             
 
   
+    <article id="post-Flink-原理与实现-Flink运行时的组件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E8%BF%90%E8%A1%8C%E6%97%B6%E7%9A%84%E7%BB%84%E4%BB%B6/">Flink 原理与实现: Flink运行时的组件</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E8%BF%90%E8%A1%8C%E6%97%B6%E7%9A%84%E7%BB%84%E4%BB%B6/" class="archive-article-date">
+        <time datetime="2022-02-11T04:20:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-11</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>Flink运行时架构主要包括四个不同的组件，它们会在运行流处理应用程序时协同工作：作业管理器（JobManager）、资源管理器（ResourceManager）、任务管理器（TaskManager），以及分发器（Dispatcher）。因为Flink是用Java和Scala实现的，所以所有组件都会运行在Java虚拟机上。每个组件的职责如下</p>
+    
+    <a class="article-more-a" style="display: none; href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E8%BF%90%E8%A1%8C%E6%97%B6%E7%9A%84%E7%BB%84%E4%BB%B6/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E8%BF%90%E8%A1%8C%E6%97%B6%E7%9A%84%E7%BB%84%E4%BB%B6/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Flink-原理与实现-Flink核心概念之任务链" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B9%8B%E4%BB%BB%E5%8A%A1%E9%93%BE/">Flink 原理与实现: Flink核心概念之任务链</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B9%8B%E4%BB%BB%E5%8A%A1%E9%93%BE/" class="archive-article-date">
+        <time datetime="2022-02-10T14:15:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-10</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="好记性-烂笔头"><a href="#好记性-烂笔头" class="headerlink" title="好记性,烂笔头:"></a>好记性,烂笔头:</h3><p>①socket不能多并行度消费. 而kafka是可以多并行度消费的. kafka有多个分区.   </p>
+<p>②keyby不是一个算子,他是决定我们的数据进入到下游的哪一个并行度里面的.他自己没有并行度的.他不会对数据做任何的操作.数据可能从一个并行度来的. 进过keyby之后,可能把他发到好多个并行度里面去了.</p>
+<p>8种数据传输的方式:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">KeyBy: 按照key的hash值分区, 相同的key一定会分到相同的分区.即相同的key进入相同的并行度,也就是说进入同一个子任务.</span><br><span class="line">Shuffle: 随机分的.</span><br><span class="line">Rebalance: 全局轮询,即上游的所有并行度都对下游所有并行度轮询.</span><br><span class="line">Rescale: 局部轮询,也就是说上游两个,下游四个.我上游两个在两个里面轮询了,一个人在两个里面轮询.</span><br><span class="line">Global: 所有数据发送到下游同一个并行度.</span><br><span class="line">Broadcast:所有数据发送到下游所有并行度.</span><br><span class="line">Forward:要求并行度相同,因为他是一对一的.</span><br><span class="line">Customer: 自定义.</span><br></pre></td></tr></table></figure>
+    
+    <a class="article-more-a" style="display: none; href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B9%8B%E4%BB%BB%E5%8A%A1%E9%93%BE/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B9%8B%E4%BB%BB%E5%8A%A1%E9%93%BE/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Flink总结速览" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1088,205 +1289,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/mybatis%E7%AE%80%E4%BB%8B/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Flink使用idea将匿名内部类替换为lambda表达会擦除泛型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/Flink%E4%BD%BF%E7%94%A8idea%E5%B0%86%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB%E6%9B%BF%E6%8D%A2%E4%B8%BAlambda%E8%A1%A8%E8%BE%BE%E4%BC%9A%E6%93%A6%E9%99%A4%E6%B3%9B%E5%9E%8B/">Flink使用idea将匿名内部类替换为lambda表达会擦除泛型</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/Flink%E4%BD%BF%E7%94%A8idea%E5%B0%86%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB%E6%9B%BF%E6%8D%A2%E4%B8%BAlambda%E8%A1%A8%E8%BE%BE%E4%BC%9A%E6%93%A6%E9%99%A4%E6%B3%9B%E5%9E%8B/" class="archive-article-date">
-        <time datetime="2022-02-07T06:12:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-07</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>Flink代码使用IDEA将new匿名内部类替换为lambda表达式运行会报错,因为替换后会擦除泛型</p>
-<p>测试Flink1.12.0没有出现返回值类型报错问题. 不知道是否是Flink高版本结局了此问题还是idea高版本解决了此问题.</p>
-    
-    <a class="article-more-a" style="display: none; href="/Flink%E4%BD%BF%E7%94%A8idea%E5%B0%86%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB%E6%9B%BF%E6%8D%A2%E4%B8%BAlambda%E8%A1%A8%E8%BE%BE%E4%BC%9A%E6%93%A6%E9%99%A4%E6%B3%9B%E5%9E%8B/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/Flink%E4%BD%BF%E7%94%A8idea%E5%B0%86%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB%E6%9B%BF%E6%8D%A2%E4%B8%BAlambda%E8%A1%A8%E8%BE%BE%E4%BC%9A%E6%93%A6%E9%99%A4%E6%B3%9B%E5%9E%8B/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-二月-你好" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/%E4%BA%8C%E6%9C%88-%E4%BD%A0%E5%A5%BD/">2022年,二月,你好!</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/%E4%BA%8C%E6%9C%88-%E4%BD%A0%E5%A5%BD/" class="archive-article-date">
-        <time datetime="2022-01-31T23:30:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-01</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>二月了呀! 要加油了…..</p>
-    
-    <a class="article-more-a" style="display: none; href="/%E4%BA%8C%E6%9C%88-%E4%BD%A0%E5%A5%BD/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">动态</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/动态//" class="article-tag-list-link color3">动态</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/%E4%BA%8C%E6%9C%88-%E4%BD%A0%E5%A5%BD/">展开全文 >></a>
     </p>
     
 
