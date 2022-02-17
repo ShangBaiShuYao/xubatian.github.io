@@ -6,21 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://xubatian.cn">
-  <title>Category: 大数据 | 我的梦想是星辰大海</title>
+  <title>kafka3.0.0之kafka概述 | 我的梦想是星辰大海</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta name="description" content="知识源于积累,登峰造极源于自律">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我的梦想是星辰大海">
-<meta property="og:url" content="http://xubatian.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/page/4/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="kafka3.0.0之kafka概述">
+<meta property="og:url" content="http://xubatian.cn/kafka3-0-0%E4%B9%8Bkafka%E6%A6%82%E8%BF%B0/index.html">
 <meta property="og:site_name" content="我的梦想是星辰大海">
-<meta property="og:description" content="知识源于积累,登峰造极源于自律">
 <meta property="og:locale">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217124445.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217125929.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217130109.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217130150.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217130231.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217130446.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217130607.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217130719.png">
+<meta property="article:published_time" content="2022-02-17T04:53:43.000Z">
+<meta property="article:modified_time" content="2022-02-17T06:43:43.999Z">
 <meta property="article:author" content="xubatian">
-<meta property="article:tag" content="徐霸天,xubatian,上白书妖,shangbaishuyao">
+<meta property="article:tag" content="Kafka">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217124445.png">
   
   
     <link rel="icon" href="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/favicon.ico">
@@ -273,53 +282,152 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-kafka3-0-0之kafka概述" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E4%B8%AD%E7%9A%84Window/" class="archive-article-date">
-        <time datetime="2022-02-14T06:03:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-14</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E4%B8%AD%E7%9A%84Window/">Flink 原理与实现: Flink中的Window</a>
-	
+    <h1 class="article-title" itemprop="name">
+      kafka3.0.0之kafka概述
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/kafka3-0-0%E4%B9%8Bkafka%E6%A6%82%E8%BF%B0/" class="archive-article-date">
+        <time datetime="2022-02-17T04:53:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-17</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">675字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">2分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217124445.png"></p>
+<span id="more"></span>
+
+<h2 id="Kafka-概述"><a href="#Kafka-概述" class="headerlink" title="Kafka 概述"></a><strong>Kafka</strong> <strong>概述</strong></h2><h3 id="kafka定义"><a href="#kafka定义" class="headerlink" title="kafka定义"></a>kafka定义</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217125929.png"></p>
+<h3 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h3><p>​            目 前企 业中比 较常 见的 消息 队列产 品主 要有 Kafka、ActiveMQ 、RabbitMQ 、RocketMQ 等。<br>​            在大数据场景主要采用 Kafka 作为消息队列。在 JavaEE 开发中主要采用 ActiveMQ、RabbitMQ、RocketMQ。</p>
+<h3 id="传统消息队列的应用场景"><a href="#传统消息队列的应用场景" class="headerlink" title="传统消息队列的应用场景"></a>传统消息队列的应用场景</h3><p>​        传统的消息队列的主要应用场景包括：缓存/消峰、解耦和异步通信。</p>
+<h4 id="消息队列的应用场景——缓冲-消峰"><a href="#消息队列的应用场景——缓冲-消峰" class="headerlink" title="消息队列的应用场景——缓冲/消峰"></a>消息队列的应用场景——缓冲/消峰</h4><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217130109.png"></p>
+<h4 id="消息队列的应用场景——解耦"><a href="#消息队列的应用场景——解耦" class="headerlink" title="消息队列的应用场景——解耦"></a>消息队列的应用场景——解耦</h4><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217130150.png"></p>
+<h4 id="消息队列的应用场景——异步通信"><a href="#消息队列的应用场景——异步通信" class="headerlink" title="消息队列的应用场景——异步通信"></a>消息队列的应用场景——异步通信</h4><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217130231.png"></p>
+<h3 id="消息队列的两种模式-Rabbit-MQ-Active-MQ-kafka"><a href="#消息队列的两种模式-Rabbit-MQ-Active-MQ-kafka" class="headerlink" title="消息队列的两种模式(Rabbit MQ,Active MQ,kafka)"></a>消息队列的两种模式(Rabbit MQ,Active MQ,kafka)</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217130446.png"></p>
+<h3 id="Kafka-基础架构"><a href="#Kafka-基础架构" class="headerlink" title="Kafka 基础架构"></a>Kafka 基础架构</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217130607.png"></p>
+<p>100T的数据存储到一台服务器上,一台服务器一般是8-90T. 所以不能存下. 所以,遇到海量数据分而治之. 把100T数据切分成几块来处理.</p>
+<p>​    kafka也是采用这种思想. 把100T的数据切割成几块来处理. 就是把一个主题的数据分割成多个partition分区. 100T的数据存到一个主题里面,但是因为数据太大. 我们把这个主题又分为多个分区. 即,100T的数据发往topicA主题当中, 但是我每一台服务器都无法同时存储下这100T数据. 所以我们把这100T数据切割成n份分区.每一个服务器只存储30多T的数据.(broker0,broker1,broker2代表hadoop101,102,103对应的主题名称,即三台服务器)</p>
+<p>​    既然生产切分了,消费要并行消费才会很快. 所以就有消费者组的概念, 消费者组里面有n个消费者,每一个人负责对应的分区. 消费者组就消费你这个topic主题.这样消费就很快. <strong>一个分区的数据只能由一个消费者来消费.</strong></p>
+<h4 id="如果一个分区挂了怎么办呢"><a href="#如果一个分区挂了怎么办呢" class="headerlink" title="如果一个分区挂了怎么办呢?"></a>如果一个分区挂了怎么办呢?</h4><p>​        考虑到可靠性,kafka可以增加副本. hadoop里面的副本是一样的.但是kafka里面的副本分为 leader和 follower.</p>
+<p>无论是生产者和消费者,生产消费的时候只针对leader这个副本进行生产和消费. follower的作用就是,当你的leader挂掉之后,follower有条件成为新的leader.</p>
+<h4 id="zookeeper上存了kafka的那些信息"><a href="#zookeeper上存了kafka的那些信息" class="headerlink" title="zookeeper上存了kafka的那些信息?"></a>zookeeper上存了kafka的那些信息?</h4><p>​      kafka有一部分信息存在zookeeper里面的.他帮kafka来存储整个集群中那些服务器上线了.也就是记录服务器运行的节点状态.zookeeper还会帮你记录每一个分区谁是leader. 这样后续生产和消费的时候直接找leader. Kafka2.8.0之前,kafka必须要有zookeeper进行配合使用.2.8.0之后就不是必须的了.他是可选的.</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217130719.png"></p>
+<p>​    </p>
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/zhifubaoPay.png">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/weixinPay.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          xubatian
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://xubatian.cn/kafka3-0-0之kafka概述/" title="kafka3.0.0之kafka概述" target="_blank">http://xubatian.cn/kafka3-0-0之kafka概述/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外均为原创，采用 CC BY 4.0 CN协议 许可协议。转载请注明出处:https://www.xubatian.cn/
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Kafka</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -332,511 +440,141 @@
 	</div>
 
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/kafka3-0-0%E4%B9%8Bkafka%E6%A6%82%E8%BF%B0/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Hadoop%E6%95%B0%E6%8D%AE%E5%8E%8B%E7%BC%A9/YARN%E8%B0%83%E5%BA%A6%E5%99%A8%E3%80%90capacity-scheduler-xml%E3%80%91%E9%BB%98%E8%AE%A4%E9%85%8D%E7%BD%AE/" class="archive-article-date">
-        <time datetime="2022-02-12T10:11:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-12</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/Flink%E5%86%99%E5%85%A5clickhouse%E6%A1%88%E4%BE%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Flink写入clickhouse案例</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Hadoop%E6%95%B0%E6%8D%AE%E5%8E%8B%E7%BC%A9/YARN%E8%B0%83%E5%BA%A6%E5%99%A8%E3%80%90capacity-scheduler-xml%E3%80%91%E9%BB%98%E8%AE%A4%E9%85%8D%E7%BD%AE/">YARN调度器【capacity-scheduler.xml】默认配置</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">yarn</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Kafka-%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">Kafka 概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#kafka%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">kafka定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97"><span class="toc-number">1.2.</span> <span class="toc-text">消息队列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.3.</span> <span class="toc-text">传统消息队列的应用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E2%80%94%E2%80%94%E7%BC%93%E5%86%B2-%E6%B6%88%E5%B3%B0"><span class="toc-number">1.3.1.</span> <span class="toc-text">消息队列的应用场景——缓冲&#x2F;消峰</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E2%80%94%E2%80%94%E8%A7%A3%E8%80%A6"><span class="toc-number">1.3.2.</span> <span class="toc-text">消息队列的应用场景——解耦</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E2%80%94%E2%80%94%E5%BC%82%E6%AD%A5%E9%80%9A%E4%BF%A1"><span class="toc-number">1.3.3.</span> <span class="toc-text">消息队列的应用场景——异步通信</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%A8%A1%E5%BC%8F-Rabbit-MQ-Active-MQ-kafka"><span class="toc-number">1.4.</span> <span class="toc-text">消息队列的两种模式(Rabbit MQ,Active MQ,kafka)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kafka-%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84"><span class="toc-number">1.5.</span> <span class="toc-text">Kafka 基础架构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E4%B8%80%E4%B8%AA%E5%88%86%E5%8C%BA%E6%8C%82%E4%BA%86%E6%80%8E%E4%B9%88%E5%8A%9E%E5%91%A2"><span class="toc-number">1.5.1.</span> <span class="toc-text">如果一个分区挂了怎么办呢?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#zookeeper%E4%B8%8A%E5%AD%98%E4%BA%86kafka%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BF%A1%E6%81%AF"><span class="toc-number">1.5.2.</span> <span class="toc-text">zookeeper上存了kafka的那些信息?</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B9%8B%E5%B9%B6%E8%A1%8C%E5%BA%A6%EF%BC%88Parallelism%EF%BC%89/" class="archive-article-date">
-        <time datetime="2022-02-11T05:04:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-11</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B9%8B%E5%B9%B6%E8%A1%8C%E5%BA%A6%EF%BC%88Parallelism%EF%BC%89/">Flink 原理与实现: Flink核心概念之并行度（Parallelism）</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B9%8B%E6%89%A7%E8%A1%8C%E5%9B%BE%EF%BC%88ExecutionGraph%EF%BC%89/" class="archive-article-date">
-        <time datetime="2022-02-11T04:56:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-11</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B9%8B%E6%89%A7%E8%A1%8C%E5%9B%BE%EF%BC%88ExecutionGraph%EF%BC%89/">Flink 原理与实现: Flink核心概念之执行图（ExecutionGraph）</a>
-	
-    </h1>
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'true' == true ? true : false;
+   var verify = 'ture' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '.comment',
+            notify: notify,
+            verify: verify,
+            app_id: "4C7T8fSNVA6RnfQksa8BmdFc-gzGzoHsz",
+            app_key: "V57hYH4l9NRzmpobtAIN5gzq",
+            placeholder: "开始你的评论吧...",
+            avatar:"mm"
+        });
+    }
+</script>
+    </section>
   
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B9%8BTaskManger%E4%B8%8ESlots/" class="archive-article-date">
-        <time datetime="2022-02-11T04:45:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-11</time>
-</a>
 
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B9%8BTaskManger%E4%B8%8ESlots/">Flink 原理与实现: Flink核心概念之TaskManger与Slots</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%86%E6%A6%82%E5%BF%B5/" class="archive-article-date">
-        <time datetime="2022-02-11T04:33:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-11</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E5%8E%9F%E7%90%86%E6%A6%82%E5%BF%B5/">Flink 原理与实现: Flink任务调度原理概念</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E4%BB%BB%E5%8A%A1%E6%8F%90%E4%BA%A4%E6%B5%81%E7%A8%8B/" class="archive-article-date">
-        <time datetime="2022-02-11T04:27:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-11</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E4%BB%BB%E5%8A%A1%E6%8F%90%E4%BA%A4%E6%B5%81%E7%A8%8B/">Flink 原理与实现: Flink任务提交流程</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E8%BF%90%E8%A1%8C%E6%97%B6%E7%9A%84%E7%BB%84%E4%BB%B6/" class="archive-article-date">
-        <time datetime="2022-02-11T04:20:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-11</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E8%BF%90%E8%A1%8C%E6%97%B6%E7%9A%84%E7%BB%84%E4%BB%B6/">Flink 原理与实现: Flink运行时的组件</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B9%8B%E4%BB%BB%E5%8A%A1%E9%93%BE/" class="archive-article-date">
-        <time datetime="2022-02-10T14:15:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-10</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B9%8B%E4%BB%BB%E5%8A%A1%E9%93%BE/">Flink 原理与实现: Flink核心概念之任务链</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink%E6%80%BB%E7%BB%93%E9%80%9F%E8%A7%88/" class="archive-article-date">
-        <time datetime="2022-02-10T06:11:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-10</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink%E6%80%BB%E7%BB%93%E9%80%9F%E8%A7%88/">Flink总结速览</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/page/3/">上一页</a><a class="page-number" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">1</a><a class="page-number" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/page/2/">2</a><a class="page-number" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/page/5/">5</a><a class="page-number" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/page/8/">8</a><a class="extend next" rel="next" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/page/5/">下一页</a>
-    </nav>
-  
 
 
           </div>
@@ -876,10 +614,10 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
