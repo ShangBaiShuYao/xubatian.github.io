@@ -6,25 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://xubatian.cn">
-  <title>Flink内存管理: 内存管理器 | 我的梦想是星辰大海</title>
+  <title>Tag: Flink | 我的梦想是星辰大海</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta name="description" content="TaskManager内存模型 内存管理器作用​    我们有一块内存叫做管理内存. 内存管理器就是用来管理这块内存的.你设计的这块内存是不是得有人来操作维护的呀? 就是内存管理器维护管理内存的. ​">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Flink内存管理: 内存管理器">
-<meta property="og:url" content="http://xubatian.cn/Flink%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%99%A8/index.html">
+  <meta name="description" content="知识源于积累,登峰造极源于自律">
+<meta property="og:type" content="website">
+<meta property="og:title" content="我的梦想是星辰大海">
+<meta property="og:url" content="http://xubatian.cn/tags/Flink/page/5/index.html">
 <meta property="og:site_name" content="我的梦想是星辰大海">
-<meta property="og:description" content="TaskManager内存模型 内存管理器作用​    我们有一块内存叫做管理内存. 内存管理器就是用来管理这块内存的.你设计的这块内存是不是得有人来操作维护的呀? 就是内存管理器维护管理内存的. ​">
+<meta property="og:description" content="知识源于积累,登峰造极源于自律">
 <meta property="og:locale">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220219184944.png">
-<meta property="article:published_time" content="2022-02-19T13:04:52.000Z">
-<meta property="article:modified_time" content="2022-02-19T13:18:49.920Z">
 <meta property="article:author" content="xubatian">
-<meta property="article:tag" content="Flink">
+<meta property="article:tag" content="徐霸天,xubatian,上白书妖,shangbaishuyao">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220219184944.png">
   
   
     <link rel="icon" href="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/favicon.ico">
@@ -277,140 +273,41 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Flink内存管理-内存管理器" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
+            
+  
+  
     
-      <header class="article-header">
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2022" class="archive-year">2022</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	
+<a href="/Flink%E7%AE%80%E4%BB%8B/" class="archive-article-date">
+        <time datetime="2022-01-19T07:57:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-19</time>
+</a>
+
+        </div>
+    	 
   
-  
-    <h1 class="article-title" itemprop="name">
-      Flink内存管理: 内存管理器
+    <h1 itemprop="name">
+	
+	  <a class="archive-article-title" href="/Flink%E7%AE%80%E4%BB%8B/">Flink简介</a>
+	
     </h1>
   
 
 
-  
-  
-        
-        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
-              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
-        </span>
-
-<a href="/Flink%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%99%A8/" class="archive-article-date">
-        <time datetime="2022-02-19T13:04:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-19</time>
-</a>
-
-  
-  
-    
-<div style="margin-top:10px;">
-  <span class="post-time">
-    <span class="post-meta-item-icon">
-      <!-- fonts.scss -->
-      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
-      <i class="icon-statistics"></i>
-      <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">499字</span>
-    </span>
-  </span>
-
-  <span class="post-time">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-      <i class="icon-book icon"></i>
-      <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">2分</span>
-    </span>
-  </span>
-</div>
-
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="TaskManager内存模型"><a href="#TaskManager内存模型" class="headerlink" title="TaskManager内存模型"></a>TaskManager内存模型</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220219184944.png"></p>
-<h2 id="内存管理器作用"><a href="#内存管理器作用" class="headerlink" title="内存管理器作用"></a>内存管理器作用</h2><p>​    我们有一块内存叫做管理内存. 内存管理器就是用来管理这块内存的.你设计的这块内存是不是得有人来操作维护的呀? 就是内存管理器维护管理内存的.</p>
-<p>​        <span id="more"></span></p>
-<p>​        Flink 1.10 对TaskManager的内存模型和Flink应用程序的配置选项进行了重大更改，让用户能够更加严格地控制其内存开销。</p>
-<pre><code>    1.10之前版本，负责TaskManager所有内存。
-    1.10版本开始，管理范围是Slot级别。
-</code></pre>
-<h3 id="堆外内存资源申请"><a href="#堆外内存资源申请" class="headerlink" title="堆外内存资源申请"></a>堆外内存资源申请</h3><p>MemoryManager.java</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">allocatePages</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">			Object owner,</span></span></span><br><span class="line"><span class="params"><span class="function">			Collection&lt;MemorySegment&gt; target,</span></span></span><br><span class="line"><span class="params"><span class="function">			<span class="keyword">int</span> numberOfPages)</span> <span class="keyword">throws</span> MemoryAllocationException </span>&#123;</span><br><span class="line">		... ...</span><br><span class="line"></span><br><span class="line">		allocatedSegments.compute(owner, (o, currentSegmentsForOwner) -&gt; &#123;</span><br><span class="line">			Set&lt;MemorySegment&gt; segmentsForOwner = currentSegmentsForOwner == <span class="keyword">null</span> ?</span><br><span class="line">				<span class="keyword">new</span> HashSet&lt;&gt;(numberOfPages) : currentSegmentsForOwner;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">long</span> i = numberOfPages; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">				MemorySegment segment = allocateOffHeapUnsafeMemory(getPageSize(), owner, pageCleanup);</span><br><span class="line">				target.add(segment);</span><br><span class="line">				segmentsForOwner.add(segment);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> segmentsForOwner;</span><br><span class="line">		&#125;);</span><br><span class="line">		... ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>MemorySegmentFactory.java</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> MemorySegment <span class="title">allocateOffHeapUnsafeMemory</span><span class="params">(<span class="keyword">int</span> size, Object owner, Runnable customCleanupAction)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">long</span> address = MemoryUtils.allocateUnsafe(size);</span><br><span class="line">	ByteBuffer offHeapBuffer = MemoryUtils.wrapUnsafeMemoryWithByteBuffer(address, size);</span><br><span class="line">	MemoryUtils.createMemoryGcCleaner(offHeapBuffer, address, customCleanupAction);</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> HybridMemorySegment(offHeapBuffer, owner);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="RocksDB自己负责内存申请和释放"><a href="#RocksDB自己负责内存申请和释放" class="headerlink" title="RocksDB自己负责内存申请和释放"></a>RocksDB自己负责内存申请和释放</h3><p>RocksDBOperationUtils.java</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> OpaqueMemoryResource&lt;RocksDBSharedResources&gt; <span class="title">allocateSharedCachesIfConfigured</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">			RocksDBMemoryConfiguration memoryConfig,</span></span></span><br><span class="line"><span class="params"><span class="function">			MemoryManager memoryManager,</span></span></span><br><span class="line"><span class="params"><span class="function">			<span class="keyword">double</span> memoryFraction,</span></span></span><br><span class="line"><span class="params"><span class="function">			Logger logger)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line"></span><br><span class="line">	... ...</span><br><span class="line"></span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> (memoryConfig.isUsingFixedMemoryPerSlot()) &#123;</span><br><span class="line">				<span class="keyword">assert</span> memoryConfig.getFixedMemoryPerSlot() != <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">				logger.info(<span class="string">&quot;Getting fixed-size shared cache for RocksDB.&quot;</span>);</span><br><span class="line">				<span class="keyword">return</span> memoryManager.getExternalSharedMemoryResource(</span><br><span class="line">						FIXED_SLOT_MEMORY_RESOURCE_ID, allocator, memoryConfig.getFixedMemoryPerSlot().getBytes());</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				logger.info(<span class="string">&quot;Getting managed memory shared cache for RocksDB.&quot;</span>);</span><br><span class="line">				<span class="keyword">return</span> memoryManager.getSharedMemoryResourceForManagedMemory(MANAGED_MEMORY_RESOURCE_ID, allocator, memoryFraction);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	... ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>MemoryManager.java</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;T extends AutoCloseable&gt; <span class="function">OpaqueMemoryResource&lt;T&gt; <span class="title">getExternalSharedMemoryResource</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">		String type,</span></span></span><br><span class="line"><span class="params"><span class="function">		LongFunctionWithException&lt;T, Exception&gt; initializer,</span></span></span><br><span class="line"><span class="params"><span class="function">		<span class="keyword">long</span> numBytes)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// This object identifies the lease in this request. It is used only to identify the release operation.</span></span><br><span class="line">	<span class="comment">// Using the object to represent the lease is a bit nicer safer than just using a reference counter.</span></span><br><span class="line">	<span class="keyword">final</span> Object leaseHolder = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">	<span class="keyword">final</span> SharedResources.ResourceAndSize&lt;T&gt; resource =</span><br><span class="line">											<span class="comment">//获取内存资源后,get 或者 分配</span></span><br><span class="line">			sharedResources.getOrAllocateSharedResource(type, leaseHolder, initializer, numBytes);</span><br><span class="line">	<span class="comment">// 创建资源释放函数  : 这表示管理内存器管理的RocksDB.但是RocksDB内存的申请和释放是由RocksDB自己来的.只不过RocksDB受这个管理器的管理</span></span><br><span class="line">	<span class="keyword">final</span> ThrowingRunnable&lt;Exception&gt; disposer = () -&gt; sharedResources.release(type, leaseHolder);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> OpaqueMemoryResource&lt;&gt;(resource.resourceHandle(), resource.size(), disposer);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-    
-
-    
-    <div class="page-reward">
-      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
-        <div class="tooltip tooltip-east">
-          <span class="tooltip-item">
-            赏
-          </span>
-          <span class="tooltip-content">
-            <span class="tooltip-text">
-              <span class="tooltip-inner">
-                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                <div class="reward-box">
-                  
-                  <div class="reward-box-item">
-                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/zhifubaoPay.png">
-                    <span class="reward-type">支付宝</span>
-                  </div>
-                  
-                  
-                  <div class="reward-box-item">
-                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/weixinPay.png">
-                    <span class="reward-type">微信</span>
-                  </div>
-                  
-                </div>
-              </span>
-            </span>
-          </span>
-        </div>
-      </a>
-    </div>
-    
-
-    
-    <div class="declare"> 
-      <ul class="post-copyright">
-        <li>
-          <strong>本文作者：</strong>
-          xubatian
-        </li>
-        <li>
-          <strong>本文链接：</strong>
-          <a href="http://xubatian.cn/Flink内存管理-内存管理器/" title="Flink内存管理: 内存管理器" target="_blank">http://xubatian.cn/Flink内存管理-内存管理器/</a>
-        </li>
-        
-        <li>
-          <strong>版权声明： </strong>
+        <div class="article-info info-on-right">
           
-          本博客所有文章除特别声明外均为原创，采用 CC BY 4.0 CN协议 许可协议。转载请注明出处:https://www.xubatian.cn/
-        </li>
-        
-      </ul>
-    </div>
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -422,7 +319,7 @@
 		</ul>
 	</div>
 
-    
+          
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -435,150 +332,21 @@
 	</div>
 
 
-    
-
-    
-    
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a> -->
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/Flink%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%99%A8/" alt="微信分享二维码"> -->
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-
-    
-    <div class="clearfix"></div>
-  </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-
-<nav id="article-nav">
-  
-    <a href="/Flink%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Flink内存管理: 网络传输中的内存管理
-        
-      </div>
-    </a>
   
   
-    <a href="/Flink%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Flink内存管理: 内存数据结构</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#TaskManager%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">TaskManager内存模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%99%A8%E4%BD%9C%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">内存管理器作用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A0%86%E5%A4%96%E5%86%85%E5%AD%98%E8%B5%84%E6%BA%90%E7%94%B3%E8%AF%B7"><span class="toc-number">2.1.</span> <span class="toc-text">堆外内存资源申请</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RocksDB%E8%87%AA%E5%B7%B1%E8%B4%9F%E8%B4%A3%E5%86%85%E5%AD%98%E7%94%B3%E8%AF%B7%E5%92%8C%E9%87%8A%E6%94%BE"><span class="toc-number">2.2.</span> <span class="toc-text">RocksDB自己负责内存申请和释放</span></a></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-
-
-
-
-
-  
-    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
-      <div id="vcomment" class="comment"></div> 
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-<script>
-   var notify = 'true' == true ? true : false;
-   var verify = 'ture' == true ? true : false;
-    window.onload = function() {
-        new Valine({
-            el: '.comment',
-            notify: notify,
-            verify: verify,
-            app_id: "4C7T8fSNVA6RnfQksa8BmdFc-gzGzoHsz",
-            app_key: "V57hYH4l9NRzmpobtAIN5gzq",
-            placeholder: "开始你的评论吧...",
-            avatar:"mm"
-        });
-    }
-</script>
-    </section>
+    </div></section>
   
 
-
-
-
-
+    
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/tags/Flink/page/4/">上一页</a><a class="page-number" href="/tags/Flink/">1</a><span class="space">&hellip;</span><a class="page-number" href="/tags/Flink/page/3/">3</a><a class="page-number" href="/tags/Flink/page/4/">4</a><span class="page-number current">5</span>
+    </nav>
+  
 
 
           </div>
@@ -618,9 +386,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
