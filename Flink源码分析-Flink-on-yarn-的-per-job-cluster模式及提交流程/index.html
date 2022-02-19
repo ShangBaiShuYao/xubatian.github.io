@@ -6,21 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://xubatian.cn">
-  <title>Archives | 我的梦想是星辰大海</title>
+  <title>Flink源码分析: Flink on yarn 的 per-job-cluster模式及提交流程 | 我的梦想是星辰大海</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta name="description" content="知识源于积累,登峰造极源于自律">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我的梦想是星辰大海">
-<meta property="og:url" content="http://xubatian.cn/archives/page/7/index.html">
+  <meta name="description" content="Flink on Yarn​        Flink提供了两种在yarn上运行的模式，分别为Session-Cluster和Per-Job-Cluster模式. ​        Application就是我们的JobManager. 什么是Session-Cluster呢? ​        就是多个job或者多个application共享一份集群资源,共享一份yarn session的进程或">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flink源码分析: Flink on yarn 的 per-job-cluster模式及提交流程">
+<meta property="og:url" content="http://xubatian.cn/Flink%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Flink-on-yarn-%E7%9A%84-per-job-cluster%E6%A8%A1%E5%BC%8F%E5%8F%8A%E6%8F%90%E4%BA%A4%E6%B5%81%E7%A8%8B/index.html">
 <meta property="og:site_name" content="我的梦想是星辰大海">
-<meta property="og:description" content="知识源于积累,登峰造极源于自律">
+<meta property="og:description" content="Flink on Yarn​        Flink提供了两种在yarn上运行的模式，分别为Session-Cluster和Per-Job-Cluster模式. ​        Application就是我们的JobManager. 什么是Session-Cluster呢? ​        就是多个job或者多个application共享一份集群资源,共享一份yarn session的进程或">
 <meta property="og:locale">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220219150143.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220219150251.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220219150435.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220219150527.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220219150738.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220219150939.png">
+<meta property="article:published_time" content="2022-02-19T06:57:08.000Z">
+<meta property="article:modified_time" content="2022-02-19T07:30:48.988Z">
 <meta property="article:author" content="xubatian">
-<meta property="article:tag" content="徐霸天,xubatian,上白书妖,shangbaishuyao">
+<meta property="article:tag" content="Flink">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220219150143.png">
   
   
     <link rel="icon" href="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/favicon.ico">
@@ -273,41 +282,145 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Flink源码分析-Flink-on-yarn-的-per-job-cluster模式及提交流程" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink%E9%83%A8%E7%BD%B2/" class="archive-article-date">
-        <time datetime="2022-01-20T21:39:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-21</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink%E9%83%A8%E7%BD%B2/">Flink部署</a>
-	
+    <h1 class="article-title" itemprop="name">
+      Flink源码分析: Flink on yarn 的 per-job-cluster模式及提交流程
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/Flink%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Flink-on-yarn-%E7%9A%84-per-job-cluster%E6%A8%A1%E5%BC%8F%E5%8F%8A%E6%8F%90%E4%BA%A4%E6%B5%81%E7%A8%8B/" class="archive-article-date">
+        <time datetime="2022-02-19T06:57:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-19</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">904字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">3分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="Flink-on-Yarn"><a href="#Flink-on-Yarn" class="headerlink" title="Flink on Yarn"></a>Flink on Yarn</h3><p>​        Flink提供了两种在yarn上运行的模式，分别为<strong>Session-Cluster和Per-Job-Cluster模式</strong>.</p>
+<p>​        Application就是我们的JobManager.</p>
+<p>什么是Session-Cluster呢?</p>
+<p>​        就是多个job或者多个application共享一份集群资源,共享一份yarn session的进程或者共用一个进程中的资源,那个进程叫yarn session<br>什么是Per-Job-Cluster呢?<br>每一个job对应一个yarn session</p>
+<span id="more"></span>
+
+<p><strong>如图:</strong></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220219150143.png"></p>
+<h4 id="Session-cluster-模式：（一个作业是失败很可能影响下一个作业的提交）"><a href="#Session-cluster-模式：（一个作业是失败很可能影响下一个作业的提交）" class="headerlink" title="Session-cluster 模式：（一个作业是失败很可能影响下一个作业的提交）"></a>Session-cluster 模式：（一个作业是失败很可能影响下一个作业的提交）</h4><p>yarn session模式<br>一个作业的失败很可能会影响下一个作业的正常提交，因为他一个作业的失败很可能他把所有的资源都占完了，占完了而且你一直都没有停止，没有停止那么其他的作业就无法提交了<br><strong>如图所示:</strong><br>五个Flink Job都是跑在一个Flink的yarn session当中的,这个Flink yarn session可以理解为就是一份资源,这个资源从哪里生成来的呢?是从我们的yarn的ResourceManager中生成来的,生成过来之后他启动一个进程,这个进程我们把它称之为叫yarn session的进程,这个yarn session中包含了一些资源,这些资源允许我们的多个flink job共享这个里面的资源去运行;但是有这种情况,什么情况呢?<br>假设我提交两个flink job提交给这一个yarn session之后,发现我yarn session中的共享资源被占完了,就是满了.什么叫满了呢?就是没有空余的slot(因为我们flink的任务是运行在slot上面的),如图所示:</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220219150251.png"></p>
+<p>所以,如果我当前yarn session中运行了两个job之后已经没有剩余的slot了,请问后面五个flink job还能提交上去吗?不能,他们会在等待,等待有人释放了slot,然后他们在去抢这些资源======&gt;这就是Session-cluster 模式</p>
+<h4 id="Per-Job-Cluster模式-（一个作业的失败不会影响下一个作业的提交）"><a href="#Per-Job-Cluster模式-（一个作业的失败不会影响下一个作业的提交）" class="headerlink" title="Per-Job-Cluster模式:（一个作业的失败不会影响下一个作业的提交）"></a>Per-Job-Cluster模式:（一个作业的失败不会影响下一个作业的提交）</h4><p>​        这种模式是每一个job会对应一个yarn session集群,所以这个job所对应的yarn session集群他不会和其他的job共享的,他是相互独立的,只要你这台集群总的资源是够大的,那么你就可以源源不断的一直提交新的job,所以两种模式,这一种用的最多,也是最方便的,如图所示:</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220219150435.png"></p>
+<p><strong>为什么说Per-Job-Cluster模式最方便呢?</strong><br>        因为session-cluster模式在flink job没提交之前我得先把yarn session集群准备好,(多个flink共享一个yarn session集群)所以我在flink job集群提交之前就得把yarn session集群准备好,或者说他早就存在已经有了,我再提交    ;所以一般来说session-cluster这种模式我首先得启动yarn session这个集群<br>   <strong>什么是yarn session集群呢?</strong><br>        Yarn session集群就是由yarn管理的一个flink的包含了JobManager,TaskManager的这么一个集群,如图所示:</p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220219150527.png"></p>
+<p>我独立模式下,一个JobManager里面包含了三个TaskManager,那为什么是三个TaskManager呢?</p>
+<p>因为我的每台机器上都只有一个TaskManager呀!<br>请问这些TaskManager跟Hadoop的yarn有关系吗?<br>没有关系.他被yarn管理吗?<br>不会.他的资源来自于yarn吗?<br>不是,是直接来自于操作系统<br>所以什么叫yarn session的集群?<br><strong>yarn session集群就是由yarn来管理的一个在hadoop内部的一个小的Flink的运行集群,包含了JobManager和多个TaskManager</strong></p>
+<h3 id="演示源码阅读过程"><a href="#演示源码阅读过程" class="headerlink" title="演示源码阅读过程"></a>演示源码阅读过程</h3><div style="position: relative; padding: 30% 45%;">
+<iframe style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/2022-02-19_15-25-23.mp4" frameborder="no" scrolling="no">
+</iframe>
+</div> 
+
+<h3 id="总结per-job-cluster模式及提交流程"><a href="#总结per-job-cluster模式及提交流程" class="headerlink" title="总结per-job-cluster模式及提交流程"></a>总结per-job-cluster模式及提交流程</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220219150738.png"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220219150939.png"></p>
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/zhifubaoPay.png">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/weixinPay.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          xubatian
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://xubatian.cn/Flink源码分析-Flink-on-yarn-的-per-job-cluster模式及提交流程/" title="Flink源码分析: Flink on yarn 的 per-job-cluster模式及提交流程" target="_blank">http://xubatian.cn/Flink源码分析-Flink-on-yarn-的-per-job-cluster模式及提交流程/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外均为原创，采用 CC BY 4.0 CN协议 许可协议。转载请注明出处:https://www.xubatian.cn/
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -319,7 +432,7 @@
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -332,507 +445,140 @@
 	</div>
 
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/Flink%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Flink-on-yarn-%E7%9A%84-per-job-cluster%E6%A8%A1%E5%BC%8F%E5%8F%8A%E6%8F%90%E4%BA%A4%E6%B5%81%E7%A8%8B/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink%E7%AE%80%E4%BB%8B/" class="archive-article-date">
-        <time datetime="2022-01-19T07:57:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-19</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/Flink-SQL-%E6%A1%88%E4%BE%8B%E4%BB%A3%E7%A0%81-%E4%BD%BF%E7%94%A8%E8%BF%9E%E6%8E%A5%E5%99%A8%E7%9A%84%E6%96%B9%E5%BC%8F%E8%AF%BB%E5%8F%96Kafka%E7%9A%84%E6%95%B0%E6%8D%AE/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Flink SQL 案例代码: 使用连接器的方式读取Kafka的数据</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink%E7%AE%80%E4%BB%8B/">Flink简介</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Flink-on-Yarn"><span class="toc-number">1.</span> <span class="toc-text">Flink on Yarn</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Session-cluster-%E6%A8%A1%E5%BC%8F%EF%BC%9A%EF%BC%88%E4%B8%80%E4%B8%AA%E4%BD%9C%E4%B8%9A%E6%98%AF%E5%A4%B1%E8%B4%A5%E5%BE%88%E5%8F%AF%E8%83%BD%E5%BD%B1%E5%93%8D%E4%B8%8B%E4%B8%80%E4%B8%AA%E4%BD%9C%E4%B8%9A%E7%9A%84%E6%8F%90%E4%BA%A4%EF%BC%89"><span class="toc-number">1.1.</span> <span class="toc-text">Session-cluster 模式：（一个作业是失败很可能影响下一个作业的提交）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Per-Job-Cluster%E6%A8%A1%E5%BC%8F-%EF%BC%88%E4%B8%80%E4%B8%AA%E4%BD%9C%E4%B8%9A%E7%9A%84%E5%A4%B1%E8%B4%A5%E4%B8%8D%E4%BC%9A%E5%BD%B1%E5%93%8D%E4%B8%8B%E4%B8%80%E4%B8%AA%E4%BD%9C%E4%B8%9A%E7%9A%84%E6%8F%90%E4%BA%A4%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">Per-Job-Cluster模式:（一个作业的失败不会影响下一个作业的提交）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BC%94%E7%A4%BA%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E8%BF%87%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">演示源码阅读过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93per-job-cluster%E6%A8%A1%E5%BC%8F%E5%8F%8A%E6%8F%90%E4%BA%A4%E6%B5%81%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">总结per-job-cluster模式及提交流程</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/SparkCore%E4%B9%8BRDD%E7%BC%96%E7%A8%8B%E7%9A%84%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B/" class="archive-article-date">
-        <time datetime="2022-01-19T06:50:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-19</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/SparkCore%E4%B9%8BRDD%E7%BC%96%E7%A8%8B%E7%9A%84%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B/">SparkCore之RDD编程的编程模型</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/SparkCore%E4%B9%8BRDD%E6%A6%82%E8%BF%B0/" class="archive-article-date">
-        <time datetime="2022-01-19T06:22:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-19</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/SparkCore%E4%B9%8BRDD%E6%A6%82%E8%BF%B0/">SparkCore之RDD概述</a>
-	
-    </h1>
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'true' == true ? true : false;
+   var verify = 'ture' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '.comment',
+            notify: notify,
+            verify: verify,
+            app_id: "4C7T8fSNVA6RnfQksa8BmdFc-gzGzoHsz",
+            app_key: "V57hYH4l9NRzmpobtAIN5gzq",
+            placeholder: "开始你的评论吧...",
+            avatar:"mm"
+        });
+    }
+</script>
+    </section>
   
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/spark%E5%9F%BA%E7%A1%80%E8%A7%A3%E6%9E%90/" class="archive-article-date">
-        <time datetime="2022-01-19T03:09:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-19</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/spark%E5%9F%BA%E7%A1%80%E8%A7%A3%E6%9E%90/">spark基础解析</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hive%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E6%94%B6%E5%BD%95/" class="archive-article-date">
-        <time datetime="2022-01-18T14:43:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hive%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E6%94%B6%E5%BD%95/">hive常用函数收录</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hive%E7%AE%80%E4%BB%8B(%E4%BA%8C)/" class="archive-article-date">
-        <time datetime="2022-01-18T10:35:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hive%E7%AE%80%E4%BB%8B(%E4%BA%8C)/">hive简介(二)</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/hive%E7%AE%80%E4%BB%8B(%E4%B8%80)/" class="archive-article-date">
-        <time datetime="2022-01-18T08:44:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/hive%E7%AE%80%E4%BB%8B(%E4%B8%80)/">hive简介(一)</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/zookeeper%E7%AE%80%E4%BB%8B/" class="archive-article-date">
-        <time datetime="2022-01-18T06:51:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/zookeeper%E7%AE%80%E4%BB%8B/">Zookeeper简介</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">zookeeper</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/%E5%8A%A8%E6%80%81/" class="archive-article-date">
-        <time datetime="2022-01-18T05:08:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/%E5%8A%A8%E6%80%81/">小目标</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">动态</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/动态//" class="article-tag-list-link color3">动态</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/6/">上一页</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/5/">5</a><a class="page-number" href="/archives/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/archives/page/8/">8</a><a class="page-number" href="/archives/page/9/">9</a><a class="page-number" href="/archives/page/10/">10</a><a class="extend next" rel="next" href="/archives/page/8/">下一页</a>
-    </nav>
-  
 
 
 
@@ -873,8 +619,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
