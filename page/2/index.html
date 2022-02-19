@@ -11,10 +11,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    
-    <!-- <meta name="keywords" content="徐霸天,xubatian,上白书妖,shangbaishuyao">
-    <meta name="description" content="知识源于积累,登峰造极源于自律"> -->
-  
   <meta name="description" content="知识源于积累,登峰造极源于自律">
 <meta property="og:type" content="website">
 <meta property="og:title" content="我的梦想是星辰大海">
@@ -280,6 +276,206 @@
             
 
   
+    <article id="post-常用的shell脚本" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/%E5%B8%B8%E7%94%A8%E7%9A%84shell%E8%84%9A%E6%9C%AC/">常用的shell脚本</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/%E5%B8%B8%E7%94%A8%E7%9A%84shell%E8%84%9A%E6%9C%AC/" class="archive-article-date">
+        <time datetime="2022-02-16T14:17:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-16</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="myhadoop-sh"><a href="#myhadoop-sh" class="headerlink" title="myhadoop.sh"></a>myhadoop.sh</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">if [ $# -lt 1 ]</span><br><span class="line">then</span><br><span class="line">    echo &quot;No Args Input...&quot;</span><br><span class="line">    exit ;</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">case $1 in</span><br><span class="line">&quot;start&quot;)</span><br><span class="line">        echo &quot; =================== 启动 hadoop集群 ===================&quot;</span><br><span class="line"></span><br><span class="line">        echo &quot; --------------- 启动 hdfs ---------------&quot;</span><br><span class="line">        ssh hadoop102 &quot;/opt/module/hadoop-3.1.3/sbin/start-dfs.sh&quot;</span><br><span class="line">        echo &quot; --------------- 启动 yarn ---------------&quot;</span><br><span class="line">        ssh hadoop103 &quot;/opt/module/hadoop-3.1.3/sbin/start-yarn.sh&quot;</span><br><span class="line">        echo &quot; --------------- 启动 historyserver ---------------&quot;</span><br><span class="line">        ssh hadoop102 &quot;/opt/module/hadoop-3.1.3/bin/mapred --daemon start historyserver&quot;</span><br><span class="line">;;</span><br><span class="line">&quot;stop&quot;)</span><br><span class="line">        echo &quot; =================== 关闭 hadoop集群 ===================&quot;</span><br><span class="line"></span><br><span class="line">        echo &quot; --------------- 关闭 historyserver ---------------&quot;</span><br><span class="line">        ssh hadoop102 &quot;/opt/module/hadoop-3.1.3/bin/mapred --daemon stop historyserver&quot;</span><br><span class="line">        echo &quot; --------------- 关闭 yarn ---------------&quot;</span><br><span class="line">        ssh hadoop103 &quot;/opt/module/hadoop-3.1.3/sbin/stop-yarn.sh&quot;</span><br><span class="line">        echo &quot; --------------- 关闭 hdfs ---------------&quot;</span><br><span class="line">        ssh hadoop102 &quot;/opt/module/hadoop-3.1.3/sbin/stop-dfs.sh&quot;</span><br><span class="line">;;</span><br><span class="line">*)</span><br><span class="line">    echo &quot;Input Args Error...&quot;</span><br><span class="line">;;</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
+    
+    <a class="article-more-a" style="display: none; href="/%E5%B8%B8%E7%94%A8%E7%9A%84shell%E8%84%9A%E6%9C%AC/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">shell</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/%E5%B8%B8%E7%94%A8%E7%9A%84shell%E8%84%9A%E6%9C%AC/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-数据仓库原理与实现-维度建模理论之事实表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-%E7%BB%B4%E5%BA%A6%E5%BB%BA%E6%A8%A1%E7%90%86%E8%AE%BA%E4%B9%8B%E4%BA%8B%E5%AE%9E%E8%A1%A8/">数据仓库原理与实现: 维度建模理论之事实表</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-%E7%BB%B4%E5%BA%A6%E5%BB%BA%E6%A8%A1%E7%90%86%E8%AE%BA%E4%B9%8B%E4%BA%8B%E5%AE%9E%E8%A1%A8/" class="archive-article-date">
+        <time datetime="2022-02-16T05:30:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-16</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="事实表概述"><a href="#事实表概述" class="headerlink" title="事实表概述"></a>事实表概述</h2><p>​        事实表作为数据仓库维度建模的核心，紧紧围绕着业务过程来设计。其包含与该业务过程有关的维度引用（维度表外键）以及该业务过程的度量（通常是可累加的数字类型字段）。</p>
+<h3 id="事实表特点"><a href="#事实表特点" class="headerlink" title="事实表特点"></a><strong>事实表特点</strong></h3><p>​        事实表通常比较“细长”，即列较少，但行较多，且行的增速快。</p>
+<h3 id="事实表分类"><a href="#事实表分类" class="headerlink" title="事实表分类"></a><strong>事实表分类</strong></h3><p>​        事实表有三种类型：分别是事务事实表、周期快照事实表和累积快照事实表，每种事实表都具有不同的特点和适用场景，下面逐个介绍。</p>
+    
+    <a class="article-more-a" style="display: none; href="/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-%E7%BB%B4%E5%BA%A6%E5%BB%BA%E6%A8%A1%E7%90%86%E8%AE%BA%E4%B9%8B%E4%BA%8B%E5%AE%9E%E8%A1%A8/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据仓库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-%E7%BB%B4%E5%BA%A6%E5%BB%BA%E6%A8%A1%E7%90%86%E8%AE%BA%E4%B9%8B%E4%BA%8B%E5%AE%9E%E8%A1%A8/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-数据仓库原理与实现-数据仓库建模概述" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -455,103 +651,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink-SQL-CDC/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-央视直播" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/%E5%A4%AE%E8%A7%86%E7%9B%B4%E6%92%AD/">央视直播</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/%E5%A4%AE%E8%A7%86%E7%9B%B4%E6%92%AD/" class="archive-article-date">
-        <time datetime="2022-02-15T16:06:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-16</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="关注央视网-关注国家最新动态"><a href="#关注央视网-关注国家最新动态" class="headerlink" title="关注央视网,关注国家最新动态"></a><a target="_blank" rel="noopener" href="https://2022.cctv.com/live/cctv1/index.shtml?spm=C73465.PnE5ZJN2e0Bi.EHVA0D7NetYz.39">关注央视网,关注国家最新动态</a></h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220216000755.png"></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">轻松一刻</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/轻松一刻//" class="article-tag-list-link color5">轻松一刻</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/%E5%A4%AE%E8%A7%86%E7%9B%B4%E6%92%AD/">展开全文 >></a>
     </p>
     
 
@@ -1187,109 +1286,6 @@
 
 
   
-    <article id="post-Flink-原理与实现-Flink流计算常用算子（Flink算子大全）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%B5%81%E8%AE%A1%E7%AE%97%E5%B8%B8%E7%94%A8%E7%AE%97%E5%AD%90%EF%BC%88Flink%E7%AE%97%E5%AD%90%E5%A4%A7%E5%85%A8%EF%BC%89/">Flink 原理与实现: Flink流计算常用算子（Flink算子大全）</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%B5%81%E8%AE%A1%E7%AE%97%E5%B8%B8%E7%94%A8%E7%AE%97%E5%AD%90%EF%BC%88Flink%E7%AE%97%E5%AD%90%E5%A4%A7%E5%85%A8%EF%BC%89/" class="archive-article-date">
-        <time datetime="2022-02-15T01:20:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-15</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220215092137.png"></p>
-<p>Flink和Spark类似，也是一种一站式处理的框架；既可以进行批处理（DataSet），也可以进行实时处理（DataStream）。</p>
-<p>所以下面将Flink的算子分为两大类：一类是DataSet，一类是DataStream。</p>
-<p><strong>Flink官网:</strong> <a target="_blank" rel="noopener" href="https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/dev/datastream/operators/overview/">https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/dev/datastream/operators/overview/</a></p>
-<p><strong>案例代码:</strong> <a target="_blank" rel="noopener" href="https://github.com/ShangBaiShuYao/flink-learning-from-zhisheng/tree/main/flink-1.12.0-Demo/src/main/java/com/shangbaishuyao/demo">https://github.com/ShangBaiShuYao/flink-learning-from-zhisheng/tree/main/flink-1.12.0-Demo/src/main/java/com/shangbaishuyao/demo</a></p>
-    
-    <a class="article-more-a" style="display: none; href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%B5%81%E8%AE%A1%E7%AE%97%E5%B8%B8%E7%94%A8%E7%AE%97%E5%AD%90%EF%BC%88Flink%E7%AE%97%E5%AD%90%E5%A4%A7%E5%85%A8%EF%BC%89/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%B5%81%E8%AE%A1%E7%AE%97%E5%B8%B8%E7%94%A8%E7%AE%97%E5%AD%90%EF%BC%88Flink%E7%AE%97%E5%AD%90%E5%A4%A7%E5%85%A8%EF%BC%89/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
@@ -1334,7 +1330,7 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
+		isHome: false,
 		isPost: false,
 		isArchive: false,
 		isTag: false,
