@@ -11,10 +11,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    
-    <!-- <meta name="keywords" content="徐霸天,xubatian,上白书妖,shangbaishuyao">
-    <meta name="description" content="知识源于积累,登峰造极源于自律"> -->
-  
   <meta name="description" content="知识源于积累,登峰造极源于自律">
 <meta property="og:type" content="website">
 <meta property="og:title" content="我的梦想是星辰大海">
@@ -988,103 +984,6 @@
 
 
   
-    <article id="post-央视直播" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/%E5%A4%AE%E8%A7%86%E7%9B%B4%E6%92%AD/">央视直播</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/%E5%A4%AE%E8%A7%86%E7%9B%B4%E6%92%AD/" class="archive-article-date">
-        <time datetime="2022-02-15T16:06:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-16</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="关注央视网-关注国家最新动态"><a href="#关注央视网-关注国家最新动态" class="headerlink" title="关注央视网,关注国家最新动态"></a><a target="_blank" rel="noopener" href="https://2022.cctv.com/live/cctv1/index.shtml?spm=C73465.PnE5ZJN2e0Bi.EHVA0D7NetYz.39">关注央视网,关注国家最新动态</a></h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220216000755.png"></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">轻松一刻</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/轻松一刻//" class="article-tag-list-link color5">轻松一刻</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/%E5%A4%AE%E8%A7%86%E7%9B%B4%E6%92%AD/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-Spark原理与实现-Spark-SQL编程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1294,9 +1193,108 @@
 
 
   
+    <article id="post-Kafka-API" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/Kafka-API/">Kafka API</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/Kafka-API/" class="archive-article-date">
+        <time datetime="2022-02-15T14:24:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-15</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="Producer-API"><a href="#Producer-API" class="headerlink" title="Producer API"></a>Producer API</h1><h2 id="消息发送流程"><a href="#消息发送流程" class="headerlink" title="消息发送流程"></a>消息发送流程</h2><p>​        Kafka的Producer发送消息采用的是<strong>异步发送</strong>的方式。在消息发送的过程中，涉及到了<strong>两个线程——main线程和Sender线程</strong>，以及<strong>一个线程共享变量——RecordAccumulator</strong>。main线程将消息发送给RecordAccumulator，Sender线程不断从RecordAccumulator中拉取消息发送到Kafka broker。</p>
+    
+    <a class="article-more-a" style="display: none; href="/Kafka-API/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Kafka</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/Kafka-API/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
+      <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
     </nav>
   
 
@@ -1338,7 +1336,7 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
+		isHome: false,
 		isPost: false,
 		isArchive: false,
 		isTag: false,
