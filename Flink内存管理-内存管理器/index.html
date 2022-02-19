@@ -6,26 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://xubatian.cn">
-  <title>Flink内存管理: 内存数据结构 | 我的梦想是星辰大海</title>
+  <title>Flink内存管理: 内存管理器 | 我的梦想是星辰大海</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta name="description" content="内存段​        内存段在 Flink 内部叫 MemorySegment，是 Flink 中最小的内存分配单元，默认大小32KB。Flink内存是区分堆内和堆外的,但是MemorySegment是最小单元,不区分堆内核堆外的.它即可以是堆上内存（Java的byte数组），也可以是堆外内存（基于Netty的DirectByteBuffer），同时提供了对二进制数据进行读取和写入的方法。  H">
+  <meta name="description" content="TaskManager内存模型 内存管理器作用​    我们有一块内存叫做管理内存. 内存管理器就是用来管理这块内存的.你设计的这块内存是不是得有人来操作维护的呀? 就是内存管理器维护管理内存的. ​">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Flink内存管理: 内存数据结构">
-<meta property="og:url" content="http://xubatian.cn/Flink%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.html">
+<meta property="og:title" content="Flink内存管理: 内存管理器">
+<meta property="og:url" content="http://xubatian.cn/Flink%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%99%A8/index.html">
 <meta property="og:site_name" content="我的梦想是星辰大海">
-<meta property="og:description" content="内存段​        内存段在 Flink 内部叫 MemorySegment，是 Flink 中最小的内存分配单元，默认大小32KB。Flink内存是区分堆内和堆外的,但是MemorySegment是最小单元,不区分堆内核堆外的.它即可以是堆上内存（Java的byte数组），也可以是堆外内存（基于Netty的DirectByteBuffer），同时提供了对二进制数据进行读取和写入的方法。  H">
+<meta property="og:description" content="TaskManager内存模型 内存管理器作用​    我们有一块内存叫做管理内存. 内存管理器就是用来管理这块内存的.你设计的这块内存是不是得有人来操作维护的呀? 就是内存管理器维护管理内存的. ​">
 <meta property="og:locale">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220219194503.png">
-<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220219195326.png">
-<meta property="article:published_time" content="2022-02-19T11:45:46.000Z">
-<meta property="article:modified_time" content="2022-02-19T13:00:02.743Z">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220219184944.png">
+<meta property="article:published_time" content="2022-02-19T13:04:52.000Z">
+<meta property="article:modified_time" content="2022-02-19T13:16:01.554Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="Flink">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220219194503.png">
+<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220219184944.png">
   
   
     <link rel="icon" href="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/favicon.ico">
@@ -278,14 +277,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Flink内存管理-内存数据结构" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Flink内存管理-内存管理器" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      Flink内存管理: 内存数据结构
+      Flink内存管理: 内存管理器
     </h1>
   
 
@@ -297,8 +296,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/Flink%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="archive-article-date">
-        <time datetime="2022-02-19T11:45:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-19</time>
+<a href="/Flink%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%99%A8/" class="archive-article-date">
+        <time datetime="2022-02-19T13:04:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-19</time>
 </a>
 
   
@@ -311,7 +310,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">733字</span>
+      <span class="post-count">499字</span>
     </span>
   </span>
 
@@ -331,30 +330,25 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h3 id="内存段"><a href="#内存段" class="headerlink" title="内存段"></a>内存段</h3><p>​        <strong>内存段在 Flink 内部叫 MemorySegment，是 Flink 中最小的内存分配单元，默认大小32KB。Flink内存是区分堆内和堆外的,但是MemorySegment是最小单元,不区分堆内核堆外的</strong>.它即可以是堆上内存（Java的byte数组），也可以是堆外内存（基于Netty的DirectByteBuffer），同时提供了对二进制数据进行读取和写入的方法。</p>
-<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220219194503.png"></p>
-<p><strong>HeapMemorySegment：用来分配堆上内存</strong><br><strong>HybridMemorySegment：用来分配堆外内存和堆上内存，2017年以后的版本实际上只使用了HybridMemo`rySegment。</strong></p>
-<span id="more"></span>
+    <h2 id="TaskManager内存模型"><a href="#TaskManager内存模型" class="headerlink" title="TaskManager内存模型"></a>TaskManager内存模型</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220219184944.png"></p>
+<h2 id="内存管理器作用"><a href="#内存管理器作用" class="headerlink" title="内存管理器作用"></a>内存管理器作用</h2><p>​    我们有一块内存叫做管理内存. 内存管理器就是用来管理这块内存的.你设计的这块内存是不是得有人来操作维护的呀? 就是内存管理器维护管理内存的.</p>
+<p>​        <span id="more"></span></p>
+<p>​        Flink 1.10 对TaskManager的内存模型和Flink应用程序的配置选项进行了重大更改，让用户能够更加严格地控制其内存开销。</p>
+<pre><code>    1.10之前版本，负责TaskManager所有内存。
+    1.10版本开始，管理范围是Slot级别。
+</code></pre>
+<h3 id="堆外内存资源申请"><a href="#堆外内存资源申请" class="headerlink" title="堆外内存资源申请"></a>堆外内存资源申请</h3><p>MemoryManager.java</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public void allocatePages(</span><br><span class="line">			Object owner,</span><br><span class="line">			Collection&lt;MemorySegment&gt; target,</span><br><span class="line">			int numberOfPages) throws MemoryAllocationException &#123;</span><br><span class="line">		... ...</span><br><span class="line"></span><br><span class="line">		allocatedSegments.compute(owner, (o, currentSegmentsForOwner) -&gt; &#123;</span><br><span class="line">			Set&lt;MemorySegment&gt; segmentsForOwner = currentSegmentsForOwner == null ?</span><br><span class="line">				new HashSet&lt;&gt;(numberOfPages) : currentSegmentsForOwner;</span><br><span class="line">			for (long i = numberOfPages; i &gt; 0; i--) &#123;</span><br><span class="line">				MemorySegment segment = allocateOffHeapUnsafeMemory(getPageSize(), owner, pageCleanup);</span><br><span class="line">				target.add(segment);</span><br><span class="line">				segmentsForOwner.add(segment);</span><br><span class="line">			&#125;</span><br><span class="line">			return segmentsForOwner;</span><br><span class="line">		&#125;);</span><br><span class="line">		... ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>他有什么有点? 他为什么要设置这个抽象?</p>
-<p>假设我们有一个Tuple3&lt;Integer,Double,Person&gt; 的数据.</p>
-<p>如下图展示一个内嵌型的Tuple3&lt;Integer,Double,Person&gt; 对象的序列化过程：</p>
-<p>Tuple3&lt;Integer,Double,Person&gt; 对象如果用java的JVM自己来管理就会出现密度不紧凑,散列的等情况.而Flink的内存段MemorySegment 他不是散列的,他是紧密连在一起的.</p>
-<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220219195326.png"></p>
-<p>​        可以看出这种序列化方式存储密度是相当紧凑的。其中 int 占4字节，double 占8字节，POJO多个一个字节的header，PojoSerializer只负责将header序列化进去，并委托每个字段对应的serializer对字段进行序列化.</p>
-<h3 id="内存页"><a href="#内存页" class="headerlink" title="内存页"></a>内存页</h3><p>​        内存页是内存段更高一层的封装.</p>
-<p>​        内存页是MemorySegment之上的数据访问视图，数据<strong>读取</strong>抽象为DataInputView，数据<strong>写入</strong>抽象为DataOutputView。使用时就无需关心MemorySegment的细节，会自动处理跨MemorySegment的读取和写入。</p>
-<p>​        有了内存页之后,我们就不需要关注,这一段是第几段了.只需要关注是第几页就ok了.</p>
-<h3 id="Buffer"><a href="#Buffer" class="headerlink" title="Buffer"></a>Buffer</h3><p>​        <strong>一个Buffer对应一个内存段(MemorySegment)</strong></p>
-<p>​        Buffer是网络缓冲内存.是数据传输的时候会用到的.</p>
-<p>​        Task算子之间在网络层面上传输数据，使用的是Buffer，申请和释放由Flink<strong>自行管理</strong>,并不是由我们代码指定，实现类为NetworkBuffer。<strong>1个NetworkBuffer包装了1个MemorySegment</strong>。同时继承了AbstractReferenceCountedByteBuf，是Netty中的抽象类。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class NetworkBuffer extends AbstractReferenceCountedByteBuf implements Buffer &#123;</span><br><span class="line"></span><br><span class="line">	/** The backing &#123;@link MemorySegment&#125; instance. */</span><br><span class="line">	private final MemorySegment memorySegment;</span><br><span class="line">	</span><br><span class="line">... ...</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>MemorySegmentFactory.java</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public static MemorySegment allocateOffHeapUnsafeMemory(int size, Object owner, Runnable customCleanupAction) &#123;</span><br><span class="line">	long address = MemoryUtils.allocateUnsafe(size);</span><br><span class="line">	ByteBuffer offHeapBuffer = MemoryUtils.wrapUnsafeMemoryWithByteBuffer(address, size);</span><br><span class="line">	MemoryUtils.createMemoryGcCleaner(offHeapBuffer, address, customCleanupAction);</span><br><span class="line">	return new HybridMemorySegment(offHeapBuffer, owner);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="Buffer资源池"><a href="#Buffer资源池" class="headerlink" title="Buffer资源池"></a>Buffer资源池</h3><p>​        Buffer资源池类似我们的连接池,比如说我们连接mysql.创建一次连接是一个连接对象,一个线程.但是我们通常会用一个链接池来管理.Buffer资源池和连接池其实是一样的.</p>
-<p>​        BufferPool 用来管理Buffer，包含Buffer的申请、释放、销毁、可用Buffer通知等，实现类是LocalBufferPool，<strong>每个Task拥有自己的LocalBufferPool</strong>。</p>
-<p>​        Buffer资源池是如何创建的呢?</p>
-<p>​        他用了一个工厂. 设计模式的工厂模式创建的.</p>
-<p>​        BufferPoolFactory 用来提供 BufferPool 的创建和销毁，唯一的实现类是NetworkBufferPool，每个TaskManager只有一个NetworkBufferPool。同一个TaskManager上的Task共享NetworkBufferPool，在TaskManager启动的时候创建并分配内存。</p>
+<h3 id="RocksDB自己负责内存申请和释放"><a href="#RocksDB自己负责内存申请和释放" class="headerlink" title="RocksDB自己负责内存申请和释放"></a>RocksDB自己负责内存申请和释放</h3><p>RocksDBOperationUtils.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> OpaqueMemoryResource&lt;RocksDBSharedResources&gt; <span class="title">allocateSharedCachesIfConfigured</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">			RocksDBMemoryConfiguration memoryConfig,</span></span></span><br><span class="line"><span class="params"><span class="function">			MemoryManager memoryManager,</span></span></span><br><span class="line"><span class="params"><span class="function">			<span class="keyword">double</span> memoryFraction,</span></span></span><br><span class="line"><span class="params"><span class="function">			Logger logger)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line"></span><br><span class="line">	... ...</span><br><span class="line"></span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> (memoryConfig.isUsingFixedMemoryPerSlot()) &#123;</span><br><span class="line">				<span class="keyword">assert</span> memoryConfig.getFixedMemoryPerSlot() != <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">				logger.info(<span class="string">&quot;Getting fixed-size shared cache for RocksDB.&quot;</span>);</span><br><span class="line">				<span class="keyword">return</span> memoryManager.getExternalSharedMemoryResource(</span><br><span class="line">						FIXED_SLOT_MEMORY_RESOURCE_ID, allocator, memoryConfig.getFixedMemoryPerSlot().getBytes());</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				logger.info(<span class="string">&quot;Getting managed memory shared cache for RocksDB.&quot;</span>);</span><br><span class="line">				<span class="keyword">return</span> memoryManager.getSharedMemoryResourceForManagedMemory(MANAGED_MEMORY_RESOURCE_ID, allocator, memoryFraction);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	... ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>MemoryManager.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;T extends AutoCloseable&gt; <span class="function">OpaqueMemoryResource&lt;T&gt; <span class="title">getExternalSharedMemoryResource</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">		String type,</span></span></span><br><span class="line"><span class="params"><span class="function">		LongFunctionWithException&lt;T, Exception&gt; initializer,</span></span></span><br><span class="line"><span class="params"><span class="function">		<span class="keyword">long</span> numBytes)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// This object identifies the lease in this request. It is used only to identify the release operation.</span></span><br><span class="line">	<span class="comment">// Using the object to represent the lease is a bit nicer safer than just using a reference counter.</span></span><br><span class="line">	<span class="keyword">final</span> Object leaseHolder = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">	<span class="keyword">final</span> SharedResources.ResourceAndSize&lt;T&gt; resource =</span><br><span class="line">											<span class="comment">//获取内存资源后,get 或者 分配</span></span><br><span class="line">			sharedResources.getOrAllocateSharedResource(type, leaseHolder, initializer, numBytes);</span><br><span class="line">	<span class="comment">// 创建资源释放函数  : 这表示管理内存器管理的RocksDB.但是RocksDB内存的申请和释放是由RocksDB自己来的.只不过RocksDB受这个管理器的管理</span></span><br><span class="line">	<span class="keyword">final</span> ThrowingRunnable&lt;Exception&gt; disposer = () -&gt; sharedResources.release(type, leaseHolder);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> OpaqueMemoryResource&lt;&gt;(resource.resourceHandle(), resource.size(), disposer);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
     
 
@@ -400,7 +394,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://xubatian.cn/Flink内存管理-内存数据结构/" title="Flink内存管理: 内存数据结构" target="_blank">http://xubatian.cn/Flink内存管理-内存数据结构/</a>
+          <a href="http://xubatian.cn/Flink内存管理-内存管理器/" title="Flink内存管理: 内存管理器" target="_blank">http://xubatian.cn/Flink内存管理-内存管理器/</a>
         </li>
         
         <li>
@@ -489,7 +483,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/Flink%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/Flink%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%99%A8/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -504,18 +498,9 @@
 
 <nav id="article-nav">
   
-    <a href="/Flink%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%99%A8/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Flink内存管理: 内存管理器
-        
-      </div>
-    </a>
   
-  
-    <a href="/Flink%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Flink内存管理: 内存模型</div>
+    <a href="/Flink%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Flink内存管理: 内存数据结构</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -542,7 +527,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E6%AE%B5"><span class="toc-number">1.</span> <span class="toc-text">内存段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E9%A1%B5"><span class="toc-number">2.</span> <span class="toc-text">内存页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Buffer"><span class="toc-number">3.</span> <span class="toc-text">Buffer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Buffer%E8%B5%84%E6%BA%90%E6%B1%A0"><span class="toc-number">4.</span> <span class="toc-text">Buffer资源池</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#TaskManager%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">TaskManager内存模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%99%A8%E4%BD%9C%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">内存管理器作用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A0%86%E5%A4%96%E5%86%85%E5%AD%98%E8%B5%84%E6%BA%90%E7%94%B3%E8%AF%B7"><span class="toc-number">2.1.</span> <span class="toc-text">堆外内存资源申请</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RocksDB%E8%87%AA%E5%B7%B1%E8%B4%9F%E8%B4%A3%E5%86%85%E5%AD%98%E7%94%B3%E8%AF%B7%E5%92%8C%E9%87%8A%E6%94%BE"><span class="toc-number">2.2.</span> <span class="toc-text">RocksDB自己负责内存申请和释放</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
