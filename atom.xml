@@ -6,7 +6,7 @@
   <link href="http://xubatian.cn/atom.xml" rel="self"/>
   
   <link href="http://xubatian.cn/"/>
-  <updated>2022-02-20T07:58:38.238Z</updated>
+  <updated>2022-02-20T15:36:56.625Z</updated>
   <id>http://xubatian.cn/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Flink 原理与实现: Flink流程小总结</title>
+    <link href="http://xubatian.cn/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%B5%81%E7%A8%8B%E5%B0%8F%E6%80%BB%E7%BB%93/"/>
+    <id>http://xubatian.cn/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%B5%81%E7%A8%8B%E5%B0%8F%E6%80%BB%E7%BB%93/</id>
+    <published>2022-02-20T15:28:43.000Z</published>
+    <updated>2022-02-20T15:36:56.625Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="整个Flink-Job运行过程图"><a href="#整个Flink-Job运行过程图" class="headerlink" title="整个Flink Job运行过程图"></a>整个Flink Job运行过程图</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220220144839.png"></p><span id="more"></span><h3 id="Flink-Job提交流程到背压到TaskManager里面的slot-任务链等详情"><a href="#Flink-Job提交流程到背压到TaskManager里面的slot-任务链等详情" class="headerlink" title="Flink Job提交流程到背压到TaskManager里面的slot,任务链等详情"></a>Flink Job提交流程到背压到TaskManager里面的slot,任务链等详情</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220220155717.png"></p><h3 id="Flink-窗口"><a href="#Flink-窗口" class="headerlink" title="Flink 窗口"></a>Flink 窗口</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220220181733.png"></p><h3 id="Flink-时间语义及watermark机制小总结"><a href="#Flink-时间语义及watermark机制小总结" class="headerlink" title="Flink 时间语义及watermark机制小总结"></a>Flink 时间语义及watermark机制小总结</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220220195829.png"></p><h3 id="Flink-状态一致性及保证状态的机制-checkpoint检查点算法"><a href="#Flink-状态一致性及保证状态的机制-checkpoint检查点算法" class="headerlink" title="Flink 状态一致性及保证状态的机制(checkpoint检查点算法)"></a>Flink 状态一致性及保证状态的机制(checkpoint检查点算法)</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220220232454.png"></p><h3 id="Flink和kafka是如何实现端到端的exactly-once的呢"><a href="#Flink和kafka是如何实现端到端的exactly-once的呢" class="headerlink" title="Flink和kafka是如何实现端到端的exactly-once的呢?"></a>Flink和kafka是如何实现端到端的exactly-once的呢?</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214231316.png"></p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214164852.png"></p>]]></content>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;整个Flink-Job运行过程图&quot;&gt;&lt;a href=&quot;#整个Flink-Job运行过程图&quot; class=&quot;headerlink&quot; title=&quot;整个Flink Job运行过程图&quot;&gt;&lt;/a&gt;整个Flink Job运行过程图&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220220144839.png&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="大数据" scheme="http://xubatian.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+    
+    <category term="Flink" scheme="http://xubatian.cn/tags/Flink/"/>
+    
+  </entry>
   
   <entry>
     <title>Flink内存管理: 网络传输中的内存管理</title>
@@ -443,30 +464,6 @@
     
     
     <category term="Flink" scheme="http://xubatian.cn/tags/Flink/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>央视直播</title>
-    <link href="http://xubatian.cn/%E5%A4%AE%E8%A7%86%E7%9B%B4%E6%92%AD/"/>
-    <id>http://xubatian.cn/%E5%A4%AE%E8%A7%86%E7%9B%B4%E6%92%AD/</id>
-    <published>2022-02-15T16:06:42.000Z</published>
-    <updated>2022-02-19T13:23:45.442Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="关注央视网-关注国家最新动态"><a href="#关注央视网-关注国家最新动态" class="headerlink" title="关注央视网,关注国家最新动态"></a><a href="https://2022.cctv.com/live/cctv1/index.shtml?spm=C73465.PnE5ZJN2e0Bi.EHVA0D7NetYz.39">关注央视网,关注国家最新动态</a></h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220216000755.png"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;关注央视网-关注国家最新动态&quot;&gt;&lt;a href=&quot;#关注央视网-关注国家最新动态&quot; class=&quot;headerlink&quot; title=&quot;关注央视网,关注国家最新动态&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://2022.cctv.com/live/cctv1/in</summary>
-      
-    
-    
-    
-    <category term="轻松一刻" scheme="http://xubatian.cn/categories/%E8%BD%BB%E6%9D%BE%E4%B8%80%E5%88%BB/"/>
-    
-    
-    <category term="轻松一刻" scheme="http://xubatian.cn/tags/%E8%BD%BB%E6%9D%BE%E4%B8%80%E5%88%BB/"/>
     
   </entry>
   
