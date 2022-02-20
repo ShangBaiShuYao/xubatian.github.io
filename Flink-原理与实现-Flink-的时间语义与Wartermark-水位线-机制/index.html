@@ -18,6 +18,7 @@
 <meta property="og:site_name" content="我的梦想是星辰大海">
 <meta property="og:description" content="时间语义与Wartermark(水位线)阐述:用到了时间语义和watermark,所以Flink和sparkStreaming是有一定的区别的. Flink中的时间语义有三种: 12345Event Time(事件触发的时间或者是事件创建的时间),Ingestion Time(进入Flink的时间),Processing Time(Flink在处理这条数据的时间),">
 <meta property="og:locale">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220220195829.png">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214150638.png">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214151213.png">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214151321.png">
@@ -27,11 +28,11 @@
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214152129.png">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214152151.png">
 <meta property="article:published_time" content="2022-02-14T07:05:57.000Z">
-<meta property="article:modified_time" content="2022-02-14T07:33:17.678Z">
+<meta property="article:modified_time" content="2022-02-20T11:58:52.808Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="Flink">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214150638.png">
+<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220220195829.png">
   
   
     <link rel="icon" href="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/favicon.ico">
@@ -343,6 +344,7 @@
 
 <span id="more"></span>        
 
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220220195829.png"></p>
 <p>​        在生产环境中,大多数我们都关心Event Time,我们可能会把Event Time来作为我们开窗的时间参数.就是说我们任何一个开窗都会有一个开窗时间,我们的开窗时间是基于这三个时间的哪一种呢?他是基于Event Time这一种的.但是默认情况下,他的时间语义是基于Processing Time这种的.这是所谓的Flink中的时间语义.所以,如果我们不使用Flink默认的时间语义的话,而是使用Event Time的话,我首先还得想清楚,如何去引入这个Event Time.引入Event Time的两行代码,第一行时先声明,告诉我们的Flink,我不用processing Time,我想要使用Event Time. 如下所示:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">val env = StreamExecutionEnvironment.getExecutionEnvironment</span><br><span class="line">// 从调用时刻开始给env创建的每一个stream追加时间特征</span><br><span class="line">env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime)</span><br></pre></td></tr></table></figure>
 
