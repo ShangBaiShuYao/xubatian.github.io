@@ -11,13 +11,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta name="description" content="Window主要分为哪几种?window主要分为CountWindow:  计数窗口:按照指定的数据条数生成一个Window，与时间无关。 TimeWindow:    时间窗口:按照指定的数据条数生成一个Window，与时间无关。 而我们最关心的就是TimeWindow,因为他和时间有关系.TimeWindow又分为三种: 滑动窗口,滚动窗口,会话窗口. 滚动窗口和滑动窗口有一个特点,就是他们的">
-<meta property="og:type" content="article">
+  <meta property="og:type" content="article">
 <meta property="og:title" content="Flink 原理与实现: Flink中的Window">
 <meta property="og:url" content="http://xubatian.cn/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E4%B8%AD%E7%9A%84Window/index.html">
 <meta property="og:site_name" content="我的梦想是星辰大海">
-<meta property="og:description" content="Window主要分为哪几种?window主要分为CountWindow:  计数窗口:按照指定的数据条数生成一个Window，与时间无关。 TimeWindow:    时间窗口:按照指定的数据条数生成一个Window，与时间无关。 而我们最关心的就是TimeWindow,因为他和时间有关系.TimeWindow又分为三种: 滑动窗口,滚动窗口,会话窗口. 滚动窗口和滑动窗口有一个特点,就是他们的">
 <meta property="og:locale">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220220174048.png">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214141018.png">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214141145.png">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214141305.png">
@@ -25,11 +24,11 @@
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214141811.png">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214142001.png">
 <meta property="article:published_time" content="2022-02-14T06:03:51.000Z">
-<meta property="article:modified_time" content="2022-02-14T06:22:43.400Z">
+<meta property="article:modified_time" content="2022-02-20T09:41:22.577Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="Flink">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220214141018.png">
+<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220220174048.png">
   
   
     <link rel="icon" href="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/favicon.ico">
@@ -335,13 +334,14 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p><strong>Window主要分为哪几种?</strong><br>window主要分为<br><strong>CountWindow</strong>:  计数窗口:按照指定的数据条数生成一个Window，与时间无关。</p>
+    <p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220220174048.png"></p>
+<span id="more"></span>
+
+<p><strong>Window主要分为哪几种?</strong><br>window主要分为<br><strong>CountWindow</strong>:  计数窗口:按照指定的数据条数生成一个Window，与时间无关。</p>
 <p><strong>TimeWindow</strong>:    时间窗口:按照指定的数据条数生成一个Window，与时间无关。</p>
 <p>而我们最关心的就是<strong>TimeWindow</strong>,因为他和时间有关系.<br><strong>TimeWindow又分为三种: 滑动窗口,滚动窗口,会话窗口.</strong></p>
 <p>滚动窗口和滑动窗口有一个特点,就是他们的时间是对齐的.</p>
 <p>所谓的时间对齐是什么意思呢?</p>
-<span id="more"></span>
-
 <p>就是你不管是哪一个并行度,里面所有的时间是对齐的.对齐说的是数据的时间对齐.比如说我这窗口的起始时间是10:05分,那我所有的,只要是10:05分的数据,都属于我接下来这新开的窗口.因为我假设我开窗的起始时间,实际上说的就是 我的开窗时间是10:05分的话,那么我不管你是哪个组的,也不管你是哪个分区的.我们的数据只要到达10:05分,就属于当前我们这个窗口.这就叫所谓的时间对齐.滚动窗口是没有滑动步长的,只有滑动窗口才有滑动步长.</p>
 <p>​    如果我们在选择窗口开窗的时候,还需要对窗口里面的数据进行处理.对数据进行处理的话,我们称之为windowFunction,也称之为窗口函数.<br>​    <strong>WindowFunction(窗口函数)分为两类,一类叫增量聚合函数,另一种叫全窗口函数</strong><br>​    增量聚合函数的意思就是说,在窗口里面,因为一个窗口是一个起始时间到结束时间.这个时间段内,源源不断的会有数据过来.那么你来一条数据我就处理一条数据,来一条数据我就处理一条数据.这是一种情况.还有一种情况就是全窗口函数,等这个窗口结束了,所有数据都来了,我一次性处理.这两种处理方式就是所谓的增量聚合函数和全窗口函数.在大多数的</p>
 <p>​    生产环境中,我们使用增量聚合函数比较合适.因为假设你后面一个窗口里面数据量特别多的话.你如果一次性全部处理的话,你处理时间是比较长的.但是如果我数据量很多,我来一条就处理一条,来一条就处理一条,那我事实上我就把我处理的时间均匀的分散到这个很长的时间段里面去了.所以他实际上比不会耽误我们的时间.</p>
