@@ -11,6 +11,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
+    
+    <!-- <meta name="keywords" content="徐霸天,xubatian,上白书妖,shangbaishuyao">
+    <meta name="description" content="知识源于积累,登峰造极源于自律"> -->
+  
   <meta name="description" content="知识源于积累,登峰造极源于自律">
 <meta property="og:type" content="website">
 <meta property="og:title" content="我的梦想是星辰大海">
@@ -305,6 +309,13 @@
   
   <div class="article-entry" itemprop="articleBody">
     
+    <h1 id="分区表"><a href="#分区表" class="headerlink" title="分区表"></a>分区表</h1><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220228232524.png"></p>
+<p>一般生产当中会有一级分区和二级分区. 如果数据量比较大,会有二级分区. 比如按照每天的每个小时进行分区.    分区的原因就是数据量太大了. 分区指的是reduce里面. 而map里面叫分片.  </p>
+<p><strong>map里面的切片和reduce里面的分区有本质意义上的区别吗?</strong></p>
+<p>没有区别, 你map端分片.其实也是提高并行度. 其实都是将数据分开,然后大家一起去计算.</p>
+<p>hive里面有张表叫做分区表. 表里面放数据. 这张表每天一个分区. 就是每天一个目录. 以后查数据的时候,直接用where筛选目录.即,查询的sql中写上分区信息. 这样我就能够避免全表扫描.</p>
+    
+    <a class="article-more-a" style="display: none; href="/hive%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E4%B9%8B%E5%88%86%E5%8C%BA%E8%A1%A8%E5%92%8C%E5%88%86%E6%A1%B6%E8%A1%A8/#more">more >></a>
     
     
 
@@ -1276,7 +1287,7 @@
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
     </nav>
   
 
@@ -1318,7 +1329,7 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: false,
+		isHome: true,
 		isPost: false,
 		isArchive: false,
 		isTag: false,
