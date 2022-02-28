@@ -18,19 +18,19 @@
 <meta property="og:site_name" content="我的梦想是星辰大海">
 <meta property="og:description" content="1文章收录的是公众号: 大数据公羊说 的 面试题总结.  面试题：你在生产环境中碰到哪些问题会导致反压？ 数据倾斜：比如当前算子的每个并发只能处理 1w qps 的数据，而由于数据倾斜，这个算子平均 1s 需要处理 2w 条数据，因此倾斜的算子处理压力大，从而反压 算子性能问题：比如下游整个整个算子的处理性能差，上游是 1w qps，当前整个算子算下来平均只能处理 1k qps，因此就有反压的情况">
 <meta property="og:locale">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/DODKOLcDkD3fAC6ibicLCkn2csldib3IreWPib4tiaDfAUiaB73CNz9cqSSaRqkiceS25tHibOlUtmCviar4KkaajXg8PXA/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/DODKOLcDkD3fAC6ibicLCkn2csldib3IreWfUJzjn2bNJHmzb5KOc0ahIIoBgMlnp1Mu3DfJ8HjQcU3S0Wl8D8JXg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/DODKOLcDkD3fAC6ibicLCkn2csldib3IreWRNUNBjH5HHQgdHic2gtMFMjQDDrqn36OQ4SSyYQFv3klpaJj29tvunA/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/DODKOLcDkD3fAC6ibicLCkn2csldib3IreWuHbnm5CoPfrX9jXz4gzx1M5lSLSw4iceYuPzGjjicN1cROP19E6c2ialw/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/DODKOLcDkD3fAC6ibicLCkn2csldib3IreWDyWJDrsKmRMTeibKC69RP34oWozInRayzYR4gdH5x2nO6Yr8dt7xX1w/640?wx_fmt=jpeg&wxfrom=5&wx_lazy=1&wx_co=1">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/DODKOLcDkD3fAC6ibicLCkn2csldib3IreWJ7SfAMSgvictYZz4GrZO2lAnrozEIZkS5QOndxNuhnZIORbyExRkfzw/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220301005248.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220301005308.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220301005325.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220301005339.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220301005404.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220301005428.png">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220301004929.png">
 <meta property="article:published_time" content="2022-02-28T16:12:12.000Z">
-<meta property="article:modified_time" content="2022-02-28T16:50:26.358Z">
+<meta property="article:modified_time" content="2022-02-28T16:54:37.622Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="flink">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://mmbiz.qpic.cn/mmbiz_png/DODKOLcDkD3fAC6ibicLCkn2csldib3IreWPib4tiaDfAUiaB73CNz9cqSSaRqkiceS25tHibOlUtmCviar4KkaajXg8PXA/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220301005248.png">
   
   
     <link rel="icon" href="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/favicon.ico">
@@ -364,7 +364,7 @@
 <li> operator-state：算子状态，非 keyed-state 的 state 都是算子状态，非 k-v 结构，状态值和算子绑定，不和 key 绑定。Flink 中的 kafka source 算子中用于存储 kafka offset 的 state 就是算子状态。</li>
 </ol>
 <p>如下图所示是 3 种状态后端和 2 种 State 的对应存储关系：</p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/DODKOLcDkD3fAC6ibicLCkn2csldib3IreWPib4tiaDfAUiaB73CNz9cqSSaRqkiceS25tHibOlUtmCviar4KkaajXg8PXA/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220301005248.png"></p>
 <ol>
 <li> 横向（行）来看，即 Flink 的状态分类。分为 Operator state-backend、Keyed state-backend；</li>
 <li> 纵向（列）来看，即 Flink 的状态后端分类。用户可以配置 memory，filesystem，rocksdb 3 中状态后端，在 Flink 任务中生成 MemoryStateBackend，FsStateBackend，RocksdbStateBackend，其声明了整个任务的状态管理后端类型；</li>
@@ -381,7 +381,7 @@
 </ol>
 <ul>
 <li><p>原理：运行时所需的 State 数据全部保存在 TaskManager JVM 堆上内存中，执行 Checkpoint 的时候，会把 State 的快照数据保存到 JobManager 进程 的内存中。执行 Savepoint 时，可以把 State 存储到文件系统中。</p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/DODKOLcDkD3fAC6ibicLCkn2csldib3IreWfUJzjn2bNJHmzb5KOc0ahIIoBgMlnp1Mu3DfJ8HjQcU3S0Wl8D8JXg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220301005308.png"></p>
 </li>
 <li><p>适用场景：</p>
 </li>
@@ -397,7 +397,7 @@
 </ol>
 <ul>
 <li><p>原理：运行时所需的 State 数据全部保存在 TaskManager 的内存中，执行 Checkpoint 的时候，会把 State 的快照数据保存到配置的文件系统中。TM 是异步将 State 数据写入外部存储。</p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/DODKOLcDkD3fAC6ibicLCkn2csldib3IreWRNUNBjH5HHQgdHic2gtMFMjQDDrqn36OQ4SSyYQFv3klpaJj29tvunA/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220301005325.png"></p>
 </li>
 <li><p>适用场景：</p>
 </li>
@@ -411,7 +411,7 @@
 </ol>
 <ul>
 <li><p>原理：使用嵌入式的本地数据库 RocksDB 将流计算数据状态存储在本地磁盘中。在执行 Checkpoint 的时候，会将整个 RocksDB 中保存的 State 数据全量或者增量持久化到配置的文件系统中。</p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/DODKOLcDkD3fAC6ibicLCkn2csldib3IreWuHbnm5CoPfrX9jXz4gzx1M5lSLSw4iceYuPzGjjicN1cROP19E6c2ialw/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220301005339.png"></p>
 </li>
 <li><p>适用场景：</p>
 </li>
@@ -430,7 +430,7 @@
 <h4 id="面试题-Flink-SQL-API-State-TTL-的过期机制是-onCreateAndUpdate-还是onReadAndWrite"><a href="#面试题-Flink-SQL-API-State-TTL-的过期机制是-onCreateAndUpdate-还是onReadAndWrite" class="headerlink" title="面试题:   Flink SQL API State TTL 的过期机制是 onCreateAndUpdate 还是onReadAndWrite?"></a>面试题:   Flink SQL API State TTL 的过期机制是 onCreateAndUpdate 还是onReadAndWrite?</h4><ol>
 <li><strong>结论：Flink SQL API State TTL 的过期机制目前只支持 onCreateAndUpdate，DataStream API 两个都支持</strong></li>
 </ol>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/DODKOLcDkD3fAC6ibicLCkn2csldib3IreWDyWJDrsKmRMTeibKC69RP34oWozInRayzYR4gdH5x2nO6Yr8dt7xX1w/640?wx_fmt=jpeg&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220301005404.png"></p>
 <ol>
 <li>剖析：</li>
 </ol>
@@ -499,7 +499,7 @@
 <li><p>transform（比如 flatmap、map、filter 等算子）并行度的配置：这些算子一般不会做太重的操作，并行度可以和 source 保持一致，使得算子之间可以做到 forward 传输数据，不经过网络传输</p>
 </li>
 <li><p>keyby 之后的处理算子：<strong>建议最大并行度为此算子并行度的整数倍</strong>，这样可以使每个算子上的 keyGroup 是相同的，从而使得数据相对均匀 shuffle 到下游算子，如下图为 shuffle 策略</p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/DODKOLcDkD3fAC6ibicLCkn2csldib3IreWJ7SfAMSgvictYZz4GrZO2lAnrozEIZkS5QOndxNuhnZIORbyExRkfzw/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220301005428.png"></p>
 </li>
 <li><p>sink 并行度的配置：sink 是数据流向下游的地方，可以根据 sink 的数据量及下游的服务抗压能力进行评估。如果 sink 是 kafka，可以设为 kafka 对应 topic 的分区数。注意 sink 并行度最好和 kafka partition 成倍数关系，否则可能会出现如到 kafka partition 数据不均匀的情况。但是大多数情况下 sink 算子并行度不需要特别设置，只需要和整个任务的并行度相同就行。</p>
 </li>
