@@ -276,6 +276,114 @@
             
 
   
+    <article id="post-大数据公羊说之Flink每日一题收录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%85%AC%E7%BE%8A%E8%AF%B4%E4%B9%8BFlink%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%E6%94%B6%E5%BD%95/">大数据公羊说之Flink每日一题收录</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%85%AC%E7%BE%8A%E8%AF%B4%E4%B9%8BFlink%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%E6%94%B6%E5%BD%95/" class="archive-article-date">
+        <time datetime="2022-02-28T16:12:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-01</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">文章收录的是公众号: 大数据公羊说 的 面试题总结.</span><br></pre></td></tr></table></figure>
+
+<h4 id="面试题：你在生产环境中碰到哪些问题会导致反压？"><a href="#面试题：你在生产环境中碰到哪些问题会导致反压？" class="headerlink" title="面试题：你在生产环境中碰到哪些问题会导致反压？"></a>面试题：你在生产环境中碰到哪些问题会导致反压？</h4><ul>
+<li>数据倾斜：比如当前算子的每个并发只能处理 1w qps 的数据，而由于数据倾斜，这个算子平均 1s 需要处理 2w 条数据，因此倾斜的算子处理压力大，从而反压</li>
+<li>算子性能问题：比如下游整个整个算子的处理性能差，上游是 1w qps，当前整个算子算下来平均只能处理 1k qps，因此就有反压的情况</li>
+</ul>
+<h4 id="面试题：反压有哪些危害？"><a href="#面试题：反压有哪些危害？" class="headerlink" title="面试题：反压有哪些危害？"></a>面试题：反压有哪些危害？</h4><ul>
+<li>CK 时间长或者失败。反压导致 barrier 需要花很长时间才能对齐。</li>
+<li>整个任务完全卡住。比如在 TUMBLE 窗口算子的任务中，反压后可能会导致下游算子的 inputpool 和上游算子的 outputpool 满了，这时候如果下游窗口的 watermark 一直对不齐，窗口触发不了的话，下游算子就永远无法触发窗口计算了。整个任务卡住。</li>
+</ul>
+    
+    <a class="article-more-a" style="display: none; href="/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%85%AC%E7%BE%8A%E8%AF%B4%E4%B9%8BFlink%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%E6%94%B6%E5%BD%95/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">flink</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%85%AC%E7%BE%8A%E8%AF%B4%E4%B9%8BFlink%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%E6%94%B6%E5%BD%95/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-hive常用函数之分区表和分桶表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1182,108 +1290,9 @@
 
 
   
-    <article id="post-Flink-SQL-案例代码-使用Connect方式读取文本数据" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/Flink-SQL-%E6%A1%88%E4%BE%8B%E4%BB%A3%E7%A0%81-%E4%BD%BF%E7%94%A8Connect%E6%96%B9%E5%BC%8F%E8%AF%BB%E5%8F%96%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE/">Flink SQL 案例代码: 使用Connect方式读取文本数据</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/Flink-SQL-%E6%A1%88%E4%BE%8B%E4%BB%A3%E7%A0%81-%E4%BD%BF%E7%94%A8Connect%E6%96%B9%E5%BC%8F%E8%AF%BB%E5%8F%96%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE/" class="archive-article-date">
-        <time datetime="2022-02-17T10:29:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-17</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>注意: 在将动态表转换为 DataStream 时，只支持 append 流和 retract 流。<br>     只有当我们对接Hbase,ES等这些外部系统的时候才会有upsert模式.</p>
-    
-    <a class="article-more-a" style="display: none; href="/Flink-SQL-%E6%A1%88%E4%BE%8B%E4%BB%A3%E7%A0%81-%E4%BD%BF%E7%94%A8Connect%E6%96%B9%E5%BC%8F%E8%AF%BB%E5%8F%96%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/Flink-SQL-%E6%A1%88%E4%BE%8B%E4%BB%A3%E7%A0%81-%E4%BD%BF%E7%94%A8Connect%E6%96%B9%E5%BC%8F%E8%AF%BB%E5%8F%96%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
     </nav>
   
 
@@ -1575,6 +1584,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">clickhouse</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">flink</a>
               </li>
             
             <div class="clearfix"></div>
