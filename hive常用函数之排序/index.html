@@ -338,7 +338,7 @@
 <p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220228232138.png"></p>
 <span id="more"></span>
 
-<h1 id="全局排序（Order-By）"><a href="#全局排序（Order-By）" class="headerlink" title="全局排序（Order By）"></a>全局排序（Order By）</h1><p>Order By：全局排序，会进入到一个Reducer里面,最终会生成一个结果文件</p>
+<h1><span id="全局排序order-by">全局排序（Order By）</span></h1><p>Order By：全局排序，会进入到一个Reducer里面,最终会生成一个结果文件</p>
 <p><strong>1．使用 ORDER BY 子句排序</strong><br>        ASC（ascend）: 升序（默认）<br>        DESC（descend）: 降序<br><strong>2．ORDER BY 子句在SELECT语句的结尾</strong></p>
 <p><strong>3．案例实操</strong><br>    （1）查询员工信息按工资升序排列</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive (<span class="keyword">default</span>)<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> emp <span class="keyword">order</span> <span class="keyword">by</span> sal;</span><br></pre></td></tr></table></figure>
@@ -346,13 +346,13 @@
 <p>​    （2）查询员工信息按工资降序排列</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive (<span class="keyword">default</span>)<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> emp <span class="keyword">order</span> <span class="keyword">by</span> sal <span class="keyword">desc</span>;</span><br></pre></td></tr></table></figure>
 
-<h2 id="按照别名排序"><a href="#按照别名排序" class="headerlink" title="按照别名排序"></a><strong>按照别名排序</strong></h2><p><strong>按照员工薪水的2倍排序</strong></p>
+<h2><span id="按照别名排序"><strong>按照别名排序</strong></span></h2><p><strong>按照员工薪水的2倍排序</strong></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive (<span class="keyword">default</span>)<span class="operator">&gt;</span> <span class="keyword">select</span> ename, sal<span class="operator">*</span><span class="number">2</span> twosal <span class="keyword">from</span> emp <span class="keyword">order</span> <span class="keyword">by</span> twosal;</span><br></pre></td></tr></table></figure>
 
-<h2 id="多个列排序"><a href="#多个列排序" class="headerlink" title="多个列排序"></a>多个列排序</h2><p><strong>按照部门和工资升序排序</strong></p>
+<h2><span id="多个列排序">多个列排序</span></h2><p><strong>按照部门和工资升序排序</strong></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive (<span class="keyword">default</span>)<span class="operator">&gt;</span> <span class="keyword">select</span> ename, deptno, sal <span class="keyword">from</span> emp <span class="keyword">order</span> <span class="keyword">by</span> deptno, sal ;</span><br></pre></td></tr></table></figure>
 
-<h1 id="每个MapReduce内部排序（Sort-By）"><a href="#每个MapReduce内部排序（Sort-By）" class="headerlink" title="每个MapReduce内部排序（Sort By）"></a>每个MapReduce内部排序（Sort By）</h1><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220228223331.png"></p>
+<h1><span id="每个mapreduce内部排序sort-by">每个MapReduce内部排序（Sort By）</span></h1><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220228223331.png"></p>
 <p>什么情况下map进入多个reduce呢?  分区.  </p>
 <p>Sort By：对每个Reducer里面的数据进行排序，对全局结果集来说不是排序。<br>Order by : 是对整个数据进行排序</p>
 <p>1．设置reduce个数</p>
@@ -375,7 +375,7 @@
 <p>官网</p>
 <p><a target="_blank" rel="noopener" href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Select">https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Select</a></p>
 <p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220228224310.png"></p>
-<h1 id="分区排序（Distribute-By）和sort-by-连用-因为sort-by没有分区规则"><a href="#分区排序（Distribute-By）和sort-by-连用-因为sort-by没有分区规则" class="headerlink" title="分区排序（Distribute By）和sort by 连用,因为sort by没有分区规则"></a>分区排序（Distribute By）和sort by 连用,因为sort by没有分区规则</h1><p>先使用distribute by 然后再使用 sort by.</p>
+<h1><span id="分区排序distribute-by和sort-by-连用因为sort-by没有分区规则">分区排序（Distribute By）和sort by 连用,因为sort by没有分区规则</span></h1><p>先使用distribute by 然后再使用 sort by.</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">比如: 我可以按照部门编号进行分区,然后再部门内部做一个按照薪水的排序</span><br><span class="line">这种方式用<span class="keyword">order</span> <span class="keyword">by</span> 全局排序是这么写的:</span><br><span class="line"><span class="keyword">select</span> deptno,ename,sal <span class="keyword">from</span> emp <span class="keyword">order</span> <span class="keyword">by</span> deptno,sal;</span><br><span class="line">但是 这种我们设置的reduce个数只能是<span class="number">1</span>个.即使我们设置为<span class="number">3</span>个reduce.但是他不生效.</span><br><span class="line">但是用 先分区(distribute <span class="keyword">by</span>) 再 分区内排序(sort <span class="keyword">by</span>)的话是这么写的:</span><br><span class="line"><span class="keyword">set</span> mapreduce.job.reduces<span class="operator">=</span><span class="number">4</span>;</span><br><span class="line"><span class="keyword">select</span> deptno,ename,sal <span class="keyword">from</span> emp distribute <span class="keyword">by</span> deptno sort <span class="keyword">by</span> sal;</span><br><span class="line">但是这样我们也看不出来他的分区,因为他还是按照hash的方式进行分区的. </span><br></pre></td></tr></table></figure>
 
 <p>所以,如果我们想通过区内排序的规则来达到我们order by的规则的话, 我们就需要自定义分区.就是要把我们不同的部门放到不同的区里面,然后拼接起来就到达了order by的效果. 而不是使用hash的方式分区.    </p>
@@ -383,7 +383,7 @@
 <p>Distribute By：类似MR中partition，进行分区,就是先分好区,分好之后在每个partition里面进行sort by一下，结合sort by使用。</p>
 <p>注意，Hive要求DISTRIBUTE BY语句要写在SORT BY语句之前。<br>对于distribute by进行测试，一定要分配多reduce进行处理，否则无法看到distribute by的效果。</p>
 <p>Distribute指定正常的分区字段,指定之后就可以正常的分区操作了</p>
-<h1 id="Cluster-By"><a href="#Cluster-By" class="headerlink" title="Cluster By"></a>Cluster By</h1><p><strong>当distribute by和sort by字段相同时，可以使用cluster by方式。</strong><br>cluster by除了具有distribute by的功能外还兼具sort by的功能。但是排序只能是升序排序，不能指定排序规则为ASC或者DESC。<br>Sort by可以指定是升序还是降序,但是用cluster by之后就不能指定了,只能是升序<br>1）以下两种写法等价</p>
+<h1><span id="cluster-by">Cluster By</span></h1><p><strong>当distribute by和sort by字段相同时，可以使用cluster by方式。</strong><br>cluster by除了具有distribute by的功能外还兼具sort by的功能。但是排序只能是升序排序，不能指定排序规则为ASC或者DESC。<br>Sort by可以指定是升序还是降序,但是用cluster by之后就不能指定了,只能是升序<br>1）以下两种写法等价</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hive (<span class="keyword">default</span>)<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> emp cluster <span class="keyword">by</span> deptno;</span><br><span class="line">hive (<span class="keyword">default</span>)<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> emp distribute <span class="keyword">by</span> deptno sort <span class="keyword">by</span> deptno;</span><br></pre></td></tr></table></figure>
 
 <p>注意：按照部门编号分区，不一定就是固定死的数值，可以是30号和60号部门分到一个分区里面去. 因为他是按照hash规则将hash相同的放到同一个分区里面的.</p>
@@ -574,7 +574,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E6%8E%92%E5%BA%8F%EF%BC%88Order-By%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">全局排序（Order By）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%89%E7%85%A7%E5%88%AB%E5%90%8D%E6%8E%92%E5%BA%8F"><span class="toc-number">1.1.</span> <span class="toc-text">按照别名排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E4%B8%AA%E5%88%97%E6%8E%92%E5%BA%8F"><span class="toc-number">1.2.</span> <span class="toc-text">多个列排序</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AF%8F%E4%B8%AAMapReduce%E5%86%85%E9%83%A8%E6%8E%92%E5%BA%8F%EF%BC%88Sort-By%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">每个MapReduce内部排序（Sort By）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E5%8C%BA%E6%8E%92%E5%BA%8F%EF%BC%88Distribute-By%EF%BC%89%E5%92%8Csort-by-%E8%BF%9E%E7%94%A8-%E5%9B%A0%E4%B8%BAsort-by%E6%B2%A1%E6%9C%89%E5%88%86%E5%8C%BA%E8%A7%84%E5%88%99"><span class="toc-number">3.</span> <span class="toc-text">分区排序（Distribute By）和sort by 连用,因为sort by没有分区规则</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Cluster-By"><span class="toc-number">4.</span> <span class="toc-text">Cluster By</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">全局排序（Order By）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.1.</span> <span class="toc-text">按照别名排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.2.</span> <span class="toc-text">多个列排序</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">每个MapReduce内部排序（Sort By）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">分区排序（Distribute By）和sort by 连用,因为sort by没有分区规则</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">Cluster By</span></a></li></ol>
                     </div>
                 </span>
             </div>
