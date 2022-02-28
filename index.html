@@ -11,6 +11,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
+    
+    <!-- <meta name="keywords" content="徐霸天,xubatian,上白书妖,shangbaishuyao">
+    <meta name="description" content="知识源于积累,登峰造极源于自律"> -->
+  
   <meta name="description" content="知识源于积累,登峰造极源于自律">
 <meta property="og:type" content="website">
 <meta property="og:title" content="我的梦想是星辰大海">
@@ -307,14 +311,9 @@
     
     <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">文章收录的是公众号: 大数据公羊说 的 面试题总结.</span><br></pre></td></tr></table></figure>
 
-<h4 id="面试题：你在生产环境中碰到哪些问题会导致反压？"><a href="#面试题：你在生产环境中碰到哪些问题会导致反压？" class="headerlink" title="面试题：你在生产环境中碰到哪些问题会导致反压？"></a>面试题：你在生产环境中碰到哪些问题会导致反压？</h4><ul>
-<li>数据倾斜：比如当前算子的每个并发只能处理 1w qps 的数据，而由于数据倾斜，这个算子平均 1s 需要处理 2w 条数据，因此倾斜的算子处理压力大，从而反压</li>
-<li>算子性能问题：比如下游整个整个算子的处理性能差，上游是 1w qps，当前整个算子算下来平均只能处理 1k qps，因此就有反压的情况</li>
-</ul>
-<h4 id="面试题：反压有哪些危害？"><a href="#面试题：反压有哪些危害？" class="headerlink" title="面试题：反压有哪些危害？"></a>面试题：反压有哪些危害？</h4><ul>
-<li>CK 时间长或者失败。反压导致 barrier 需要花很长时间才能对齐。</li>
-<li>整个任务完全卡住。比如在 TUMBLE 窗口算子的任务中，反压后可能会导致下游算子的 inputpool 和上游算子的 outputpool 满了，这时候如果下游窗口的 watermark 一直对不齐，窗口触发不了的话，下游算子就永远无法触发窗口计算了。整个任务卡住。</li>
-</ul>
+
+
+<p>[toc]</p>
     
     <a class="article-more-a" style="display: none; href="/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%85%AC%E7%BE%8A%E8%AF%B4%E4%B9%8BFlink%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%E6%94%B6%E5%BD%95/#more">more >></a>
     
@@ -1334,7 +1333,7 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: false,
+		isHome: true,
 		isPost: false,
 		isArchive: false,
 		isTag: false,
