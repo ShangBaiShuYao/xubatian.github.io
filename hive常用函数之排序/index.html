@@ -6,21 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://xubatian.cn">
-  <title>Archives: 2022/2 | 我的梦想是星辰大海</title>
+  <title>hive常用函数之排序 | 我的梦想是星辰大海</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta name="description" content="知识源于积累,登峰造极源于自律">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我的梦想是星辰大海">
-<meta property="og:url" content="http://xubatian.cn/archives/2022/02/page/3/index.html">
+  <meta name="description" content="​    hive 里面其实我们可以设置reduce的个数. 类似于在mapreduce里面,最后封装一个Driver一样. 可以最后写我们需要运行多少个reducer.  set mapreduce.job.reduces&#x3D;3; 设置reducer个数为3. 但是在orderBy 里面,就算你最后设置了属性也不会生效.  全局排序（Order By）Order By：全局排序，会进入到一个Red">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hive常用函数之排序">
+<meta property="og:url" content="http://xubatian.cn/hive%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E4%B9%8B%E6%8E%92%E5%BA%8F/index.html">
 <meta property="og:site_name" content="我的梦想是星辰大海">
-<meta property="og:description" content="知识源于积累,登峰造极源于自律">
+<meta property="og:description" content="​    hive 里面其实我们可以设置reduce的个数. 类似于在mapreduce里面,最后封装一个Driver一样. 可以最后写我们需要运行多少个reducer.  set mapreduce.job.reduces&#x3D;3; 设置reducer个数为3. 但是在orderBy 里面,就算你最后设置了属性也不会生效.  全局排序（Order By）Order By：全局排序，会进入到一个Red">
 <meta property="og:locale">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220228223331.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220228223654.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_287.png">
+<meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220228224310.png">
+<meta property="article:published_time" content="2022-02-28T14:16:21.000Z">
+<meta property="article:modified_time" content="2022-02-28T15:06:42.914Z">
 <meta property="article:author" content="xubatian">
-<meta property="article:tag" content="徐霸天,xubatian,上白书妖,shangbaishuyao">
+<meta property="article:tag" content="hive">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220228223331.png">
   
   
     <link rel="icon" href="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/favicon.ico">
@@ -273,53 +280,185 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-hive常用函数之排序" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink-SQL-CDC/" class="archive-article-date">
-        <time datetime="2022-02-15T16:47:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-16</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink-SQL-CDC/">Flink 原理与实现: Flink SQL CDC</a>
-	
+    <h1 class="article-title" itemprop="name">
+      hive常用函数之排序
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/hive%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E4%B9%8B%E6%8E%92%E5%BA%8F/" class="archive-article-date">
+        <time datetime="2022-02-28T14:16:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-28</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">1.2k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">4分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>​    hive 里面其实我们可以设置reduce的个数. 类似于在mapreduce里面,最后封装一个Driver一样. 可以最后写我们需要运行多少个reducer.  set mapreduce.job.reduces=3; 设置reducer个数为3. 但是在orderBy 里面,就算你最后设置了属性也不会生效. </p>
+<h1 id="全局排序（Order-By）"><a href="#全局排序（Order-By）" class="headerlink" title="全局排序（Order By）"></a>全局排序（Order By）</h1><p>Order By：全局排序，会进入到一个Reducer里面,最终会生成一个结果文件</p>
+<p><strong>1．使用 ORDER BY 子句排序</strong><br>        ASC（ascend）: 升序（默认）<br>        DESC（descend）: 降序<br><strong>2．ORDER BY 子句在SELECT语句的结尾</strong></p>
+<span id="more"></span>
+
+<p><strong>3．案例实操</strong><br>    （1）查询员工信息按工资升序排列</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive (default)&gt; select * from emp order by sal;</span><br></pre></td></tr></table></figure>
+
+<p>​    （2）查询员工信息按工资降序排列</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive (default)&gt; select * from emp order by sal desc;</span><br></pre></td></tr></table></figure>
+
+<h2 id="按照别名排序"><a href="#按照别名排序" class="headerlink" title="按照别名排序"></a><strong>按照别名排序</strong></h2><p><strong>按照员工薪水的2倍排序</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive (default)&gt; select ename, sal*2 twosal from emp order by twosal;</span><br></pre></td></tr></table></figure>
+
+<h2 id="多个列排序"><a href="#多个列排序" class="headerlink" title="多个列排序"></a>多个列排序</h2><p><strong>按照部门和工资升序排序</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive (default)&gt; select ename, deptno, sal from emp order by deptno, sal ;</span><br></pre></td></tr></table></figure>
+
+<h1 id="每个MapReduce内部排序（Sort-By）"><a href="#每个MapReduce内部排序（Sort-By）" class="headerlink" title="每个MapReduce内部排序（Sort By）"></a>每个MapReduce内部排序（Sort By）</h1><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220228223331.png"></p>
+<p>什么情况下map进入多个reduce呢?  分区.  </p>
+<p>Sort By：对每个Reducer里面的数据进行排序，对全局结果集来说不是排序。<br>Order by : 是对整个数据进行排序</p>
+<p>1．设置reduce个数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive (default)&gt; set mapreduce.job.reduces=3;</span><br></pre></td></tr></table></figure>
+
+<p>2．查看设置reduce个数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive (default)&gt; set mapreduce.job.reduces;</span><br></pre></td></tr></table></figure>
+
+<p>3．根据部门编号降序查看员工信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive (default)&gt; select * from emp sort by empno desc;</span><br></pre></td></tr></table></figure>
+
+<p>4．将查询结果导入到文件中（按照部门编号降序排序）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hive (default)&gt; insert overwrite local directory &#x27;/opt/module/datas/sortby-result&#x27;</span><br><span class="line"> select * from emp sort by deptno desc;</span><br></pre></td></tr></table></figure>
+
+<p><strong>MapReduce里面是按照hash来进行分区的,所以我们无法指定分区. 所以他是没有规律的. 所以我们使用sort by的话 一般会和后面的字段连用,执行分区规则. 因为当我们不指定分区规则的时候,他就是随机的. 因为他害怕数据倾斜</strong></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220228223654.png"></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_287.png" alt="blog: www.xubatian.cn"></p>
+<p><strong>可以看到,这是随机分配的,是没有规律的,我们一般排序肯定会先指定分区然后在排序,分区的话,一般我们会指定按照什么来分区,然而这里没有,说明这种排序方式不提供指定分区,从而出现了随机分配的现象</strong></p>
+<p>hive选择语法:</p>
+<p>官网</p>
+<p><a target="_blank" rel="noopener" href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Select">https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Select</a></p>
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220228224310.png"></p>
+<h1 id="分区排序（Distribute-By）和sort-by-连用-因为sort-by没有分区规则"><a href="#分区排序（Distribute-By）和sort-by-连用-因为sort-by没有分区规则" class="headerlink" title="分区排序（Distribute By）和sort by 连用,因为sort by没有分区规则"></a>分区排序（Distribute By）和sort by 连用,因为sort by没有分区规则</h1><p>先使用distribute by 然后再使用 sort by.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">比如: 我可以按照部门编号进行分区,然后再部门内部做一个按照薪水的排序</span><br><span class="line">这种方式用order by 全局排序是这么写的:</span><br><span class="line">select deptno,ename,sal from emp order by deptno,sal;</span><br><span class="line">但是 这种我们设置的reduce个数只能是1个.即使我们设置为3个reduce.但是他不生效.</span><br><span class="line">但是用 先分区(distribute by) 再 分区内排序(sort by)的话是这么写的:</span><br><span class="line">set mapreduce.job.reduces=4;</span><br><span class="line">select deptno,ename,sal from emp distribute by deptno sort by sal;</span><br><span class="line">但是这样我们也看不出来他的分区,因为他还是按照hash的方式进行分区的. </span><br></pre></td></tr></table></figure>
+
+<p>所以,如果我们想通过区内排序的规则来达到我们order by的规则的话, 我们就需要自定义分区.就是要把我们不同的部门放到不同的区里面,然后拼接起来就到达了order by的效果. 而不是使用hash的方式分区.    </p>
+<p>这种方式确确实实分区了,分区之后你在哪个区就用sort by了</p>
+<p>Distribute By：类似MR中partition，进行分区,就是先分好区,分好之后在每个partition里面进行sort by一下，结合sort by使用。</p>
+<p>注意，Hive要求DISTRIBUTE BY语句要写在SORT BY语句之前。<br>对于distribute by进行测试，一定要分配多reduce进行处理，否则无法看到distribute by的效果。</p>
+<p>Distribute指定正常的分区字段,指定之后就可以正常的分区操作了</p>
+<h1 id="Cluster-By"><a href="#Cluster-By" class="headerlink" title="Cluster By"></a>Cluster By</h1><p><strong>当distribute by和sort by字段相同时，可以使用cluster by方式。</strong><br>cluster by除了具有distribute by的功能外还兼具sort by的功能。但是排序只能是升序排序，不能指定排序规则为ASC或者DESC。<br>Sort by可以指定是升序还是降序,但是用cluster by之后就不能指定了,只能是升序<br>1）以下两种写法等价</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hive (default)&gt; select * from emp cluster by deptno;</span><br><span class="line">hive (default)&gt; select * from emp distribute by deptno sort by deptno;</span><br></pre></td></tr></table></figure>
+
+<p>注意：按照部门编号分区，不一定就是固定死的数值，可以是30号和60号部门分到一个分区里面去. 因为他是按照hash规则将hash相同的放到同一个分区里面的.</p>
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/zhifubaoPay.png">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img/weixinPay.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          xubatian
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://xubatian.cn/hive常用函数之排序/" title="hive常用函数之排序" target="_blank">http://xubatian.cn/hive常用函数之排序/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外均为原创，采用 CC BY 4.0 CN协议 许可协议。转载请注明出处:https://www.xubatian.cn/
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -332,515 +471,140 @@
 	</div>
 
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://xubatian.cn/hive%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E4%B9%8B%E6%8E%92%E5%BA%8F/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/%E5%A4%AE%E8%A7%86%E7%9B%B4%E6%92%AD/" class="archive-article-date">
-        <time datetime="2022-02-15T16:06:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-16</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%B5%81%E7%A8%8B%E5%B0%8F%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Flink 原理与实现: Flink流程小总结</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/%E5%A4%AE%E8%A7%86%E7%9B%B4%E6%92%AD/">央视直播</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">轻松一刻</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/轻松一刻//" class="article-tag-list-link color5">轻松一刻</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E6%8E%92%E5%BA%8F%EF%BC%88Order-By%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">全局排序（Order By）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%89%E7%85%A7%E5%88%AB%E5%90%8D%E6%8E%92%E5%BA%8F"><span class="toc-number">1.1.</span> <span class="toc-text">按照别名排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E4%B8%AA%E5%88%97%E6%8E%92%E5%BA%8F"><span class="toc-number">1.2.</span> <span class="toc-text">多个列排序</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AF%8F%E4%B8%AAMapReduce%E5%86%85%E9%83%A8%E6%8E%92%E5%BA%8F%EF%BC%88Sort-By%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">每个MapReduce内部排序（Sort By）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E5%8C%BA%E6%8E%92%E5%BA%8F%EF%BC%88Distribute-By%EF%BC%89%E5%92%8Csort-by-%E8%BF%9E%E7%94%A8-%E5%9B%A0%E4%B8%BAsort-by%E6%B2%A1%E6%9C%89%E5%88%86%E5%8C%BA%E8%A7%84%E5%88%99"><span class="toc-number">3.</span> <span class="toc-text">分区排序（Distribute By）和sort by 连用,因为sort by没有分区规则</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Cluster-By"><span class="toc-number">4.</span> <span class="toc-text">Cluster By</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Spark%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Spark-SQL%E7%BC%96%E7%A8%8B/" class="archive-article-date">
-        <time datetime="2022-02-15T15:27:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-15</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Spark%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Spark-SQL%E7%BC%96%E7%A8%8B/">Spark原理与实现: Spark SQL编程</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">spark SQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Spark%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-SparkSQL%E7%9A%84%E6%A6%82%E8%BF%B0/" class="archive-article-date">
-        <time datetime="2022-02-15T15:13:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-15</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Spark%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-SparkSQL%E7%9A%84%E6%A6%82%E8%BF%B0/">Spark原理与实现: SparkSQL的概述</a>
-	
-    </h1>
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'true' == true ? true : false;
+   var verify = 'ture' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '.comment',
+            notify: notify,
+            verify: verify,
+            app_id: "4C7T8fSNVA6RnfQksa8BmdFc-gzGzoHsz",
+            app_key: "V57hYH4l9NRzmpobtAIN5gzq",
+            placeholder: "开始你的评论吧...",
+            avatar:"mm"
+        });
+    }
+</script>
+    </section>
   
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">spark SQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Kafka-API/" class="archive-article-date">
-        <time datetime="2022-02-15T14:24:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-15</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Kafka-API/">Kafka API</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Kafka</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Kafka%E6%9E%B6%E6%9E%84%E6%B7%B1%E5%85%A5/" class="archive-article-date">
-        <time datetime="2022-02-15T05:25:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-15</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Kafka%E6%9E%B6%E6%9E%84%E6%B7%B1%E5%85%A5/">Kafka架构深入</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Kafka</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/kafka%E6%A6%82%E8%BF%B0/" class="archive-article-date">
-        <time datetime="2022-02-15T04:27:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-15</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/kafka%E6%A6%82%E8%BF%B0/">kafka概述</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Kafka</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink-CDC/" class="archive-article-date">
-        <time datetime="2022-02-15T03:38:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-15</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink-CDC/">Flink 原理与实现: Flink-CDC</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%B5%81%E8%AE%A1%E7%AE%97%E5%B8%B8%E7%94%A8%E7%AE%97%E5%AD%90%EF%BC%88Flink%E7%AE%97%E5%AD%90%E5%A4%A7%E5%85%A8%EF%BC%89/" class="archive-article-date">
-        <time datetime="2022-02-15T01:20:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-15</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%B5%81%E8%AE%A1%E7%AE%97%E5%B8%B8%E7%94%A8%E7%AE%97%E5%AD%90%EF%BC%88Flink%E7%AE%97%E5%AD%90%E5%A4%A7%E5%85%A8%EF%BC%89/">Flink 原理与实现: Flink流计算常用算子（Flink算子大全）</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E5%AE%9E%E7%8E%B0UDF%E5%87%BD%E6%95%B0%E2%80%94%E2%80%94%E6%9B%B4%E7%BB%86%E7%B2%92%E5%BA%A6%E7%9A%84%E6%8E%A7%E5%88%B6%E6%B5%81/" class="archive-article-date">
-        <time datetime="2022-02-15T00:58:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-15</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E5%AE%9E%E7%8E%B0UDF%E5%87%BD%E6%95%B0%E2%80%94%E2%80%94%E6%9B%B4%E7%BB%86%E7%B2%92%E5%BA%A6%E7%9A%84%E6%8E%A7%E5%88%B6%E6%B5%81/">Flink 原理与实现: Flink实现UDF函数——更细粒度的控制流</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2022/02/page/2/">上一页</a><a class="page-number" href="/archives/2022/02/">1</a><a class="page-number" href="/archives/2022/02/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/2022/02/page/4/">4</a><a class="page-number" href="/archives/2022/02/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2022/02/page/7/">7</a><a class="extend next" rel="next" href="/archives/2022/02/page/4/">下一页</a>
-    </nav>
-  
 
 
 
@@ -881,8 +645,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

@@ -11,6 +11,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
+    
+    <!-- <meta name="keywords" content="徐霸天,xubatian,上白书妖,shangbaishuyao">
+    <meta name="description" content="知识源于积累,登峰造极源于自律"> -->
+  
   <meta name="description" content="知识源于积累,登峰造极源于自律">
 <meta property="og:type" content="website">
 <meta property="og:title" content="我的梦想是星辰大海">
@@ -274,6 +278,107 @@
           </div>
           <div id="js-content" class="content-ll">
             
+
+  
+    <article id="post-hive常用函数之排序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/hive%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E4%B9%8B%E6%8E%92%E5%BA%8F/">hive常用函数之排序</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/hive%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E4%B9%8B%E6%8E%92%E5%BA%8F/" class="archive-article-date">
+        <time datetime="2022-02-28T14:16:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-28</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>​    hive 里面其实我们可以设置reduce的个数. 类似于在mapreduce里面,最后封装一个Driver一样. 可以最后写我们需要运行多少个reducer.  set mapreduce.job.reduces=3; 设置reducer个数为3. 但是在orderBy 里面,就算你最后设置了属性也不会生效. </p>
+<h1 id="全局排序（Order-By）"><a href="#全局排序（Order-By）" class="headerlink" title="全局排序（Order By）"></a>全局排序（Order By）</h1><p>Order By：全局排序，会进入到一个Reducer里面,最终会生成一个结果文件</p>
+<p><strong>1．使用 ORDER BY 子句排序</strong><br>        ASC（ascend）: 升序（默认）<br>        DESC（descend）: 降序<br><strong>2．ORDER BY 子句在SELECT语句的结尾</strong></p>
+    
+    <a class="article-more-a" style="display: none; href="/hive%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E4%B9%8B%E6%8E%92%E5%BA%8F/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/hive%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E4%B9%8B%E6%8E%92%E5%BA%8F/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
 
   
     <article id="post-Flink-原理与实现-Flink流程小总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
@@ -1177,108 +1282,9 @@
 
 
   
-    <article id="post-Flink-SQL-案例代码-将Stream流转化成Table" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/Flink-SQL-%E6%A1%88%E4%BE%8B%E4%BB%A3%E7%A0%81-%E5%B0%86Stream%E6%B5%81%E8%BD%AC%E5%8C%96%E6%88%90Table/">Flink SQL 案例代码: 将Stream流转化成Table</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/Flink-SQL-%E6%A1%88%E4%BE%8B%E4%BB%A3%E7%A0%81-%E5%B0%86Stream%E6%B5%81%E8%BD%AC%E5%8C%96%E6%88%90Table/" class="archive-article-date">
-        <time datetime="2022-02-17T10:13:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-17</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>将流转换成表,再将表转换成流打印</p>
-    
-    <a class="article-more-a" style="display: none; href="/Flink-SQL-%E6%A1%88%E4%BE%8B%E4%BB%A3%E7%A0%81-%E5%B0%86Stream%E6%B5%81%E8%BD%AC%E5%8C%96%E6%88%90Table/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/Flink-SQL-%E6%A1%88%E4%BE%8B%E4%BB%A3%E7%A0%81-%E5%B0%86Stream%E6%B5%81%E8%BD%AC%E5%8C%96%E6%88%90Table/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
     </nav>
   
 
@@ -1320,7 +1326,7 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: false,
+		isHome: true,
 		isPost: false,
 		isArchive: false,
 		isTag: false,
