@@ -6,7 +6,7 @@
   <link href="http://xubatian.cn/atom.xml" rel="self"/>
   
   <link href="http://xubatian.cn/"/>
-  <updated>2022-03-16T07:28:00.421Z</updated>
+  <updated>2022-03-16T07:29:48.056Z</updated>
   <id>http://xubatian.cn/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://xubatian.cn/pgSQL-Hologres-dataworks%E5%B8%B8%E7%94%A8SQL%E5%87%BD%E6%95%B0/"/>
     <id>http://xubatian.cn/pgSQL-Hologres-dataworks%E5%B8%B8%E7%94%A8SQL%E5%87%BD%E6%95%B0/</id>
     <published>2022-03-16T07:16:17.000Z</published>
-    <updated>2022-03-16T07:28:00.421Z</updated>
+    <updated>2022-03-16T07:29:48.056Z</updated>
     
-    <content type="html"><![CDATA[<p>使用阿里云数仓 ,涉及到pgsql,dataworks常用,Hologres常用sql记录</p><span id="more"></span><h2><span id="获取今天日期-获取今天时刻">获取今天日期 获取今天时刻</span></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select </span><br><span class="line">    now()::timestamp(0)without time zone as now_date, --当前日期(精确到秒)</span><br><span class="line">    current_date as sta_data, --当前日期(精确到日)</span><br><span class="line">    date_part(&#x27;hour&#x27;, clock_timestamp()) sta_hour --当前时刻</span><br></pre></td></tr></table></figure><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220316152756.png"></p>]]></content>
+    <content type="html"><![CDATA[<p>使用阿里云数仓 ,涉及到pgsql,dataworks常用,Hologres常用sql记录</p><span id="more"></span><h2><span id="获取今天日期-获取今天时刻">获取今天日期 获取今天时刻</span></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select </span><br><span class="line">    now()::timestamp(0)without time zone as now_date, --当前日期(精确到秒)</span><br><span class="line">    current_date as sta_data, --当前日期(精确到日)</span><br><span class="line">    date_part(&#x27;hour&#x27;, clock_timestamp()) sta_hour --当前时刻</span><br></pre></td></tr></table></figure>]]></content>
     
     
     <summary type="html">&lt;p&gt;使用阿里云数仓 ,涉及到pgsql,dataworks常用,Hologres常用sql记录&lt;/p&gt;</summary>
