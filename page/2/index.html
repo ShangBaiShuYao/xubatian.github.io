@@ -286,6 +286,106 @@
             
 
   
+    <article id="post-Flink内存管理-网络传输中的内存管理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/Flink%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">Flink内存管理: 网络传输中的内存管理</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/Flink%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" class="archive-article-date">
+        <time datetime="2022-02-19T13:31:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-19</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="网络传输中的内存管理"><a href="#网络传输中的内存管理" class="headerlink" title="网络传输中的内存管理"></a>网络传输中的内存管理</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220220135443.png"></p>
+<p>​    网络上传输的数据会写到 Task 的 InputGate（IG） 中，经过 Task 的处理后，再由 Task 写到 ResultPartition（RS） 中。每个 Task 都包括了输入和输入，输入和输出的数据存在 Buffer 中（都是字节数据）。Buffer 是 MemorySegment 的包装类。</p>
+    
+    <a class="article-more-a" style="display: none; href="/Flink%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/Flink%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Flink内存管理-内存管理器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1157,112 +1257,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/kafka3-0-0%E4%B9%8Bkafka%E6%A6%82%E8%BF%B0/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Flink写入clickhouse案例" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/Flink%E5%86%99%E5%85%A5clickhouse%E6%A1%88%E4%BE%8B/">Flink写入clickhouse案例</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/Flink%E5%86%99%E5%85%A5clickhouse%E6%A1%88%E4%BE%8B/" class="archive-article-date">
-        <time datetime="2022-02-16T17:40:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-17</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>Flink写入clickhouse案例</p>
-<p>源码地址: </p>
-<p><a target="_blank" rel="noopener" href="https://github.com/ShangBaiShuYao/flink-learning-from-zhisheng/blob/main/Flink-shangbaishuyao-RTDW-gmall-realtime/src/main/java/com/shangbaishuyao/gmall/realtime/app/DWS/KeywordStats4ProductApp.java">https://github.com/ShangBaiShuYao/flink-learning-from-zhisheng/blob/main/Flink-shangbaishuyao-RTDW-gmall-realtime/src/main/java/com/shangbaishuyao/gmall/realtime/app/DWS/KeywordStats4ProductApp.java</a></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/ShangBaiShuYao/flink-learning-from-zhisheng/blob/main/Flink-shangbaishuyao-RTDW-gmall-realtime/src/main/java/com/shangbaishuyao/gmall/realtime/utils/ClickHouseUtil.java">https://github.com/ShangBaiShuYao/flink-learning-from-zhisheng/blob/main/Flink-shangbaishuyao-RTDW-gmall-realtime/src/main/java/com/shangbaishuyao/gmall/realtime/utils/ClickHouseUtil.java</a></p>
-    
-    <a class="article-more-a" style="display: none; href="/Flink%E5%86%99%E5%85%A5clickhouse%E6%A1%88%E4%BE%8B/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">clickhouse</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/Flink%E5%86%99%E5%85%A5clickhouse%E6%A1%88%E4%BE%8B/">展开全文 >></a>
     </p>
     
 
