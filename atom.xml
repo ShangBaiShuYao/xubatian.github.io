@@ -6,7 +6,7 @@
   <link href="http://xubatian.cn/atom.xml" rel="self"/>
   
   <link href="http://xubatian.cn/"/>
-  <updated>2022-03-23T15:54:39.433Z</updated>
+  <updated>2022-03-25T06:33:42.257Z</updated>
   <id>http://xubatian.cn/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一款好用的免费VPN插件</title>
+    <link href="http://xubatian.cn/%E4%B8%80%E6%AC%BE%E5%A5%BD%E7%94%A8%E7%9A%84%E5%85%8D%E8%B4%B9VPN%E6%8F%92%E4%BB%B6/"/>
+    <id>http://xubatian.cn/%E4%B8%80%E6%AC%BE%E5%A5%BD%E7%94%A8%E7%9A%84%E5%85%8D%E8%B4%B9VPN%E6%8F%92%E4%BB%B6/</id>
+    <published>2022-03-25T06:25:50.000Z</published>
+    <updated>2022-03-25T06:33:42.257Z</updated>
+    
+    <content type="html"><![CDATA[<p>一款好用的浏览器VPN插件—-SetupVPN </p><span id="more"></span><p>访问youTube效果:</p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220325142736.png"></p><p>火狐安装步骤:</p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220323234653.png"></p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220325143042.png"></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;一款好用的浏览器VPN插件—-SetupVPN &lt;/p&gt;</summary>
+    
+    
+    
+    <category term="工具" scheme="http://xubatian.cn/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="工具" scheme="http://xubatian.cn/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>推荐一款很棒的浏览器插件iTab</title>
@@ -444,27 +465,6 @@
     
     
     <category term="Flink" scheme="http://xubatian.cn/tags/Flink/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>kafka3.0.0之kafka概述</title>
-    <link href="http://xubatian.cn/kafka3-0-0%E4%B9%8Bkafka%E6%A6%82%E8%BF%B0/"/>
-    <id>http://xubatian.cn/kafka3-0-0%E4%B9%8Bkafka%E6%A6%82%E8%BF%B0/</id>
-    <published>2022-02-17T04:53:43.000Z</published>
-    <updated>2022-02-17T06:43:43.999Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217124445.png"></p><span id="more"></span><h2 id="Kafka-概述"><a href="#Kafka-概述" class="headerlink" title="Kafka 概述"></a><strong>Kafka</strong> <strong>概述</strong></h2><h3 id="kafka定义"><a href="#kafka定义" class="headerlink" title="kafka定义"></a>kafka定义</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217125929.png"></p><h3 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h3><p>​            目 前企 业中比 较常 见的 消息 队列产 品主 要有 Kafka、ActiveMQ 、RabbitMQ 、RocketMQ 等。<br>​            在大数据场景主要采用 Kafka 作为消息队列。在 JavaEE 开发中主要采用 ActiveMQ、RabbitMQ、RocketMQ。</p><h3 id="传统消息队列的应用场景"><a href="#传统消息队列的应用场景" class="headerlink" title="传统消息队列的应用场景"></a>传统消息队列的应用场景</h3><p>​        传统的消息队列的主要应用场景包括：缓存/消峰、解耦和异步通信。</p><h4 id="消息队列的应用场景——缓冲-消峰"><a href="#消息队列的应用场景——缓冲-消峰" class="headerlink" title="消息队列的应用场景——缓冲/消峰"></a>消息队列的应用场景——缓冲/消峰</h4><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217130109.png"></p><h4 id="消息队列的应用场景——解耦"><a href="#消息队列的应用场景——解耦" class="headerlink" title="消息队列的应用场景——解耦"></a>消息队列的应用场景——解耦</h4><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217130150.png"></p><h4 id="消息队列的应用场景——异步通信"><a href="#消息队列的应用场景——异步通信" class="headerlink" title="消息队列的应用场景——异步通信"></a>消息队列的应用场景——异步通信</h4><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217130231.png"></p><h3 id="消息队列的两种模式-Rabbit-MQ-Active-MQ-kafka"><a href="#消息队列的两种模式-Rabbit-MQ-Active-MQ-kafka" class="headerlink" title="消息队列的两种模式(Rabbit MQ,Active MQ,kafka)"></a>消息队列的两种模式(Rabbit MQ,Active MQ,kafka)</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217130446.png"></p><h3 id="Kafka-基础架构"><a href="#Kafka-基础架构" class="headerlink" title="Kafka 基础架构"></a>Kafka 基础架构</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217130607.png"></p><p>100T的数据存储到一台服务器上,一台服务器一般是8-90T. 所以不能存下. 所以,遇到海量数据分而治之. 把100T数据切分成几块来处理.</p><p>​    kafka也是采用这种思想. 把100T的数据切割成几块来处理. 就是把一个主题的数据分割成多个partition分区. 100T的数据存到一个主题里面,但是因为数据太大. 我们把这个主题又分为多个分区. 即,100T的数据发往topicA主题当中, 但是我每一台服务器都无法同时存储下这100T数据. 所以我们把这100T数据切割成n份分区.每一个服务器只存储30多T的数据.(broker0,broker1,broker2代表hadoop101,102,103对应的主题名称,即三台服务器)</p><p>​    既然生产切分了,消费要并行消费才会很快. 所以就有消费者组的概念, 消费者组里面有n个消费者,每一个人负责对应的分区. 消费者组就消费你这个topic主题.这样消费就很快. <strong>一个分区的数据只能由一个消费者来消费.</strong></p><h4 id="如果一个分区挂了怎么办呢"><a href="#如果一个分区挂了怎么办呢" class="headerlink" title="如果一个分区挂了怎么办呢?"></a>如果一个分区挂了怎么办呢?</h4><p>​        考虑到可靠性,kafka可以增加副本. hadoop里面的副本是一样的.但是kafka里面的副本分为 leader和 follower.</p><p>无论是生产者和消费者,生产消费的时候只针对leader这个副本进行生产和消费. follower的作用就是,当你的leader挂掉之后,follower有条件成为新的leader.</p><h4 id="zookeeper上存了kafka的那些信息"><a href="#zookeeper上存了kafka的那些信息" class="headerlink" title="zookeeper上存了kafka的那些信息?"></a>zookeeper上存了kafka的那些信息?</h4><p>​      kafka有一部分信息存在zookeeper里面的.他帮kafka来存储整个集群中那些服务器上线了.也就是记录服务器运行的节点状态.zookeeper还会帮你记录每一个分区谁是leader. 这样后续生产和消费的时候直接找leader. Kafka2.8.0之前,kafka必须要有zookeeper进行配合使用.2.8.0之后就不是必须的了.他是可选的.</p><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217130719.png"></p><p>​    </p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217124445.png&quot;&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="大数据" scheme="http://xubatian.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
-    
-    
-    <category term="Kafka" scheme="http://xubatian.cn/tags/Kafka/"/>
     
   </entry>
   
