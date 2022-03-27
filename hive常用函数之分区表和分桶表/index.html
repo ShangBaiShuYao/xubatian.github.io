@@ -11,18 +11,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta name="description" content="分区表 一般生产当中会有一级分区和二级分区. 如果数据量比较大,会有二级分区. 比如按照每天的每个小时进行分区.    分区的原因就是数据量太大了. 分区指的是reduce里面. 而map里面叫分片.   map里面的切片和reduce里面的分区有本质意义上的区别吗? 没有区别, 你map端分片.其实也是提高并行度. 其实都是将数据分开,然后大家一起去计算. hive里面有张表叫做分区表. 表里面">
+  <meta name="description" content="分区表">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hive常用函数之分区表和分桶表">
 <meta property="og:url" content="http://xubatian.cn/hive%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E4%B9%8B%E5%88%86%E5%8C%BA%E8%A1%A8%E5%92%8C%E5%88%86%E6%A1%B6%E8%A1%A8/index.html">
 <meta property="og:site_name" content="我的梦想是星辰大海">
-<meta property="og:description" content="分区表 一般生产当中会有一级分区和二级分区. 如果数据量比较大,会有二级分区. 比如按照每天的每个小时进行分区.    分区的原因就是数据量太大了. 分区指的是reduce里面. 而map里面叫分片.   map里面的切片和reduce里面的分区有本质意义上的区别吗? 没有区别, 你map端分片.其实也是提高并行度. 其实都是将数据分开,然后大家一起去计算. hive里面有张表叫做分区表. 表里面">
+<meta property="og:description" content="分区表">
 <meta property="og:locale">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220228232524.png">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220228234117.png">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220228235253.png">
 <meta property="article:published_time" content="2022-02-28T15:19:57.000Z">
-<meta property="article:modified_time" content="2022-02-28T15:57:34.254Z">
+<meta property="article:modified_time" content="2022-03-27T10:47:23.768Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="hive">
 <meta name="twitter:card" content="summary">
@@ -339,12 +339,12 @@
   <div class="article-entry" itemprop="articleBody">
     
     <h1><span id="分区表">分区表</span></h1><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220228232524.png"></p>
+<span id="more"></span>
+
 <p>一般生产当中会有一级分区和二级分区. 如果数据量比较大,会有二级分区. 比如按照每天的每个小时进行分区.    分区的原因就是数据量太大了. 分区指的是reduce里面. 而map里面叫分片.  </p>
 <p><strong>map里面的切片和reduce里面的分区有本质意义上的区别吗?</strong></p>
 <p>没有区别, 你map端分片.其实也是提高并行度. 其实都是将数据分开,然后大家一起去计算.</p>
 <p>hive里面有张表叫做分区表. 表里面放数据. 这张表每天一个分区. 就是每天一个目录. 以后查数据的时候,直接用where筛选目录.即,查询的sql中写上分区信息. 这样我就能够避免全表扫描.</p>
-<span id="more"></span>
-
 <h3><span id="分区表基本操作"><strong>分区表基本操作</strong></span></h3><h4><span id="1引入分区表需要根据日期对日志进行管理-通过部门信息模拟"><strong>1）引入分区表（需要根据日期对日志进行管理, 通过部门信息模拟）</strong></span></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dept_20200401.log</span><br><span class="line">dept_20200402.log</span><br><span class="line">dept_20200403.log</span><br></pre></td></tr></table></figure>
 
 <h4><span id="2创建分区表语法"><strong>2）创建分区表语法</strong></span></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">hive (<span class="keyword">default</span>)<span class="operator">&gt;</span> <span class="keyword">create</span> <span class="keyword">table</span> dept_partition(</span><br><span class="line">deptno <span class="type">int</span>, </span><br><span class="line">dname string, </span><br><span class="line">loc string</span><br><span class="line">)</span><br><span class="line">partitioned <span class="keyword">by</span> (<span class="keyword">day</span> string)</span><br><span class="line"><span class="type">row</span> format delimited fields terminated <span class="keyword">by</span> <span class="string">&#x27;\t&#x27;</span>;</span><br></pre></td></tr></table></figure>

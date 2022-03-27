@@ -11,16 +11,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta name="description" content="TaskManager内存模型 内存管理器作用​    我们有一块内存叫做管理内存. 内存管理器就是用来管理这块内存的.你设计的这块内存是不是得有人来操作维护的呀? 就是内存管理器维护管理内存的. ​">
+  <meta name="description" content="TaskManager内存模型">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Flink内存管理: 内存管理器">
 <meta property="og:url" content="http://xubatian.cn/Flink%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%99%A8/index.html">
 <meta property="og:site_name" content="我的梦想是星辰大海">
-<meta property="og:description" content="TaskManager内存模型 内存管理器作用​    我们有一块内存叫做管理内存. 内存管理器就是用来管理这块内存的.你设计的这块内存是不是得有人来操作维护的呀? 就是内存管理器维护管理内存的. ​">
+<meta property="og:description" content="TaskManager内存模型">
 <meta property="og:locale">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220219184944.png">
 <meta property="article:published_time" content="2022-02-19T13:04:52.000Z">
-<meta property="article:modified_time" content="2022-02-19T13:18:49.920Z">
+<meta property="article:modified_time" content="2022-03-27T10:49:17.651Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="Flink">
 <meta name="twitter:card" content="summary">
@@ -336,20 +336,22 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h2 id="TaskManager内存模型"><a href="#TaskManager内存模型" class="headerlink" title="TaskManager内存模型"></a>TaskManager内存模型</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220219184944.png"></p>
-<h2 id="内存管理器作用"><a href="#内存管理器作用" class="headerlink" title="内存管理器作用"></a>内存管理器作用</h2><p>​    我们有一块内存叫做管理内存. 内存管理器就是用来管理这块内存的.你设计的这块内存是不是得有人来操作维护的呀? 就是内存管理器维护管理内存的.</p>
-<p>​        <span id="more"></span></p>
+    <h2><span id="taskmanager内存模型">TaskManager内存模型</span></h2><span id="more"></span>
+
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220219184944.png"></p>
+<h2><span id="内存管理器作用">内存管理器作用</span></h2><p>​    我们有一块内存叫做管理内存. 内存管理器就是用来管理这块内存的.你设计的这块内存是不是得有人来操作维护的呀? 就是内存管理器维护管理内存的.</p>
+<p>​        </p>
 <p>​        Flink 1.10 对TaskManager的内存模型和Flink应用程序的配置选项进行了重大更改，让用户能够更加严格地控制其内存开销。</p>
 <pre><code>    1.10之前版本，负责TaskManager所有内存。
     1.10版本开始，管理范围是Slot级别。
 </code></pre>
-<h3 id="堆外内存资源申请"><a href="#堆外内存资源申请" class="headerlink" title="堆外内存资源申请"></a>堆外内存资源申请</h3><p>MemoryManager.java</p>
+<h3><span id="堆外内存资源申请">堆外内存资源申请</span></h3><p>MemoryManager.java</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">allocatePages</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">			Object owner,</span></span></span><br><span class="line"><span class="params"><span class="function">			Collection&lt;MemorySegment&gt; target,</span></span></span><br><span class="line"><span class="params"><span class="function">			<span class="keyword">int</span> numberOfPages)</span> <span class="keyword">throws</span> MemoryAllocationException </span>&#123;</span><br><span class="line">		... ...</span><br><span class="line"></span><br><span class="line">		allocatedSegments.compute(owner, (o, currentSegmentsForOwner) -&gt; &#123;</span><br><span class="line">			Set&lt;MemorySegment&gt; segmentsForOwner = currentSegmentsForOwner == <span class="keyword">null</span> ?</span><br><span class="line">				<span class="keyword">new</span> HashSet&lt;&gt;(numberOfPages) : currentSegmentsForOwner;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">long</span> i = numberOfPages; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">				MemorySegment segment = allocateOffHeapUnsafeMemory(getPageSize(), owner, pageCleanup);</span><br><span class="line">				target.add(segment);</span><br><span class="line">				segmentsForOwner.add(segment);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> segmentsForOwner;</span><br><span class="line">		&#125;);</span><br><span class="line">		... ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>MemorySegmentFactory.java</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> MemorySegment <span class="title">allocateOffHeapUnsafeMemory</span><span class="params">(<span class="keyword">int</span> size, Object owner, Runnable customCleanupAction)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">long</span> address = MemoryUtils.allocateUnsafe(size);</span><br><span class="line">	ByteBuffer offHeapBuffer = MemoryUtils.wrapUnsafeMemoryWithByteBuffer(address, size);</span><br><span class="line">	MemoryUtils.createMemoryGcCleaner(offHeapBuffer, address, customCleanupAction);</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> HybridMemorySegment(offHeapBuffer, owner);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="RocksDB自己负责内存申请和释放"><a href="#RocksDB自己负责内存申请和释放" class="headerlink" title="RocksDB自己负责内存申请和释放"></a>RocksDB自己负责内存申请和释放</h3><p>RocksDBOperationUtils.java</p>
+<h3><span id="rocksdb自己负责内存申请和释放">RocksDB自己负责内存申请和释放</span></h3><p>RocksDBOperationUtils.java</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> OpaqueMemoryResource&lt;RocksDBSharedResources&gt; <span class="title">allocateSharedCachesIfConfigured</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">			RocksDBMemoryConfiguration memoryConfig,</span></span></span><br><span class="line"><span class="params"><span class="function">			MemoryManager memoryManager,</span></span></span><br><span class="line"><span class="params"><span class="function">			<span class="keyword">double</span> memoryFraction,</span></span></span><br><span class="line"><span class="params"><span class="function">			Logger logger)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line"></span><br><span class="line">	... ...</span><br><span class="line"></span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> (memoryConfig.isUsingFixedMemoryPerSlot()) &#123;</span><br><span class="line">				<span class="keyword">assert</span> memoryConfig.getFixedMemoryPerSlot() != <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">				logger.info(<span class="string">&quot;Getting fixed-size shared cache for RocksDB.&quot;</span>);</span><br><span class="line">				<span class="keyword">return</span> memoryManager.getExternalSharedMemoryResource(</span><br><span class="line">						FIXED_SLOT_MEMORY_RESOURCE_ID, allocator, memoryConfig.getFixedMemoryPerSlot().getBytes());</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				logger.info(<span class="string">&quot;Getting managed memory shared cache for RocksDB.&quot;</span>);</span><br><span class="line">				<span class="keyword">return</span> memoryManager.getSharedMemoryResourceForManagedMemory(MANAGED_MEMORY_RESOURCE_ID, allocator, memoryFraction);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	... ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>MemoryManager.java</p>
@@ -542,7 +544,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#TaskManager%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">TaskManager内存模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%99%A8%E4%BD%9C%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">内存管理器作用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A0%86%E5%A4%96%E5%86%85%E5%AD%98%E8%B5%84%E6%BA%90%E7%94%B3%E8%AF%B7"><span class="toc-number">2.1.</span> <span class="toc-text">堆外内存资源申请</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RocksDB%E8%87%AA%E5%B7%B1%E8%B4%9F%E8%B4%A3%E5%86%85%E5%AD%98%E7%94%B3%E8%AF%B7%E5%92%8C%E9%87%8A%E6%94%BE"><span class="toc-number">2.2.</span> <span class="toc-text">RocksDB自己负责内存申请和释放</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">TaskManager内存模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">内存管理器作用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">2.1.</span> <span class="toc-text">堆外内存资源申请</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">2.2.</span> <span class="toc-text">RocksDB自己负责内存申请和释放</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>

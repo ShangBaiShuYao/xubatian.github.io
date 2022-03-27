@@ -828,10 +828,6 @@
   <div class="article-entry" itemprop="articleBody">
     
     <h1 id="分区表"><a href="#分区表" class="headerlink" title="分区表"></a>分区表</h1><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220228232524.png"></p>
-<p>一般生产当中会有一级分区和二级分区. 如果数据量比较大,会有二级分区. 比如按照每天的每个小时进行分区.    分区的原因就是数据量太大了. 分区指的是reduce里面. 而map里面叫分片.  </p>
-<p><strong>map里面的切片和reduce里面的分区有本质意义上的区别吗?</strong></p>
-<p>没有区别, 你map端分片.其实也是提高并行度. 其实都是将数据分开,然后大家一起去计算.</p>
-<p>hive里面有张表叫做分区表. 表里面放数据. 这张表每天一个分区. 就是每天一个目录. 以后查数据的时候,直接用where筛选目录.即,查询的sql中写上分区信息. 这样我就能够避免全表扫描.</p>
     
     <a class="article-more-a" style="display: none; href="/hive%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E4%B9%8B%E5%88%86%E5%8C%BA%E8%A1%A8%E5%92%8C%E5%88%86%E6%A1%B6%E8%A1%A8/#more">more >></a>
     
@@ -931,7 +927,6 @@
   <div class="article-entry" itemprop="articleBody">
     
     <p>​    hive 里面其实我们可以设置reduce的个数. 类似于在mapreduce里面,最后封装一个Driver一样. 可以最后写我们需要运行多少个reducer.  set mapreduce.job.reduces=3; 设置reducer个数为3. 但是在orderBy 里面,就算你最后设置了属性也不会生效. </p>
-<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220228232138.png"></p>
     
     <a class="article-more-a" style="display: none; href="/hive%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E4%B9%8B%E6%8E%92%E5%BA%8F/#more">more >></a>
     
@@ -1030,7 +1025,7 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h1 id="整个Flink-Job运行过程图"><a href="#整个Flink-Job运行过程图" class="headerlink" title="整个Flink Job运行过程图"></a>整个Flink Job运行过程图</h1><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220220144839.png"></p>
+    <h1 id="整个Flink-Job运行过程图"><a href="#整个Flink-Job运行过程图" class="headerlink" title="整个Flink Job运行过程图"></a>整个Flink Job运行过程图</h1>
     
     <a class="article-more-a" style="display: none; href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink%E6%B5%81%E7%A8%8B%E5%B0%8F%E6%80%BB%E7%BB%93/#more">more >></a>
     
@@ -1129,8 +1124,7 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h3 id="网络传输中的内存管理"><a href="#网络传输中的内存管理" class="headerlink" title="网络传输中的内存管理"></a>网络传输中的内存管理</h3><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220220135443.png"></p>
-<p>​    网络上传输的数据会写到 Task 的 InputGate（IG） 中，经过 Task 的处理后，再由 Task 写到 ResultPartition（RS） 中。每个 Task 都包括了输入和输入，输入和输出的数据存在 Buffer 中（都是字节数据）。Buffer 是 MemorySegment 的包装类。</p>
+    <h3 id="网络传输中的内存管理"><a href="#网络传输中的内存管理" class="headerlink" title="网络传输中的内存管理"></a>网络传输中的内存管理</h3>
     
     <a class="article-more-a" style="display: none; href="/Flink%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/#more">more >></a>
     
@@ -1229,9 +1223,7 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h2 id="TaskManager内存模型"><a href="#TaskManager内存模型" class="headerlink" title="TaskManager内存模型"></a>TaskManager内存模型</h2><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220219184944.png"></p>
-<h2 id="内存管理器作用"><a href="#内存管理器作用" class="headerlink" title="内存管理器作用"></a>内存管理器作用</h2><p>​    我们有一块内存叫做管理内存. 内存管理器就是用来管理这块内存的.你设计的这块内存是不是得有人来操作维护的呀? 就是内存管理器维护管理内存的.</p>
-<p>​
+    <h2 id="TaskManager内存模型"><a href="#TaskManager内存模型" class="headerlink" title="TaskManager内存模型"></a>TaskManager内存模型</h2>
     
     <a class="article-more-a" style="display: none; href="/Flink%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%99%A8/#more">more >></a>
     

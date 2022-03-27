@@ -24,7 +24,7 @@
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/aliyun/www.xubatian.cn_287.png">
 <meta property="og:image" content="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220228224310.png">
 <meta property="article:published_time" content="2022-02-28T14:16:21.000Z">
-<meta property="article:modified_time" content="2022-02-28T16:04:31.357Z">
+<meta property="article:modified_time" content="2022-03-27T10:46:09.245Z">
 <meta property="article:author" content="xubatian">
 <meta property="article:tag" content="hive">
 <meta name="twitter:card" content="summary">
@@ -341,9 +341,9 @@
   <div class="article-entry" itemprop="articleBody">
     
     <p>​    hive 里面其实我们可以设置reduce的个数. 类似于在mapreduce里面,最后封装一个Driver一样. 可以最后写我们需要运行多少个reducer.  set mapreduce.job.reduces=3; 设置reducer个数为3. 但是在orderBy 里面,就算你最后设置了属性也不会生效. </p>
-<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220228232138.png"></p>
 <span id="more"></span>
 
+<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220228232138.png"></p>
 <h1><span id="全局排序order-by">全局排序（Order By）</span></h1><p>Order By：全局排序，会进入到一个Reducer里面,最终会生成一个结果文件</p>
 <p><strong>1．使用 ORDER BY 子句排序</strong><br>        ASC（ascend）: 升序（默认）<br>        DESC（descend）: 降序<br><strong>2．ORDER BY 子句在SELECT语句的结尾</strong></p>
 <p><strong>3．案例实操</strong><br>    （1）查询员工信息按工资升序排列</p>

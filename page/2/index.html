@@ -312,8 +312,6 @@
   <div class="article-entry" itemprop="articleBody">
     
     <h3 id="内存段"><a href="#内存段" class="headerlink" title="内存段"></a>内存段</h3><p>​        <strong>内存段在 Flink 内部叫 MemorySegment，是 Flink 中最小的内存分配单元，默认大小32KB。Flink内存是区分堆内和堆外的,但是MemorySegment是最小单元,不区分堆内核堆外的</strong>.它即可以是堆上内存（Java的byte数组），也可以是堆外内存（基于Netty的DirectByteBuffer），同时提供了对二进制数据进行读取和写入的方法。</p>
-<p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220219194503.png"></p>
-<p><strong>HeapMemorySegment：用来分配堆上内存</strong><br><strong>HybridMemorySegment：用来分配堆外内存和堆上内存，2017年以后的版本实际上只使用了HybridMemo`rySegment。</strong></p>
     
     <a class="article-more-a" style="display: none; href="/Flink%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/#more">more >></a>
     
@@ -413,8 +411,6 @@
   <div class="article-entry" itemprop="articleBody">
     
     <p>​        目前，大数据计算引擎主要用 Java 或是基于 JVM 的编程语言实现的，例如 Apache Hadoop、Apache Spark、Apache Drill、Apache Flink等。Java语言的好处在于程序员不需要太关注底层内存资源的管理，但同样会面临一个问题，就是如何在内存中存储大量的数据（包括缓存和高效处理）。Flink使用自主的内存管理，来避免这个问题。</p>
-<p><strong>JVM内存管理的不足:</strong></p>
-<p>​            1）<strong>Java 对象存储密度低</strong>。Java的对象在内存中存储包含3个主要部分：对象头、实例数据、对齐填充部分。例如，一个只包含 boolean 属性的对象占16byte：对象头占8byte，boolean 属性占1byte，为了对齐达到8的倍数额外占7byte。而实际上只需要一个bit（1/8字节）就够了。</p>
     
     <a class="article-more-a" style="display: none; href="/Flink%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/#more">more >></a>
     
