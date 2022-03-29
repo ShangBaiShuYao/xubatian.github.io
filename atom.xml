@@ -6,7 +6,7 @@
   <link href="http://xubatian.cn/atom.xml" rel="self"/>
   
   <link href="http://xubatian.cn/"/>
-  <updated>2022-03-25T06:33:42.257Z</updated>
+  <updated>2022-03-29T06:02:12.403Z</updated>
   <id>http://xubatian.cn/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>html+css笔记01</title>
+    <link href="http://xubatian.cn/html-css%E7%AC%94%E8%AE%B001/"/>
+    <id>http://xubatian.cn/html-css%E7%AC%94%E8%AE%B001/</id>
+    <published>2022-03-29T05:52:01.000Z</published>
+    <updated>2022-03-29T06:02:12.403Z</updated>
+    
+    <content type="html"><![CDATA[<h1><span id="什么web">什么web?</span></h1><p>web是简称, world wide web  广域网  互联网,可以理解为网站</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;什么web&quot;&gt;什么web?&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;web是简称, world wide web  广域网  互联网,可以理解为网站&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    <category term="前端" scheme="http://xubatian.cn/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+    <category term="html+css" scheme="http://xubatian.cn/tags/html-css/"/>
+    
+  </entry>
   
   <entry>
     <title>一款好用的免费VPN插件</title>
@@ -425,27 +450,6 @@
     
     
     <summary type="html">&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;表到流的转换:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; Append-only 流（追加流）&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; Retract 流（撤回流，使用聚合操作，count，sum等）&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; Upsert 流(更新流,直接更新)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;注意: 在将动态表转换为 DataStream 时，只支持 append 流和 retract 流。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; 		 只有当我们对接Hbase,ES等这些外部系统的时候才会有upsert模式.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; 		 注意: 聚合操作需要使用撤回流,不能使用追加流&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
-    
-    
-    
-    <category term="大数据" scheme="http://xubatian.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
-    
-    
-    <category term="Flink" scheme="http://xubatian.cn/tags/Flink/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Flink SQL 案例代码: 将Stream流转化成Table</title>
-    <link href="http://xubatian.cn/Flink-SQL-%E6%A1%88%E4%BE%8B%E4%BB%A3%E7%A0%81-%E5%B0%86Stream%E6%B5%81%E8%BD%AC%E5%8C%96%E6%88%90Table/"/>
-    <id>http://xubatian.cn/Flink-SQL-%E6%A1%88%E4%BE%8B%E4%BB%A3%E7%A0%81-%E5%B0%86Stream%E6%B5%81%E8%BD%AC%E5%8C%96%E6%88%90Table/</id>
-    <published>2022-02-17T10:13:46.000Z</published>
-    <updated>2022-02-19T13:22:02.459Z</updated>
-    
-    <content type="html"><![CDATA[<p>将流转换成表,再将表转换成流打印</p><span id="more"></span><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.shangbaishuyao.demo.FlinkDemo10;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.shangbaishuyao.demo.bean.WaterSensor;</span><br><span class="line"><span class="keyword">import</span> org.apache.flink.api.java.tuple.Tuple2;</span><br><span class="line"><span class="keyword">import</span> org.apache.flink.streaming.api.datastream.DataStream;</span><br><span class="line"><span class="keyword">import</span> org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;</span><br><span class="line"><span class="keyword">import</span> org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;</span><br><span class="line"><span class="keyword">import</span> org.apache.flink.table.api.Table;</span><br><span class="line"><span class="keyword">import</span> org.apache.flink.table.api.bridge.java.StreamTableEnvironment;</span><br><span class="line"><span class="keyword">import</span> org.apache.flink.types.Row;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.apache.flink.table.api.Expressions.$;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Author: shangbaishuyao</span></span><br><span class="line"><span class="comment"> * Date: 21:53 2021/4/23</span></span><br><span class="line"><span class="comment"> * Desc: 测试Flink SQL: 由Stream流转化成Table</span></span><br><span class="line"><span class="comment"> * 将流转换成表,再将表转换成流打印</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FlinkSQL01_StreamToTable_Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">//1.获取流执行环境</span></span><br><span class="line">        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();</span><br><span class="line">        <span class="comment">//设置并行度</span></span><br><span class="line">        env.setParallelism(<span class="number">1</span>);</span><br><span class="line">        <span class="comment">//2.读取端口数据创建流并装换为JavaBean</span></span><br><span class="line">        SingleOutputStreamOperator&lt;WaterSensor&gt; waterSensorDS = env.socketTextStream(<span class="string">&quot;hadoop102&quot;</span>, <span class="number">9999</span>)</span><br><span class="line">                .map(data -&gt; &#123;</span><br><span class="line">                    String[] split = data.split(<span class="string">&quot;,&quot;</span>);</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">new</span> WaterSensor(split[<span class="number">0</span>],</span><br><span class="line">                            Long.parseLong(split[<span class="number">1</span>]),</span><br><span class="line">                            Integer.parseInt(split[<span class="number">2</span>]));</span><br><span class="line">                &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3.创建表执行环境</span></span><br><span class="line"><span class="comment">//        StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);</span></span><br><span class="line">        StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);</span><br><span class="line"><span class="comment">//        tableEnv.sqlQuery();</span></span><br><span class="line">        <span class="comment">//4.将流转换为动态表</span></span><br><span class="line"><span class="comment">//        Table sensorTable = tableEnv.fromDataStream(waterSensorDS);</span></span><br><span class="line">        Table sensorTable = tableEnv.fromDataStream(waterSensorDS);</span><br><span class="line">        <span class="comment">//5.使用TableAPI过滤出&quot;ws_001&quot;的数据,其他字段都保留</span></span><br><span class="line">        <span class="comment">//TODO Flink V1.12.0写法</span></span><br><span class="line">        Table selectTable = sensorTable</span><br><span class="line">                .where($(<span class="string">&quot;id&quot;</span>).isEqual(<span class="string">&quot;ws_001&quot;</span>)) <span class="comment">//过滤</span></span><br><span class="line">                .select($(<span class="string">&quot;id&quot;</span>), $(<span class="string">&quot;ts&quot;</span>), $(<span class="string">&quot;vc&quot;</span>)); <span class="comment">//过滤完后你要查什么东西</span></span><br><span class="line">        <span class="comment">//TODO 老版本写法.</span></span><br><span class="line"><span class="comment">//        Table selectTable = sensorTable</span></span><br><span class="line"><span class="comment">//                .where(&quot;id =&#x27;ws_001&#x27;&quot;)</span></span><br><span class="line"><span class="comment">//                .select(&quot;id,ts,vc&quot;);</span></span><br><span class="line">        <span class="comment">//6.将selectTable转换为流进行输出</span></span><br><span class="line"><span class="comment">//        DataStream&lt;Row&gt; rowDataStream = tableEnv.toAppendStream(selectTable, Row.class);</span></span><br><span class="line">        DataStream&lt;Tuple2&lt;Boolean, Row&gt;&gt; rowDataStream = tableEnv.toRetractStream(selectTable, Row.class);<span class="comment">//Row.class这是通用的类</span></span><br><span class="line">        rowDataStream.print();</span><br><span class="line">        <span class="comment">//7.执行任务</span></span><br><span class="line">        env.execute();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure><p>代码地址: <a href="https://github.com/ShangBaiShuYao/flink-learning-from-zhisheng/blob/main/flink-1.12.0-Demo/src/main/java/com/shangbaishuyao/demo/FlinkDemo10/FlinkSQL01_StreamToTable_Test.java">https://github.com/ShangBaiShuYao/flink-learning-from-zhisheng/blob/main/flink-1.12.0-Demo/src/main/java/com/shangbaishuyao/demo/FlinkDemo10/FlinkSQL01_StreamToTable_Test.java</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;将流转换成表,再将表转换成流打印&lt;/p&gt;</summary>
     
     
     
