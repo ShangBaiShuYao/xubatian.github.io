@@ -11,6 +11,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
+    
+    <!-- <meta name="keywords" content="徐霸天,xubatian,上白书妖,shangbaishuyao">
+    <meta name="description" content="知识源于积累,登峰造极源于自律"> -->
+  
   <meta name="description" content="知识源于积累,登峰造极源于自律">
 <meta property="og:type" content="website">
 <meta property="og:title" content="我的梦想是星辰大海">
@@ -288,6 +292,809 @@
             
 
   
+    <article id="post-Flink源码分析-Flink-on-yarn-的-per-job-cluster模式及提交流程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/Flink%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Flink-on-yarn-%E7%9A%84-per-job-cluster%E6%A8%A1%E5%BC%8F%E5%8F%8A%E6%8F%90%E4%BA%A4%E6%B5%81%E7%A8%8B/">Flink源码分析: Flink on yarn 的 per-job-cluster模式及提交流程</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/Flink%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Flink-on-yarn-%E7%9A%84-per-job-cluster%E6%A8%A1%E5%BC%8F%E5%8F%8A%E6%8F%90%E4%BA%A4%E6%B5%81%E7%A8%8B/" class="archive-article-date">
+        <time datetime="2022-02-19T06:57:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-19</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="Flink-on-Yarn"><a href="#Flink-on-Yarn" class="headerlink" title="Flink on Yarn"></a>Flink on Yarn</h3><p>​        Flink提供了两种在yarn上运行的模式，分别为<strong>Session-Cluster和Per-Job-Cluster模式</strong>.</p>
+<p>​        Application就是我们的JobManager.</p>
+<p>什么是Session-Cluster呢?</p>
+<p>​        就是多个job或者多个application共享一份集群资源,共享一份yarn session的进程或者共用一个进程中的资源,那个进程叫yarn session<br>什么是Per-Job-Cluster呢?<br>每一个job对应一个yarn session</p>
+    
+    <a class="article-more-a" style="display: none; href="/Flink%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Flink-on-yarn-%E7%9A%84-per-job-cluster%E6%A8%A1%E5%BC%8F%E5%8F%8A%E6%8F%90%E4%BA%A4%E6%B5%81%E7%A8%8B/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/Flink%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Flink-on-yarn-%E7%9A%84-per-job-cluster%E6%A8%A1%E5%BC%8F%E5%8F%8A%E6%8F%90%E4%BA%A4%E6%B5%81%E7%A8%8B/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Flink-SQL-案例代码-使用连接器的方式读取Kafka的数据" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/Flink-SQL-%E6%A1%88%E4%BE%8B%E4%BB%A3%E7%A0%81-%E4%BD%BF%E7%94%A8%E8%BF%9E%E6%8E%A5%E5%99%A8%E7%9A%84%E6%96%B9%E5%BC%8F%E8%AF%BB%E5%8F%96Kafka%E7%9A%84%E6%95%B0%E6%8D%AE/">Flink SQL 案例代码: 使用连接器的方式读取Kafka的数据</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/Flink-SQL-%E6%A1%88%E4%BE%8B%E4%BB%A3%E7%A0%81-%E4%BD%BF%E7%94%A8%E8%BF%9E%E6%8E%A5%E5%99%A8%E7%9A%84%E6%96%B9%E5%BC%8F%E8%AF%BB%E5%8F%96Kafka%E7%9A%84%E6%95%B0%E6%8D%AE/" class="archive-article-date">
+        <time datetime="2022-02-17T10:31:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-17</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>注意: 在将动态表转换为 DataStream 时，只支持 append 流和 retract 流。<br>         只有当我们对接Hbase,ES等这些外部系统的时候才会有upsert模式.</p>
+    
+    <a class="article-more-a" style="display: none; href="/Flink-SQL-%E6%A1%88%E4%BE%8B%E4%BB%A3%E7%A0%81-%E4%BD%BF%E7%94%A8%E8%BF%9E%E6%8E%A5%E5%99%A8%E7%9A%84%E6%96%B9%E5%BC%8F%E8%AF%BB%E5%8F%96Kafka%E7%9A%84%E6%95%B0%E6%8D%AE/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/Flink-SQL-%E6%A1%88%E4%BE%8B%E4%BB%A3%E7%A0%81-%E4%BD%BF%E7%94%A8%E8%BF%9E%E6%8E%A5%E5%99%A8%E7%9A%84%E6%96%B9%E5%BC%8F%E8%AF%BB%E5%8F%96Kafka%E7%9A%84%E6%95%B0%E6%8D%AE/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Flink-SQL-案例代码-使用Connect方式读取文本数据" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/Flink-SQL-%E6%A1%88%E4%BE%8B%E4%BB%A3%E7%A0%81-%E4%BD%BF%E7%94%A8Connect%E6%96%B9%E5%BC%8F%E8%AF%BB%E5%8F%96%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE/">Flink SQL 案例代码: 使用Connect方式读取文本数据</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/Flink-SQL-%E6%A1%88%E4%BE%8B%E4%BB%A3%E7%A0%81-%E4%BD%BF%E7%94%A8Connect%E6%96%B9%E5%BC%8F%E8%AF%BB%E5%8F%96%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE/" class="archive-article-date">
+        <time datetime="2022-02-17T10:29:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-17</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>注意: 在将动态表转换为 DataStream 时，只支持 append 流和 retract 流。<br>     只有当我们对接Hbase,ES等这些外部系统的时候才会有upsert模式.</p>
+    
+    <a class="article-more-a" style="display: none; href="/Flink-SQL-%E6%A1%88%E4%BE%8B%E4%BB%A3%E7%A0%81-%E4%BD%BF%E7%94%A8Connect%E6%96%B9%E5%BC%8F%E8%AF%BB%E5%8F%96%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/Flink-SQL-%E6%A1%88%E4%BE%8B%E4%BB%A3%E7%A0%81-%E4%BD%BF%E7%94%A8Connect%E6%96%B9%E5%BC%8F%E8%AF%BB%E5%8F%96%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Flink-SQL-案例代码-将Stream流转化成Table聚合操作-求总和-某个count或者sum将转为Stream打印" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/Flink-SQL-%E6%A1%88%E4%BE%8B%E4%BB%A3%E7%A0%81-%E5%B0%86Stream%E6%B5%81%E8%BD%AC%E5%8C%96%E6%88%90Table%E8%81%9A%E5%90%88%E6%93%8D%E4%BD%9C-%E6%B1%82%E6%80%BB%E5%92%8C-%E6%9F%90%E4%B8%AAcount%E6%88%96%E8%80%85sum%E5%B0%86%E8%BD%AC%E4%B8%BAStream%E6%89%93%E5%8D%B0/">Flink SQL 案例代码: 将Stream流转化成Table聚合操作, 求总和,某个count或者sum将转为Stream打印</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/Flink-SQL-%E6%A1%88%E4%BE%8B%E4%BB%A3%E7%A0%81-%E5%B0%86Stream%E6%B5%81%E8%BD%AC%E5%8C%96%E6%88%90Table%E8%81%9A%E5%90%88%E6%93%8D%E4%BD%9C-%E6%B1%82%E6%80%BB%E5%92%8C-%E6%9F%90%E4%B8%AAcount%E6%88%96%E8%80%85sum%E5%B0%86%E8%BD%AC%E4%B8%BAStream%E6%89%93%E5%8D%B0/" class="archive-article-date">
+        <time datetime="2022-02-17T10:24:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-17</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">表到流的转换:</span><br><span class="line"> Append-only 流（追加流）</span><br><span class="line"> Retract 流（撤回流，使用聚合操作，count，sum等）</span><br><span class="line"> Upsert 流(更新流,直接更新)</span><br><span class="line">注意: 在将动态表转换为 DataStream 时，只支持 append 流和 retract 流。</span><br><span class="line"> 		 只有当我们对接Hbase,ES等这些外部系统的时候才会有upsert模式.</span><br><span class="line"> 		 注意: 聚合操作需要使用撤回流,不能使用追加流</span><br></pre></td></tr></table></figure>
+    
+    <a class="article-more-a" style="display: none; href="/Flink-SQL-%E6%A1%88%E4%BE%8B%E4%BB%A3%E7%A0%81-%E5%B0%86Stream%E6%B5%81%E8%BD%AC%E5%8C%96%E6%88%90Table%E8%81%9A%E5%90%88%E6%93%8D%E4%BD%9C-%E6%B1%82%E6%80%BB%E5%92%8C-%E6%9F%90%E4%B8%AAcount%E6%88%96%E8%80%85sum%E5%B0%86%E8%BD%AC%E4%B8%BAStream%E6%89%93%E5%8D%B0/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/Flink-SQL-%E6%A1%88%E4%BE%8B%E4%BB%A3%E7%A0%81-%E5%B0%86Stream%E6%B5%81%E8%BD%AC%E5%8C%96%E6%88%90Table%E8%81%9A%E5%90%88%E6%93%8D%E4%BD%9C-%E6%B1%82%E6%80%BB%E5%92%8C-%E6%9F%90%E4%B8%AAcount%E6%88%96%E8%80%85sum%E5%B0%86%E8%BD%AC%E4%B8%BAStream%E6%89%93%E5%8D%B0/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Flink-SQL-案例代码-将Stream流转化成Table" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/Flink-SQL-%E6%A1%88%E4%BE%8B%E4%BB%A3%E7%A0%81-%E5%B0%86Stream%E6%B5%81%E8%BD%AC%E5%8C%96%E6%88%90Table/">Flink SQL 案例代码: 将Stream流转化成Table</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/Flink-SQL-%E6%A1%88%E4%BE%8B%E4%BB%A3%E7%A0%81-%E5%B0%86Stream%E6%B5%81%E8%BD%AC%E5%8C%96%E6%88%90Table/" class="archive-article-date">
+        <time datetime="2022-02-17T10:13:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-17</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>将流转换成表,再将表转换成流打印</p>
+    
+    <a class="article-more-a" style="display: none; href="/Flink-SQL-%E6%A1%88%E4%BE%8B%E4%BB%A3%E7%A0%81-%E5%B0%86Stream%E6%B5%81%E8%BD%AC%E5%8C%96%E6%88%90Table/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/Flink-SQL-%E6%A1%88%E4%BE%8B%E4%BB%A3%E7%A0%81-%E5%B0%86Stream%E6%B5%81%E8%BD%AC%E5%8C%96%E6%88%90Table/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-kafka3-0-0之kafka概述" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/kafka3-0-0%E4%B9%8Bkafka%E6%A6%82%E8%BF%B0/">kafka3.0.0之kafka概述</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/kafka3-0-0%E4%B9%8Bkafka%E6%A6%82%E8%BF%B0/" class="archive-article-date">
+        <time datetime="2022-02-17T04:53:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-17</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217124445.png"></p>
+    
+    <a class="article-more-a" style="display: none; href="/kafka3-0-0%E4%B9%8Bkafka%E6%A6%82%E8%BF%B0/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Kafka</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/kafka3-0-0%E4%B9%8Bkafka%E6%A6%82%E8%BF%B0/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Flink写入clickhouse案例" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/Flink%E5%86%99%E5%85%A5clickhouse%E6%A1%88%E4%BE%8B/">Flink写入clickhouse案例</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/Flink%E5%86%99%E5%85%A5clickhouse%E6%A1%88%E4%BE%8B/" class="archive-article-date">
+        <time datetime="2022-02-16T17:40:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-17</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>Flink写入clickhouse案例</p>
+<p>源码地址: </p>
+<p><a target="_blank" rel="noopener" href="https://github.com/ShangBaiShuYao/flink-learning-from-zhisheng/blob/main/Flink-shangbaishuyao-RTDW-gmall-realtime/src/main/java/com/shangbaishuyao/gmall/realtime/app/DWS/KeywordStats4ProductApp.java">https://github.com/ShangBaiShuYao/flink-learning-from-zhisheng/blob/main/Flink-shangbaishuyao-RTDW-gmall-realtime/src/main/java/com/shangbaishuyao/gmall/realtime/app/DWS/KeywordStats4ProductApp.java</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/ShangBaiShuYao/flink-learning-from-zhisheng/blob/main/Flink-shangbaishuyao-RTDW-gmall-realtime/src/main/java/com/shangbaishuyao/gmall/realtime/utils/ClickHouseUtil.java">https://github.com/ShangBaiShuYao/flink-learning-from-zhisheng/blob/main/Flink-shangbaishuyao-RTDW-gmall-realtime/src/main/java/com/shangbaishuyao/gmall/realtime/utils/ClickHouseUtil.java</a></p>
+    
+    <a class="article-more-a" style="display: none; href="/Flink%E5%86%99%E5%85%A5clickhouse%E6%A1%88%E4%BE%8B/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">clickhouse</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/Flink%E5%86%99%E5%85%A5clickhouse%E6%A1%88%E4%BE%8B/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-ClickHouse的副本和分片集群" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/ClickHouse%E7%9A%84%E5%89%AF%E6%9C%AC%E5%92%8C%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4/">ClickHouse的副本和分片集群</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/ClickHouse%E7%9A%84%E5%89%AF%E6%9C%AC%E5%92%8C%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4/" class="archive-article-date">
+        <time datetime="2022-02-16T17:25:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-17</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="副本"><a href="#副本" class="headerlink" title="副本"></a>副本</h3><p>​        副本的目的主要是保障数据的高可用性，即使一台ClickHouse节点宕机，那么也可以从其他服务器获得相同的数据。<br>高可用: 包括数据的高可用 , 服务的高可用(HA)</p>
+<h4 id="副本写入流程"><a href="#副本写入流程" class="headerlink" title="副本写入流程"></a>副本写入流程</h4><p><img src="https://xubatian.oss-cn-hangzhou.aliyuncs.com/xubatian_blogs_img2/20220217012620.png"></p>
+    
+    <a class="article-more-a" style="display: none; href="/ClickHouse%E7%9A%84%E5%89%AF%E6%9C%AC%E5%92%8C%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">clickhouse</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/ClickHouse%E7%9A%84%E5%89%AF%E6%9C%AC%E5%92%8C%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-ClickHouse表引擎" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -492,821 +1299,9 @@
 
 
   
-    <article id="post-ClickHouse入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/ClickHouse%E5%85%A5%E9%97%A8/">ClickHouse入门</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/ClickHouse%E5%85%A5%E9%97%A8/" class="archive-article-date">
-        <time datetime="2022-02-16T16:19:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-17</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h1 id="ClickHouse入门"><a href="#ClickHouse入门" class="headerlink" title="ClickHouse入门"></a>ClickHouse入门</h1><p>​        ClickHouse 是俄罗斯的Yandex于2016年开源的列式存储数据库（DBMS），使用C++语言编写，主要用于<strong>在线分析处理查询（OLAP），能够使用SQL查询实时生成分析数据报告。</strong>  </p>
-<p>官方文档：<a target="_blank" rel="noopener" href="https://clickhouse.yandex/docs/zh/data_types/">https://clickhouse.yandex/docs/zh/data_types/</a></p>
-    
-    <a class="article-more-a" style="display: none; href="/ClickHouse%E5%85%A5%E9%97%A8/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">clickhouse</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/ClickHouse%E5%85%A5%E9%97%A8/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-常用的shell脚本" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/%E5%B8%B8%E7%94%A8%E7%9A%84shell%E8%84%9A%E6%9C%AC/">常用的shell脚本</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/%E5%B8%B8%E7%94%A8%E7%9A%84shell%E8%84%9A%E6%9C%AC/" class="archive-article-date">
-        <time datetime="2022-02-16T14:17:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-16</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h1 id="myhadoop-sh"><a href="#myhadoop-sh" class="headerlink" title="myhadoop.sh"></a>myhadoop.sh</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">if [ $# -lt 1 ]</span><br><span class="line">then</span><br><span class="line">    echo &quot;No Args Input...&quot;</span><br><span class="line">    exit ;</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">case $1 in</span><br><span class="line">&quot;start&quot;)</span><br><span class="line">        echo &quot; =================== 启动 hadoop集群 ===================&quot;</span><br><span class="line"></span><br><span class="line">        echo &quot; --------------- 启动 hdfs ---------------&quot;</span><br><span class="line">        ssh hadoop102 &quot;/opt/module/hadoop-3.1.3/sbin/start-dfs.sh&quot;</span><br><span class="line">        echo &quot; --------------- 启动 yarn ---------------&quot;</span><br><span class="line">        ssh hadoop103 &quot;/opt/module/hadoop-3.1.3/sbin/start-yarn.sh&quot;</span><br><span class="line">        echo &quot; --------------- 启动 historyserver ---------------&quot;</span><br><span class="line">        ssh hadoop102 &quot;/opt/module/hadoop-3.1.3/bin/mapred --daemon start historyserver&quot;</span><br><span class="line">;;</span><br><span class="line">&quot;stop&quot;)</span><br><span class="line">        echo &quot; =================== 关闭 hadoop集群 ===================&quot;</span><br><span class="line"></span><br><span class="line">        echo &quot; --------------- 关闭 historyserver ---------------&quot;</span><br><span class="line">        ssh hadoop102 &quot;/opt/module/hadoop-3.1.3/bin/mapred --daemon stop historyserver&quot;</span><br><span class="line">        echo &quot; --------------- 关闭 yarn ---------------&quot;</span><br><span class="line">        ssh hadoop103 &quot;/opt/module/hadoop-3.1.3/sbin/stop-yarn.sh&quot;</span><br><span class="line">        echo &quot; --------------- 关闭 hdfs ---------------&quot;</span><br><span class="line">        ssh hadoop102 &quot;/opt/module/hadoop-3.1.3/sbin/stop-dfs.sh&quot;</span><br><span class="line">;;</span><br><span class="line">*)</span><br><span class="line">    echo &quot;Input Args Error...&quot;</span><br><span class="line">;;</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
-    
-    <a class="article-more-a" style="display: none; href="/%E5%B8%B8%E7%94%A8%E7%9A%84shell%E8%84%9A%E6%9C%AC/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">shell</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/%E5%B8%B8%E7%94%A8%E7%9A%84shell%E8%84%9A%E6%9C%AC/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-数据仓库原理与实现-维度建模理论之事实表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-%E7%BB%B4%E5%BA%A6%E5%BB%BA%E6%A8%A1%E7%90%86%E8%AE%BA%E4%B9%8B%E4%BA%8B%E5%AE%9E%E8%A1%A8/">数据仓库原理与实现: 维度建模理论之事实表</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-%E7%BB%B4%E5%BA%A6%E5%BB%BA%E6%A8%A1%E7%90%86%E8%AE%BA%E4%B9%8B%E4%BA%8B%E5%AE%9E%E8%A1%A8/" class="archive-article-date">
-        <time datetime="2022-02-16T05:30:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-16</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="事实表概述"><a href="#事实表概述" class="headerlink" title="事实表概述"></a>事实表概述</h2><p>​        事实表作为数据仓库维度建模的核心，紧紧围绕着业务过程来设计。其包含与该业务过程有关的维度引用（维度表外键）以及该业务过程的度量（通常是可累加的数字类型字段）。</p>
-<h3 id="事实表特点"><a href="#事实表特点" class="headerlink" title="事实表特点"></a><strong>事实表特点</strong></h3><p>​        事实表通常比较“细长”，即列较少，但行较多，且行的增速快。</p>
-<h3 id="事实表分类"><a href="#事实表分类" class="headerlink" title="事实表分类"></a><strong>事实表分类</strong></h3><p>​        事实表有三种类型：分别是事务事实表、周期快照事实表和累积快照事实表，每种事实表都具有不同的特点和适用场景，下面逐个介绍。</p>
-    
-    <a class="article-more-a" style="display: none; href="/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-%E7%BB%B4%E5%BA%A6%E5%BB%BA%E6%A8%A1%E7%90%86%E8%AE%BA%E4%B9%8B%E4%BA%8B%E5%AE%9E%E8%A1%A8/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据仓库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-%E7%BB%B4%E5%BA%A6%E5%BB%BA%E6%A8%A1%E7%90%86%E8%AE%BA%E4%B9%8B%E4%BA%8B%E5%AE%9E%E8%A1%A8/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-数据仓库原理与实现-数据仓库建模概述" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%BB%BA%E6%A8%A1%E6%A6%82%E8%BF%B0/">数据仓库原理与实现: 数据仓库建模概述</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%BB%BA%E6%A8%A1%E6%A6%82%E8%BF%B0/" class="archive-article-date">
-        <time datetime="2022-02-16T05:25:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-16</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h1 id="数据仓库建模概述"><a href="#数据仓库建模概述" class="headerlink" title="数据仓库建模概述"></a>数据仓库建模概述</h1><h2 id="数据仓库建模的意义"><a href="#数据仓库建模的意义" class="headerlink" title="数据仓库建模的意义"></a>数据仓库建模的意义</h2><p>​        如果把数据看作图书馆里的书，我们希望看到它们在书架上分门别类地放置；如果把数据看作城市的建筑，我们希望城市规划布局合理；如果把数据看作电脑文件和文件夹，我们希望按照自己的习惯有很好的文件夹组织方式，而不是糟糕混乱的桌面，经常为找一个文件而不知所措。</p>
-<p>数据模型就是数据组织和存储方法，它强调从业务、数据存取和使用角度合理存储数据。只有将数据有序的组织和存储起来之后，数据才能得到高性能、低成本、高效率、高质量的使用。</p>
-<p>高性能：良好的数据模型能够帮助我们快速查询所需要的数据。</p>
-<p>低成本：良好的数据模型能减少重复计算，实现计算结果的复用，降低计算成本。</p>
-<p>高效率：良好的数据模型能极大的改善用户使用数据的体验，提高使用数据的效率。</p>
-<p>高质量：良好的数据模型能改善数据统计口径的混乱，减少计算错误的可能性。</p>
-    
-    <a class="article-more-a" style="display: none; href="/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%BB%BA%E6%A8%A1%E6%A6%82%E8%BF%B0/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据仓库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%BB%BA%E6%A8%A1%E6%A6%82%E8%BF%B0/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Flink-原理与实现-Flink-SQL-CDC" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink-SQL-CDC/">Flink 原理与实现: Flink SQL CDC</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink-SQL-CDC/" class="archive-article-date">
-        <time datetime="2022-02-15T16:47:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-16</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>摘要：20年7月，Flink 1.11 新版发布，在生态及易用性上有大幅提升，其中 Table &amp; SQL 开始支持 Change Data Capture（CDC）。CDC 被广泛使用在复制数据、更新缓存、微服务间同步数据、审计日志等场景，本文由社区由曾庆东同学分享，主要介绍 Flink SQL CDC 在生产环境的落地实践以及总结的实战经验</p>
-<p>Tips：点击下方链接可查看社区直播的 Flink SQL CDC 相关视频～<br><a target="_blank" rel="noopener" href="https://flink-learning.org.cn/developers/flink-training-course3/">https://flink-learning.org.cn/developers/flink-training-course3/</a></p>
-    
-    <a class="article-more-a" style="display: none; href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink-SQL-CDC/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flink</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/Flink-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Flink-SQL-CDC/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Spark原理与实现-Spark-SQL编程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/Spark%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Spark-SQL%E7%BC%96%E7%A8%8B/">Spark原理与实现: Spark SQL编程</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/Spark%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Spark-SQL%E7%BC%96%E7%A8%8B/" class="archive-article-date">
-        <time datetime="2022-02-15T15:27:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-15</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h1 id="Spark-SQL编程"><a href="#Spark-SQL编程" class="headerlink" title="Spark SQL编程"></a>Spark SQL编程</h1><p>注意: 建表一定是数据集,对数据集进行建表即用df. 而执行SQL是spark.sql()</p>
-<h1 id="SparkSession新的起始点"><a href="#SparkSession新的起始点" class="headerlink" title="SparkSession新的起始点"></a>SparkSession新的起始点</h1><p>​        在老的版本中，SparkSQL提供两种SQL查询起始点：一个叫SQLContext，用于Spark自己提供的SQL查询；一个叫HiveContext，用于连接Hive的查询。<br>​        现在是使用的是SparkSession了.实际上就是将两个结合了.所以你很方便的去查寻一个json文件,也可以查询一个hive数据.统一的数据入口<br>​        SparkSession是Spark最新的SQL查询起始点，实质上是SQLContext和HiveContext的组合，所以在SQLContex和HiveContext上可用的API在SparkSession上同样是可以使用的。SparkSession内部封装了sparkContext，所以计算实际上是由sparkContext完成的。<br>在Spark SQL中SparkSession是创建DataFrame和执行SQL的入口</p>
-    
-    <a class="article-more-a" style="display: none; href="/Spark%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Spark-SQL%E7%BC%96%E7%A8%8B/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">spark SQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/Spark%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-Spark-SQL%E7%BC%96%E7%A8%8B/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Spark原理与实现-SparkSQL的概述" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/Spark%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-SparkSQL%E7%9A%84%E6%A6%82%E8%BF%B0/">Spark原理与实现: SparkSQL的概述</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/Spark%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-SparkSQL%E7%9A%84%E6%A6%82%E8%BF%B0/" class="archive-article-date">
-        <time datetime="2022-02-15T15:13:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-15</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h1 id="什么是Spark-SQL"><a href="#什么是Spark-SQL" class="headerlink" title="什么是Spark SQL"></a>什么是Spark SQL</h1><p>​        Spark SQL是Spark用来处理结构化数据的一个模块，它提供了2个编程抽象：DataFrame和DataSet，并且作为分布式SQL查询引擎的作用。</p>
-<p>​        我们已经学习了Hive，它是将Hive SQL转换成MapReduce然后提交到集群上执行，大大简化了编写MapReduc的程序的复杂性，由于MapReduce这种计算模型执行效率比较慢。所有Spark SQL的应运而生，它是将Spark SQL转换成SparkCore来运行，然后提交到集群执行，执行效率非常快！</p>
-<p>​        Spark SQL其实和hive替代MapReduce一样的. </p>
-    
-    <a class="article-more-a" style="display: none; href="/Spark%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-SparkSQL%E7%9A%84%E6%A6%82%E8%BF%B0/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">spark SQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/Spark%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0-SparkSQL%E7%9A%84%E6%A6%82%E8%BF%B0/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Kafka-API" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/Kafka-API/">Kafka API</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/Kafka-API/" class="archive-article-date">
-        <time datetime="2022-02-15T14:24:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-15</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h1 id="Producer-API"><a href="#Producer-API" class="headerlink" title="Producer API"></a>Producer API</h1><h2 id="消息发送流程"><a href="#消息发送流程" class="headerlink" title="消息发送流程"></a>消息发送流程</h2><p>​        Kafka的Producer发送消息采用的是<strong>异步发送</strong>的方式。在消息发送的过程中，涉及到了<strong>两个线程——main线程和Sender线程</strong>，以及<strong>一个线程共享变量——RecordAccumulator</strong>。main线程将消息发送给RecordAccumulator，Sender线程不断从RecordAccumulator中拉取消息发送到Kafka broker。</p>
-    
-    <a class="article-more-a" style="display: none; href="/Kafka-API/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Kafka</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/Kafka-API/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/4/">下一页</a>
+      <a class="extend prev" rel="prev" href="/page/2/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/4/">下一页</a>
     </nav>
   
 
@@ -1348,7 +1343,7 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: false,
+		isHome: true,
 		isPost: false,
 		isArchive: false,
 		isTag: false,
